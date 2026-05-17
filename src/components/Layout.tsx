@@ -111,10 +111,10 @@ export default function Layout() {
 
                   {/* Account Dropdown */}
                   <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-2xl shadow-2xl border border-slate-100 opacity-0 invisible group-hover/account:opacity-100 group-hover/account:visible transition-all z-[70] py-2">
-                    <Link to="/mypage" className="flex items-center gap-3 px-4 py-2.5 text-xs font-black text-slate-600 hover:bg-slate-50 hover:text-indigo-600 transition-colors">
+                    <a href="https://mazastudio.kr/mypage" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-4 py-2.5 text-xs font-black text-slate-600 hover:bg-slate-50 hover:text-indigo-600 transition-colors">
                       <User size={14} />
                       <span>마이 페이지</span>
-                    </Link>
+                    </a>
                     <div className="h-[1px] bg-slate-50 my-1" />
                     <button 
                       onClick={() => signOut()} 
