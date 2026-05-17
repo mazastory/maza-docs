@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "rootDir": "extension",
+    "outDir": "dist-ext",
+    "allowJs": true,
+    "checkJs": false,
+    "sourceMap": true,
+    "noEmitOnError": false,
+    "types": ["chrome"]
+  },
+  "include": [
+    "extension/**/*"
+  ]
+}

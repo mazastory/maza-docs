@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# This is a private VIP documentation site — not for public indexing
+# Sitemap: https://docs.mazastudio.kr/sitemap.xml
