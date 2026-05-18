@@ -161,7 +161,7 @@ export default function Layout() {
               <Link to="/privacy" className="text-slate-900 hover:text-indigo-600 transition-colors underline decoration-indigo-600/20 underline-offset-4">개인정보처리방침</Link>
               <Link to="/terms" className="hover:text-indigo-600 transition-colors">이용약관</Link>
               <Link to="/knowledge?tab=blueprint" className="hover:text-indigo-600 transition-colors">마자 매뉴얼 (Guide)</Link>
-              <Link to="/installation-guide" className="hover:text-indigo-600 transition-colors">익스텐션 설치 가이드</Link>
+              <Link to="/installation-guide" className="hover:text-indigo-600 transition-colors">블로그 세팅 가이드</Link>
               <Link to="/usage-guide" className="hover:text-indigo-600 transition-colors font-black text-indigo-600 italic">기능 사용법 가이드 (Usage)</Link>
               <a href="https://mazastudio.kr" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 transition-colors">메인 앱 →</a>
             </div>

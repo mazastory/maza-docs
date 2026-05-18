@@ -341,328 +341,40 @@ export default function KnowledgeHub({
                    </div>
                 </div>
 
-                {/* Sub-tabs within Chapter 1 for customized platforms */}
-                <div className="flex border-b border-white/10 pt-4 gap-6">
-                  {[
-                    { id: 'tistory', label: '🐯 Tistory Quick Panel' },
-                    { id: 'blogger', label: '🍊 Google Blogger Secret' },
-                    { id: 'wordpress', label: '🌐 WordPress Settings' },
-                    { id: 'scaling', label: '💎 Multisite Scaling' }
-                  ].map(tab => (
-                    <button
-                      key={tab.id}
-                      onClick={() => setPlatformTab(tab.id as any)}
-                      className={cn(
-                        "pb-4 text-xs font-black uppercase tracking-wider transition-all border-b-2",
-                        platformTab === tab.id 
-                          ? "border-indigo-400 text-indigo-400" 
-                          : "border-transparent text-slate-500 hover:text-white"
-                      )}
-                    >
-                      {tab.label}
-                    </button>
-                  ))}
+                {/* Link to Official Installation Guide for Settings */}
+                <div className="pt-8 border-t border-white/10">
+                  <a 
+                    href="/installation-guide" 
+                    className="block w-full bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-3xl p-8 text-white shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
+                  >
+                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-white/20 transition-all" />
+                     <div className="flex flex-col md:flex-row items-center justify-between relative z-10 gap-6">
+                        <div className="flex items-center gap-6">
+                           <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm shrink-0">
+                              <Settings size={32} className="text-white" />
+                           </div>
+                           <div>
+                              <div className="inline-block px-3 py-1 bg-white/20 rounded-full text-[10px] font-black uppercase tracking-widest mb-2 border border-white/20">
+                                 Official Settings Guide
+                              </div>
+                              <h4 className="text-2xl font-black italic tracking-tighter uppercase mb-1">
+                                 ⚙️ 플랫폼별 상세 세팅 가이드 보기
+                              </h4>
+                              <p className="text-indigo-100 font-medium text-sm">
+                                 티스토리, 워드프레스, 블로그스팟 등 각 플랫폼별 정확한 세팅 방법은 설치 가이드에서 확인하세요.
+                              </p>
+                           </div>
+                        </div>
+                        <div className="w-12 h-12 bg-white text-indigo-600 rounded-full flex items-center justify-center shrink-0 group-hover:translate-x-2 transition-transform shadow-lg">
+                           <ArrowRight size={20} />
+                        </div>
+                     </div>
+                  </a>
                 </div>
-
-                {/* Render items matching platform selection */}
-                {platformTab === 'tistory' && (
-                  <div className="space-y-10 animate-in fade-in duration-300">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {[
-                        { label: "기초 세팅", path: "/config", icon: Settings, color: "text-blue-400" },
-                        { label: "스킨 튜닝", path: "/design/skin/edit", icon: Layout, color: "text-rose-400" },
-                        { label: "모바일 해제", path: "/mobile", icon: Monitor, color: "text-amber-400" },
-                        { label: "수익 도구", path: "/plugin", icon: DollarSign, color: "text-emerald-400" },
-                        { label: "카테고리", path: "/category", icon: Layers, color: "text-indigo-400" },
-                        { label: "사이드바", path: "/design/sidebar", icon: LayoutGrid, color: "text-purple-400" },
-                        { label: "댓글 관리", path: "/comment", icon: HelpCircle, color: "text-cyan-400" },
-                        { label: "방문 통계", path: "/statistics", icon: BarChart3, color: "text-orange-400" }
-                      ].map((btn, i) => (
-                        <a 
-                          key={i} 
-                          href={getGlobalAdminLink(btn.path)} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="group flex flex-col items-center justify-center p-6 bg-white/5 border border-white/5 rounded-[32px] hover:bg-white/10 hover:border-indigo-500/50 transition-all gap-3"
-                        >
-                           <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center bg-white/5 group-hover:scale-110 group-hover:bg-indigo-600/20 transition-all", btn.color)}>
-                              <btn.icon size={20} />
-                           </div>
-                           <div className="text-center">
-                              <div className="text-xs font-black text-white uppercase tracking-tight mb-1">{btn.label}</div>
-                              <div className="text-[8px] font-bold text-slate-500 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Launch Admin</div>
-                           </div>
-                        </a>
-                      ))}
-                    </div>
-
-                    <div className="space-y-4">
-                      <div className="text-xs font-black text-slate-400 uppercase tracking-[0.25em] px-4">⚡️ ZERO-IT QUICK ACTIONS (Don't Read, Just Click)</div>
-                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        {[
-                          { label: "티스토리 기초공사", desc: "RSS/모바일 최적화 세팅", icon: Settings, color: "text-indigo-600", bg: "bg-indigo-50", link: getTistoryLink('/config') },
-                          { label: "북클럽 스킨 튜닝", desc: "반응형 스킨 및 편집창", icon: Layout, color: "text-rose-600", bg: "bg-rose-50", link: getTistoryLink('/design/skin/edit') },
-                          { label: "모바일 웹 연결 해제", desc: "애드센스 수익 필수 설정", icon: Monitor, color: "text-amber-600", bg: "bg-amber-50", link: getTistoryLink('/mobile') },
-                          { label: "플러그인 및 애드센스", desc: "수익 창출 연동 도구", icon: DollarSign, color: "text-emerald-600", bg: "bg-emerald-50", link: getTistoryLink('/plugin') }
-                        ].map((action, i) => (
-                          <a 
-                            key={i} 
-                            href={action.link} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="p-6 bg-white border border-slate-100 rounded-[32px] space-y-4 hover:border-indigo-600 hover:shadow-2xl hover:shadow-indigo-100 transition-all group text-slate-800"
-                          >
-                            <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110", action.bg)}>
-                              <action.icon size={16} className={action.color} />
-                            </div>
-                            <div>
-                              <h4 className="text-xs font-black text-slate-900 uppercase tracking-tight mb-1">{action.label}</h4>
-                              <p className="text-[9px] text-slate-400 font-bold leading-tight">{action.desc}</p>
-                            </div>
-                            <div className="pt-2 flex justify-end">
-                               <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                                  <ArrowRight size={12} />
-                               </div>
-                            </div>
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Tistory Secrets */}
-                    <div className="p-8 bg-white/5 border border-white/10 rounded-[32px] space-y-6">
-                      <h5 className="text-lg font-black text-white italic tracking-tighter">🐯 티스토리: 1% 고수들만 조용히 세팅하는 3대 필살기</h5>
-                      <div className="grid md:grid-cols-3 gap-6">
-                        <div className="p-5 bg-white/5 rounded-2xl border border-white/5 space-y-2">
-                          <strong className="text-xs font-black text-amber-300 block mb-1">01. 반응형 북클럽 스킨 적용</strong>
-                          <p className="text-[10px] text-slate-400 font-medium leading-relaxed">
-                            광고 클릭률(CTR)이 가장 우수한 공식 스킨입니다. 사이드바와 본문 상단 광고의 송출 속도가 빨라 구글 SEO 로봇이 아주 좋아하는 형태입니다.
-                          </p>
-                        </div>
-                        <div className="p-5 bg-rose-500/10 rounded-2xl border border-rose-500/20 space-y-2">
-                          <strong className="text-xs font-black text-rose-400 block mb-1">02. 모바일 자동연결 '해제'</strong>
-                          <p className="text-[10px] text-slate-400 font-medium leading-relaxed">
-                            [모바일] 관리탭에서 티스토리 전용 모바일 웹 자동 연결을 '사용안함'으로 켜두어야, 반응형 스킨의 애드센스 스크립트가 누락 없이 100% 정상 작동합니다.
-                          </p>
-                        </div>
-                        <div className="p-5 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 space-y-2">
-                          <strong className="text-xs font-black text-emerald-400 block mb-1">03. RSS '전체 공개' & '50개'</strong>
-                          <p className="text-[10px] text-slate-400 font-medium leading-relaxed">
-                            글쓰기 환경설정에서 RSS 정보량을 최대치(50개)로 늘려두세요. 구글 봇이 한 번 들어왔을 때 색인(인덱스)을 5배 빠르게 떠갈 수 있는 고단수 비법입니다.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {platformTab === 'blogger' && (
-                  <div className="space-y-6 animate-in fade-in duration-300">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {[
-                        { label: "블로거 세팅", path: "/config", icon: Settings, color: "text-blue-400" },
-                        { label: "테마 편집", path: "/design/skin/edit", icon: Layout, color: "text-rose-400" },
-                        { label: "레이아웃 설계", path: "/plugin", icon: DollarSign, color: "text-emerald-400" },
-                        { label: "댓글 허용", path: "/comment", icon: HelpCircle, color: "text-cyan-400" }
-                      ].map((btn, i) => (
-                        <a 
-                          key={i} 
-                          href={getGlobalAdminLink(btn.path)} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="group flex flex-col items-center justify-center p-8 bg-white/5 border border-white/5 rounded-[32px] hover:bg-white/10 hover:border-indigo-500/50 transition-all gap-4"
-                        >
-                           <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center bg-white/5 group-hover:scale-110 group-hover:bg-indigo-600/20 transition-all", btn.color)}>
-                              <btn.icon size={20} />
-                           </div>
-                           <div className="text-center">
-                              <div className="text-xs font-black text-white uppercase tracking-tight mb-1">{btn.label}</div>
-                              <div className="text-[8px] font-bold text-slate-500 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Launch Blogger</div>
-                           </div>
-                        </a>
-                      ))}
-                    </div>
-                    
-                    <div className="p-8 bg-white/5 border border-white/10 rounded-[32px] space-y-4">
-                      <h5 className="text-lg font-black text-white italic tracking-tighter">🍊 구글 블로거(Blogger): 애드센스 초고속 통과 가이드</h5>
-                      <p className="text-xs text-slate-300 leading-relaxed font-bold">
-                        블로거(Blogspot)는 구글 자체 인프라이므로 **구글 서치콘솔 색인 수집이 번개같이 수행**됩니다. 
-                        다만, 테마 템플릿의 가시성이 낮을 경우 승인이 지체될 수 있으므로, 기본 테마인 'Contempo' 또는 'Essential' 스킨을 활성화하고 사이트바 위젯을 3개 이하로 줄이는 **스파르타 스킨 다이어트**가 지름길입니다.
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                {platformTab === 'wordpress' && (
-                  <div className="space-y-6 animate-in fade-in duration-300">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {[
-                        { label: "WordPress 일반", path: "/config", icon: Settings, color: "text-blue-400" },
-                        { label: "스킨 편집기", path: "/design/skin/edit", icon: Layout, color: "text-rose-400" },
-                        { label: "플러그인 설정", path: "/plugin", icon: DollarSign, color: "text-emerald-400" },
-                        { label: "카테고리 구조", path: "/category", icon: Layers, color: "text-indigo-400" }
-                      ].map((btn, i) => (
-                        <a 
-                          key={i} 
-                          href={getGlobalAdminLink(btn.path)} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="group flex flex-col items-center justify-center p-8 bg-white/5 border border-white/5 rounded-[32px] hover:bg-white/10 hover:border-indigo-500/50 transition-all gap-4"
-                        >
-                           <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center bg-white/5 group-hover:scale-110 group-hover:bg-indigo-600/20 transition-all", btn.color)}>
-                              <btn.icon size={20} />
-                           </div>
-                           <div className="text-center">
-                              <div className="text-xs font-black text-white uppercase tracking-tight mb-1">{btn.label}</div>
-                              <div className="text-[8px] font-bold text-slate-500 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Launch WordPress</div>
-                           </div>
-                        </a>
-                      ))}
-                    </div>
-
-                    <div className="p-8 bg-white/5 border border-white/10 rounded-[32px] space-y-4">
-                      <h5 className="text-lg font-black text-white italic tracking-tighter">🌐 워드프레스(WordPress): 글로벌 상위 1% SEO 구성</h5>
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <div className="p-5 bg-white/5 border border-white/5 rounded-2xl">
-                          <strong className="text-xs font-black text-blue-400 block mb-1">고유주소(Permalinks) 설정</strong>
-                          <p className="text-[10px] text-slate-400 font-medium leading-relaxed">
-                            수익 최적화를 위해 설정을 '글 이름(Post Name)'으로 고정하세요. URL에 핵심 영문 키워드가 직접 맺히는 것만으로도 구글 SEO 봇은 큰 가점을 부여합니다.
-                          </p>
-                        </div>
-                        <div className="p-5 bg-white/5 border border-white/5 rounded-2xl">
-                          <strong className="text-xs font-black text-emerald-400 block mb-1">플러그인 다이어트 (Max 10)</strong>
-                          <p className="text-[10px] text-slate-400 font-medium leading-relaxed">
-                            과도한 플러그인은 리소스를 좀먹고 사이트 속도를 저하시킵니다. 로딩 속도가 1초 딜레이될 때마다 광고 이탈율은 배가되므로 경량 테마로 관리하는 법이 핵심입니다.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {platformTab === 'scaling' && (
-                  <div className="grid md:grid-cols-2 gap-6 animate-in fade-in duration-300">
-                    <div className="bg-white/5 p-8 rounded-[40px] border border-white/5 space-y-4">
-                       <div className="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center">
-                          <Layers size={24} />
-                       </div>
-                       <h5 className="text-xl font-black text-white italic tracking-tighter">서브도메인 멀티 사이트 설계</h5>
-                       <p className="text-xs text-slate-400 leading-relaxed font-bold">
-                          루트 도메인 한 개만 구글 애드센스 승인을 취득하면, 하위의 `health.example.com`, `finance.example.com` 같은 수백 개의 서브도메인 사이트는 **추가 구글 심사 없이 즉시 광고 송출이 가능**합니다.
-                          마자 오토파일럿 OS는 단일 데이터베이스(DB)로 모든 서브도메인을 통제하여 관리의 파이를 최소화합니다.
-                       </p>
-                    </div>
-
-                    <div className="bg-white/5 p-8 rounded-[40px] border border-white/5 space-y-4">
-                       <div className="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-2xl flex items-center justify-center">
-                          <Globe2 size={24} />
-                       </div>
-                       <h5 className="text-xl font-black text-white italic tracking-tighter">원클릭 DNS 레코드 주입</h5>
-                       <p className="text-xs text-slate-400 leading-relaxed font-bold">
-                          가비아, 호스팅케이알 등 국내외 도메인 구입처를 자동 분석하고, A 레코드 및 CNAME 값을 시스템이 자동으로 발급 및 안내해 줍니다. 
-                          복잡한 네임서버 세팅을 이해하지 못해도 복사 붙여넣기 한 번으로 SSL 보안 인증서 매치와 서버 동기화를 마칠 수 있습니다.
-                       </p>
-                    </div>
-                  </div>
-                )}
              </div>
           </div>
-
-
-            {/* Visual Setup Walkthrough Carousel */}
-            <div className="mt-12 bg-white/5 border border-white/10 rounded-[48px] p-10 space-y-8 relative overflow-hidden shadow-2xl">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 rounded-full text-[10px] font-black uppercase tracking-widest text-emerald-400 border border-emerald-500/20 mb-3">
-                     📸 Visual Walkthrough
-                  </div>
-                  <h4 className="text-2xl font-black text-white italic tracking-tighter uppercase leading-tight">
-                    블로그 인프라 세팅 시각 가이드
-                  </h4>
-                  <p className="text-slate-400 text-xs font-bold leading-relaxed mt-1">
-                    인프라 연결 단계별 스크린샷 가이드입니다. 화면을 보며 안심하고 설정을 진행하세요.
-                  </p>
-                </div>
-                <div className="flex items-center gap-3 shrink-0">
-                  <button 
-                    onClick={() => setCh1Slide(prev => prev > 0 ? prev - 1 : 2)}
-                    className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 text-white flex items-center justify-center border border-white/5 transition-all active:scale-95"
-                  >
-                    <ArrowLeft size={16} />
-                  </button>
-                  <span className="text-xs font-black text-emerald-400 uppercase tracking-widest bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
-                    {ch1Slide + 1} / 3
-                  </span>
-                  <button 
-                    onClick={() => setCh1Slide(prev => prev < 2 ? prev + 1 : 0)}
-                    className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 text-white flex items-center justify-center border border-white/5 transition-all active:scale-95"
-                  >
-                    <ArrowRight size={16} />
-                  </button>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-12 gap-8 items-center">
-                {/* Screenshot Frame */}
-                <div className="md:col-span-7 bg-slate-950/60 p-4 rounded-[40px] border border-white/5 shadow-2xl relative group">
-                  <div className="absolute top-4 left-4 flex gap-1.5 z-10">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                  </div>
-                  <div className="aspect-[16/10] overflow-hidden rounded-[28px] border border-white/5 relative bg-slate-900 flex items-center justify-center">
-                    {ch1Slide === 0 && <img src="/screenshots/step_01_challenge.png" alt="도메인 등록 단계" className="w-full h-full object-cover object-top animate-fade-in" />}
-                    {ch1Slide === 1 && <img src="/screenshots/step_02.png" alt="CNAME 네임서버 연결" className="w-full h-full object-cover object-top animate-fade-in" />}
-                    {ch1Slide === 2 && <img src="/screenshots/step_07_ok.png" alt="모든 인프라 READY 연동 완료" className="w-full h-full object-cover object-top animate-fade-in" />}
-                  </div>
-                </div>
-
-                {/* Explanation text */}
-                <div className="md:col-span-5 space-y-6">
-                  {ch1Slide === 0 && (
-                    <div className="space-y-4 animate-in fade-in duration-300">
-                      <div className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Step 01</div>
-                      <h5 className="text-xl font-black text-white italic tracking-tight">수익화 도메인 등록 및 검증 시작</h5>
-                      <p className="text-slate-300 text-xs leading-relaxed font-semibold">
-                        마자스튜디오 대시보드에서 유저가 구입한 도메인 주소(예: <span className="text-emerald-400 font-bold underline">example.com</span>)를 입력하고, 기초 데이터 연결을 시작하는 단계입니다.
-                      </p>
-                      <ul className="text-[10px] text-slate-400 font-bold space-y-2 border-t border-white/5 pt-4">
-                        <li className="flex items-center gap-2">✔️ 개인 맞춤 도메인(Tistory, Blogger 등) 등록</li>
-                        <li className="flex items-center gap-2">✔️ 루트/서브도메인 모두 무한 증식 지원</li>
-                      </ul>
-                    </div>
-                  )}
-                  {ch1Slide === 1 && (
-                    <div className="space-y-4 animate-in fade-in duration-300">
-                      <div className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Step 02</div>
-                      <h5 className="text-xl font-black text-white italic tracking-tight">CNAME & 네임서버 세팅</h5>
-                      <p className="text-slate-300 text-xs leading-relaxed font-semibold">
-                        가비아, 호스팅케이알 등 도메인 등록 대행업체(Registrar)에서 마자의 CNAME 서버 정보를 주입하여 연결을 선언하는 단계입니다.
-                      </p>
-                      <ul className="text-[10px] text-slate-400 font-bold space-y-2 border-t border-white/5 pt-4">
-                        <li className="flex items-center gap-2">✔️ 호스트명 CNAME 또는 A 레코드 매핑</li>
-                        <li className="flex items-center gap-2">✔️ 설정이 완료되면 마자 브릿지가 이를 자동 감지</li>
-                      </ul>
-                    </div>
-                  )}
-                  {ch1Slide === 2 && (
-                    <div className="space-y-4 animate-in fade-in duration-300">
-                      <div className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Step 03</div>
-                      <h5 className="text-xl font-black text-white italic tracking-tight">인프라 동기화 및 READY 상태 달성</h5>
-                      <p className="text-slate-300 text-xs leading-relaxed font-semibold">
-                        연결 상태가 실시간으로 분석되어 초록색 <span className="text-emerald-400 font-bold">READY</span>로 변화한 상태입니다. 구글 서치콘솔과 GA4 분석까지 원클릭으로 완벽하게 연동됩니다.
-                      </p>
-                      <ul className="text-[10px] text-slate-400 font-bold space-y-2 border-t border-white/5 pt-4">
-                        <li className="flex items-center gap-2">✔️ 동기화 버튼 클릭 시 실시간 인스턴스 갱신</li>
-                        <li className="flex items-center gap-2">✔️ 애드센스 승인 요건에 맞게 검색 엔진 최적화(SEO) 반영</li>
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+        </div>
+      )}
 
 
       {/* ──────────────────────────────────────────────────────────── */}

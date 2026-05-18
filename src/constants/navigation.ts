@@ -1,14 +1,14 @@
 import { 
-  Globe, Puzzle, Monitor, BookOpen
+  Globe, Settings, Monitor, BookOpen
 } from "lucide-react";
 
 // Docs site: document pillars only
 // Main app pillars (challenge, autopilot, mysite, mypage) live at mazastudio.kr
 export const CORE_PILLARS = [
-  { path: "/knowledge", label: "지식 센터 (매뉴얼)", icon: Globe },
-  { path: "/installation-guide", label: "익스텐션 설치 가이드", icon: Puzzle },
-  { path: "/usage-guide", label: "익스텐션 사용 가이드", icon: Monitor },
-  { path: "/guide", label: "블루프린트 가이드", icon: BookOpen },
+  { path: "/installation-guide", label: "블로그 세팅 가이드", icon: Settings },
+  { path: "/usage-guide", label: "프로그램 사용 가이드", icon: Monitor },
+  { path: "/knowledge", label: "일반 지식 가이드", icon: BookOpen },
+  { path: "/knowledge?tab=faq_page", label: "공지 및 FAQ", icon: Globe },
 ];
 
 export const ATOMIC_TOOLS: never[] = [];
