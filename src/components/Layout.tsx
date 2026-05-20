@@ -27,7 +27,7 @@ export default function Layout() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans" style={{ zoom: 0.85 }}>
       {/* Permanent Premium Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-slate-200/50 px-8 py-3">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
