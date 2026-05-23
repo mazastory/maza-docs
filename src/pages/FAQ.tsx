@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { 
   ShieldCheck, Zap, Globe, 
-  ChevronRight, Info
+  ChevronRight
 } from 'lucide-react';
+import DocsPageHeader from '../components/DocsPageHeader';
 
 const FAQ_DATA = [
   {
@@ -64,22 +65,17 @@ export default function FAQ() {
 
   return (
     <div className="min-h-screen bg-[#F9F9F8] pt-24 pb-32 px-8">
-      <div className="max-w-4xl mx-auto space-y-20">
-        
-        {/* Minimal Header */}
-        <div className="space-y-6 border-b border-slate-200 pb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-500 font-black text-[9px] uppercase tracking-widest">
-            <Info size={12} /> 공식 가이드 및 지원
-          </div>
-          <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter italic uppercase">
-            자주 묻는 질문 <span className="text-indigo-600">(FAQ)</span>
-          </h1>
-          <p className="text-slate-400 font-bold text-sm leading-relaxed max-w-xl">
-            마자 스튜디오의 기술적 철학과 서비스 이용에 관한 핵심 답변을 정리했습니다. <br />
-            원하시는 질문을 클릭하여 상세 내용을 확인하세요.
-          </p>
-        </div>
+      <DocsPageHeader
+        badge="공식 가이드 및 지원"
+        title="자주 묻는 질문 (FAQ)"
+        description="마자 스튜디오의 기술적 철학과 서비스 이용에 관한 핵심 답변을 정리했습니다. 원하시는 질문을 클릭하여 상세 내용을 확인하세요."
+        ctaLinks={[
+          { href: '/usage-guide', label: '기능 사용 가이드' },
+          { href: '/installation-guide', label: '블로그 세팅 가이드' }
+        ]}
+      />
 
+      <div className="max-w-4xl mx-auto space-y-20">
         {/* Categories & Questions in a single flow */}
         <div className="space-y-16">
            {FAQ_DATA.map((cat, i) => (

@@ -5,6 +5,7 @@ import {
   Share2, Award, Heart, Cpu, FileText, Smartphone
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import DocsPageHeader from '../components/DocsPageHeader';
 
 type UsageCategory = 'autopilot' | 'aiwriter' | 'visionwriter';
 
@@ -210,38 +211,15 @@ export default function UsageGuide() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans antialiased selection:bg-indigo-500 selection:text-white pb-20">
-      
-      {/* 🚀 Header */}
-      <header className="relative bg-white border-b border-slate-100 overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500" />
-        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-slate-900 rounded-3xl flex items-center justify-center text-white shadow-xl rotate-3 hover:rotate-12 transition-transform duration-300">
-              <Zap size={22} className="text-amber-400 fill-amber-400 animate-pulse" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-black tracking-widest text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md uppercase">Maza Pilot Edition</span>
-              </div>
-              <h1 className="text-2xl font-black italic tracking-tighter text-slate-800 uppercase mt-0.5">핵심 기능 사용 설명서</h1>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <a 
-              href="/installation-guide"
-              className="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-black text-xs uppercase tracking-wider rounded-2xl border border-slate-200/50 transition-all flex items-center gap-2"
-            >
-              <Compass size={14} /> 인프라 설치 가이드
-            </a>
-            <a 
-              href="/mysite"
-              className="px-6 py-3 bg-slate-950 hover:bg-slate-800 text-white font-black text-xs uppercase tracking-wider rounded-2xl shadow-lg shadow-slate-200 transition-all flex items-center gap-2 group"
-            >
-              내 블로그 관리로 이동 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        </div>
-      </header>
+      <DocsPageHeader
+        badge="기능 사용 가이드"
+        title="핵심 기능 사용 설명서"
+        description="마자 스튜디오의 주요 기능을 한 눈에 이해하고, 각 모듈을 가장 빠르게 활용하는 실전 가이드를 제공합니다."
+        ctaLinks={[
+          { href: '/installation-guide', label: '블로그 세팅 가이드' },
+          { href: '/faq', label: '자주 묻는 질문' }
+        ]}
+      />
 
       <main className="max-w-7xl mx-auto px-6 mt-12 space-y-12">
         
