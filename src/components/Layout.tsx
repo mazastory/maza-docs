@@ -11,12 +11,19 @@ export default function Layout() {
   const [moreOpen, setMoreOpen] = useState(false);
 
   const isActive = (path: string) => {
+    const current = location.pathname + location.search;
     if (path === "/" && location.pathname !== "/") return false;
-    return location.pathname === path || location.pathname.startsWith(path + "/");
+    return current === path || (!path.includes("?") && current.startsWith(path));
   };
 
   // Docs site: only show document-related pillars
-  const mainPillarPaths = ['/knowledge', '/installation-guide', '/usage-guide', '/guide'];
+  const mainPillarPaths = [
+    '/knowledge?category=tistory',
+    '/knowledge?category=extension',
+    '/knowledge?category=wordpress',
+    '/knowledge?category=blogspot',
+    '/knowledge?category=subdomain'
+  ];
 
   const mainPillars = mainPillarPaths
     .map(path => CORE_PILLARS.find(p => p.path === path))
@@ -160,9 +167,7 @@ export default function Layout() {
             <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-[10px] font-black text-slate-400 uppercase tracking-widest">
               <Link to="/privacy" className="text-slate-900 hover:text-indigo-600 transition-colors underline decoration-indigo-600/20 underline-offset-4">개인정보처리방침</Link>
               <Link to="/terms" className="hover:text-indigo-600 transition-colors">이용약관</Link>
-              <Link to="/knowledge?tab=blueprint" className="hover:text-indigo-600 transition-colors">마자 매뉴얼 (Guide)</Link>
               <Link to="/installation-guide" className="hover:text-indigo-600 transition-colors">블로그 세팅 가이드</Link>
-              <Link to="/usage-guide" className="hover:text-indigo-600 transition-colors font-black text-indigo-600 italic">기능 사용법 가이드 (Usage)</Link>
               <a href="https://mazastudio.kr" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 transition-colors">메인 앱 →</a>
             </div>
           </div>

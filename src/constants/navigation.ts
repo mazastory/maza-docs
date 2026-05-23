@@ -1,14 +1,15 @@
 import { 
-  Globe, Settings, Monitor, BookOpen
+  Globe, LayoutTemplate, Puzzle, Server, Box
 } from "lucide-react";
 
 // Docs site: document pillars only
 // Main app pillars (challenge, autopilot, mysite, mypage) live at mazastudio.kr
 export const CORE_PILLARS = [
-  { path: "/installation-guide", label: "블로그 세팅 가이드", icon: Settings },
-  { path: "/usage-guide", label: "프로그램 사용 가이드", icon: Monitor },
-  { path: "/knowledge", label: "일반 지식 가이드", icon: BookOpen },
-  { path: "/knowledge?tab=faq_page", label: "공지 및 FAQ", icon: Globe },
+  { path: "/knowledge?category=tistory", label: "티스토리 세팅", icon: LayoutTemplate },
+  { path: "/knowledge?category=extension", label: "익스텐션 연동", icon: Puzzle },
+  { path: "/knowledge?category=wordpress", label: "워드프레스 세팅", icon: Globe },
+  { path: "/knowledge?category=blogspot", label: "블로그스팟 세팅", icon: Server },
+  { path: "/knowledge?category=subdomain", label: "서브도메인 개설", icon: Box },
 ];
 
 export const ATOMIC_TOOLS: never[] = [];

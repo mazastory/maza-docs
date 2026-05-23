@@ -1093,12 +1093,14 @@ export default function KnowledgeHub({
                       >
                          Launch Google Setup <ArrowRight size={14} />
                       </a>
-                      <button 
-                        onClick={() => navigate('/challenge')}
+                      <a 
+                        href="https://mazastudio.kr/challenge"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-[10px] font-black text-amber-700 uppercase tracking-widest border-b-2 border-amber-200 hover:border-amber-600 transition-all"
                       >
                          이미 완료했다면 챌린지로 이동
-                      </button>
+                      </a>
                    </div>
                 </div>
                                  <div className="w-full lg:w-[420px] shrink-0 space-y-4">

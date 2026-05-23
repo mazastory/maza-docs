@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { 
   Download, Globe, ShieldCheck, Zap, 
   ArrowRight, ArrowUp, CheckCircle2, Monitor, 
@@ -195,8 +196,21 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
   }
 };
 
-export default function InstallationGuide() {
-  const [activeCategory, setActiveCategory] = useState<GuideCategory>('extension');
+interface InstallationGuideProps {
+  initialCategory?: GuideCategory;
+}
+
+export default function InstallationGuide({ initialCategory }: InstallationGuideProps) {
+  const location = useLocation();
+  const getCategoryFromSearch = (): GuideCategory | null => {
+    const params = new URLSearchParams(location.search);
+    const category = params.get('category') as GuideCategory | null;
+    return category && GUIDE_DATA[category] ? category : null;
+  };
+
+  const [activeCategory, setActiveCategory] = useState<GuideCategory>(() => {
+    return getCategoryFromSearch() ?? initialCategory ?? 'extension';
+  });
   const [activeStep, setActiveStep] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isDevModeOn, setIsDevModeOn] = useState<boolean>(false);
@@ -213,6 +227,13 @@ export default function InstallationGuide() {
     setIsPlaying(false);
     setImageError(false);
   }, [activeCategory]);
+
+  useEffect(() => {
+    const categoryFromSearch = getCategoryFromSearch();
+    if (categoryFromSearch) {
+      setActiveCategory(categoryFromSearch);
+    }
+  }, [location.search]);
 
   // Handle image load error to show generic fallback
   const handleImageError = () => {

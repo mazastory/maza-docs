@@ -9,7 +9,6 @@ import ErrorBoundary from "./components/ErrorBoundary";
 
 // Lazy loading — Docs pages only
 const Landing = lazy(() => import("./pages/Landing"));
-const KnowledgeHub = lazy(() => import("./pages/KnowledgeHub"));
 const InstallationGuide = lazy(() => import("./pages/InstallationGuide"));
 const Guide = lazy(() => import("./pages/Guide"));
 const UsageGuide = lazy(() => import("./pages/UsageGuide"));
@@ -58,7 +57,7 @@ export default function App() {
 
                 {/* Protected Doc Routes */}
                 <Route element={<AuthGuard />}>
-                  <Route path="knowledge" element={<KnowledgeHub />} />
+                  <Route path="knowledge" element={<InstallationGuide initialCategory="tistory" />} />
                   <Route path="installation-guide" element={<InstallationGuide />} />
                   <Route path="installation" element={<InstallationGuide />} />
                   <Route path="guide" element={<Guide />} />

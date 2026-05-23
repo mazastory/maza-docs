@@ -21,7 +21,7 @@ export default function Landing() {
 
   useEffect(() => {
     if (user) {
-      navigate("/challenge", { replace: true });
+      navigate("/knowledge", { replace: true });
     }
     // 수익 카운터 애니메이션 시뮬레이션
     const interval = setInterval(() => {

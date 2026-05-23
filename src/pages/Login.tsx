@@ -20,7 +20,7 @@ export default function Login() {
 
   useEffect(() => {
     if (session) {
-      navigate("/challenge");
+      navigate("/knowledge");
     }
   }, [session, navigate]);
 
@@ -38,7 +38,7 @@ export default function Login() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/challenge`,
+          redirectTo: `${window.location.origin}/knowledge`,
           scopes: 'https://www.googleapis.com/auth/analytics.edit https://www.googleapis.com/auth/analytics.provision https://www.googleapis.com/auth/webmasters https://www.googleapis.com/auth/siteverification https://www.googleapis.com/auth/blogger',
           queryParams: {
             prompt: 'consent',
@@ -59,7 +59,7 @@ export default function Login() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'kakao',
         options: {
-          redirectTo: `${window.location.origin}/challenge`
+          redirectTo: `${window.location.origin}/knowledge`
         }
       });
       if (error) throw error;
@@ -80,7 +80,7 @@ export default function Login() {
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        if (data.session) navigate("/challenge");
+        if (data.session) navigate("/knowledge");
       }
     } catch (e: any) {
       if (e.message.includes("User already registered")) {
