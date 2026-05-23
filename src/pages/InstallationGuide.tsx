@@ -99,26 +99,81 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
     color: "orange",
     steps: [
       {
-        title: "1. 관리자 페이지 진입 ⚙️",
-        desc: "브라우저 주소창에 `https://{블로그이름}.tistory.com/manage`를 입력하거나, 티스토리 로그인 후 '관리' 버튼을 클릭해 관리자 화면으로 이동합니다. 이 화면에서 익스텐션이 티스토리 세션을 감지합니다.",
-        badge: "BLOG SETTINGS",
-        image: "/screenshots/tistory_step_01.png",
-        tip: "로그인이 풀려 있으면 자동 발행이 실패하므로, 반드시 티스토리 계정으로 로그인한 상태에서 진행하세요."
+      title:"1. 회원가입",
+      badge:"SIGN UP",
+      image:"/screenshots/tistory/01_signup.png",
+      desc:"티스토리 계정 생성"
       },
+
       {
-        title: "2. 포스트 주소를 숫자로 변경 🔢",
-        desc: "관리자 왼쪽 메뉴에서 '블로그' → '주소 설정'을 열고, 글 주소를 [문자]에서 [숫자]로 변경한 뒤 저장합니다.",
-        badge: "URL CONFIG",
-        image: "/screenshots/tistory_step_02.png",
-        tip: "숫자 주소는 한글/특수문자 인코딩 문제를 제거합니다. 자동 발행된 글 URL을 안정적으로 확인하려면 반드시 숫자 주소를 사용하세요."
+      title:"2. 블로그명 · 사이트주소 설정",
+      badge:"BLOG INFO",
+      image:"/screenshots/tistory/02_blog_basic.png",
+      desc:"블로그명 설정"
       },
+
       {
-        title: "3. 북클럽 스킨으로 스킨 편집 확인 🎨",
-        desc: "왼쪽 메뉴에서 '꾸미기' → '스킨 편집'을 선택하고, HTML 소스 편집이 정상 동작하는지 확인합니다. 가능하면 '북클럽' 스킨을 사용하세요.",
-        badge: "SKIN EDITOR",
-        image: "/screenshots/tistory_step_03.png",
-        tip: "북클럽 스킨은 티스토리 자동 주입과 호환성이 가장 높습니다. 다른 스킨을 쓰면 익스텐션이 에디터를 찾지 못할 수 있습니다."
-      }
+      title:"3. 카테고리 관리",
+      badge:"CATEGORY",
+      image:"/screenshots/tistory/03_category.png",
+      desc:"카테고리 생성"
+      },
+
+      {
+      title:"4. 스킨 변경",
+      badge:"SKIN",
+      image:"/screenshots/tistory/04_skin.png",
+      desc:"스킨 템플릿을 변경하여 블로그 디자인을 맞춤 설정합니다."
+      },
+
+      {
+      title:"5. HTML 편집",
+      badge:"HTML",
+      image:"/screenshots/tistory/05_html.png",
+      desc:"HTML 편집 모드에서 블로그 콘텐츠 구조를 직접 수정합니다."
+      },
+
+      {
+      title:"6. 모바일웹 설정",
+      badge:"MOBILE",
+      image:"/screenshots/tistory/06_mobile.png",
+      desc:"모바일 웹뷰 설정을 통해 모바일 방문자 경험을 최적화합니다."
+      },
+
+      {
+      title:"7. 블로그 설정",
+      badge:"BLOG SETTING",
+      image:"/screenshots/tistory/07_setting.png",
+      desc:"블로그 기본 설정을 확인하고 공개 범위, 검색 노출 옵션을 조정합니다."
+      },
+
+      {
+      title:"8. 주소 설정",
+      badge:"URL",
+      image:"/screenshots/tistory/08_url.png",
+      desc:"블로그 주소 및 카테고리 URL 구조를 원하는 형태로 설정합니다."
+      },
+
+      {
+      title:"9. 기타 설정",
+      badge:"EXTRA",
+      image:"/screenshots/tistory/09_extra.png",
+      desc:"추가 기능 및 부가 설정을 통해 블로그 운영 환경을 보완합니다."
+      },
+
+      {
+      title:"10. 도메인 연결",
+      badge:"DOMAIN",
+      image:"/screenshots/tistory/10_domain.png",
+      desc:"연결하려는 도메인을 입력하고 Tistory 블로그와 매핑합니다."
+      },
+
+      {
+      title:"11. RSS 설정",
+      badge:"RSS",
+      image:"/screenshots/tistory/11_rss.png",
+      desc:"RSS 피드를 활성화하여 외부 서비스에 블로그 내용을 제공할 수 있게 합니다."
+      },
     ]
   },
   wordpress: {
