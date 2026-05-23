@@ -226,6 +226,7 @@ export default function InstallationGuide({ initialCategory }: InstallationGuide
     setActiveStep(0);
     setIsPlaying(false);
     setImageError(false);
+    setDownloadSource('dashboard');
   }, [activeCategory]);
 
   useEffect(() => {
@@ -245,16 +246,34 @@ export default function InstallationGuide({ initialCategory }: InstallationGuide
     setImageError(false);
   }, [activeStep]);
 
-  // Auto-play timer
+  // Auto-play timer (with special handling for extension download sub-views)
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: NodeJS.Timeout | undefined;
     if (isPlaying) {
       interval = setInterval(() => {
+        // If we're in the extension guide and on step 0 (download screen),
+        // show both `dashboard` and `challenge` views sequentially before
+        // moving to the next step.
+        if (activeCategory === 'extension' && activeStep === 0) {
+          if (downloadSource === 'dashboard') {
+            setDownloadSource('challenge');
+            return; // hold on this step until next tick
+          }
+
+          if (downloadSource === 'challenge') {
+            // we've shown both; restore source and advance to step 1
+            setDownloadSource('dashboard');
+            setActiveStep(1);
+            return;
+          }
+        }
+
+        // Default behaviour: advance to next step
         setActiveStep((prev) => (prev + 1) % steps.length);
       }, 5000);
     }
-    return () => clearInterval(interval);
-  }, [isPlaying, steps.length]);
+    return () => { if (interval) clearInterval(interval); };
+  }, [isPlaying, steps.length, activeCategory, activeStep, downloadSource]);
 
   const handleNext = () => setActiveStep((prev) => (prev + 1) % steps.length);
   const handlePrev = () => setActiveStep((prev) => (prev - 1 + steps.length) % steps.length);
@@ -290,32 +309,6 @@ export default function InstallationGuide({ initialCategory }: InstallationGuide
             <span>DASHBOARD로 돌아가기</span>
           </button>
           
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-wrap items-center justify-center gap-2 p-2 bg-white/5 border border-white/10 rounded-3xl backdrop-blur-md mx-auto max-w-max"
-          >
-            {(Object.entries(GUIDE_DATA) as [GuideCategory, GuideData][]).map(([key, data]) => {
-              const isActive = activeCategory === key;
-              const Icon = data.icon;
-              return (
-                <button
-                  key={key}
-                  onClick={() => setActiveCategory(key)}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${
-                    isActive 
-                      ? `bg-${data.color}-500 text-white shadow-lg shadow-${data.color}-500/20` 
-                      : 'text-slate-400 hover:bg-white/10 hover:text-white'
-                  }`}
-                >
-                  <Icon size={14} className={isActive ? "animate-pulse" : ""} />
-                  <span className="hidden sm:inline">{data.title}</span>
-                  <span className="sm:hidden">{data.title.split(' ')[0]}</span>
-                </button>
-              );
-            })}
-          </motion.div>
-
           <div className="space-y-4 pt-4">
             <motion.div 
               key={activeCategory}
@@ -330,7 +323,7 @@ export default function InstallationGuide({ initialCategory }: InstallationGuide
             </h1>
             <p className="text-sm font-bold text-slate-400 leading-relaxed max-w-2xl mx-auto">
               {activeData.subtitle}를 완벽하게 세팅하는 과정입니다. <br />
-              좌측 메뉴를 클릭하거나 화면을 넘기며 스크린샷과 동일하게 설정해 주세요.
+              헤더 메뉴에서 원하는 설정을 선택해 주세요.
             </p>
           </div>
         </div>
