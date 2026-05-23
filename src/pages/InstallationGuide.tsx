@@ -99,25 +99,25 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
     color: "orange",
     steps: [
       {
-        title: "1. 티스토리 블로그 설정 메뉴 진입 ⚙️",
-        desc: "티스토리 관리자 페이지에 접속한 후, 좌측 하단의 '관리' -> '블로그' 메뉴를 클릭합니다.",
+        title: "1. 관리자 페이지 진입 ⚙️",
+        desc: "브라우저 주소창에 `https://{블로그이름}.tistory.com/manage`를 입력하거나, 티스토리 로그인 후 '관리' 버튼을 클릭해 관리자 화면으로 이동합니다. 이 화면에서 익스텐션이 티스토리 세션을 감지합니다.",
         badge: "BLOG SETTINGS",
         image: "/screenshots/tistory_step_01.png",
-        tip: "주소 정보 설정을 위해 꼭 필요한 단계입니다. 나중에 이 화면을 찍어주시면 됩니다."
+        tip: "로그인이 풀려 있으면 자동 발행이 실패하므로, 반드시 티스토리 계정으로 로그인한 상태에서 진행하세요."
       },
       {
-        title: "2. 포스트 주소를 '숫자'로 설정 🔢",
-        desc: "블로그 설정의 '주소 설정' 항목에서 포스트 주소를 [문자]에서 [숫자]로 변경하고 변경사항을 저장합니다.",
+        title: "2. 포스트 주소를 숫자로 변경 🔢",
+        desc: "관리자 왼쪽 메뉴에서 '블로그' → '주소 설정'을 열고, 글 주소를 [문자]에서 [숫자]로 변경한 뒤 저장합니다.",
         badge: "URL CONFIG",
         image: "/screenshots/tistory_step_02.png",
-        tip: "숫자 주소 체계를 사용해야 마자스튜디오의 RPA 엔진이 발행 성공 후 URL을 가장 빠르고 정확하게 캡처할 수 있습니다."
+        tip: "숫자 주소는 한글/특수문자 인코딩 문제를 제거합니다. 자동 발행된 글 URL을 안정적으로 확인하려면 반드시 숫자 주소를 사용하세요."
       },
       {
-        title: "3. 스킨 편집 모드 진입 확인 🎨",
-        desc: "좌측 메뉴에서 '꾸미기' -> '스킨 편집'을 눌러 HTML 편집기가 정상적으로 열리는지 확인합니다.",
+        title: "3. 북클럽 스킨으로 스킨 편집 확인 🎨",
+        desc: "왼쪽 메뉴에서 '꾸미기' → '스킨 편집'을 선택하고, HTML 소스 편집이 정상 동작하는지 확인합니다. 가능하면 '북클럽' 스킨을 사용하세요.",
         badge: "SKIN EDITOR",
         image: "/screenshots/tistory_step_03.png",
-        tip: "이 창이 정상적으로 열린다면, 마자스튜디오가 백그라운드에서 코드를 자동으로 삽입할 준비가 완벽히 끝난 것입니다."
+        tip: "북클럽 스킨은 티스토리 자동 주입과 호환성이 가장 높습니다. 다른 스킨을 쓰면 익스텐션이 에디터를 찾지 못할 수 있습니다."
       }
     ]
   },
@@ -129,24 +129,24 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
     steps: [
       {
         title: "1. 워드프레스 관리자 프로필 진입 👤",
-        desc: "워드프레스 관리자(WP-Admin) 대시보드에서 우측 상단의 프로필 이미지를 누르고 '프로필 편집'을 클릭합니다.",
+        desc: "워드프레스 관리자(WP-Admin) 대시보드에서 우측 상단 프로필 이미지를 클릭한 뒤 '프로필 편집'으로 이동합니다.",
         badge: "USER PROFILE",
         image: "/screenshots/wp_step_01.png",
-        tip: "이 설정은 워드프레스 내에서 관리자(Administrator) 권한이 있는 계정에서만 가능합니다."
+        tip: "관리자 권한이 있는 계정으로 로그인해야 합니다. self-hosted와 wordpress.com 모두 동일한 방식으로 설정할 수 있습니다."
       },
       {
         title: "2. 어플리케이션 비밀번호 생성 🔑",
-        desc: "프로필 편집 페이지를 아래로 스크롤하여 '새로운 어플리케이션 비밀번호 이름' 란에 MazaStudio 등 임의의 이름을 입력하고 생성 버튼을 누릅니다.",
+        desc: "프로필 편집 페이지 하단에서 '새로운 어플리케이션 비밀번호 이름'에 MazaStudio 등 식별 가능한 이름을 입력하고 생성 버튼을 누릅니다.",
         badge: "GENERATE API KEY",
         image: "/screenshots/wp_step_02.png",
-        tip: "기존의 로그인 비밀번호를 마자스튜디오에 절대 입력하지 마세요! 보안을 위해 전용 어플리케이션 비밀번호를 발급받아야 합니다."
+        tip: "워드프레스 로그인 비밀번호는 절대 입력하지 마세요. 전용 앱 비밀번호만 마자스튜디오에 연결하면 됩니다."
       },
       {
         title: "3. 비밀번호 복사 및 연동 완료 📋",
-        desc: "화면에 표시된 24자리의 어플리케이션 비밀번호를 복사하여 마자스튜디오의 'My Site' 내 워드프레스 설정 창에 붙여넣습니다.",
+        desc: "화면에 표시된 24자리 앱 비밀번호를 복사하여 마자스튜디오 'My Site'의 워드프레스 설정 창에 붙여넣고 저장합니다.",
         badge: "CONNECT WP",
         image: "/screenshots/wp_step_03.png",
-        tip: "발급된 비밀번호는 창을 닫으면 다시 볼 수 없으므로, 즉시 복사하여 연동 창에 입력해 주셔야 합니다."
+        tip: "비밀번호는 새로 발급한 뒤 바로 복사해야 합니다. 창을 닫으면 다시 확인할 수 없으니 즉시 저장하세요."
       }
     ]
   },
@@ -158,24 +158,24 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
     steps: [
       {
         title: "1. 마자스튜디오 My Site 메뉴 접속 🌐",
-        desc: "마자스튜디오 좌측 사이드바에서 'My Site(사이트 관리)'로 들어간 뒤, 상단의 '블로그스팟(Blogger) 연동' 버튼을 클릭합니다.",
+        desc: "마자스튜디오 좌측 사이드바에서 'My Site(사이트 관리)'로 이동한 뒤, 상단의 '블로그스팟(Blogger) 연동' 버튼을 클릭합니다.",
         badge: "CONNECT BLOGSPOT",
         image: "/screenshots/blog_step_01.png",
         tip: "블로그스팟은 크롬 익스텐션 설치가 필요 없는 100% 서버 기반 API 자동화 플랫폼입니다."
       },
       {
         title: "2. 구글 계정으로 안전하게 로그인 🛡️",
-        desc: "블로그스팟을 운영 중인 구글 계정을 선택하고, Blogger API 접근 및 글쓰기 권한을 '허용'해 줍니다.",
+        desc: "블로그스팟을 운영 중인 구글 계정을 선택하고, Blogger API 접근 및 글쓰기 권한을 허용합니다. 로그인한 계정에 자동화할 블로그가 포함되어 있는지 꼭 확인하세요.",
         badge: "GOOGLE OAUTH",
         image: "/screenshots/blog_step_02.png",
-        tip: "구글의 안전한 OAuth 2.0 보안 방식을 사용하므로 비밀번호가 외부로 절대 유출되지 않습니다."
+        tip: "OAuth 로그인 과정에서 권한 요청 창이 뜨면 '허용'을 클릭합니다. 계정이 다르면 연동 대상 블로그 목록이 나타나지 않습니다."
       },
       {
         title: "3. 발행 타겟 블로그 선택 및 완료 🎯",
-        desc: "해당 구글 계정에 생성된 여러 개의 블로그스팟 목록 중, 자동화할 메인 블로그를 선택하고 저장하면 세팅이 모두 종료됩니다.",
+        desc: "해당 구글 계정에 연결된 블로그스팟 목록에서 자동화할 블로그를 정확히 선택하고 저장하면 세팅이 완료됩니다.",
         badge: "SELECT TARGET",
         image: "/screenshots/blog_step_03.png",
-        tip: "하나의 구글 계정에 여러 블로그가 존재할 수 있습니다. 드롭다운에서 정확한 타겟 URL을 지정해 주세요."
+        tip: "선택한 블로그가 올바른 도메인인지 다시 한 번 확인하세요. 블로그 ID가 저장되어야 자동 발행이 정상 동작합니다."
       }
     ]
   },
@@ -186,11 +186,11 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
     color: "emerald",
     steps: [
       {
-        title: "1. 세상에서 가장 쉬운 수익형 블로그 개설 🚀",
-        desc: "마자스튜디오가 도메인, 호스팅, 세팅을 모두 대신해 드리는 '마자 원클릭 서브도메인 블로그' 서비스가 곧 오픈됩니다.",
+        title: "1. 마자 블로그 개인 사이트 세팅 🎯",
+        desc: "마자스튜디오는 승인된 루트 도메인 아래에 서브도메인 블로그를 원클릭으로 생성하는 서비스를 준비 중입니다. 도메인, 호스팅, SSL, SEO, 법적 문서까지 마자가 한 번에 설정해 드립니다.",
         badge: "COMING SOON",
         image: "/screenshots/coming_soon.png",
-        tip: "번거로운 가입이나 설정 없이, 클릭 단 한 번으로 애드센스 수익 창출에 최적화된 나만의 블로그가 탄생합니다."
+        tip: "정식 공개 시에는 별도 티스토리/워드프레스/블로그스팟 설정 없이, 마자 블로그만으로 개인 사이트를 바로 운영할 수 있습니다."
       }
     ]
   }
@@ -261,11 +261,22 @@ export default function InstallationGuide({ initialCategory }: InstallationGuide
           }
 
           if (downloadSource === 'challenge') {
-            // we've shown both; restore source and advance to step 1
             setDownloadSource('dashboard');
             setActiveStep(1);
             return;
           }
+        }
+
+        // If we're in the extension guide and on step 3 (developer mode),
+        // show both `off` and `on` views sequentially before moving on.
+        if (activeCategory === 'extension' && activeStep === 3) {
+          if (!isDevModeOn) {
+            setIsDevModeOn(true);
+            return; // hold on this step until next tick
+          }
+
+          setActiveStep(4);
+          return;
         }
 
         // Default behaviour: advance to next step
@@ -273,7 +284,7 @@ export default function InstallationGuide({ initialCategory }: InstallationGuide
       }, 5000);
     }
     return () => { if (interval) clearInterval(interval); };
-  }, [isPlaying, steps.length, activeCategory, activeStep, downloadSource]);
+  }, [isPlaying, steps.length, activeCategory, activeStep, downloadSource, isDevModeOn]);
 
   const handleNext = () => setActiveStep((prev) => (prev + 1) % steps.length);
   const handlePrev = () => setActiveStep((prev) => (prev - 1 + steps.length) % steps.length);
@@ -301,23 +312,7 @@ export default function InstallationGuide({ initialCategory }: InstallationGuide
         
         {/* Header & Platform Selector */}
         <div className="text-center space-y-6 max-w-4xl mx-auto">
-          <button 
-            onClick={() => window.location.href = '/'}
-            className="flex items-center gap-2 text-xs font-black text-slate-500 hover:text-white transition-colors group mx-auto mb-6"
-          >
-            <ArrowRight size={14} className="rotate-180 group-hover:-translate-x-1 transition-transform" />
-            <span>DASHBOARD로 돌아가기</span>
-          </button>
-          
           <div className="space-y-4 pt-4">
-            <motion.div 
-              key={activeCategory}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className={`inline-flex items-center gap-2 px-4 py-2 bg-${activeData.color}-500/10 border border-${activeData.color}-500/20 text-${activeData.color}-400 rounded-full text-[10px] font-black tracking-widest uppercase`}
-            >
-              <activeData.icon size={14} className="animate-bounce" /> MAZA BRIDGE AUTOPILOT
-            </motion.div>
             <h1 className="text-4xl lg:text-5xl font-black italic tracking-tighter text-white leading-tight uppercase">
               {activeData.title} <span className={`text-${activeData.color}-400 italic`}>가이드</span>
             </h1>

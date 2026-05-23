@@ -52,7 +52,7 @@ const EFFICIENCY_METRICS = [
 
 interface KnowledgeHubProps {
   isIntegrated?: boolean;
-  initialTab?: 'niche' | 'legal' | 'seo' | 'efficiency' | 'extension' | 'blueprint' | 'platforms' | 'multisite' | 'adsense_multi' | 'revenue_max' | 'subdomain_strategy' | 'series_mastery' | 'keywords' | 'master' | 'faq_page';
+  initialTab?: 'niche' | 'legal' | 'seo' | 'efficiency' | 'extension' | 'blueprint' | 'platforms' | 'multisite' | 'adsense_multi' | 'revenue_max' | 'subdomain_strategy' | 'series_mastery' | 'keywords' | 'master' | 'adsense_challenge' | 'faq_page';
   hideIntegratedTabs?: boolean;
   onComplete?: () => void;
 }
@@ -67,7 +67,7 @@ export default function KnowledgeHub({
   const { user } = useAuth();
   
   // 5 Chapters + 1 FAQ Chapter state
-  const [activeTab, setActiveTab] = useState<'setup_guide' | 'extension_install' | 'program_usage' | 'analytics_sync' | 'zero_it_value' | 'faq_page'>('setup_guide');
+  const [activeTab, setActiveTab] = useState<'setup_guide' | 'extension_install' | 'program_usage' | 'analytics_sync' | 'adsense_challenge' | 'zero_it_value' | 'faq_page'>('setup_guide');
   
   const [site, setSite] = useState<any>(null);
   const [blogUrl, setBlogUrl] = useState<string>(localStorage.getItem('m_blog_url') || '');
@@ -119,8 +119,14 @@ export default function KnowledgeHub({
       icon: BarChart3
     },
     {
+      id: 'adsense_challenge',
+      title: '🎯 CHAPTER 5: AdSense 챌린지',
+      desc: '오토파일럿으로 합격 운용 및 실전 랭킹',
+      icon: Trophy
+    },
+    {
       id: 'zero_it_value',
-      title: '🦄 CHAPTER 5: 제로 IT 혁신 & ROI',
+      title: '🦄 CHAPTER 6: 제로 IT 혁신 & ROI',
       desc: '수동 작업 고통과 마자 원클릭 오토파일럿 대조',
       icon: Sparkles
     },
@@ -135,11 +141,12 @@ export default function KnowledgeHub({
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const tabParam = params.get('tab');
-    const validTabs = ['efficiency', 'extension', 'blueprint', 'platforms', 'multisite', 'adsense_multi', 'revenue_max', 'subdomain_strategy', 'keywords', 'series_mastery', 'master', 'faq_page'];
+    const validTabs = ['efficiency', 'extension', 'blueprint', 'platforms', 'multisite', 'adsense_multi', 'revenue_max', 'subdomain_strategy', 'keywords', 'series_mastery', 'master', 'adsense_challenge', 'faq_page'];
     
     const resolveTab = (tabStr: string | null) => {
       if (!tabStr) return 'setup_guide';
       if (tabStr === 'extension') return 'extension_install';
+      if (tabStr === 'adsense_challenge') return 'adsense_challenge';
       if (['blueprint', 'keywords', 'series_mastery', 'master'].includes(tabStr)) return 'program_usage';
       if (['platforms', 'multisite', 'subdomain_strategy', 'adsense_multi'].includes(tabStr)) return 'setup_guide';
       if (tabStr === 'efficiency') return 'zero_it_value';
@@ -290,7 +297,8 @@ export default function KnowledgeHub({
                 {section.id === 'extension_install' && '2'}
                 {section.id === 'program_usage' && '3'}
                 {section.id === 'analytics_sync' && '4'}
-                {section.id === 'zero_it_value' && '5'}
+                {section.id === 'adsense_challenge' && '5'}
+                {section.id === 'zero_it_value' && '6'}
                 {section.id === 'faq_page' && 'Q'}
               </div>
             </button>
@@ -1186,6 +1194,120 @@ export default function KnowledgeHub({
                카카오, 네이버 등으로 Maza 가입을 마친 유저들도, 실제 구글 애드센스 및 Search Console, GA4 연동 단계에서는 플랫폼 가입 메일과 무관한 **'수익 전용 구글 계정'**을 연결할 수 있습니다. 
                이는 갑작스러운 계정 규제 시 가입 정보를 분리 보호할 수 있는 최고의 아키텍처입니다.
             </p>
+          </div>
+        </div>
+      )}
+
+      {/* ──────────────────────────────────────────────────────────── */}
+      {/* CHAPTER 5: AdSense 챌린지 & Autopilot (adsense_challenge) */}
+      {activeTab === 'adsense_challenge' && (
+        <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12 max-w-5xl mx-auto">
+          <div className="bg-gradient-to-br from-sky-900 to-indigo-950 rounded-[64px] border border-sky-500/10 shadow-2xl p-12 text-white overflow-hidden relative">
+            <div className="absolute -right-24 -top-24 h-72 w-72 bg-indigo-500/10 rounded-full blur-3xl" />
+            <div className="relative z-10 grid lg:grid-cols-2 gap-10 items-center">
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/10 rounded-full text-[10px] font-black uppercase tracking-[0.3em] text-sky-200 border border-white/10">
+                  <Trophy size={16} className="text-sky-200" /> AdSense 챌린지 워크플로우
+                </div>
+                <h2 className="text-4xl font-black tracking-tighter leading-tight">
+                  플랫폼부터 승인까지<br />
+                  <span className="text-sky-300">실전 챌린지 순서로 설계</span>
+                </h2>
+                <p className="text-slate-300 text-sm font-bold leading-relaxed">
+                  마자 스튜디오의 AdSense 챌린지는 단순 자동화가 아니라, 플랫폼별 초기 설정과 구글 인프라, 필수 페이지, 발행, 승인 확인까지 이어지는 전용 프로세스입니다.
+                </p>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
+                  <div className="bg-white/10 border border-white/10 rounded-3xl p-5">
+                    <div className="text-[9px] font-black uppercase tracking-[0.3em] text-sky-200 mb-2">STEP 1</div>
+                    <p className="text-[11px] text-slate-200 font-bold leading-relaxed">플랫폼 설정을 완료하고 티스토리/워드프레스/블로거별 연결 정보를 등록합니다.</p>
+                  </div>
+                  <div className="bg-white/10 border border-white/10 rounded-3xl p-5">
+                    <div className="text-[9px] font-black uppercase tracking-[0.3em] text-sky-200 mb-2">STEP 2</div>
+                    <p className="text-[11px] text-slate-200 font-bold leading-relaxed">AdSense, GA4, Search Console을 한 번에 묶는 구글 인프라 연동을 실행합니다.</p>
+                  </div>
+                  <div className="bg-white/10 border border-white/10 rounded-3xl p-5">
+                    <div className="text-[9px] font-black uppercase tracking-[0.3em] text-sky-200 mb-2">STEP 3</div>
+                    <p className="text-[11px] text-slate-200 font-bold leading-relaxed">개인정보처리방침·이용약관·광고정책 페이지를 연결해 승인 요건을 맞춥니다.</p>
+                  </div>
+                  <div className="bg-white/10 border border-white/10 rounded-3xl p-5">
+                    <div className="text-[9px] font-black uppercase tracking-[0.3em] text-sky-200 mb-2">STEP 4</div>
+                    <p className="text-[11px] text-slate-200 font-bold leading-relaxed">콘텐츠 작성과 발행을 준비하고, 자동/수동 발행 체크리스트를 통과합니다.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-slate-950">
+                <img src="/screenshots/step_01_challenge.png" alt="AdSense 챌린지 시작" className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-xl space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-sky-100">
+                챌린지 5단계 요약
+              </div>
+              <h3 className="text-2xl font-black tracking-tight text-slate-900">AdSense 챌린지 순서</h3>
+              <ol className="space-y-3 text-[11px] text-slate-600 font-medium leading-relaxed list-decimal list-inside pl-3">
+                <li><strong>플랫폼 설정</strong> - 플랫폼별 초기 연결 정보를 등록하고 기본 메타를 확인합니다.</li>
+                <li><strong>구글 인프라 연결</strong> - AdSense, GA4, Search Console을 통합해 수익 채널을 구성합니다.</li>
+                <li><strong>필수 페이지 연결</strong> - 개인정보처리방침, 이용약관, 광고정책, 쿠키 정책을 연결합니다.</li>
+                <li><strong>글 작성 및 발행</strong> - 콘텐츠 품질을 점검하고, 발행 전 자동 검수를 진행합니다.</li>
+                <li><strong>연결 확인 & 승인 신청</strong> - 링크 상태와 색인, 트래픽을 확인한 뒤 승인 신청합니다.</li>
+              </ol>
+            </div>
+            <div className="bg-slate-950 text-white p-8 rounded-[40px] border border-slate-800 shadow-2xl space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-white border border-white/10">
+                챌린지 안전 장치
+              </div>
+              <h3 className="text-2xl font-black tracking-tight">승인 리스크 최소화</h3>
+              <p className="text-slate-400 text-sm leading-relaxed font-medium">
+                마자 챌린지는 실전 발행과 승인을 모두 고려합니다. 플랫폼별 연결, 필수 페이지, 발행 타이밍을 하나의 흐름으로 묶어 AdSense 승인 실패 가능성을 낮춥니다.
+              </p>
+              <div className="grid gap-3">
+                <div className="rounded-3xl bg-emerald-950/70 border border-emerald-500/20 p-4">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-emerald-300 font-black">인프라 검사</p>
+                  <p className="text-sm font-bold text-white">구글 연동 상태와 태그 설치 여부를 한 번에 점검</p>
+                </div>
+                <div className="rounded-3xl bg-slate-900/80 border border-slate-700 p-4">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-black">정책 점검</p>
+                  <p className="text-sm font-bold text-white">수익화 필수 페이지 연결 및 광고 가이드 준수를 확인</p>
+                </div>
+                <div className="rounded-3xl bg-slate-900/80 border border-slate-700 p-4">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-black">승인 준비</p>
+                  <p className="text-sm font-bold text-white">발행 전 최종 승인 체크리스트로 실수를 방지</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <div className="text-center">
+              <h4 className="text-2xl font-black tracking-tight text-slate-900">실전 챌린지 이미지 매뉴얼</h4>
+              <p className="text-sm text-slate-500 font-medium">아래 이미지로 챌린지 실행 흐름을 빠르게 이해하세요.</p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-3">
+              <div className="rounded-[32px] overflow-hidden border border-slate-200 shadow-lg">
+                <img src="/screenshots/step_01_dashboard.png" alt="챌린지 대시보드" className="w-full h-48 object-cover" />
+                <div className="p-4 bg-white">
+                  <div className="text-[10px] uppercase tracking-[0.3em] font-black text-slate-500">대시보드</div>
+                  <p className="text-sm font-bold text-slate-900">플랫폼 연결과 챌린지 상태를 한눈에 확인.</p>
+                </div>
+              </div>
+              <div className="rounded-[32px] overflow-hidden border border-slate-200 shadow-lg">
+                <img src="/screenshots/step_02_extract.png" alt="챌린지 설정 입력" className="w-full h-48 object-cover" />
+                <div className="p-4 bg-white">
+                  <div className="text-[10px] uppercase tracking-[0.3em] font-black text-slate-500">연동</div>
+                  <p className="text-sm font-bold text-slate-900">구글 인프라와 챌린지 세부 설정을 확인합니다.</p>
+                </div>
+              </div>
+              <div className="rounded-[32px] overflow-hidden border border-slate-200 shadow-lg">
+                <img src="/screenshots/step_07_ok.png" alt="GA4 연동 완료" className="w-full h-48 object-cover" />
+                <div className="p-4 bg-white">
+                  <div className="text-[10px] uppercase tracking-[0.3em] font-black text-slate-500">승인 준비</div>
+                  <p className="text-sm font-bold text-slate-900">최종 연결 확인 후 승인 신청을 준비합니다.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
