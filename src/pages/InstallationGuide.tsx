@@ -307,6 +307,15 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
   }
 };
 
+const GUIDE_CATEGORIES: { id: GuideCategory; label: string; icon: React.ElementType }[] = [
+  { id: 'extension', label: '익스텐션 설치', icon: Puzzle },
+  { id: 'tistory', label: '티스토리 세팅', icon: LayoutTemplate },
+  { id: 'wordpress', label: '워드프레스 세팅', icon: Globe },
+  { id: 'blogspot', label: '블로그스팟 세팅', icon: Server },
+  { id: 'subdomain', label: '서브도메인 개설', icon: Box },
+  { id: 'adsense_challenge', label: 'AdSense 챌린지', icon: Trophy }
+];
+
 interface InstallationGuideProps {
   initialCategory?: GuideCategory;
 }
@@ -429,8 +438,44 @@ export default function InstallationGuide({ initialCategory }: InstallationGuide
             </h1>
             <p className="text-sm font-bold text-slate-400 leading-relaxed max-w-2xl mx-auto">
               {activeData.subtitle}를 완벽하게 세팅하는 과정입니다. <br />
-              헤더 메뉴에서 원하는 설정을 선택해 주세요.
+              아래 탭에서 필요한 항목을 바로 선택하세요.
             </p>
+          </div>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            {GUIDE_CATEGORIES.map((category) => {
+              const isActive = activeCategory === category.id;
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-black uppercase tracking-[0.22em] transition-all ${
+                    isActive
+                      ? `bg-${GUIDE_DATA[category.id].color}-500 text-white border-${GUIDE_DATA[category.id].color}-400 shadow-lg shadow-${GUIDE_DATA[category.id].color}-500/20`
+                      : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10 hover:text-white'
+                  }`}
+                >
+                  <category.icon size={14} /> {category.label}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => window.location.href = '/guide'}
+              className="rounded-full px-5 py-2.5 bg-slate-800/80 text-xs font-black uppercase tracking-[0.22em] text-slate-100 border border-slate-700 hover:bg-slate-700 transition"
+            >
+              노하우 바로가기
+            </button>
+            <button
+              type="button"
+              onClick={() => window.location.href = '/faq'}
+              className="rounded-full px-5 py-2.5 bg-slate-800/80 text-xs font-black uppercase tracking-[0.22em] text-slate-100 border border-slate-700 hover:bg-slate-700 transition"
+            >
+              FAQ 바로가기
+            </button>
           </div>
         </div>
 

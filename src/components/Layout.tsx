@@ -23,6 +23,7 @@ export default function Layout() {
     '/knowledge?category=wordpress',
     '/knowledge?category=blogspot',
     '/knowledge?category=subdomain',
+    '/knowledge?category=adsense_challenge',
     '/guide',
     '/faq'
   ];
