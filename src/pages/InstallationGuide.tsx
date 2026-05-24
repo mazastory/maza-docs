@@ -155,21 +155,14 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
       },
 
       {
-      title:"9. 기타 설정",
-      badge:"EXTRA",
-      image:"/screenshots/tistory/09_extra.png",
-      desc:"추가 기능 및 부가 설정을 통해 블로그 운영 환경을 보완합니다."
-      },
-
-      {
-      title:"10. 도메인 연결",
+      title:"9. 도메인 연결",
       badge:"DOMAIN",
       image:"/screenshots/tistory/10_domain.png",
       desc:"연결하려는 도메인을 입력하고 Tistory 블로그와 매핑합니다."
       },
 
       {
-      title:"11. RSS 설정",
+      title:"10. RSS 설정",
       badge:"RSS",
       image:"/screenshots/tistory/11_rss.png",
       desc:"RSS 피드를 활성화하여 외부 서비스에 블로그 내용을 제공할 수 있게 합니다."
@@ -185,49 +178,67 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
       {
         title: "1. 챌린지 시작하기",
         badge: "START",
-        image: "/screenshots/step_01_challenge.png",
+        image: "/screenshots/ad/ad_01.png",
         desc: "마자스튜디오 챌린지 탭에서 AdSense 챌린지를 시작합니다."
       },
       {
         title: "2. 플랫폼 정보 등록",
         badge: "CONNECT",
-        image: "/screenshots/step_02_extract.png",
+        image: "/screenshots/ad/ad_02.png",
         desc: "티스토리/워드프레스/블로그스팟 중 운영 중인 플랫폼을 선택하고 블로그 정보를 정확히 입력합니다."
       },
       {
         title: "3. 구글 인프라 연결",
         badge: "GOOGLE",
-        image: "/screenshots/step_03.png",
+        image: "/screenshots/ad/ad_03.png",
         desc: "AdSense, GA4, Search Console을 차례대로 연결하여 수익화 인프라를 구성합니다."
       },
       {
-        title: "4. 정책 페이지 연결",
-        badge: "POLICY",
-        image: "/screenshots/step_04.png",
-        desc: "개인정보처리방침, 이용약관, 광고정책 페이지를 생성하고 챌린지 세팅에 연결합니다."
+        title: "4. 애널리틱스 1회연결",
+        badge: "GOOGLE",
+        image: "/screenshots/ad/ad_04.png",
+        desc: "AdSense, GA4, Search Console을 차례대로 연결하여 수익화 인프라를 구성합니다."
+      },
+       {
+        title: "5. 애널리틱스 두개의 동의 클릭",
+        badge: "GOOGLE",
+        image: "/screenshots/ad/ad_05.png",
+        desc: "AdSense, GA4, Search Console을 차례대로 연결하여 수익화 인프라를 구성합니다."
       },
       {
-        title: "5. 콘텐츠 발행 준비",
+        title: "6. 정책 페이지 연결",
+        badge: "POLICY",
+        image: "/screenshots/ad/ad_06.png",
+        desc: "개인정보처리방침, 이용약관, 광고정책 페이지를 생성하고 챌린지 세팅에 연결합니다."
+      },
+       {
+        title: "7. 수익화 블로그 캐릭터 고르기",
+        badge: "POLICY",
+        image: "/screenshots/ad/ad_07.png",
+        desc: "나만의 수익화 블로그 캐릭터 고르기 블로그의 메인 방향성을 재미있고 든든한 정답 패키지 캐릭터로 고르세요."
+      },
+      {
+        title: "8. 콘텐츠 발행 준비",
         badge: "CONTENT",
-        image: "/screenshots/step_05.png",
+        image: "/screenshots/ad/ad_08.png",
         desc: "니치 글 5개와 경험 글 5개를 작성하고 발행 전 자동 검수를 통과합니다."
       },
       {
-        title: "6. 색인 요청",
+        title: "9. 색인 요청",
         badge: "INDEX",
-        image: "/screenshots/step_06.png",
+        image: "/screenshots/ad/ad_09.png",
         desc: "Search Console에 sitemap/RSS를 제출하고 즉시 색인 요청을 보냅니다."
       },
       {
-        title: "7. 승인 신청",
+        title: "10. 승인 신청",
         badge: "APPLY",
-        image: "/screenshots/step_07_ok.png",
+        image: "/screenshots/ad/ad_10.png",
         desc: "AdSense 신청 사이트에서 내 블로그를 등록하고 신청을 완료합니다."
       },
       {
-        title: "8. 상태 확인",
+        title: "11. 상태 확인",
         badge: "MONITOR",
-        image: "/screenshots/step_08_close.png",
+        image: "/screenshots/ad/ad_11.png",
         desc: "승인 대기 상태를 확인하고, 이중 확인이 필요한 항목을 다시 점검합니다."
       }
     ]
