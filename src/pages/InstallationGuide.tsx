@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom';
 import { 
   Download, Globe, ShieldCheck, Zap, 
   ArrowRight, ArrowUp, CheckCircle2, Monitor, 
-  Puzzle, ExternalLink, HelpCircle, Sparkles,
+  Puzzle, ExternalLink, HelpCircle, Sparkles, Trophy,
   ChevronLeft, ChevronRight, Play, Pause, RefreshCw, Copy,
   LayoutTemplate, Server, Box, Layers
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-type GuideCategory = 'extension' | 'tistory' | 'wordpress' | 'blogspot' | 'subdomain';
+type GuideCategory = 'extension' | 'tistory' | 'wordpress' | 'blogspot' | 'subdomain' | 'adsense_challenge';
 
 interface Step {
   title: string;
@@ -174,6 +174,62 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
       image:"/screenshots/tistory/11_rss.png",
       desc:"RSS 피드를 활성화하여 외부 서비스에 블로그 내용을 제공할 수 있게 합니다."
       },
+    ]
+  },
+  adsense_challenge: {
+    title: "AdSense 챌린지",
+    subtitle: "승인 준비 및 색인 요청 가이드",
+    icon: Trophy,
+    color: "sky",
+    steps: [
+      {
+        title: "1. 챌린지 시작하기",
+        badge: "START",
+        image: "/screenshots/step_01_challenge.png",
+        desc: "마자스튜디오 챌린지 탭에서 AdSense 챌린지를 시작합니다."
+      },
+      {
+        title: "2. 플랫폼 정보 등록",
+        badge: "CONNECT",
+        image: "/screenshots/step_02_extract.png",
+        desc: "티스토리/워드프레스/블로그스팟 중 운영 중인 플랫폼을 선택하고 블로그 정보를 정확히 입력합니다."
+      },
+      {
+        title: "3. 구글 인프라 연결",
+        badge: "GOOGLE",
+        image: "/screenshots/step_03.png",
+        desc: "AdSense, GA4, Search Console을 차례대로 연결하여 수익화 인프라를 구성합니다."
+      },
+      {
+        title: "4. 정책 페이지 연결",
+        badge: "POLICY",
+        image: "/screenshots/step_04.png",
+        desc: "개인정보처리방침, 이용약관, 광고정책 페이지를 생성하고 챌린지 세팅에 연결합니다."
+      },
+      {
+        title: "5. 콘텐츠 발행 준비",
+        badge: "CONTENT",
+        image: "/screenshots/step_05.png",
+        desc: "니치 글 5개와 경험 글 5개를 작성하고 발행 전 자동 검수를 통과합니다."
+      },
+      {
+        title: "6. 색인 요청",
+        badge: "INDEX",
+        image: "/screenshots/step_06.png",
+        desc: "Search Console에 sitemap/RSS를 제출하고 즉시 색인 요청을 보냅니다."
+      },
+      {
+        title: "7. 승인 신청",
+        badge: "APPLY",
+        image: "/screenshots/step_07_ok.png",
+        desc: "AdSense 신청 사이트에서 내 블로그를 등록하고 신청을 완료합니다."
+      },
+      {
+        title: "8. 상태 확인",
+        badge: "MONITOR",
+        image: "/screenshots/step_08_close.png",
+        desc: "승인 대기 상태를 확인하고, 이중 확인이 필요한 항목을 다시 점검합니다."
+      }
     ]
   },
   wordpress: {

@@ -5,7 +5,8 @@ import {
   Layers, MousePointer2, Smartphone, Cpu, Sparkles,
   BarChart3, Code2, Database, Search, ArrowRight,
   Monitor, Info, Lock, Terminal, Radio, Clock,
-  LogIn, UserCheck, FileText, Send, Share2, Award
+  LogIn, UserCheck, FileText, Send, Share2, Award,
+  Lightbulb
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../lib/utils';
@@ -15,6 +16,7 @@ const CHAPTERS = [
   { id: 'onboarding', title: 'Onboarding', subtitle: 'Start Your Engine', icon: LogIn, color: 'blue' },
   { id: 'hunter', title: 'Niche Hunter', subtitle: 'Market Intelligence', icon: Target, color: 'emerald' },
   { id: 'writer', title: 'AI Writer', subtitle: 'E-E-A-T Engine', icon: Cpu, color: 'amber' },
+  { id: 'strategy', title: 'Strategy', subtitle: 'Monetization Blueprint', icon: Target, color: 'teal' },
   { id: 'tistory', title: 'Tistory Link', subtitle: 'Bridge Protocol', icon: Globe, color: 'orange' },
   { id: 'flowchart', title: 'Challenge Flow', subtitle: 'Victory Roadmap', icon: Award, color: 'sky' },
   { id: 'safety', title: 'Safety & Risk', subtitle: 'W-05 Compliance', icon: Shield, color: 'rose' }
@@ -270,44 +272,75 @@ export default function Guide() {
                   </section>
                 )}
 
-                {/* 4. TISTORY: Bridge Protocol */}
-                {activeChapter === 'tistory' && (
+                {/* 4. STRATEGY: Monetization Blueprint */}
+                {activeChapter === 'strategy' && (
                   <section className="space-y-16">
                     <div className="space-y-6">
-                      <h2 className="text-6xl font-black italic tracking-tighter text-white leading-none uppercase">Step 04.<br /><span className="text-orange-500 italic">티스토리 연동.</span></h2>
+                      <h2 className="text-6xl font-black italic tracking-tighter text-white leading-none uppercase">Step 04.<br /><span className="text-teal-400 italic">수익화 설계도 그리기.</span></h2>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8">
                        <div className="bg-slate-900/40 p-10 rounded-[48px] border border-white/5 space-y-6">
-                          <h4 className="text-xl font-black text-white italic uppercase tracking-widest">Extension Injection</h4>
+                          <h4 className="text-xl font-black text-white italic uppercase tracking-widest">Monetization Blueprint</h4>
                           <p className="text-sm text-slate-500 font-bold leading-relaxed">
-                             티스토리 API 발급 중단 문제를 해결하기 위해, 마자는 **익스텐션(Extension)**을 통한 '화면 주입' 방식을 사용합니다.
+                             블로그의 성공 확률을 결정하는 핵심 주제, 카테고리, 수익 흐름을 설계합니다. 이 단계가 바로 마자 스튜디오의 전략적 차별점입니다.
                           </p>
                           <div className="space-y-4 pt-4">
                              <div className="flex items-center gap-3">
-                                <Monitor size={18} className="text-orange-400" />
-                                <span className="text-[11px] font-black text-slate-300 uppercase tracking-widest">익스텐션 설치 여부 확인</span>
+                                <Target size={18} className="text-teal-400" />
+                                <span className="text-[11px] font-black text-slate-300 uppercase tracking-widest">고수익 니치 카테고리를 먼저 선택</span>
                              </div>
                              <div className="flex items-center gap-3">
-                                <Send size={18} className="text-orange-400" />
-                                <span className="text-[11px] font-black text-slate-300 uppercase tracking-widest">발행 버튼 클릭 → 주입 시작</span>
+                                <CheckCircle2 size={18} className="text-teal-400" />
+                                <span className="text-[11px] font-black text-slate-300 uppercase tracking-widest">주력/서브 토픽으로 콘텐츠 구조를 완성</span>
+                             </div>
+                             <div className="flex items-center gap-3">
+                                <BarChart3 size={18} className="text-teal-400" />
+                                <span className="text-[11px] font-black text-slate-300 uppercase tracking-widest">콘텐츠 흐름과 승승 전략을 문서화</span>
                              </div>
                           </div>
                        </div>
-                       <div className="bg-orange-600 p-10 rounded-[48px] text-white space-y-6 shadow-3xl shadow-orange-500/20 relative overflow-hidden">
+                       <div className="bg-teal-500 p-10 rounded-[48px] text-slate-950 space-y-6 shadow-3xl shadow-teal-500/20 relative overflow-hidden">
                           <div className="absolute top-0 right-0 p-8 opacity-20">
-                             <Share2 size={100} />
+                             <Lightbulb size={100} />
                           </div>
-                          <h4 className="text-xl font-black italic uppercase tracking-widest">Crucial Tip</h4>
+                          <h4 className="text-xl font-black italic uppercase tracking-widest">Docs Know-How</h4>
                           <p className="text-sm font-bold leading-relaxed">
-                             익스텐션이 설치된 브라우저 탭에서 티스토리에 로그인이 되어 있어야 합니다. 로그인이 되어 있지 않으면 주입이 실패합니다.
+                             이 항목은 마자 스튜디오의 '수익화 설계도 그리기'를 docs의 핵심 노하우로 옮겨, 실전 전략과 구조 설계를 간소화했습니다.
                           </p>
+                          <a href="/guide" className="inline-flex items-center gap-2 px-5 py-3 bg-slate-950 text-white rounded-3xl font-black uppercase tracking-widest hover:bg-slate-800 transition-colors">
+                             학습하러 가기
+                             <ChevronRight size={16} />
+                          </a>
+                       </div>
+                    </div>
+
+                    <div className="grid gap-6 sm:grid-cols-2">
+                       <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 space-y-4">
+                          <h5 className="text-xs font-black uppercase tracking-[0.3em] text-teal-300">핵심 노하우</h5>
+                          <ul className="space-y-3 text-sm text-slate-300 leading-relaxed">
+                             <li>1) 수익 모델을 먼저 설계한 뒤, 콘텐츠 주제와 카테고리를 맞춥니다.</li>
+                             <li>2) 주력 키워드 1개와 보조 토픽 2개로 초기 작성 루프를 단순화합니다.</li>
+                             <li>3) 발행 전 필수 페이지와 광고 가이드 준수를 반드시 체크합니다.</li>
+                             <li>4) 마자 스튜디오의 전략 페이지는 docs에서 항상 최신 버전으로 유지됩니다.</li>
+                          </ul>
+                       </div>
+                       <div className="bg-slate-900/40 border border-slate-800 rounded-[32px] p-8 space-y-4">
+                          <h5 className="text-xs font-black uppercase tracking-[0.3em] text-teal-300">간소화 포인트</h5>
+                          <p className="text-sm text-slate-400 leading-relaxed">
+                             스튜디오 내부에는 최소한의 선택지만 남기고, 전략 설계는 docs의 노하우 페이지로 분리했습니다. 사용자는 필요한 정보만 보고 바로 이어서 실행할 수 있습니다.
+                          </p>
+                          <div className="grid gap-3 text-[11px] font-black uppercase tracking-[0.2em] text-slate-300">
+                             <div className="bg-slate-950/70 rounded-2xl p-3">• 단계별 수익화 스텝 정리</div>
+                             <div className="bg-slate-950/70 rounded-2xl p-3">• 전략 설계와 발행 루틴 분리</div>
+                             <div className="bg-slate-950/70 rounded-2xl p-3">• Docs로 실전 노하우 전환</div>
+                          </div>
                        </div>
                     </div>
                   </section>
                 )}
 
-                {/* 5. FLOWCHART: Challenge Roadmap */}
+                {/* 5. TISTORY: Bridge Protocol */}
                 {activeChapter === 'flowchart' && (
                   <section className="space-y-20">
                     <div className="space-y-6 text-center">

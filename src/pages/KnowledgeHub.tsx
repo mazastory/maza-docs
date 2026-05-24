@@ -1241,6 +1241,34 @@ export default function KnowledgeHub({
             </div>
           </div>
 
+          <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-xl space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-sky-100">
+              실전 사용법
+            </div>
+            <h3 className="text-2xl font-black tracking-tight text-slate-900">AdSense 챌린지 사용 방법</h3>
+            <p className="text-sm text-slate-500 font-medium leading-relaxed">
+              익스텐션 설치와 티스토리 세팅을 마친 뒤, 마자 스튜디오 챌린지에서 AdSense 승인까지 이어지는 실제 흐름입니다.
+              아래 단계를 따라가면 준비, 연결, 발행, 승인 신청을 한 번에 정리할 수 있습니다.
+            </p>
+            <ol className="space-y-3 text-[12px] text-slate-600 font-medium leading-relaxed list-decimal list-inside pl-5">
+              <li><strong>챌린지 페이지 열기</strong> - 마자스튜디오 대시보드 또는 <span className="font-bold text-slate-900">/challenge</span>로 이동하여 AdSense 챌린지를 시작합니다.</li>
+              <li><strong>플랫폼과 블로그 정보 등록</strong> - 티스토리, 워드프레스, 블로그스팟 중 운영 중인 플랫폼을 선택하고 블로그 도메인, 사이트명, 관리자 이메일을 정확히 입력합니다.</li>
+              <li><strong>구글 인프라 연결</strong> - AdSense 계정, GA4 측정 ID, Search Console 사이트 등록을 차례대로 수행합니다. Search Console 인증은 사이트 소유권 확인 후 바로 진행하세요.</li>
+              <li><strong>필수 페이지 연결</strong> - 개인정보처리방침, 이용약관, 광고 정책 페이지를 생성하고 챌린지 설정에 연결합니다. Tistory 설정에서 RSS와 sitemap.xml 공개도 반드시 확인하세요.</li>
+              <li><strong>콘텐츠 발행 준비</strong> - 챌린지에서 제시하는 니치 포스트 5개와 경험 포스트 5개를 작성하고, 발행 전 자동 검수 항목을 모두 통과합니다.</li>
+              <li><strong>검색엔진 색인 요청</strong> - Sitemap/RSS를 Search Console에 제출하고 즉시 색인 요청을 보냅니다. 이 단계는 발행 후 트래픽과 승인 신뢰도를 높입니다.</li>
+              <li><strong>AdSense 승인 신청</strong> - 챌린지에서 제공하는 메타 태그를 확인하고, AdSense 신청 단계로 이동하여 사이트 신청을 완료합니다.</li>
+            </ol>
+            <div className="bg-slate-950 text-slate-100 p-4 rounded-3xl border border-slate-800">
+              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-slate-400 mb-2">체크포인트</p>
+              <ul className="space-y-2 text-[12px] leading-relaxed">
+                <li>✔︎ 익스텐션이 켜져 있고, `Maza Bridge`가 active 상태인지 확인합니다.</li>
+                <li>✔︎ 티스토리 블로그는 RSS가 공개되고, robots.txt가 검색 로봇을 차단하지 않아야 합니다.</li>
+                <li>✔︎ 구글 인프라 연동 전에는 반드시 사이트 연결 정보가 챌린지에 저장되어야 합니다.</li>
+                <li>✔︎ 승인 신청 전에는 필수 페이지 4종과 색인 요청이 모두 완료되어야 합니다.</li>
+              </ul>
+            </div>
+          </div>
           <div className="grid gap-8 lg:grid-cols-2">
             <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-xl space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-sky-100">
