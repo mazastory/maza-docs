@@ -1,4 +1,4 @@
-# MAZA STORY v2 (Maza Autopilot OS) - AGENTS.md v8.2
+# MAZA STORY v2 (Maza Autopilot OS) - AGENTS.md v8.3
 > **"모든 기능은 애드센스 승인과 수익화라는 결과에 기여해야 한다."**
 > 이 문서는 정책 선언이자 구현 계약서다. 선언과 코드는 반드시 일치해야 한다.
 > 프로젝트의 중심은 '도전'을 넘어 '완전 자동화(Autopilot)'로 진화한다.
@@ -108,6 +108,11 @@ graph LR
             └─ 전체 실패 → 캐시 또는 에러 반환
 ```
 
+### OpenRouter Free Assistant Worker & Key Rotation (v8.3 추가)
+1. **서브 에이전트/자동 검수용 무료 비서**: 콘텐츠 생성 후 자가 진단 및 다중 검증(Cross-Verification)을 수행하기 위해 OpenRouter Free API를 활용하는 서브 에이전트 아키텍처를 적극 도입한다.
+2. **API Key 쉼표(,) 구분 로테이션**: 오픈라우터 및 기타 AI API 키 등록 시, 다수의 계정 키를 쉼표(`,`)로 연결하여 입력할 수 있도록 지원한다. 시스템은 이를 배열로 쪼갠 뒤 라운드 로빈(Round-Robin) 방식으로 번갈아 호출하여 분당 요청 수(RPM) 제한과 쿼터 장벽을 안전하게 돌파한다.
+3. **비상용 유료 키 결합 (하이브리드 로테이션)**: 무료 키들로 우선 로테이션을 돌리되, 모두 제한에 걸리거나 오류가 발생할 경우를 대비하여 소액 충전된 유료 마스터 API 키를 최종 백업(Fallback)으로 두는 하이브리드 아키텍처 구성을 적극 권장한다.
+
 ### 절대 사용 금지 모델 (2026-05-14 최종 확인)
 | 모델명 | 사유 |
 |--------|------|
@@ -174,6 +179,7 @@ graph LR
 | **Phase 6** | Global Orchestration (Stage 실시간 연동) | ✅ 완료 |
 | **Phase 7** | 외부 수익 블록 자동 삽입 및 제휴 최적화 | ✅ 완료 |
 | **Phase 8** | AI 모델 레지스트리 전면 감사 — 폐기 모델 전수 제거, KI 기준 폴백 체인 재확정 | ✅ 완료 (2026-05-14) |
+| **Phase 9** | Tiered Referral Program — 2단계 티어드 리퍼럴 시스템 및 파트너 대시보드 구축 | ✅ 완료 (2026-05-26) |
 
 ---
 
@@ -198,6 +204,9 @@ graph LR
 | **v7.0** | 도약 | Maza Autopilot OS 선포 | '도구'에서 '자율 주행 OS'로의 대전환 |
 | **v8.0** | **신뢰** | **Experience-First Protocol (E-E-A-T)** | **'AI 생성'을 넘어 '경험 증명'으로 가치 혁신** |
 | **v8.1** | **2026-05-14** | **AI 모델 레지스트리 전면 감사 완료** | **'존재하지 않는 모델'로 인한 생성 중단 원천 차단** |
+| **v8.3** | **2026-05-19** | **오픈라우터 무료 비서단 연동 및 쉼표 구분 API 키 로테이션 확립** | **극단적 비용 절감 및 무중단 서브 에이전트 설계 기법 확보** |
+| **v8.4** | **2026-05-26** | **애드센스 승인 최적화 다변화 엔진 적용** | **5종 템플릿 스위칭 및 순수 이미지 우선 정책 (자동화 감지 회피)** |
+| **v8.5** | **2026-05-26** | **Tiered Referral Program 도입** | **2단계 파트너 네트워크를 통한 바이럴 성장 루프 구축** |
 
 ---
 
@@ -328,3 +337,37 @@ graph LR
 1. **자산 우선 매칭**: 오토파일럿 가동 시, 외부 API(Pexels 등)보다 `Asset Vault`에 축적된 유저의 실제 경험 이미지를 최우선적으로 매칭하여 발행한다.
 
 ---
+
+## 21. Tiered Referral Program (TRP-01)
+
+> **"사용자 한 명이 데려오는 사용자가 또 다른 사용자를 데려온다 — 이것이 Tiered Referral의 본질이다."**
+
+### 21-1. 개요 및 철학
+- **목표**: 광고 없이 사용자 기반을 바이럴로 확장하는 2단계(Tier 1 / Tier 2) 파트너 리퍼럴 시스템.
+- **명칭 통일**: 이 기능은 전체 코드베이스, UI, 문서에서 반드시 **"Tiered Referral"** 또는 **"티어드 리퍼럴"** 로 표기한다. "다단계", "MLM" 등의 표현은 절대 사용하지 않는다.
+
+### 21-2. 리워드 구조 (Reward Structure)
+| 이벤트 | 대상 | 보상 |
+|--------|------|------|
+| 추천 코드로 신규 가입 | 신규 가입자 본인 | **+100 PTS** |
+| 내가 초대한 사람이 가입 (Tier 1) | 초대한 사람 | **+50 PTS** |
+| 내 Tier 1이 초대한 사람이 가입 (Tier 2) | 최초 초대자 | **+10 PTS** |
+
+> 보상 포인트 액수는 `server/routes/affiliate.ts` 상단의 `REWARD_TIER_1`, `REWARD_TIER_2`, `REWARD_SIGNUP` 상수로 오너가 직접 조정할 수 있다.
+
+### 21-3. 기술 아키텍처
+| 레이어 | 파일 | 역할 |
+|--------|------|------|
+| **DB** | `supabase/migrations/20260526_add_referrals.sql` | `profiles.referral_code` (UNIQUE), `profiles.referred_by`, `ms_reward_logs` 테이블 |
+| **Backend API** | `server/routes/affiliate.ts` | `GET /api/affiliate/stats` (실적 조회), `POST /api/affiliate/apply` (코드 적용 + 보상 지급) |
+| **Frontend 캡처** | `src/App.tsx` → `ReferralCatcher` 컴포넌트 | URL `?ref=XXX` 파라미터를 `localStorage`에 저장 |
+| **자동 적용** | `src/components/AuthProvider.tsx` | 로그인(세션 생성) 시 `localStorage`의 코드를 서버로 전송, 자동 1회 적용 |
+| **파트너 UI** | `src/pages/Affiliate.tsx` | 내 추천 링크 복사, Tier 1/2 현황, 적립 내역 대시보드 |
+| **진입점** | `src/components/Layout.tsx` → 프로필 드롭다운 | "파트너 대시보드" 메뉴 |
+
+### 21-4. 핵심 로직 규칙
+1. **1회 적용 보장**: `profiles.referred_by`가 이미 설정된 사용자에게는 중복 적용하지 않는다.
+2. **자기 코드 방지**: 자신의 추천 코드는 사용할 수 없다.
+3. **추천 코드 자동 발급**: `GET /api/affiliate/stats` 호출 시 `referral_code`가 없으면 8자리 랜덤 코드를 자동 발급한다.
+4. **보상 로그 투명성**: 모든 포인트 지급은 `ms_reward_logs` 테이블에 이유와 함께 기록된다.
+5. **서버 사이드 처리**: 모든 보상 지급 로직은 `supabaseAdmin`을 통해 서버에서만 실행 (클라이언트 조작 불가).
