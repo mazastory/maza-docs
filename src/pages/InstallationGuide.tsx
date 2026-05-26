@@ -38,56 +38,56 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
         title: "1. 익스텐션 압축 파일 다운로드 📥",
         desc: "마자스튜디오 대시보드(또는 아래 다운로드 버튼)에서 `maza-extension.zip` 파일을 다운로드한 뒤, 찾기 쉬운 위치(예: 다운로드 폴더 또는 바탕화면)에 저장해 줍니다.",
         badge: "DOWNLOAD ZIP",
-        image: "/screenshots/step_01_dashboard.png",
+        image: "/screenshots/step_01_dashboard.webp",
         tip: "압축 파일 내에 Tistory 연동 및 RPA 자동 발행에 필요한 핵심 백그라운드 엔진이 내장되어 있습니다."
       },
       {
         title: "2. 압축 해제 📂",
         desc: "다운로드한 `maza-extension.zip` 파일의 압축을 해제합니다. 폴더 내에 `manifest.json` 파일이 있는 위치가 경로가 됩니다.",
         badge: "EXTRACT ZIP",
-        image: "/screenshots/step_02_extract.png",
+        image: "/screenshots/step_02_extract.webp",
         tip: "압축을 해제한 폴더의 이름이나 위치를 변경하지 마세요. 크롬 로드 후 경로가 바뀌면 다시 로드해야 합니다."
       },
       {
         title: "3. 크롬 확장 프로그램 관리자 열기 🌐",
         desc: "크롬 브라우저 주소창에 `chrome://extensions`를 입력해 이동하거나, 크롬 우측 상단의 [퍼즐 아이콘] -> [확장 프로그램 관리]를 클릭합니다.",
         badge: "CHROME EXTENSIONS",
-        image: "/screenshots/step_03.png",
+        image: "/screenshots/step_03.webp",
         tip: "다른 브라우저(웨일, 엣지 등)를 사용 중이시라면 크롬 브라우저에서 진행하시는 것을 권장합니다."
       },
       {
         title: "4. 개발자 모드(Developer Mode) ON ⚙️",
         desc: "확장 프로그램 관리 페이지 우측 상단에 위치한 '개발자 모드' 스위치를 켜서 활성화합니다.",
         badge: "DEVELOPER MODE",
-        image: "/screenshots/step_04.png",
+        image: "/screenshots/step_04.webp",
         tip: "개발자 모드가 켜져야 스토어 외부의 압축 해제된 확장 프로그램을 수동으로 등록할 수 있습니다."
       },
       {
         title: "5. 압축 해제된 확장 프로그램 로드 클릭 🚀",
         desc: "개발자 모드가 켜지면 좌측 상단에 나타나는 '압축해제된 확장 프로그램을 로드합니다' 버튼을 클릭합니다.",
         badge: "LOAD UNPACKED",
-        image: "/screenshots/step_05.png",
+        image: "/screenshots/step_05.webp",
         tip: "가장 첫 번째 버튼입니다. 클릭 시 파일 선택(폴더 선택) 창이 열립니다."
       },
       {
         title: "6. 익스텐션 선택과 핀고정 📌",
         desc: "탐색기 창에서 `maza-extension` 폴더를 선택해 로드한 뒤, 주소창 우측 퍼즐 아이콘을 눌러 'Maza Bridge'를 상단 바에 고정(Pin)합니다.",
         badge: "LOAD & PIN",
-        image: "/screenshots/step_06.png",
+        image: "/screenshots/step_06.webp",
         tip: "핀으로 고정해 두시면 익스텐션의 연동 상태(녹색 연결 불빛)를 실시간으로 빠르게 모니터링할 수 있습니다."
       },
       {
         title: "7. 익스텐션 로드 및 활성화 확인 ✅",
         desc: "확장 프로그램 목록에 'Maza Bridge' 카드가 생성되고, 우측 하단 스위치가 파란색으로 '켜짐(ON)' 상태인지 확인합니다.",
         badge: "CHECK STATUS",
-        image: "/screenshots/step_07_ok.png",
+        image: "/screenshots/step_07_ok.webp",
         tip: "정상적으로 등록되었다면 우측 하단 스위치가 켜져 있어야 백그라운드 엔진이 동작합니다."
       },
       {
         title: "8. 관리자 창 닫기 및 자동화 준비 끝! 🚀",
         desc: "수고하셨습니다! 이제 설정이 모두 끝났으므로 크롬 확장 프로그램 관리자 창은 완전히 닫고 사용하셔도 됩니다.",
         badge: "READY TO AUTOPILOT",
-        image: "/screenshots/step_08_close.png",
+        image: "/screenshots/step_08_close.webp",
         tip: "마자스튜디오 익스텐션은 별도로 창을 띄우지 않아도 백그라운드에서 유저를 대신해 완벽하게 자동 발행을 수행합니다."
       }
     ]
@@ -101,70 +101,70 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
       {
       title:"1. 회원가입",
       badge:"SIGN UP",
-      image:"/screenshots/tistory/01_signup.png",
+      image:"/screenshots/tistory/01_signup.webp",
       desc:"티스토리 계정 생성"
       },
 
       {
       title:"2. 블로그명 · 사이트주소 설정",
       badge:"BLOG INFO",
-      image:"/screenshots/tistory/02_blog_basic.png",
+      image:"/screenshots/tistory/02_blog_basic.webp",
       desc:"블로그명 설정"
       },
 
       {
       title:"3. 카테고리 관리",
       badge:"CATEGORY",
-      image:"/screenshots/tistory/03_category.png",
+      image:"/screenshots/tistory/03_category.webp",
       desc:"카테고리 생성"
       },
 
       {
       title:"4. 스킨 변경",
       badge:"SKIN",
-      image:"/screenshots/tistory/04_skin.png",
+      image:"/screenshots/tistory/04_skin.webp",
       desc:"스킨 템플릿을 변경하여 블로그 디자인을 맞춤 설정합니다."
       },
 
       {
       title:"5. HTML 편집",
       badge:"HTML",
-      image:"/screenshots/tistory/05_html.png",
+      image:"/screenshots/tistory/05_html.webp",
       desc:"HTML 편집 모드에서 블로그 콘텐츠 구조를 직접 수정합니다."
       },
 
       {
       title:"6. 모바일웹 설정",
       badge:"MOBILE",
-      image:"/screenshots/tistory/06_mobile.png",
+      image:"/screenshots/tistory/06_mobile.webp",
       desc:"모바일 웹뷰 설정을 통해 모바일 방문자 경험을 최적화합니다."
       },
 
       {
       title:"7. 블로그 설정",
       badge:"BLOG SETTING",
-      image:"/screenshots/tistory/07_setting.png",
+      image:"/screenshots/tistory/07_setting.webp",
       desc:"블로그 기본 설정을 확인하고 공개 범위, 검색 노출 옵션을 조정합니다."
       },
 
       {
       title:"8. 주소 설정",
       badge:"URL",
-      image:"/screenshots/tistory/08_url.png",
+      image:"/screenshots/tistory/08_url.webp",
       desc:"블로그 주소 및 카테고리 URL 구조를 원하는 형태로 설정합니다."
       },
 
       {
       title:"9. 도메인 연결",
       badge:"DOMAIN",
-      image:"/screenshots/tistory/10_domain.png",
+      image:"/screenshots/tistory/10_domain.webp",
       desc:"연결하려는 도메인을 입력하고 Tistory 블로그와 매핑합니다."
       },
 
       {
       title:"10. RSS 설정",
       badge:"RSS",
-      image:"/screenshots/tistory/11_rss.png",
+      image:"/screenshots/tistory/11_rss.webp",
       desc:"RSS 피드를 활성화하여 외부 서비스에 블로그 내용을 제공할 수 있게 합니다."
       },
     ]
@@ -178,67 +178,67 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
       {
         title: "1. 챌린지 시작하기",
         badge: "START",
-        image: "/screenshots/ad/ad_01.png",
+        image: "/screenshots/ad/ad_01.webp",
         desc: "마자스튜디오 챌린지 탭에서 AdSense 챌린지를 시작합니다."
       },
       {
         title: "2. 플랫폼 정보 등록",
         badge: "CONNECT",
-        image: "/screenshots/ad/ad_02.png",
+        image: "/screenshots/ad/ad_02.webp",
         desc: "티스토리/워드프레스/블로그스팟 중 운영 중인 플랫폼을 선택하고 블로그 정보를 정확히 입력합니다."
       },
       {
         title: "3. 구글 인프라 연결",
         badge: "GOOGLE",
-        image: "/screenshots/ad/ad_03.png",
+        image: "/screenshots/ad/ad_03.webp",
         desc: "AdSense, GA4, Search Console을 차례대로 연결하여 수익화 인프라를 구성합니다."
       },
       {
         title: "4. 애널리틱스 1회연결",
         badge: "GOOGLE",
-        image: "/screenshots/ad/ad_04.png",
+        image: "/screenshots/ad/ad_04.webp",
         desc: "AdSense, GA4, Search Console을 차례대로 연결하여 수익화 인프라를 구성합니다."
       },
        {
         title: "5. 애널리틱스 두개의 동의 클릭",
         badge: "GOOGLE",
-        image: "/screenshots/ad/ad_05.png",
+        image: "/screenshots/ad/ad_05.webp",
         desc: "AdSense, GA4, Search Console을 차례대로 연결하여 수익화 인프라를 구성합니다."
       },
       {
         title: "6. 정책 페이지 연결",
         badge: "POLICY",
-        image: "/screenshots/ad/ad_06.png",
+        image: "/screenshots/ad/ad_06.webp",
         desc: "개인정보처리방침, 이용약관, 광고정책 페이지를 생성하고 챌린지 세팅에 연결합니다."
       },
        {
         title: "7. 수익화 블로그 캐릭터 고르기",
         badge: "POLICY",
-        image: "/screenshots/ad/ad_07.png",
+        image: "/screenshots/ad/ad_07.webp",
         desc: "나만의 수익화 블로그 캐릭터 고르기 블로그의 메인 방향성을 재미있고 든든한 정답 패키지 캐릭터로 고르세요."
       },
       {
         title: "8. 콘텐츠 발행 준비",
         badge: "CONTENT",
-        image: "/screenshots/ad/ad_08.png",
+        image: "/screenshots/ad/ad_08.webp",
         desc: "니치 글 5개와 경험 글 5개를 작성하고 발행 전 자동 검수를 통과합니다."
       },
       {
         title: "9. 색인 요청",
         badge: "INDEX",
-        image: "/screenshots/ad/ad_09.png",
+        image: "/screenshots/ad/ad_09.webp",
         desc: "Search Console에 sitemap/RSS를 제출하고 즉시 색인 요청을 보냅니다."
       },
       {
         title: "10. 승인 신청",
         badge: "APPLY",
-        image: "/screenshots/ad/ad_10.png",
+        image: "/screenshots/ad/ad_10.webp",
         desc: "AdSense 신청 사이트에서 내 블로그를 등록하고 신청을 완료합니다."
       },
       {
         title: "11. 상태 확인",
         badge: "MONITOR",
-        image: "/screenshots/ad/ad_11.png",
+        image: "/screenshots/ad/ad_11.webp",
         desc: "승인 대기 상태를 확인하고, 이중 확인이 필요한 항목을 다시 점검합니다."
       }
     ]
@@ -253,21 +253,21 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
         title: "1. 워드프레스 관리자 프로필 진입 👤",
         desc: "워드프레스 관리자(WP-Admin) 대시보드에서 우측 상단 프로필 이미지를 클릭한 뒤 '프로필 편집'으로 이동합니다.",
         badge: "USER PROFILE",
-        image: "/screenshots/wp_step_01.png",
+        image: "/screenshots/wp_step_01.webp",
         tip: "관리자 권한이 있는 계정으로 로그인해야 합니다. self-hosted와 wordpress.com 모두 동일한 방식으로 설정할 수 있습니다."
       },
       {
         title: "2. 어플리케이션 비밀번호 생성 🔑",
         desc: "프로필 편집 페이지 하단에서 '새로운 어플리케이션 비밀번호 이름'에 MazaStudio 등 식별 가능한 이름을 입력하고 생성 버튼을 누릅니다.",
         badge: "GENERATE API KEY",
-        image: "/screenshots/wp_step_02.png",
+        image: "/screenshots/wp_step_02.webp",
         tip: "워드프레스 로그인 비밀번호는 절대 입력하지 마세요. 전용 앱 비밀번호만 마자스튜디오에 연결하면 됩니다."
       },
       {
         title: "3. 비밀번호 복사 및 연동 완료 📋",
         desc: "화면에 표시된 24자리 앱 비밀번호를 복사하여 마자스튜디오 'My Site'의 워드프레스 설정 창에 붙여넣고 저장합니다.",
         badge: "CONNECT WP",
-        image: "/screenshots/wp_step_03.png",
+        image: "/screenshots/wp_step_03.webp",
         tip: "비밀번호는 새로 발급한 뒤 바로 복사해야 합니다. 창을 닫으면 다시 확인할 수 없으니 즉시 저장하세요."
       }
     ]
@@ -282,21 +282,21 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
         title: "1. 마자스튜디오 My Site 메뉴 접속 🌐",
         desc: "마자스튜디오 좌측 사이드바에서 'My Site(사이트 관리)'로 이동한 뒤, 상단의 '블로그스팟(Blogger) 연동' 버튼을 클릭합니다.",
         badge: "CONNECT BLOGSPOT",
-        image: "/screenshots/blog_step_01.png",
+        image: "/screenshots/blog_step_01.webp",
         tip: "블로그스팟은 크롬 익스텐션 설치가 필요 없는 100% 서버 기반 API 자동화 플랫폼입니다."
       },
       {
         title: "2. 구글 계정으로 안전하게 로그인 🛡️",
         desc: "블로그스팟을 운영 중인 구글 계정을 선택하고, Blogger API 접근 및 글쓰기 권한을 허용합니다. 로그인한 계정에 자동화할 블로그가 포함되어 있는지 꼭 확인하세요.",
         badge: "GOOGLE OAUTH",
-        image: "/screenshots/blog_step_02.png",
+        image: "/screenshots/blog_step_02.webp",
         tip: "OAuth 로그인 과정에서 권한 요청 창이 뜨면 '허용'을 클릭합니다. 계정이 다르면 연동 대상 블로그 목록이 나타나지 않습니다."
       },
       {
         title: "3. 발행 타겟 블로그 선택 및 완료 🎯",
         desc: "해당 구글 계정에 연결된 블로그스팟 목록에서 자동화할 블로그를 정확히 선택하고 저장하면 세팅이 완료됩니다.",
         badge: "SELECT TARGET",
-        image: "/screenshots/blog_step_03.png",
+        image: "/screenshots/blog_step_03.webp",
         tip: "선택한 블로그가 올바른 도메인인지 다시 한 번 확인하세요. 블로그 ID가 저장되어야 자동 발행이 정상 동작합니다."
       }
     ]
@@ -311,7 +311,7 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
         title: "1. 마자 블로그 개인 사이트 세팅 🎯",
         desc: "마자스튜디오는 승인된 루트 도메인 아래에 서브도메인 블로그를 원클릭으로 생성하는 서비스를 준비 중입니다. 도메인, 호스팅, SSL, SEO, 법적 문서까지 마자가 한 번에 설정해 드립니다.",
         badge: "COMING SOON",
-        image: "/screenshots/coming_soon.png",
+        image: "/screenshots/coming_soon.webp",
         tip: "정식 공개 시에는 별도 티스토리/워드프레스/블로그스팟 설정 없이, 마자 블로그만으로 개인 사이트를 바로 운영할 수 있습니다."
       }
     ]
@@ -424,8 +424,8 @@ export default function InstallationGuide({ initialCategory }: InstallationGuide
   const getCurrentImageSrc = () => {
     if (imageError) return "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"; // beautiful generic fallback
     if (activeCategory === 'extension') {
-      if (activeStep === 0) return downloadSource === 'dashboard' ? "/screenshots/step_01_dashboard.png" : "/screenshots/step_01_challenge.png";
-      if (activeStep === 3) return isDevModeOn ? "/screenshots/step_developer_on.png" : "/screenshots/step_developer_off.png";
+      if (activeStep === 0) return downloadSource === 'dashboard' ? "/screenshots/step_01_dashboard.webp" : "/screenshots/step_01_challenge.webp";
+      if (activeStep === 3) return isDevModeOn ? "/screenshots/step_developer_on.webp" : "/screenshots/step_developer_off.webp";
     }
     return steps[activeStep].image;
   };
@@ -453,41 +453,6 @@ export default function InstallationGuide({ initialCategory }: InstallationGuide
             </p>
           </div>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            {GUIDE_CATEGORIES.map((category) => {
-              const isActive = activeCategory === category.id;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-black uppercase tracking-[0.22em] transition-all ${
-                    isActive
-                      ? `bg-${GUIDE_DATA[category.id].color}-500 text-white border-${GUIDE_DATA[category.id].color}-400 shadow-lg shadow-${GUIDE_DATA[category.id].color}-500/20`
-                      : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10 hover:text-white'
-                  }`}
-                >
-                  <category.icon size={14} /> {category.label}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="mt-4 flex flex-wrap justify-center gap-3">
-            <button
-              type="button"
-              onClick={() => window.location.href = '/guide'}
-              className="rounded-full px-5 py-2.5 bg-slate-800/80 text-xs font-black uppercase tracking-[0.22em] text-slate-100 border border-slate-700 hover:bg-slate-700 transition"
-            >
-              노하우 바로가기
-            </button>
-            <button
-              type="button"
-              onClick={() => window.location.href = '/faq'}
-              className="rounded-full px-5 py-2.5 bg-slate-800/80 text-xs font-black uppercase tracking-[0.22em] text-slate-100 border border-slate-700 hover:bg-slate-700 transition"
-            >
-              FAQ 바로가기
-            </button>
-          </div>
         </div>
 
         {/* Dynamic Presentation Hub */}

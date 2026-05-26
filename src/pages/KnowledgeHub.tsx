@@ -663,26 +663,26 @@ export default function KnowledgeHub({
                       <div className="grid grid-cols-2 gap-2 w-full h-full p-2">
                         <div className="relative rounded-2xl overflow-hidden border border-white/5 flex flex-col justify-between p-3 bg-slate-900/80">
                           <span className="absolute top-2 left-2 text-[8px] bg-red-500/20 text-red-400 font-bold px-1.5 py-0.5 rounded uppercase">Before</span>
-                          <img src="/screenshots/step_developer_off.png" alt="개발자모드 끔" className="w-full h-full object-contain rounded" />
+                          <img src="/screenshots/step_developer_off.webp" alt="개발자모드 끔" className="w-full h-full object-contain rounded" />
                         </div>
                         <div className="relative rounded-2xl overflow-hidden border border-white/5 flex flex-col justify-between p-3 bg-indigo-950/40">
                           <span className="absolute top-2 left-2 text-[8px] bg-emerald-500/20 text-emerald-400 font-bold px-1.5 py-0.5 rounded uppercase">After (ON)</span>
-                          <img src="/screenshots/step_developer_on.png" alt="개발자모드 켬" className="w-full h-full object-contain rounded" />
+                          <img src="/screenshots/step_developer_on.webp" alt="개발자모드 켬" className="w-full h-full object-contain rounded" />
                         </div>
                       </div>
                     )}
-                    {ch2Slide === 1 && <img src="/screenshots/step_01.png" alt="압축해제 로드" className="w-full h-full object-cover object-top animate-fade-in" />}
+                    {ch2Slide === 1 && <img src="/screenshots/step_01.webp" alt="압축해제 로드" className="w-full h-full object-cover object-top animate-fade-in" />}
                     {ch2Slide === 2 && (
                       <div className="grid grid-cols-2 gap-2 w-full h-full p-2">
                         <div className="relative rounded-2xl overflow-hidden border border-white/5 p-2 bg-slate-950/40">
-                          <img src="/screenshots/step_02.png" alt="설치완료" className="w-full h-full object-contain" />
+                          <img src="/screenshots/step_02.webp" alt="설치완료" className="w-full h-full object-contain" />
                         </div>
                         <div className="relative rounded-2xl overflow-hidden border border-white/5 p-2 bg-slate-950/40">
-                          <img src="/screenshots/step_03.png" alt="핀고정" className="w-full h-full object-contain" />
+                          <img src="/screenshots/step_03.webp" alt="핀고정" className="w-full h-full object-contain" />
                         </div>
                       </div>
                     )}
-                    {ch2Slide === 3 && <img src="/screenshots/step_08.png" alt="사이드바 상태 패널" className="w-full h-full object-cover object-top animate-fade-in" />}
+                    {ch2Slide === 3 && <img src="/screenshots/step_08.webp" alt="사이드바 상태 패널" className="w-full h-full object-cover object-top animate-fade-in" />}
                   </div>
                 </div>
 
@@ -990,10 +990,10 @@ export default function KnowledgeHub({
                     <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                   </div>
                   <div className="aspect-[16/10] overflow-hidden rounded-[28px] border border-white/5 relative bg-slate-900 flex items-center justify-center">
-                    {ch3Slide === 0 && <img src="/screenshots/new_01.png" alt="Winning Blueprint 목록" className="w-full h-full object-cover object-top animate-fade-in" />}
-                    {ch3Slide === 1 && <img src="/screenshots/new_02.png" alt="카테고리 믹싱 및 자동배차" className="w-full h-full object-cover object-top animate-fade-in" />}
-                    {ch3Slide === 2 && <img src="/screenshots/new_03.png" alt="스냅블로그 경험증명" className="w-full h-full object-cover object-top animate-fade-in" />}
-                    {ch3Slide === 3 && <img src="/screenshots/new_04.png" alt="E-E-A-T 검증 인장 본문 매핑" className="w-full h-full object-cover object-top animate-fade-in" />}
+                    {ch3Slide === 0 && <img src="/screenshots/new_01.webp" alt="Winning Blueprint 목록" className="w-full h-full object-cover object-top animate-fade-in" />}
+                    {ch3Slide === 1 && <img src="/screenshots/new_02.webp" alt="카테고리 믹싱 및 자동배차" className="w-full h-full object-cover object-top animate-fade-in" />}
+                    {ch3Slide === 2 && <img src="/screenshots/new_03.webp" alt="스냅블로그 경험증명" className="w-full h-full object-cover object-top animate-fade-in" />}
+                    {ch3Slide === 3 && <img src="/screenshots/new_04.webp" alt="E-E-A-T 검증 인장 본문 매핑" className="w-full h-full object-cover object-top animate-fade-in" />}
                   </div>
                 </div>
 
@@ -1140,11 +1140,11 @@ export default function KnowledgeHub({
 
                           {/* Image View */}
                           <div className="aspect-[4/3] bg-slate-950 rounded-[24px] overflow-hidden border border-white/5 relative flex items-center justify-center">
-                             {ch4Slide === 0 && <img src="/screenshots/step_01_challenge.png" alt="GTM 챌린지 시작" className="w-full h-full object-cover object-top animate-fade-in" />}
-                             {ch4Slide === 1 && <img src="/screenshots/step_01_dashboard.png" alt="태그관리자 관리창" className="w-full h-full object-cover object-top animate-fade-in" />}
-                             {ch4Slide === 2 && <img src="/screenshots/step_02_extract.png" alt="계정명 andrew 입력" className="w-full h-full object-cover object-top animate-fade-in" />}
-                             {ch4Slide === 3 && <img src="/screenshots/step_07_ok.png" alt="GA4 READY 활성화" className="w-full h-full object-cover object-top animate-fade-in" />}
-                             {ch4Slide === 4 && <img src="/screenshots/step_08_close.png" alt="연동창 닫기 완료" className="w-full h-full object-cover object-top animate-fade-in" />}
+                             {ch4Slide === 0 && <img src="/screenshots/step_01_challenge.webp" alt="GTM 챌린지 시작" className="w-full h-full object-cover object-top animate-fade-in" />}
+                             {ch4Slide === 1 && <img src="/screenshots/step_01_dashboard.webp" alt="태그관리자 관리창" className="w-full h-full object-cover object-top animate-fade-in" />}
+                             {ch4Slide === 2 && <img src="/screenshots/step_02_extract.webp" alt="계정명 andrew 입력" className="w-full h-full object-cover object-top animate-fade-in" />}
+                             {ch4Slide === 3 && <img src="/screenshots/step_07_ok.webp" alt="GA4 READY 활성화" className="w-full h-full object-cover object-top animate-fade-in" />}
+                             {ch4Slide === 4 && <img src="/screenshots/step_08_close.webp" alt="연동창 닫기 완료" className="w-full h-full object-cover object-top animate-fade-in" />}
                           </div>
 
                           {/* Mini Instruction */}
@@ -1236,7 +1236,7 @@ export default function KnowledgeHub({
                 </div>
               </div>
               <div className="rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-slate-950">
-                <img src="/screenshots/step_01_challenge.png" alt="AdSense 챌린지 시작" className="w-full h-full object-cover" />
+                <img src="/screenshots/step_01_challenge.webp" alt="AdSense 챌린지 시작" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
@@ -1315,21 +1315,21 @@ export default function KnowledgeHub({
             </div>
             <div className="grid gap-4 md:grid-cols-3">
               <div className="rounded-[32px] overflow-hidden border border-slate-200 shadow-lg">
-                <img src="/screenshots/step_01_dashboard.png" alt="챌린지 대시보드" className="w-full h-48 object-cover" />
+                <img src="/screenshots/step_01_dashboard.webp" alt="챌린지 대시보드" className="w-full h-48 object-cover" />
                 <div className="p-4 bg-white">
                   <div className="text-[10px] uppercase tracking-[0.3em] font-black text-slate-500">대시보드</div>
                   <p className="text-sm font-bold text-slate-900">플랫폼 연결과 챌린지 상태를 한눈에 확인.</p>
                 </div>
               </div>
               <div className="rounded-[32px] overflow-hidden border border-slate-200 shadow-lg">
-                <img src="/screenshots/step_02_extract.png" alt="챌린지 설정 입력" className="w-full h-48 object-cover" />
+                <img src="/screenshots/step_02_extract.webp" alt="챌린지 설정 입력" className="w-full h-48 object-cover" />
                 <div className="p-4 bg-white">
                   <div className="text-[10px] uppercase tracking-[0.3em] font-black text-slate-500">연동</div>
                   <p className="text-sm font-bold text-slate-900">구글 인프라와 챌린지 세부 설정을 확인합니다.</p>
                 </div>
               </div>
               <div className="rounded-[32px] overflow-hidden border border-slate-200 shadow-lg">
-                <img src="/screenshots/step_07_ok.png" alt="GA4 연동 완료" className="w-full h-48 object-cover" />
+                <img src="/screenshots/step_07_ok.webp" alt="GA4 연동 완료" className="w-full h-48 object-cover" />
                 <div className="p-4 bg-white">
                   <div className="text-[10px] uppercase tracking-[0.3em] font-black text-slate-500">승인 준비</div>
                   <p className="text-sm font-bold text-slate-900">최종 연결 확인 후 승인 신청을 준비합니다.</p>
@@ -1373,7 +1373,7 @@ export default function KnowledgeHub({
                 {/* Beautiful generated image from public directory */}
                 <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative aspect-square">
                    <img 
-                      src="/images/traditional_messy_desktop.png" 
+                      src="/images/traditional_messy_desktop.webp" 
                       alt="Traditional Messy Desktop Setup Pain" 
                       className="object-cover w-full h-full"
                    />
@@ -1398,7 +1398,7 @@ export default function KnowledgeHub({
                 {/* Beautiful generated image from public directory */}
                 <div className="rounded-3xl overflow-hidden border border-slate-100 shadow-2xl relative aspect-square">
                    <img 
-                      src="/images/maza_smart_mobile.png" 
+                      src="/images/maza_smart_mobile.webp" 
                       alt="Maza Smart Mobile Setup Ease" 
                       className="object-cover w-full h-full"
                    />
@@ -1709,9 +1709,9 @@ export default function KnowledgeHub({
                   <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                 </div>
                 <div className="aspect-[16/10] overflow-hidden rounded-[28px] border border-white/5 relative bg-slate-900 flex items-center justify-center">
-                  {ch6Slide === 0 && <img src="/screenshots/step_09.png" alt="Force Polling 버튼 작동 예시" className="w-full h-full object-cover object-top animate-fade-in" />}
-                  {ch6Slide === 1 && <img src="/screenshots/step_10.png" alt="티스토리 에디터 자동 감지 상태" className="w-full h-full object-cover object-top animate-fade-in" />}
-                  {ch6Slide === 2 && <img src="/screenshots/step_11.png" alt="발행완료 대기열 100% 완료 상태" className="w-full h-full object-cover object-top animate-fade-in" />}
+                  {ch6Slide === 0 && <img src="/screenshots/step_09.webp" alt="Force Polling 버튼 작동 예시" className="w-full h-full object-cover object-top animate-fade-in" />}
+                  {ch6Slide === 1 && <img src="/screenshots/step_10.webp" alt="티스토리 에디터 자동 감지 상태" className="w-full h-full object-cover object-top animate-fade-in" />}
+                  {ch6Slide === 2 && <img src="/screenshots/step_10.webp" alt="발행완료 대기열 100% 완료 상태" className="w-full h-full object-cover object-top animate-fade-in" />}
                 </div>
               </div>
 

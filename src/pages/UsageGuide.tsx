@@ -37,21 +37,21 @@ const USAGE_DATA: Record<UsageCategory, UsageData> = {
         title: "1. Niche Hunter에서 Winning Blueprint 선택 🎯",
         desc: "애드센스 승인 및 고수익 테마가 미리 설계된 Blueprint 도서관에서 원하는 공략집을 선택합니다.",
         badge: "STEP 01: SELECT BLUEPRINT",
-        image: "/screenshots/usage_autopilot_01.png",
+        image: "/screenshots/usage_autopilot_01.webp",
         tip: "블루프린트는 검색 엔진에 가장 부합하는 카테고리 구조와 키워드를 수학적으로 계산해 놓은 치트키입니다."
       },
       {
         title: "2. Keyword Vault 셔플 및 시리즈 예약 🎰",
         desc: "사전 발췌된 황금 키워드 금고(Vault)를 셔플 엔진을 돌려 무작위화하고, 순차적으로 배차(Scheduling)할 시리즈 테마를 설정합니다.",
         badge: "STEP 02: SHUFFLE & SERIES",
-        image: "/screenshots/usage_autopilot_02.png",
+        image: "/screenshots/usage_autopilot_02.webp",
         tip: "동일 패턴의 글이 반복 발행되는 것을 막기 위해 반드시 랜덤 셔플 엔진을 거칩니다."
       },
       {
         title: "3. W-05 안전 쿨타임 스케줄러 가동 🛡️",
         desc: "발행 간격을 최소 3시간(10,800초) 이상으로 강제하여 저품질 필터링과 어뷰징 제재로부터 계정을 철저하게 방어합니다.",
         badge: "STEP 03: W-05 SCHEDULE",
-        image: "/screenshots/usage_autopilot_03.png",
+        image: "/screenshots/usage_autopilot_03.webp",
         tip: "서버가 백그라운드에서 주기적으로 대기열을 체크하며, 실패 시 다음 발행 가능 타임으로 자동 재스케줄링(S-03)을 수행합니다."
       }
     ]
@@ -67,21 +67,21 @@ const USAGE_DATA: Record<UsageCategory, UsageData> = {
         title: "1. 주제 입력 및 목차 구조 설계 📝",
         desc: "작성하고 싶은 메인 키워드를 입력하면, AI가 상위 노출 중인 문서들을 분석해 H2, H3 헤딩이 유기적으로 조합된 완벽한 목차를 먼저 짜줍니다.",
         badge: "STEP 01: ANALYZE & OUTLINE",
-        image: "/screenshots/usage_writer_01.png",
+        image: "/screenshots/usage_writer_01.webp",
         tip: "구글 SEO 100점 점수판을 실시간으로 확인하며 H2/H3 태그 개수를 마음껏 다듬으실 수 있습니다."
       },
       {
         title: "2. 실시간 Streaming 집필 모니터링 ⚡",
         desc: "AI가 목차별 본문을 실시간으로 타이핑하듯 한 단락씩 써내려갑니다. 유저는 관제탑에서 완성되어 가는 고품질 서사를 지켜보며 수정할 수 있습니다.",
         badge: "STEP 02: STREAMING WRITE",
-        image: "/screenshots/usage_writer_02.png",
+        image: "/screenshots/usage_writer_02.webp",
         tip: "단순 텍스트 생성이 아닙니다. 표(Table), 인용구, 소제목 등이 가미된 애드센스 승인 특화 서식으로 집필됩니다."
       },
       {
         title: "3. SEO Validation 점수 검증 및 즉시 복사 🏆",
         desc: "본문 길이(1,500자 이상), 이미지 포함 여부, 내부 링크 앵커링 등 마자 100점 만점 검증 시스템을 완수하면, 클릭 한 번으로 서식 깨짐 없이 클립보드에 복사해 갈 수 있습니다.",
         badge: "STEP 03: VALIDATE & COPY",
-        image: "/screenshots/usage_writer_03.png",
+        image: "/screenshots/usage_writer_03.webp",
         tip: "복사 버튼을 누르면 Rich-Text로 자동 복사되어 티스토리나 워드프레스 에디터에 붙여넣었을 때 서식이 100% 그대로 유지됩니다."
       }
     ]
@@ -97,21 +97,21 @@ const USAGE_DATA: Record<UsageCategory, UsageData> = {
         title: "1. 나의 실제 사진(iPhone/Android) 업로드 📸",
         desc: "직접 다녀온 맛집, 여행지, 제품 리뷰 등 일상에서 폰으로 투박하게 찍어둔 실제 사진들을 마자 비전 라이터에 업로드합니다.",
         badge: "STEP 01: UPLOAD EXPERIENCE",
-        image: "/screenshots/usage_vision_01.png",
+        image: "/screenshots/usage_vision_01.webp",
         tip: "구글은 AI 그림보다 인물, 동행인, 장소 등 인간의 숨결이 묻어난 현실 사진에 압도적인 가중치를 둡니다."
       },
       {
         title: "2. P-01 메타데이터 세탁 및 EXIF 청소 🧼",
         desc: "업로드된 원본 이미지에서 촬영 기기(아이폰/갤럭시 등) 정보를 제외한 GPS 정보, 촬영자 고유 정보 등 민감한 개인정보를 서버 사이드에서 흔적 없이 세탁(Scrubbing)합니다.",
         badge: "STEP 02: METADATA CLEANING",
-        image: "/screenshots/usage_vision_02.png",
+        image: "/screenshots/usage_vision_02.webp",
         tip: "세탁 후, 기기 정보(Make/Model)만을 추출해 AI에게 넘겨 '이 기기로 2026년에 찍은 생생한 현장 경험'임을 인증하는 세련된 서사가 자동으로 생성됩니다."
       },
       {
         title: "3. 경험 인증 인장 (Verification Seal) 자동 삽입 🎖️",
         desc: "본문 하단에 기기 정보, 세탁 토큰, 그리고 경험 증명 코드가 내장된 시각적 배지가 자동으로 박혀 검색 심사 봇에게 완벽한 독창성(EEAT)을 어필합니다.",
         badge: "STEP 03: VERIFICATION SEAL",
-        image: "/screenshots/usage_vision_03.png",
+        image: "/screenshots/usage_vision_03.webp",
         tip: "이 방식을 통해 작성된 경험 포스팅은 카테고리 권위(Topic Authority) 획득 및 상위 노출에 압도적으로 강력합니다."
       }
     ]
