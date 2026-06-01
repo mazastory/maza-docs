@@ -570,3 +570,15 @@
   - 텍스트에 '주제'가 직접 포함된 요소만 선택 (class 기반 광범위 탐색 제거)
 - **핵심 규칙**: 발행 레이어 내 요소 탐색은 항상 `modal` Element를 root로 사용해야 함. `document.querySelectorAll()` 직접 사용 금지.
 
+
+---
+
+### [FIX-36] "© 2026 ZEROWORK.TISTORY.COM. ALL RIGHTS RESERVED." footer 재발 (2026-06-01)
+
+- **근본 원인**: `stripAIFooterArtifacts()`의 정규식이 `©\s*\d{4}\s+[\w\s.]+ALL RIGHTS RESERVED` 패턴만 처리하여, `ZEROWORK.TISTORY.COM`처럼 도메인 형식(점`.` 포함)의 문자열이 `[\w\s.]`와 greedy 매칭되지 않아 제거 실패
+- **증상**: AI가 생성한 글 본문 말미에 저작권 footer가 그대로 발행됨
+- **해결** (`server/lib/rendererAgent.ts`):
+  - `ALL RIGHTS RESERVED` 문자열 **단독 패턴**을 footerPatterns 최우선으로 추가 (가장 직접적이고 강력한 방어)
+  - `©` 패턴도 `[\s\S]{0,150}` 방식으로 중간 도메인 문자열을 폭넓게 허용하도록 수정
+- **핵심 규칙**: `ALL RIGHTS RESERVED`가 포함된 텍스트는 어떤 형식이든 반드시 제거. 정규식에 도메인(`.` 포함) 가정 금지.
+
