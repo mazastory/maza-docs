@@ -459,3 +459,80 @@
 - **해결**: `background.ts`에 `focusWebAppTab()` 유틸리티를 구현. `INFRA_INJECT` 작업이 성공(`SUCCESS` / `ALREADY_INJECTED`)하면 즉시 웹앱 탭(`localhost` 또는 `mazastudio.kr`)을 찾아 `chrome.tabs.update`와 `chrome.windows.update`를 통해 화면을 최상단으로 복귀시킴.
 - **파일**: `extension/background/background.ts`
 - **핵심 규칙**: 외부 탭에서 자동화 작업이 수행되는 경우, 작업 종료 시 반드시 사용자를 **메인 관제 센터(WebApp)**로 복귀시켜 결과 피드백을 즉시 인지할 수 있도록 "포커스 체이닝"을 강제해야 함.
+
+---
+
+## 7. 오토파일럿 발행 엔진 관련 (2026-06-01)
+
+### [FIX-30] 즉시 발행 고착 (publishing stuck) — 4중 복합 버그 (PERMANENT FIX)
+
+- **근본 원인**: 즉시 발행(force_publish) 버튼 클릭 후 Extension에서 실패하면, 태스크가 `publishing` 상태로 영구 고착되어 재시도되지 않는 현상. 4개의 독립적인 버그가 복합 작용.
+
+#### BUG-30-1: Stuck 판단 기준이 30분으로 너무 길었음 (치명)
+- **위치**: `server/routes/tasks.ts` → `GET /api/tasks/next` 내 Maintenance 블록
+- **문제**: `publishing` 상태가 30분 이상된 태스크만 정리 대상으로 판단
+- **결과**: `force_publish` 태스크가 Extension에서 3분 만에 타임아웃으로 실패해도, 30분 동안 아무런 복구가 이루어지지 않음
+- **해결**: `force_publish: true`인 태스크는 **3분**, 일반 태스크는 **30분** 초과 시 복구
+
+#### BUG-30-2: Stuck 태스크를 `failed`로 처리 (치명)
+- **위치**: `server/routes/tasks.ts` → stuck task cleanup 블록
+- **문제**: 고착된 태스크를 `failed` 상태로 업데이트 → 사용자가 재시도 불가
+- **해결**: `ready_to_publish`로 복구 (`publish_at = now()`) → Extension 다음 폴링에서 자동 재시도
+
+#### BUG-30-3: W-05 간격 계산에 `PUBLISHING` 상태 포함 (중)
+- **위치**: `server/routes/tasks.ts` → `buildW05Delay()` 함수
+- **문제**: 최근 발행 목록 조회 시 `PUBLISHED`, `VERIFYING`, `PUBLISHING` 모두 포함
+- **결과**: 고착된 `publishing` 태스크가 "최근에 발행한 글"로 오인되어 다음 태스크에 불필요한 W-05 대기 시간 적용
+- **해결**: W-05 계산 쿼리에서 `PUBLISHING` 상태 제외, `PUBLISHED`/`VERIFYING`만 포함
+
+#### BUG-30-4: 중복 스케줄 감지 시 `publish_at`(잘못된 필드) 기준으로 3분 체크 (중)
+- **위치**: `server/routes/platforms.ts` → `POST /publish-post` 내 `activeSchedule` 처리
+- **문제**: `activeSchedule.publish_at` (발행 예약 시각)으로 3분 체크 → `publish_at`이 과거 시간이면 즉시 stuck으로 오판하거나 반대로 미래 시간이면 절대 stuck으로 판단 안 됨
+- **해결**: `started_at` (실제 Extension이 처리 시작한 시각) 기준으로 3분 체크. `started_at`이 없으면 즉시 stuck으로 처리
+
+- **파일**: `server/routes/tasks.ts`, `server/routes/platforms.ts`
+- **핵심 규칙**:
+  1. **절대 금지**: W-05 간격 계산 쿼리에 `PUBLISHING` 상태를 추가하지 말 것 — stuck task가 W-05 차단을 유발함
+  2. **절대 금지**: Stuck 태스크를 `failed`로 처리하지 말 것 — 반드시 `ready_to_publish`로 복구해야 재시도 가능
+  3. **필드 구분**: `publish_at`(예약 시각) vs `started_at`(처리 시작 시각). Stuck 판단은 항상 `started_at` 기준
+  4. **force_publish 태스크**: 3분, 일반 태스크: 30분을 Stuck 기준으로 유지할 것
+
+---
+
+### [FIX-31] AI 생성 본문에 footer 아티팩트 삽입 → footer 이후 본문 재출력 (PERMANENT FIX) (2026-06-01)
+
+- **근본 원인**: AI(Gemini)가 `content1`, `content2` 등 본문 필드를 생성할 때, 텍스트 끝부분에 `© 2026 ... ALL RIGHTS RESERVED.` 저작권 문구와 `HOW-TO GUIDE` 레이블, 추가 본문을 **직접 텍스트로 포함**시키는 현상 발생.
+- **피해 경로**: AI 생성 content2 필드에 `© 2026 ZEROWORK.TISTORY.COM. ALL RIGHTS RESERVED.\n\nHOW-TO GUIDE\n\n다음은...` 삽입 → `formatBody()`가 이것을 `<p>` 태그로 그대로 렌더링 → 템플릿의 실제 `footerHtml()`이 그 뒤에 또 붙음 → footer가 두 번 나타나고 footer 사이에 추가 본문 노출
+- **증상**: 티스토리 발행 글에서 `© 2026 ... ALL RIGHTS RESERVED.` 이후에 `HOW-TO GUIDE` 레이블과 추가 본문/이미지가 나타남
+
+- **해결** (`server/lib/rendererAgent.ts`):
+  1. `stripAIFooterArtifacts(text)` 함수 추가: `©`, `copyright`, `면책 조항:`, `---` 수평선 이후 내용을 정규식으로 탐지하여 해당 위치부터 이후 모든 텍스트 제거
+  2. `sanitizeRenderData(data)` 함수 추가: `applyHTMLTemplate()` 진입 전 **모든 텍스트 필드**에 `stripAIFooterArtifacts` 일괄 적용
+    - 대상 필드: `content1`, `content2`, `intro`, `outro`, `experienceNote`, `summary`, `insightBox`, `definitionSection.content`
+  3. `formatBody()` 함수 내에서도 `stripAIFooterArtifacts` 선행 호출
+
+- **파일**: `server/lib/rendererAgent.ts`
+- **핵심 규칙**:
+  1. **새 텍스트 필드 추가 시**: `sanitizeRenderData()`의 `textFields` 배열에 반드시 포함시킬 것
+  2. **AI 프롬프트 작성 시**: "저작권 문구, 면책 조항, 수평선(---), HOW-TO GUIDE 같은 footer 요소를 content 필드에 포함하지 말 것"을 명시적으로 지시할 것
+  3. `stripAIFooterArtifacts`의 패턴 목록은 AI 행동 패턴이 변경되면 업데이트할 것
+
+---
+
+### [FIX-32] AI 생성 비교표(Table) 데이터가 1차원 배열로 전달 → 레이아웃 붕괴 (PERMANENT FIX) (2026-06-01)
+
+- **근본 원인**: AI가 `comparisonData.rows`를 2차원 배열 `[["A","B","C"],["D","E","F"]]`로 주어야 하는데, 1차원 배열 `["A","B","C","D","E","F"]`로 풀어서 전달하는 경우 발생
+- **증상**: 3개 열짜리 비교표에 6~15개 열이 한 행(row)에 들어가 너비 부족으로 글자가 세로로 한 글자씩 출력됨 (레이아웃 완전 붕괴)
+
+- **해결** (`server/lib/rendererAgent.ts`):
+  - `normalizeRows(headers, rows)` 함수 추가: row 길이가 header 개수보다 많으면 header 개수 단위로 자동 chunk하여 새 행으로 분리
+  - 모든 템플릿(A~E)의 테이블 렌더링에 `normalizeRows()` 적용
+
+- **파일**: `server/lib/rendererAgent.ts`
+- **핵심 규칙**:
+  1. **절대 금지**: `data.comparisonData.rows.map()` 직접 호출 금지 — 반드시 `normalizeRows(headers, rows).map()`을 거칠 것
+  2. 새로운 테이블 렌더링 코드 추가 시 `normalizeRows()`를 통해 rows를 정규화하는 것을 잊지 말 것
+
+---
+*최종 업데이트: 2026-06-01 (오토파일럿 발행 엔진 안정화 — 즉시 발행 고착, footer 재출력, 테이블 붕괴 수정)*
+
