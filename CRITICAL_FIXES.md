@@ -536,3 +536,37 @@
 ---
 *최종 업데이트: 2026-06-01 (오토파일럿 발행 엔진 안정화 — 즉시 발행 고착, footer 재출력, 테이블 붕괴 수정)*
 
+
+---
+
+### [FIX-33] 발행 API 인터셉터가 썸네일 업로드/임시저장을 발행 성공으로 오판 (2026-06-01)
+
+- **근본 원인**: `mainWorld.ts`의 fetch/XHR 인터셉터가 `method === 'POST' && isTistoryDomain` 조건으로 티스토리 도메인의 **모든 POST 요청**을 발행 성공으로 간주
+- **증상**: 썸네일 이미지 업로드(`/upload`), 임시저장(`/autosave`) 등의 POST 요청 성공 시 `MAZA_PUBLISH_API_SUCCESS`가 조기 발사 → `PublishVerifier` 점수가 즉시 2.0 이상으로 올라 실제 발행 전에 발행 성공으로 오판할 수 있음
+- **해결** (`extension/content/mainWorld.ts`):
+  - fetch/XHR 인터셉터를 `/publish`, `/post/write`, `/entry/post`, `/manage/entry/post`, `/apis/post` 등 **실제 발행 전용 엔드포인트**로 한정
+  - `/upload`, `/image`, `/attachment`, `/tempSave`, `/autosave`, `/draft` 포함 URL은 명시적으로 제외
+- **핵심 규칙**: `isTistoryDomain && method === 'POST'` 조건만으로 발행 감지를 하면 안 됨. 반드시 발행 전용 URL 패턴을 명시해야 함.
+
+---
+
+### [FIX-34] 발행 레이어 열린 후 2차 태그 주입으로 태그 중복 등록 (2026-06-01)
+
+- **근본 원인**: `publish.ts`에서 `tagManager.inject(foundTags)` 호출이 PUBLISH_LAYER 이전(1차)과 이후(2차) 총 2회 실행됨
+- **증상**: 태그가 이미 1차에서 정상 등록되었음에도 2차 호출에서 동일 태그를 다시 입력 → 티스토리 에디터에 태그 중복 또는 비정상 입력 발생 가능
+- **해결** (`extension/platforms/tistory/publish.ts`):
+  - 2차 호출 시 태그 입력 필드가 이미 채워졌는지(`.value.trim().length > 0`) 체크
+  - 비어있을 때만 2차 주입 시도 (1차 실패를 보수하는 용도로만 한정)
+- **핵심 규칙**: `tagManager.inject()` 호출 전에 항상 태그 필드가 비어있는지 확인해야 함
+
+---
+
+### [FIX-35] 주제(홈주제) 드롭다운 fallback이 발행 레이어 밖의 버튼을 오클릭 (2026-06-01)
+
+- **근본 원인**: `publish.ts`의 주제 드롭다운 fallback 탐색이 `document` 전체 범위에서 `.btn_select`, `[role="combobox"]`를 찾으며, `el.className?.includes('select')` 같은 지나치게 넓은 조건 사용
+- **증상**: 발행 레이어 외부에 있는 다른 버튼이나 드롭다운을 주제 드롭다운으로 오인하여 클릭 → 예상치 못한 UI 변화 발생 가능
+- **해결** (`extension/platforms/tistory/publish.ts`):
+  - 탐색 root를 `modal`(발행 레이어 Element)로 제한 (`searchRoot = modal instanceof Element ? modal : document`)
+  - 텍스트에 '주제'가 직접 포함된 요소만 선택 (class 기반 광범위 탐색 제거)
+- **핵심 규칙**: 발행 레이어 내 요소 탐색은 항상 `modal` Element를 root로 사용해야 함. `document.querySelectorAll()` 직접 사용 금지.
+
