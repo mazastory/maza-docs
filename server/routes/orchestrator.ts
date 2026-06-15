@@ -69,7 +69,7 @@ router.get('/status', async (req, res) => {
         system
       }
     });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: error.message });
   }
 });

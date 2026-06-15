@@ -1,0 +1,55 @@
+# dependencies
+node_modules/
+.npm/
+
+# build output
+dist/
+dist-ext/
+dist-server/
+build/
+
+# environment variables
+.env
+.env.local
+.env.production
+.env.staging
+.env.*.local
+
+# logs
+*.log
+logs/
+npm-debug.log*
+lint_output.txt
+
+# OS / IDE
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+.vscode/settings.json
+.idea/
+
+# temp files
+*.tmp
+*.swp
+*.swo
+.cache/
+
+# extension build outputs
+extension/*.zip
+extension/**/*.js
+extension/**/*.js.map
+
+# supabase local
+.supabase/
+supabase/.temp/
+
+# repo hygiene
+dump.rdb
+*.rdb
+scratch/
+server/scratch/
+tools/
+__MACOSX/
+*.tsbuildinfo
+node_modules

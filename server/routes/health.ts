@@ -70,7 +70,7 @@ router.get('/', async (req, res) => {
   try {
     const stats = await getSystemStats();
     res.json({ success: true, data: stats });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: error.message });
   }
 });

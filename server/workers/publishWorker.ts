@@ -240,7 +240,7 @@ export const publishWorker = new Worker(
 
       await ObservabilityService.recordMetric('publish', job.id!, 'success', startTime);
       return { success: true };
-    } catch (error: any) {
+    } catch(error: unknown) {
       await ObservabilityService.recordMetric('publish', job.id!, 'failed', startTime, error.message);
       MazaLogger.error(`[PublishWorker] ❌ Error in job ${job.id}`, error, { postId, userId, jobId: job.id });
       

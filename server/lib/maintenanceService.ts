@@ -46,7 +46,7 @@ export class MaintenanceService {
         .delete()
         .lt('created_at', thirtyDaysAgo);
 
-    } catch (e: any) {
+    } catch(e: unknown) {
       MazaLogger.error('[Maintenance] Cleanup failed', e);
     }
   }

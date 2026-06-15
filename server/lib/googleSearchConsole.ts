@@ -30,7 +30,7 @@ export class GoogleSearchConsole {
       });
 
       return res.data.rows || [];
-    } catch (e: any) {
+    } catch(e: unknown) {
       MazaLogger.error(`[GSC] Failed to fetch stats for ${siteUrl}`, e);
       throw e;
     }
@@ -54,7 +54,7 @@ export class GoogleSearchConsole {
       });
 
       return res.data.inspectionResult?.indexStatusResult?.verdict === 'PASS';
-    } catch (e: any) {
+    } catch(e: unknown) {
       MazaLogger.error(`[GSC] Index check failed for ${inspectionUrl}`, e);
       return false;
     }

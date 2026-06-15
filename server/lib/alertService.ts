@@ -57,7 +57,7 @@ export class AlertService {
         // MazaLogger.warn("ALERT: No successful posts in the last 24 hours.");
       }
 
-    } catch (e: any) {
+    } catch(e: unknown) {
       MazaLogger.error("AlertService check failed", e);
     }
   }

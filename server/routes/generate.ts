@@ -149,7 +149,7 @@ router.post('/', requireAuth, validate(generateSchema), checkDailyLimit, async (
       message: '작업이 큐에 등록되었습니다.',
       job_id: job.id 
     });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Generate Error]', error);
     res.status(500).json({ success: false, error: error.message });
   }
@@ -175,7 +175,7 @@ router.post('/stop/:id', requireAuth, async (req, res) => {
     }
 
     res.json({ success: true, message: "작업 취소 요청이 전달되었습니다." });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Generate Stop Error]', error);
     res.status(500).json({ success: false, error: error.message });
   }
@@ -410,7 +410,7 @@ router.post('/stream', requireAuth, validate(generateSchema), async (req: any, r
     }));
     res.end();
 
-  } catch (err: any) {
+  } catch(err: unknown) {
     MazaLogger.error({ msg: `[Stream] Error for ${targetKeyword}`, error: err, siteId: reqSiteId, userId: user_id, traceId });
 
     // [A-2] 실패 시 FAILED 상태로 전환 (retry 가능하도록)
@@ -461,7 +461,7 @@ ${JSON.stringify(blocks, null, 2)}
     }
 
     res.json({ success: true, blocks: revisedBlocks });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error("[Revise Error]", error);
     res.status(500).json({ success: false, error: error.message || "수정 중 오류 발생" });
   }
@@ -546,7 +546,7 @@ router.post('/purify', requireAuth, async (req, res) => {
       title: parsed.title,
       diagnosis: "애드센스 거절 사유에 맞춰, 기계적인 말투를 1인칭 경험담으로 교체하고 정보의 깊이를 더해 EEAT 점수를 대폭 향상시켰습니다."
     });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error("[Purify Error]", error);
     res.status(500).json({ success: false, error: error.message || "글 세탁 중 오류 발생" });
   }
@@ -663,7 +663,7 @@ ${specializedInstruction}
       data: generatedPages 
     });
 
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error("[Compliance Error]", error);
     res.status(500).json({ success: false, error: error.message || "페이지 생성 중 오류 발생" });
   }
@@ -713,7 +713,7 @@ router.post('/consulting', requireAuth, async (req: any, res) => {
     }
 
     res.json({ success: true, data });
-  } catch (error: any) {
+  } catch(error: unknown) {
     MazaLogger.error('[Consulting Error]', error);
     res.status(500).json({ success: false, error: error.message || '분석 중 오류 발생' });
   }
@@ -778,7 +778,7 @@ router.post('/recommend-titles', requireAuth, async (req: any, res) => {
     }
 
     res.json({ success: true, data });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Recommend Error]', error);
     res.status(500).json({ success: false, error: error.message });
   }
@@ -839,7 +839,7 @@ router.post('/save-legal', requireAuth, async (req: any, res) => {
     if (scheduleError) throw scheduleError;
 
     res.json({ success: true, data: { id: post.id } });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Save Legal Error]', error);
     res.status(500).json({ success: false, error: error.message });
   }

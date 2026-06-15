@@ -246,7 +246,7 @@ export const aiWorker = new Worker(
 
       await ObservabilityService.recordMetric('ai', job.id!, 'success', startTime);
       return { success: true, postId: finalPostId };
-    } catch (error: any) {
+    } catch(error: unknown) {
       await ObservabilityService.recordMetric('ai', job.id!, 'failed', startTime, error.message);
       MazaLogger.error(`[AIWorker] ❌ Error in job ${job.id}`, error, { userId, keyword, jobId: job.id });
       

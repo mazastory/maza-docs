@@ -73,7 +73,7 @@ export class WordPressAPI {
         wp_post_url: data.link
       };
 
-    } catch (err: any) {
+    } catch(err: unknown) {
       console.error("[WP Publisher] Network error:", err.message);
       return { success: false, error: `네트워크 오류: ${err.message}` };
     }
@@ -107,7 +107,7 @@ export class WordPressAPI {
 
       return { ok: true, blog_name: info.name || siteUrl };
 
-    } catch (err: any) {
+    } catch(err: unknown) {
       return { ok: false, error: `연결 실패: ${err.message}` };
     }
   }

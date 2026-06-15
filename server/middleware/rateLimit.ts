@@ -92,7 +92,7 @@ export async function checkDailyLimit(req: Request, res: Response, next: NextFun
     console.log(`[RateLimit] ${plan} user ${user_id}: ${todayCount}/${limit.posts} today`);
     next();
 
-  } catch (err: any) {
+  } catch(err: unknown) {
     console.warn('[RateLimit] Unexpected error, failing open:', err.message);
     next();
   }

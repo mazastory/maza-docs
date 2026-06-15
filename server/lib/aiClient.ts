@@ -152,7 +152,7 @@ export async function callAI(prompt: string | any[], options: {
   await new Promise(resolve => setTimeout(resolve, 3000));
 
   // [Stability-First] Filter out quarantined keys from Redis
-  let validKeys = [];
+  const validKeys = [];
   for (const key of apiKeys) {
     const keyHash = getHash(key).substring(0, 8);
     const isQuarantined = await redisConnection.get(`quarantine_key_${keyHash}`);
@@ -254,7 +254,7 @@ export async function callAI(prompt: string | any[], options: {
     }
 
     return text;
-  } catch (error: any) {
+  } catch(error: unknown) {
     const errorMsg = error.message || String(error);
     
     // Explicit 404/403 Fallback logic (Access or existence issues)
@@ -375,7 +375,7 @@ export async function callAIStream(prompt: string | any[], options: {
   await new Promise(resolve => setTimeout(resolve, 3000));
 
   // [Stability-First] Filter out quarantined keys
-  let validKeys = [];
+  const validKeys = [];
   for (const key of apiKeys) {
     const keyHash = getHash(key).substring(0, 8);
     const isQuarantined = await redisConnection.get(`quarantine_key_${keyHash}`);
@@ -457,7 +457,7 @@ export async function callAIStream(prompt: string | any[], options: {
       if (chunkText) options.onChunk?.(chunkText);
     }
 
-  } catch (error: any) {
+  } catch(error: unknown) {
     const errorMsg = error.message || String(error);
     const isQuotaError = error.status === 429 || errorMsg.includes("429") || errorMsg.includes("quota");
     const isAuthError = error.status === 403 || errorMsg.includes("403");
@@ -627,7 +627,7 @@ export async function callAgent<T = any>(
         tokens: aiResult.tokens
       }
     };
-  } catch (error: any) {
+  } catch(error: unknown) {
     circuitBreaker.recordFailure(agentName);
     
     return {

@@ -17,7 +17,7 @@ export const verificationWorker = new Worker(
       await VerificationService.handleResult(postId, scheduledId, isSuccess);
       
       return { success: isSuccess };
-    } catch (error: any) {
+    } catch(error: unknown) {
       MazaLogger.error(`[VerificationWorker] ❌ Error in verification job ${job.id}`, error, { postId });
       throw error;
     }

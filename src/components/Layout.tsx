@@ -18,12 +18,13 @@ export default function Layout() {
 
   // Docs site: only show document-related pillars
   const mainPillarPaths = [
+    '/knowledge?category=adsense_challenge',
     '/knowledge?category=extension',
     '/knowledge?category=tistory',
     '/knowledge?category=wordpress',
     '/knowledge?category=blogspot',
     '/knowledge?category=subdomain',
-    '/knowledge?category=adsense_challenge',
+    '/knowledge?category=maza_bridge',
     '/guide',
     '/faq'
   ];

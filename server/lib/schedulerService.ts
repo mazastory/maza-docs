@@ -96,12 +96,12 @@ export class SchedulerService {
           });
 
           MazaLogger.info(`[Scheduler] ✅ Task ${task.id} successfully pushed to AI Writer queue.`);
-        } catch (taskErr: any) {
+        } catch(taskErr: unknown) {
           MazaLogger.error(`[Scheduler] ❌ Failed to push task ${task.id} to queue`, taskErr);
         }
       }
 
-    } catch (e: any) {
+    } catch(e: unknown) {
       MazaLogger.error('[Scheduler] Poll failed', e);
     } finally {
       // 락 해제 (TTL이 있지만 명시적으로 해제하면 더 빠름)
@@ -155,13 +155,13 @@ export class SchedulerService {
         try {
           MazaLogger.info(`[Scheduler] Syncing performance for ${site.domain}...`);
           await FeedbackEngine.syncPerformance(site.id);
-        } catch (err: any) {
+        } catch(err: unknown) {
           MazaLogger.error(`[Scheduler] Daily sync failed for ${site.domain}`, err);
         }
       }
 
       MazaLogger.info('[Scheduler] ✅ Daily performance sync completed.');
-    } catch (e: any) {
+    } catch(e: unknown) {
       MazaLogger.error('[Scheduler] Daily jobs failed', e);
     }
   }

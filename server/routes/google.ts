@@ -69,7 +69,7 @@ router.post("/setup-ga4", requireAuth, async (req, res) => {
       propertyName: property.displayName
     });
 
-  } catch (err: any) {
+  } catch(err: unknown) {
     console.error("[Google API] GA4 Setup Error:", err);
     res.status(500).json({ error: err.message || "GA4 자동 생성 중 오류가 발생했습니다." });
   }
@@ -118,7 +118,7 @@ router.post("/setup-search-console", requireAuth, async (req, res) => {
       siteUrl
     });
 
-  } catch (err: any) {
+  } catch(err: unknown) {
     console.error("[Google API] Search Console Setup Error:", err);
     res.status(500).json({ error: err.message || "서치콘솔 등록 중 오류가 발생했습니다." });
   }
@@ -154,7 +154,7 @@ router.post("/verify-site", requireAuth, async (req, res) => {
       result
     });
 
-  } catch (err: any) {
+  } catch(err: unknown) {
     console.error("[Google API] Verification Error:", err);
     res.status(500).json({ error: err.message || "소유권 확인 중 오류가 발생했습니다." });
   }
@@ -203,7 +203,7 @@ router.post("/submit-sitemap", requireAuth, async (req, res) => {
       message: "사이트맵 및 RSS 제출이 완료되었습니다."
     });
 
-  } catch (err: any) {
+  } catch(err: unknown) {
     console.error("[Google API] Sitemap Submission Error:", err);
     res.status(500).json({ error: err.message || "사이트맵 제출 중 오류가 발생했습니다." });
   }
@@ -232,7 +232,7 @@ router.get("/sitemap-status", requireAuth, async (req, res) => {
       sitemaps: sitemaps.sitemap || []
     });
 
-  } catch (err: any) {
+  } catch(err: unknown) {
     console.error("[Google API] Sitemap Status Check Error:", err);
     res.status(500).json({ error: err.message || "상태 조회 중 오류가 발생했습니다." });
   }

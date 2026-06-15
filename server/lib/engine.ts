@@ -267,7 +267,7 @@ export async function scheduleSeries(userId: string, seriesId: string) {
 
       // 다음 발행 시간 계산
       nextPublishTime = new Date(nextPublishTime.getTime() + (intervalHours * 60 * 60 * 1000));
-    } catch (err: any) {
+    } catch(err: unknown) {
       console.error(`[Engine] Failed to queue keyword "${keyword}":`, err.message);
     }
   }

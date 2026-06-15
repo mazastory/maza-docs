@@ -45,7 +45,7 @@ router.post('/wordpress/verify', requireAuth, async (req, res) => {
     }
 
     res.json({ success: true, blog_name: verification.blog_name });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Platforms Route] WordPress verify error:', error);
     res.status(500).json({ error: error.message || "워드프레스 연동 중 오류가 발생했습니다." });
   }
@@ -69,7 +69,7 @@ router.post('/blogger/list', requireAuth, async (req, res) => {
     }
 
     res.json({ success: true, blogs: result.blogs });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Platforms Route] Blogger list error:', error);
     res.status(500).json({ error: error.message || "블로그스팟 목록 조회 중 오류가 발생했습니다." });
   }
@@ -105,7 +105,7 @@ router.post('/blogger/save', requireAuth, async (req, res) => {
     }
 
     res.json({ success: true });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Platforms Route] Blogger save error:', error);
     res.status(500).json({ error: error.message || "블로그스팟 저장 중 오류가 발생했습니다." });
   }
@@ -224,7 +224,7 @@ router.post('/publish-post', requireAuth, async (req, res) => {
     }
 
     res.status(400).json({ error: "지원하지 않는 블로그 플랫폼입니다." });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error("[Platforms Route] Manual publish error:", error);
     res.status(500).json({ error: error.message || "발행 처리 중 오류가 발생했습니다." });
   }

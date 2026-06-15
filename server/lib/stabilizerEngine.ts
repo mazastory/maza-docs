@@ -43,7 +43,7 @@ export class StabilizerEngine {
       }]);
 
       return status;
-    } catch (e: any) {
+    } catch(e: unknown) {
       MazaLogger.error("Stabilizer failed to report failure", e);
     }
   }

@@ -82,7 +82,7 @@ export const imageWorker = new Worker(
       });
 
       return { success: true, images: [img1, img2, img3] };
-    } catch (error: any) {
+    } catch(error: unknown) {
       MazaLogger.error(`[ImageWorker] ❌ Error in job ${job.id}`, error, { postId, userId, jobId: job.id });
       throw error;
     }

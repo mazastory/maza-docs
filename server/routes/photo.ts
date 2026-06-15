@@ -319,7 +319,7 @@ ${keyword ? `\n[추가 요청사항/키워드]: ${keyword}` : ''}`;
         image1: imageUrls[0] || null // 익스텐션 썸네일 호환성용
       } 
     });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error("[Generate Photo Error]", error);
     res.status(500).json({ success: false, error: error.message });
   }

@@ -15,7 +15,7 @@ export const validate = (schema: ZodObject<any>) => {
         params: req.params,
       });
       next();
-    } catch (error: any) {
+    } catch(error: unknown) {
       if (error instanceof ZodError || error.name === 'ZodError') {
         MazaLogger.warn({ 
           msg: 'Validation failed', 

@@ -32,7 +32,7 @@ router.post('/generate', requireAuth, async (req, res) => {
       message: `"${title}" 시리즈 마스터 브리프 설계 및 배차가 완료되었습니다.`,
       data: series 
     });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error("[Series Generate Error]", error);
     res.status(500).json({ success: false, error: error.message });
   }
@@ -54,7 +54,7 @@ router.get('/', requireAuth, async (req, res) => {
 
     if (error) throw error;
     res.json({ success: true, data });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: error.message });
   }
 });
@@ -83,7 +83,7 @@ router.post('/', requireAuth, async (req, res) => {
 
     if (error) throw error;
     res.json({ success: true, data });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: error.message });
   }
 });
@@ -106,7 +106,7 @@ router.patch('/:id', requireAuth, async (req, res) => {
 
     if (error) throw error;
     res.json({ success: true, data });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: error.message });
   }
 });
@@ -126,7 +126,7 @@ router.delete('/:id', requireAuth, async (req, res) => {
 
     if (error) throw error;
     res.json({ success: true });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: error.message });
   }
 });
@@ -155,7 +155,7 @@ router.post('/:id/schedule', requireAuth, async (req, res) => {
       success: true, 
       message: `[${cluster.title}] 시리즈 배차가 재시작되었습니다.` 
     });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error("[Schedule Error]", error);
     res.status(500).json({ success: false, error: `발행 엔진 오류: ${error.message}` });
   }

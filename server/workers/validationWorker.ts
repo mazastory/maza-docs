@@ -131,7 +131,7 @@ export const validationWorker = new Worker(
       }
 
       return { success: true, score: validationV2.overallScore };
-    } catch (error: any) {
+    } catch(error: unknown) {
       MazaLogger.error(`[ValidationWorker] ❌ Error in job ${job.id}`, error, { postId, userId, jobId: job.id });
       throw error;
     }

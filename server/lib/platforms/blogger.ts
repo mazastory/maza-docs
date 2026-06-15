@@ -40,7 +40,7 @@ export class BloggerAPI {
       
       const res = await blogger.blogs.listByUser({ userId: 'self' });
       return { success: true, blogs: res.data.items || [] };
-    } catch (err: any) {
+    } catch(err: unknown) {
       console.error("[BloggerAPI] Error listing blogs:", err.message);
       return { success: false, error: `Blogger 목록 조회 실패: ${err.message}` };
     }
@@ -77,7 +77,7 @@ export class BloggerAPI {
         post_id: res.data.id || undefined,
         post_url: res.data.url || undefined
       };
-    } catch (err: any) {
+    } catch(err: unknown) {
       console.error("[BloggerAPI] Post insertion error:", err.message);
       return { success: false, error: `Blogger 글쓰기 오류: ${err.message}` };
     }

@@ -153,7 +153,7 @@ export default function Setup({ isIntegrated = false, onComplete }: { isIntegrat
       } else {
         throw new Error(result.error || '주입 실패');
       }
-    } catch (err: any) {
+    } catch(err: unknown) {
       console.error('[Setup] Infra inject failed:', err);
       setInjectModalState('manual');
     }
@@ -301,7 +301,7 @@ export default function Setup({ isIntegrated = false, onComplete }: { isIntegrat
       } else {
         throw new Error(scData.error || "서치콘솔 등록 실패");
       }
-    } catch (e: any) {
+    } catch(e: unknown) {
       updateStatus(1, "error", e.message);
       toast.error("서치콘솔 자동 등록 실패: " + e.message);
     }
@@ -320,7 +320,7 @@ export default function Setup({ isIntegrated = false, onComplete }: { isIntegrat
       } else {
         throw new Error(gaData?.error || "GA4 생성 실패");
       }
-    } catch (e: any) {
+    } catch(e: unknown) {
       updateStatus(2, "error", e.message);
       if (e.message.includes("구글 애널리틱스 계정을 찾을 수 없습니다")) {
         setShowGa4Prompt(true);
@@ -426,7 +426,7 @@ export default function Setup({ isIntegrated = false, onComplete }: { isIntegrat
           toast.success("✅ 인프라 검증 완료! 서치콘솔과 GA4 코드가 모두 정상입니다.");
         }
       }
-    } catch (err: any) {
+    } catch(err: unknown) {
       toast.error("검증 요청 실패: " + err.message);
     } finally {
       setIsVerifying(false);

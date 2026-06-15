@@ -15,7 +15,7 @@ router.get('/blueprints', requireAuth, (req, res) => {
   try {
     const blueprints = vaultManager.getAllBlueprints();
     res.json({ success: true, data: blueprints });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Hunter API] Failed to fetch blueprints:', error);
     res.status(500).json({ success: false, error: '블루프린트 목록을 가져오지 못했습니다.' });
   }
@@ -111,7 +111,7 @@ router.post('/generate-series', requireAuth, async (req, res) => {
       keywords: selectedKeywords
     });
 
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Hunter API] Failed to generate series:', error);
     res.status(500).json({ success: false, error: error.message });
   }
@@ -142,7 +142,7 @@ router.post('/stop-series', requireAuth, async (req, res) => {
       .eq('status', 'active');
 
     res.json({ success: true, message: '모든 자동화 작업이 중단되었습니다.' });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Hunter API] Failed to stop series:', error);
     res.status(500).json({ success: false, error: '중단 처리 중 오류가 발생했습니다.' });
   }
@@ -166,7 +166,7 @@ router.post('/stop-post/:postId', requireAuth, async (req, res) => {
     if (error) throw error;
 
     res.json({ success: true, message: '포스트 생성이 중단되었습니다.' });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: error.message });
   }
 });

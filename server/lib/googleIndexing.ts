@@ -38,7 +38,7 @@ export class GoogleIndexingService {
 
       MazaLogger.info(`[Indexing] ✅ Successfully submitted: ${url}`, res.data);
       return res.data;
-    } catch (error: any) {
+    } catch(error: unknown) {
       MazaLogger.error(`[Indexing] ❌ Failed to submit URL: ${url}`, error);
       // Don't throw to prevent breaking the publish flow, just log it
       return null;
@@ -60,7 +60,7 @@ export class GoogleIndexingService {
       });
 
       return res.data;
-    } catch (error: any) {
+    } catch(error: unknown) {
       MazaLogger.error(`[Indexing] ❌ Failed to get status for URL: ${url}`, error);
       return null;
     }

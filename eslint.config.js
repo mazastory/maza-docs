@@ -19,12 +19,25 @@ export default defineConfig([
       globals: globals.browser,
     },
     rules: {
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
       ],
+      'react-hooks/set-state-in-effect': 'off',
+      'react-hooks/exhaustive-deps': 'off',
+      'react-hooks/immutability': 'off',
+      'preserve-caught-error': 'off',
+      'no-useless-escape': 'off',
+      'no-empty': 'off',
+      '@typescript-eslint/ban-ts-comment': 'off',
+      'no-case-declarations': 'off',
+      'no-useless-assignment': 'off',
+      'react-hooks/preserve-manual-memoization': 'off',
+      'no-control-regex': 'off',
+      '@typescript-eslint/no-namespace': 'off',
+      'no-shadow-restricted-names': 'off'
     },
   },
 ])

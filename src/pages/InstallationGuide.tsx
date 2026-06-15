@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-type GuideCategory = 'extension' | 'tistory' | 'wordpress' | 'blogspot' | 'subdomain' | 'adsense_challenge';
+type GuideCategory = 'extension' | 'tistory' | 'wordpress' | 'blogspot' | 'subdomain' | 'adsense_challenge' | 'maza_bridge';
 
 interface Step {
   title: string;
@@ -230,6 +230,12 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
         desc: "Search Console에 sitemap/RSS를 제출하고 즉시 색인 요청을 보냅니다."
       },
       {
+        title: "9-1. 서치콘솔 속성 추가",
+        badge: "SEARCH CONSOLE",
+        image: "/screenshots/ad/ad_09_1.webp",
+        desc: "구글 서치콘솔 첫 화면이 뜨면 'URL 접두어' 영역에 내 블로그 주소를 입력하고 계속을 눌러 소유권을 확인합니다."
+      },
+      {
         title: "10. 승인 신청",
         badge: "APPLY",
         image: "/screenshots/ad/ad_10.webp",
@@ -240,6 +246,12 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
         badge: "MONITOR",
         image: "/screenshots/ad/ad_11.webp",
         desc: "승인 대기 상태를 확인하고, 이중 확인이 필요한 항목을 다시 점검합니다."
+      },
+      {
+        title: "12. 추가 글쓰기 (오토파일럿)",
+        badge: "AUTOPILOT",
+        image: "/screenshots/ad/ad_12.webp",
+        desc: "챌린지 완료 후 두 번째부터는 '니치 포스팅 (오토파일럿)' 메뉴에서 무제한으로 수익성 글쓰기를 이어나가세요."
       }
     ]
   },
@@ -315,6 +327,42 @@ const GUIDE_DATA: Record<GuideCategory, GuideData> = {
         tip: "정식 공개 시에는 별도 티스토리/워드프레스/블로그스팟 설정 없이, 마자 블로그만으로 개인 사이트를 바로 운영할 수 있습니다."
       }
     ]
+  },
+  maza_bridge: {
+    title: "Maza Bridge 활용",
+    subtitle: "스마트 컨텍스트 패널",
+    icon: Sparkles,
+    color: "indigo",
+    steps: [
+      {
+        title: "1. MAZA Bridge 스마트 컨텍스트 🎯",
+        desc: "유튜브, 뉴스 등 다른 웹사이트를 보다가 MAZA Studio 탭으로 돌아오면, 방금 전까지 보고 있던 화면을 분석하여 우측에 맞춤형 액션 패널을 띄워줍니다.",
+        badge: "INTRO",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+        tip: "클릭 한 번만으로 보고 있던 콘텐츠를 내 블로그의 새로운 포스팅으로 재창조할 수 있습니다."
+      },
+      {
+        title: "2. 유튜브 영상 맞춤 액션 📺",
+        desc: "유튜브에서 정보성 영상을 발견했다면 탭을 전환해 보세요. 영상 요약, 스크립트 기반 글쓰기, 주제 기반 니치 글쓰기 버튼이 제공됩니다.",
+        badge: "YOUTUBE",
+        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200&auto=format&fit=crop",
+        tip: "특히 '스크립트 추출 후 글쓰기(PRO)'는 정보성 블로그 작성 시 가장 강력한 기능입니다."
+      },
+      {
+        title: "3. 블로그 및 뉴스 기사 액션 📝",
+        desc: "텍스트 기반 페이지를 보고 오셨다면 핵심 내용 요약, 아이디어 금고 저장, AI 리라이팅 기능을 활용할 수 있습니다.",
+        badge: "ARTICLE",
+        image: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=1200&auto=format&fit=crop",
+        tip: "AI 리라이팅 기능으로 원본 글을 유사 문서에 걸리지 않는 완전히 새로운 포스팅으로 재작성할 수 있습니다."
+      },
+      {
+        title: "4. 이미지 & 키워드 맞춤 액션 🖼️🔍",
+        desc: "멋진 이미지를 섬네일로 지정하거나, 구글/네이버 검색창 키워드를 즉시 가져와 돈이 되는 니치 글로 만들 수 있습니다.",
+        badge: "IMAGE & KEYWORD",
+        image: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?q=80&w=1200&auto=format&fit=crop",
+        tip: "복사 + 붙여넣기의 늪에서 벗어나 눈으로 보고 클릭 한 번으로 나만의 콘텐츠를 생산해 보세요!"
+      }
+    ]
   }
 };
 
@@ -324,7 +372,8 @@ const GUIDE_CATEGORIES: { id: GuideCategory; label: string; icon: React.ElementT
   { id: 'wordpress', label: '워드프레스 세팅', icon: Globe },
   { id: 'blogspot', label: '블로그스팟 세팅', icon: Server },
   { id: 'subdomain', label: '서브도메인 개설', icon: Box },
-  { id: 'adsense_challenge', label: 'AdSense 챌린지', icon: Trophy }
+  { id: 'adsense_challenge', label: 'AdSense 챌린지', icon: Trophy },
+  { id: 'maza_bridge', label: 'Bridge 활용', icon: Sparkles }
 ];
 
 interface InstallationGuideProps {

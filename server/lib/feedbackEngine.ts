@@ -68,7 +68,7 @@ export class FeedbackEngine {
       await this.learnWinningPatterns(siteId);
       await this.analyzeApprovalSuccess(site.user_id);
 
-    } catch (e: any) {
+    } catch(e: unknown) {
       MazaLogger.error("Feedback sync failed", e, { siteId });
     }
   }
@@ -151,7 +151,7 @@ export class FeedbackEngine {
 
       MazaLogger.info(`[FeedbackEngine] Successfully learned patterns for site ${siteId}`);
 
-    } catch (e: any) {
+    } catch(e: unknown) {
       MazaLogger.error("Pattern learning failed", e, { siteId });
     }
   }

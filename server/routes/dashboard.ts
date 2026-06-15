@@ -62,7 +62,7 @@ router.get('/stats', requireAuth, async (req, res) => {
       }
     });
 
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Dashboard Stats Error]', error);
     res.status(500).json({ success: false, error: error.message });
   }
@@ -88,7 +88,7 @@ router.get('/hall-of-fame', async (req, res) => {
 
     if (error) throw error;
     res.json({ success: true, data: approvedSites });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: error.message });
   }
 });
@@ -154,7 +154,7 @@ router.get('/autopilot-status', requireAuth, async (req, res) => {
     // 4. 지능형 상태 및 진행률 계산
     let currentTask = activePost?.title || lastEvent?.metadata?.keyword || null;
     let progress = 0;
-    let engineStatus = activePost?.metadata?.engine_status;
+    const engineStatus = activePost?.metadata?.engine_status;
 
     if (activePost) {
       if (engineStatus === 'generating') {
@@ -196,7 +196,7 @@ router.get('/autopilot-status', requireAuth, async (req, res) => {
       }
     });
 
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: error.message });
   }
 });
@@ -218,7 +218,7 @@ router.get('/clusters', requireAuth, async (req, res) => {
 
     if (error) throw error;
     res.json({ success: true, data });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: '클러스터 목록을 가져오지 못했습니다.' });
   }
 });
@@ -249,7 +249,7 @@ router.post('/clusters', requireAuth, async (req, res) => {
 
     if (error) throw error;
     res.json({ success: true, data });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: '클러스터 생성에 실패했습니다.' });
   }
 });
@@ -286,7 +286,7 @@ router.get('/clusters/:id', requireAuth, async (req, res) => {
         authority_score: realTimeScore 
       } 
     });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: '클러스터 정보를 가져오지 못했습니다.' });
   }
 });

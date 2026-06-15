@@ -70,7 +70,7 @@ export class VerificationAgent {
         details: { titleMatch, contentLength, imageCount, hasAdsense }
       };
 
-    } catch (error: any) {
+    } catch(error: unknown) {
       MazaLogger.error(`[VerificationAgent] Verification failed due to network/scraping error`, error);
       return {
         success: false,

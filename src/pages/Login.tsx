@@ -47,7 +47,7 @@ export default function Login() {
         }
       });
       if (error) throw error;
-    } catch (e: any) {
+    } catch(e: unknown) {
       toast.error(`로그인 실패: ${e.message}`);
       setIsLoading(false);
     }
@@ -63,7 +63,7 @@ export default function Login() {
         }
       });
       if (error) throw error;
-    } catch (e: any) {
+    } catch(e: unknown) {
       toast.error(`카카오 로그인 실패: ${e.message}`);
       setIsLoading(false);
     }
@@ -82,7 +82,7 @@ export default function Login() {
         if (error) throw error;
         if (data.session) navigate("/knowledge");
       }
-    } catch (e: any) {
+    } catch(e: unknown) {
       if (e.message.includes("User already registered")) {
         toast.error("이미 가입된 이메일입니다. 혹시 구글이나 카카오로 가입하셨나요?");
       } else if (e.message.includes("Invalid login credentials")) {

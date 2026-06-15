@@ -45,7 +45,7 @@ export class VerificationService {
       MazaLogger.info(`[Verification] ✅ URL Verified Successfully: ${url}`, { postId });
       return true;
 
-    } catch (e: any) {
+    } catch(e: unknown) {
       MazaLogger.error(`[Verification] ❌ Error checking URL: ${url}`, e, { postId });
       return false;
     }

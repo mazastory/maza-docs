@@ -129,9 +129,12 @@ export default function UsageGuide() {
 
   // Reset states when category changes
   useEffect(() => {
-    setActiveStep(0);
-    setIsPlaying(false);
-    setImageError(false);
+    const timer = setTimeout(() => {
+      setActiveStep(0);
+      setIsPlaying(false);
+      setImageError(false);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [activeCategory]);
 
   // Handle image load error to show premium fallback
@@ -140,7 +143,10 @@ export default function UsageGuide() {
   };
 
   useEffect(() => {
-    setImageError(false);
+    const timer = setTimeout(() => {
+      setImageError(false);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [activeStep]);
 
   // Auto-play timer for slide deck

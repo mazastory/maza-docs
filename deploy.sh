@@ -33,7 +33,7 @@ gcloud run deploy "${SERVICE_NAME}" \
   --region "${REGION}" \
   --project "${PROJECT_ID}" \
   --allow-unauthenticated \
-  --port 3001 \
+  --port 8080 \
   --memory 1Gi \
   --cpu 1 \
   --min-instances 0 \

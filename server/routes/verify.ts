@@ -175,7 +175,7 @@ router.post('/', async (req, res) => {
       data: result
     });
 
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Verify Error]', error);
     res.status(500).json({
       success: false,
@@ -190,7 +190,7 @@ router.post('/', async (req, res) => {
  */
 router.post('/infra', async (req, res) => {
   try {
-    let { domain, sc_tag, ga_id } = req.body;
+    const { domain, sc_tag, ga_id } = req.body;
 
     if (!domain) {
       return res.status(400).json({ success: false, error: 'domain이 필요합니다.' });
@@ -253,7 +253,7 @@ router.post('/infra', async (req, res) => {
       }
     });
 
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Verify Infra Error]', error);
     res.status(500).json({
       success: false,

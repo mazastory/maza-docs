@@ -93,7 +93,7 @@ router.post('/', async (req, res) => {
       }
     });
 
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Refine Error]', error);
     res.status(500).json({ success: false, error: error.message });
   }

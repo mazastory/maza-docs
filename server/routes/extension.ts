@@ -102,7 +102,7 @@ router.post('/analyze-page', requireAuth, async (req, res) => {
     }
 
     res.json({ success: true, recommendations });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Extension/analyze-page]', error);
     res.status(500).json({ success: false, error: error.message });
   }
@@ -146,7 +146,7 @@ router.post('/preview-injection', requireAuth, async (req, res) => {
         'SEO 검증',
       ],
     });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Extension/preview-injection]', error);
     res.status(500).json({ success: false, error: error.message });
   }
@@ -199,7 +199,7 @@ router.post('/delete-post', requireAuth, async (req, res) => {
       .eq('user_id', userId);
 
     res.json({ success: true, message: '삭제 완료' });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Extension/delete-post]', error);
     res.status(500).json({ success: false, error: error.message });
   }
@@ -252,7 +252,7 @@ router.post('/heal', requireAuth, async (req, res) => {
       action: 'RETRY'
     });
     
-  } catch (err: any) {
+  } catch(err: unknown) {
     console.error('[Extension/heal] Healing failed:', err);
     res.status(500).json({ success: false, error: err.message });
   }
@@ -278,7 +278,7 @@ router.post('/visual-click', requireAuth, async (req, res) => {
       confidence: result.confidence
     });
     
-  } catch (err: any) {
+  } catch(err: unknown) {
     console.error('[Extension/visual-click] Visual search failed:', err);
     res.status(500).json({ success: false, error: err.message });
   }

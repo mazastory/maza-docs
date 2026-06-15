@@ -57,7 +57,7 @@ export function parseAIResponse(raw: any) {
           });
 
           // 🔥 [Quantum Heal] Bracket mismatch recovery
-          let openBraces = (potentialJson.match(/\{/g) || []).length;
+          const openBraces = (potentialJson.match(/\{/g) || []).length;
           let closeBraces = (potentialJson.match(/\}/g) || []).length;
           
           if (openBraces > closeBraces) {

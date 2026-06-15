@@ -119,7 +119,7 @@ app.get('/api/ready', async (req, res) => {
     } else {
       res.status(503).json({ status: 'not_ready', db: dbOk ? 'ok' : 'error', redis: redisOk ? 'ok' : 'error' });
     }
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(503).json({ status: 'not_ready', error: error.message });
   }
 });
@@ -164,7 +164,7 @@ app.post('/api/dashboard/log-gsc-ping', async (req, res) => {
     }]);
     
     res.json({ success: true });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: error.message });
   }
 });
@@ -178,7 +178,7 @@ app.post('/api/image', async (req, res) => {
     if (!keyword) return res.status(400).json({ success: false, error: 'keyword is required' });
     const imageUrl = await getOptimizedImage(keyword);
     res.json({ success: true, data: imageUrl });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: error.message });
   }
 });
@@ -208,7 +208,7 @@ app.get('/api/sites', requireAuth, async (req, res) => {
     }));
 
     res.json({ sites });
-  } catch (error: any) {
+  } catch(error: unknown) {
     MazaLogger.error(`[API Error] /api/sites:`, error);
     res.status(500).json({ error: '사이트 정보를 가져오는 중 오류가 발생했습니다.' }); // sanitized
   }
@@ -316,7 +316,7 @@ app.get('/api/extension/pending-posts', requireAuth, async (req, res) => {
     });
 
     res.json({ posts: allItems });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[Extension API Error]', error);
     res.status(500).json({ error: error.message });
   }
@@ -340,7 +340,7 @@ app.get('/api/extension/stats', requireAuth, async (req, res) => {
       published_count: published_count || 0,
       challenge_day: 1
     });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ error: '통계를 가져오는 중 오류가 발생했습니다.' }); // sanitized
   }
 });
@@ -392,7 +392,7 @@ app.post('/api/extension/mark-published', requireAuth, async (req, res) => {
     });
     
     res.json({ success: true, message: '발행 검증 중입니다...' });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: '발행 처리 중 오류가 발생했습니다.' }); // sanitized
   }
 });
@@ -413,7 +413,7 @@ app.post('/api/observability/log', async (req, res) => {
       }]).then(() => {}).catch(() => {}); // 로깅 실패는 무시
     }
     res.json({ success: true });
-  } catch (e: any) {
+  } catch(e: unknown) {
     res.status(500).json({ success: false });
   }
 });
@@ -487,7 +487,7 @@ app.post('/api/extension/infra-inject', requireAuth, async (req, res) => {
     
     console.log(`[v3 Infra] Task ${jobId} queued for user ${user_id}`);
     res.json({ success: true, message: '작업이 큐에 등록되었습니다.' });
-  } catch (err: any) {
+  } catch(err: unknown) {
     res.status(500).json({ success: false, error: err.message });
   }
 });
@@ -549,7 +549,7 @@ app.get('/api/tasks/next', requireAuth, async (req, res) => {
 
     console.log(`[v3 Orchestrator] Task ${nextTask.id} assigned to extension.`);
     res.json({ success: true, command: 'EXECUTE', data: command });
-  } catch (error: any) {
+  } catch(error: unknown) {
     console.error('[v3 Orchestrator Error]', error);
     res.status(500).json({ success: false, error: '명령을 생성하지 못했습니다.' });
   }
@@ -574,7 +574,7 @@ app.post('/api/hunter/stop-series', requireAuth, async (req, res) => {
 
     console.log(`[Hunter] 🛑 Emergency Stop triggered for user: ${user_id}`);
     res.json({ success: true, message: '모든 자동화 작업이 중단되었습니다.' });
-  } catch (error: any) {
+  } catch(error: unknown) {
     res.status(500).json({ success: false, error: '중단 요청 처리 실패' });
   }
 });
@@ -625,7 +625,7 @@ app.post('/api/tasks/report', requireAuth, async (req, res) => {
 
     console.log(`[v3 Orchestrator] Task ${taskId} reported as ${status}.`);
     res.json({ success: true, blocks: result.blocks || [] });
-  } catch (error: any) {
+  } catch(error: unknown) {
     MazaLogger.error(`[Revise] Error`, error);
     res.status(500).json({ success: false, error: error.message || "수정 중 오류 발생" });
   }

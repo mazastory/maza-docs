@@ -70,7 +70,7 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
     req.userId = user.id;
     next();
 
-  } catch (err: any) {
+  } catch(err: unknown) {
     // 에러 메시지 sanitize - 스택 노출 금지
     return res.status(500).json({ 
       success: false, 
