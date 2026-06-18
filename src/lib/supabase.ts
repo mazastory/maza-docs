@@ -26,7 +26,7 @@ export const supabase = globalSupabase.supabase || createClient(
   {
     auth: {
       persistSession: isConfigured,
-      autoRefreshToken: isConfigured,
+      autoRefreshToken: false, // [FIX] 스튜디오(본진)와 Refresh Token 갱신 충돌 방지를 위해 Docs는 자동 갱신 비활성화
     }
   }
 );
