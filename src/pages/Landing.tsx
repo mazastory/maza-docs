@@ -8,27 +8,22 @@ import {
   Monitor, Layout, DollarSign, Layers, LayoutGrid, HelpCircle,
   Search, TrendingUp, Infinity, BarChart3
 } from "lucide-react";
-import { useAuth } from "../components/AuthProvider";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../lib/utils";
 
 export default function Landing() {
   const navigate = useNavigate();
-  const { user } = useAuth();
   const [blogUrl, setBlogUrl] = useState("");
   const [isUrlEntered, setIsUrlEntered] = useState(false);
   const [revenue, setRevenue] = useState(0);
 
   useEffect(() => {
-    if (user) {
-      navigate("/knowledge", { replace: true });
-    }
     // 수익 카운터 애니메이션 시뮬레이션
     const interval = setInterval(() => {
       setRevenue(prev => (prev < 12540 ? prev + 127 : prev));
     }, 50);
     return () => clearInterval(interval);
-  }, [user, navigate]);
+  }, []);
 
   const getGlobalAdminLink = (path: string) => {
     const url = blogUrl.toLowerCase();
@@ -65,7 +60,7 @@ export default function Landing() {
              <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-black italic text-xl shadow-lg shadow-indigo-500/20">M</div>
              <span className="font-black italic tracking-tighter text-2xl uppercase">Maza<span className="text-indigo-500">Studio</span></span>
           </div>
-          <button onClick={() => navigate("/login")} className="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Login</button>
+          <button onClick={() => navigate("/docs")} className="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Docs</button>
         </div>
       </nav>
 
@@ -105,7 +100,7 @@ export default function Landing() {
           </div>
 
           <div className="flex justify-center gap-8 pt-10">
-             <button onClick={() => navigate("/login")} className="px-20 py-10 bg-indigo-600 rounded-full font-black uppercase tracking-[0.3em] text-sm shadow-3xl shadow-indigo-600/40 hover:bg-indigo-500 transition-all group flex items-center gap-4">
+             <button onClick={() => navigate("/docs")} className="px-20 py-10 bg-indigo-600 rounded-full font-black uppercase tracking-[0.3em] text-sm shadow-3xl shadow-indigo-600/40 hover:bg-indigo-500 transition-all group flex items-center gap-4">
                Get Started <ArrowRight className="group-hover:translate-x-2 transition-transform" />
              </button>
           </div>
@@ -263,7 +258,7 @@ export default function Landing() {
               </h2>
               <p className="text-2xl text-slate-400 font-bold uppercase tracking-[0.3em] italic relative z-10">당신만의 수익 제국을 건설하세요.</p>
            </div>
-           <button onClick={() => navigate("/login")} className="px-32 py-12 bg-white text-black hover:bg-indigo-600 hover:text-white rounded-full font-black text-3xl uppercase tracking-[0.4em] transition-all shadow-3xl active:scale-95 relative z-10">
+           <button onClick={() => navigate("/docs")} className="px-32 py-12 bg-white text-black hover:bg-indigo-600 hover:text-white rounded-full font-black text-3xl uppercase tracking-[0.4em] transition-all shadow-3xl active:scale-95 relative z-10">
               Get Started
            </button>
         </section>

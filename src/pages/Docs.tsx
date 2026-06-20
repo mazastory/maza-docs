@@ -12,130 +12,52 @@ import { DOCS_TREE, findDocPage, getAdjacentPages } from '../data/docsTree';
 const PageIntro = lazy(() => import('../components/docs/pages/PageIntro'));
 const PageSEOIndex = lazy(() => import('../components/docs/pages/PageSEOIndex'));
 
-// ─── Existing pages (re-used via lazy import) ────────────────────────────────
-const InstallationGuide = lazy(() => import('./InstallationGuide'));
-const UsageGuide = lazy(() => import('./UsageGuide'));
-const KnowledgeHub = lazy(() => import('./KnowledgeHub'));
-const Guide = lazy(() => import('./Guide'));
-const FAQ = lazy(() => import('./FAQ'));
+const Placeholder = ({ title }: { title: string }) => (
+  <article className="prose-doc">
+    <h1 className="text-4xl font-black tracking-tight text-slate-900 mb-6">{title}</h1>
+    <div className="p-8 bg-slate-50 border border-slate-200 rounded-2xl text-center">
+      <p className="text-slate-500 font-medium">이 문서는 현재 최신 마크다운 형식으로 작성(이전) 중입니다.</p>
+    </div>
+  </article>
+);
 
 // ─── Page registry ────────────────────────────────────────────────────────────
 const PAGE_REGISTRY: Record<string, Record<string, () => React.ReactElement>> = {
   'getting-started': {
     intro: () => <PageIntro />,
-    extension: () => (
-      <div className="docs-embedded">
-        <InstallationGuide initialCategory="extension" hideNav />
-      </div>
-    ),
-    onboarding: () => (
-      <div className="docs-embedded">
-        <KnowledgeHub isIntegrated initialTab="extension" hideIntegratedTabs />
-      </div>
-    ),
+    extension: () => <Placeholder title="익스텐션 설치" />,
+    onboarding: () => <Placeholder title="로그인 & 온보딩" />,
   },
   platform: {
-    tistory: () => (
-      <div className="docs-embedded">
-        <InstallationGuide initialCategory="tistory" hideNav />
-      </div>
-    ),
-    wordpress: () => (
-      <div className="docs-embedded">
-        <InstallationGuide initialCategory="wordpress" hideNav />
-      </div>
-    ),
-    blogspot: () => (
-      <div className="docs-embedded">
-        <InstallationGuide initialCategory="blogspot" hideNav />
-      </div>
-    ),
-    subdomain: () => (
-      <div className="docs-embedded">
-        <InstallationGuide initialCategory="subdomain" hideNav />
-      </div>
-    ),
+    tistory: () => <Placeholder title="티스토리 세팅" />,
+    wordpress: () => <Placeholder title="워드프레스 세팅" />,
+    blogspot: () => <Placeholder title="블로그스팟 세팅" />,
+    subdomain: () => <Placeholder title="서브도메인 개설" />,
   },
   features: {
-    autopilot: () => (
-      <div className="docs-embedded">
-        <UsageGuide initialCategory="autopilot" hideNav />
-      </div>
-    ),
-    aiwriter: () => (
-      <div className="docs-embedded">
-        <UsageGuide initialCategory="aiwriter" hideNav />
-      </div>
-    ),
-    visionwriter: () => (
-      <div className="docs-embedded">
-        <UsageGuide initialCategory="visionwriter" hideNav />
-      </div>
-    ),
-    bridge: () => (
-      <div className="docs-embedded">
-        <KnowledgeHub isIntegrated initialTab="extension" hideIntegratedTabs />
-      </div>
-    ),
+    autopilot: () => <Placeholder title="오토파일럿" />,
+    aiwriter: () => <Placeholder title="AI 라이터" />,
+    visionwriter: () => <Placeholder title="비전 라이터" />,
+    bridge: () => <Placeholder title="Maza Bridge 활용" />,
   },
   adsense: {
-    'challenge-flow': () => (
-      <div className="docs-embedded">
-        <Guide initialChapter="flowchart" hideNav />
-      </div>
-    ),
-    strategy: () => (
-      <div className="docs-embedded">
-        <Guide initialChapter="strategy" hideNav />
-      </div>
-    ),
-    'adsense-guide': () => (
-      <div className="docs-embedded">
-        <KnowledgeHub isIntegrated initialTab="adsense_challenge" hideIntegratedTabs />
-      </div>
-    ),
+    'challenge-flow': () => <Placeholder title="챌린지 성공 순서도" />,
+    strategy: () => <Placeholder title="수익화 전략 설계" />,
+    'adsense-guide': () => <Placeholder title="승인 신청 가이드" />,
   },
   seo: {
-    'sitemap-rss': () => (
-      <div className="docs-embedded">
-        <FAQ initialCategory="SEO 및 검색 노출" hideNav />
-      </div>
-    ),
+    'sitemap-rss': () => <Placeholder title="사이트맵 & RSS 제출" />,
     'index-request': () => <PageSEOIndex />,
   },
   safety: {
-    w05: () => (
-      <div className="docs-embedded">
-        <Guide initialChapter="safety" hideNav />
-      </div>
-    ),
-    'account-safety': () => (
-      <div className="docs-embedded">
-        <FAQ initialCategory="정책 및 보안 안내" hideNav />
-      </div>
-    ),
+    w05: () => <Placeholder title="W-05 안전 프로토콜" />,
+    'account-safety': () => <Placeholder title="계정 보호 가이드" />,
   },
   faq: {
-    'adsense-faq': () => (
-      <div className="docs-embedded">
-        <FAQ initialCategory="애드센스 승인 가이드" hideNav />
-      </div>
-    ),
-    'technical-faq': () => (
-      <div className="docs-embedded">
-        <FAQ initialCategory="기술적인 궁금증" hideNav />
-      </div>
-    ),
-    'policy-faq': () => (
-      <div className="docs-embedded">
-        <FAQ initialCategory="정책 및 보안 안내" hideNav />
-      </div>
-    ),
-    all: () => (
-      <div className="docs-embedded">
-        <FAQ hideNav />
-      </div>
-    ),
+    'adsense-faq': () => <Placeholder title="애드센스 승인 FAQ" />,
+    'technical-faq': () => <Placeholder title="기술 & SEO FAQ" />,
+    'policy-faq': () => <Placeholder title="정책 & 보안 FAQ" />,
+    all: () => <Placeholder title="모든 질문" />,
   },
 };
 
