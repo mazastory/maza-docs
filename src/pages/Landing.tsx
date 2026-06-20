@@ -259,7 +259,7 @@ export default function Landing() {
               <p className="text-2xl text-slate-400 font-bold uppercase tracking-[0.3em] italic relative z-10">당신만의 수익 제국을 건설하세요.</p>
            </div>
            <button onClick={() => navigate("/docs")} className="px-32 py-12 bg-white text-black hover:bg-indigo-600 hover:text-white rounded-full font-black text-3xl uppercase tracking-[0.4em] transition-all shadow-3xl active:scale-95 relative z-10">
-              Get Started
+              Get Started 🚀
            </button>
         </section>
 
