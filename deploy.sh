@@ -9,7 +9,7 @@ set -e  # 에러 발생 시 즉시 중단
 ENV=${1:-prod}
 PROJECT_ID="mazastory"      # ← GCP 프로젝트 ID로 변경
 REGION="asia-northeast3"           # 서울 리전
-SERVICE_NAME="mazastudio-server"
+SERVICE_NAME="mazastudio-docs"
 IMAGE_NAME="gcr.io/${PROJECT_ID}/${SERVICE_NAME}"
 TAG=$(date +%Y%m%d-%H%M%S)
 
