@@ -11,6 +11,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 type GuideCategory = 'extension' | 'tistory' | 'wordpress' | 'blogspot' | 'subdomain' | 'adsense_challenge' | 'maza_bridge';
 
+interface InstallationGuideProps {
+  initialCategory?: GuideCategory;
+  hideNav?: boolean;
+}
+
 interface Step {
   title: string;
   desc: string;
@@ -380,7 +385,7 @@ interface InstallationGuideProps {
   initialCategory?: GuideCategory;
 }
 
-export default function InstallationGuide({ initialCategory }: InstallationGuideProps) {
+export default function InstallationGuide({ initialCategory, hideNav = false }: InstallationGuideProps) {
   const location = useLocation();
   const getCategoryFromSearch = (): GuideCategory | null => {
     const params = new URLSearchParams(location.search);
@@ -480,17 +485,20 @@ export default function InstallationGuide({ initialCategory }: InstallationGuide
   };
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-200 selection:bg-indigo-500/30 font-sans pb-24 relative overflow-hidden">
+    <div className={hideNav ? 'text-slate-800 font-sans pb-10' : 'min-h-screen bg-[#020617] text-slate-200 selection:bg-indigo-500/30 font-sans pb-24 relative overflow-hidden'}>
       {/* Immersive Background */}
+      {!hideNav && (
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className={`absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-${activeData.color}-600/10 rounded-full blur-[150px] animate-pulse transition-colors duration-1000`} />
         <div className={`absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-${activeData.color}-400/10 rounded-full blur-[150px] animate-pulse transition-colors duration-1000`} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-25 mix-blend-overlay" />
       </div>
+      )}
 
-      <div className="max-w-[1400px] mx-auto px-4 lg:px-8 py-12 lg:py-20 relative z-10 space-y-12">
+      <div className={hideNav ? 'space-y-8' : 'max-w-[1400px] mx-auto px-4 lg:px-8 py-12 lg:py-20 relative z-10 space-y-12'}>
         
-        {/* Header & Platform Selector */}
+        {/* Header & Platform Selector — hidden when embedded */}
+        {!hideNav && (
         <div className="text-center space-y-6 max-w-4xl mx-auto">
           <div className="space-y-4 pt-4">
             <h1 className="text-4xl lg:text-5xl font-black italic tracking-tighter text-white leading-tight uppercase">
@@ -503,6 +511,7 @@ export default function InstallationGuide({ initialCategory }: InstallationGuide
           </div>
 
         </div>
+        )}
 
         {/* Dynamic Presentation Hub */}
         <div className="grid lg:grid-cols-12 gap-8 items-start max-w-7xl mx-auto">

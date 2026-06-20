@@ -1,5 +1,5 @@
 import { Toaster } from "sonner";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import Layout from "./components/Layout";
 import AuthGuard from "./components/AuthGuard";
@@ -16,6 +16,7 @@ const Login = lazy(() => import("./pages/Login"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const FAQ = lazy(() => import("./pages/FAQ"));
+const Docs = lazy(() => import("./pages/Docs"));
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center">
@@ -64,6 +65,11 @@ export default function App() {
                   <Route path="usage-guide" element={<UsageGuide />} />
                 </Route>
               </Route>
+
+              {/* ─── New Docs Hub (no AuthGuard needed for public pages) ─── */}
+              <Route path="/docs" element={<Navigate to="/docs/getting-started/intro" replace />} />
+              <Route path="/docs/:sectionId" element={<Navigate to="/docs/getting-started/intro" replace />} />
+              <Route path="/docs/:sectionId/:pageId" element={<AnimatedOutlet><Docs /></AnimatedOutlet>} />
             </Routes>
           </Suspense>
         </BrowserRouter>

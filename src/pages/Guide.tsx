@@ -22,8 +22,13 @@ const CHAPTERS = [
   { id: 'safety', title: 'Safety & Risk', subtitle: 'W-05 Compliance', icon: Shield, color: 'rose' }
 ];
 
-export default function Guide() {
-  const [activeChapter, setActiveChapter] = useState('intro');
+interface GuideProps {
+  initialChapter?: string;
+  hideNav?: boolean;
+}
+
+export default function Guide({ initialChapter, hideNav = false }: GuideProps) {
+  const [activeChapter, setActiveChapter] = useState(initialChapter ?? 'intro');
 
   return (
     <div className="min-h-screen bg-[#020617] text-slate-200 selection:bg-indigo-500/30 font-sans pb-24">

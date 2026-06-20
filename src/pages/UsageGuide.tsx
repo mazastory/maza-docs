@@ -8,6 +8,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 type UsageCategory = 'autopilot' | 'aiwriter' | 'visionwriter';
 
+interface UsageGuideProps {
+  initialCategory?: UsageCategory;
+  hideNav?: boolean;
+}
+
 interface FeatureStep {
   title: string;
   desc: string;
@@ -118,8 +123,8 @@ const USAGE_DATA: Record<UsageCategory, UsageData> = {
   }
 };
 
-export default function UsageGuide() {
-  const [activeCategory, setActiveCategory] = useState<UsageCategory>('autopilot');
+export default function UsageGuide({ initialCategory, hideNav = false }: UsageGuideProps) {
+  const [activeCategory, setActiveCategory] = useState<UsageCategory>(initialCategory ?? 'autopilot');
   const [activeStep, setActiveStep] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [imageError, setImageError] = useState<boolean>(false);
@@ -217,7 +222,8 @@ export default function UsageGuide() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans antialiased selection:bg-indigo-500 selection:text-white pb-20">
       
-      {/* 🚀 Header */}
+      {/* 🚀 Header — hidden when embedded */}
+      {!hideNav && (
       <header className="relative bg-white border-b border-slate-100 overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500" />
         <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -248,10 +254,12 @@ export default function UsageGuide() {
           </div>
         </div>
       </header>
+      )}
 
-      <main className="max-w-7xl mx-auto px-6 mt-12 space-y-12">
+      <main className={hideNav ? 'space-y-8' : 'max-w-7xl mx-auto px-6 mt-12 space-y-12'}>
         
-        {/* 🗺️ Main Menu Navigation (Interactive Tabs) */}
+        {/* 🗺️ Main Menu Navigation — hidden when embedded */}
+        {!hideNav && (
         <section className="bg-white p-6 rounded-[36px] shadow-sm border border-slate-100/80">
           <div className="flex flex-col md:flex-row gap-4">
             {(Object.keys(USAGE_DATA) as UsageCategory[]).map((cat) => {
@@ -285,6 +293,7 @@ export default function UsageGuide() {
             })}
           </div>
         </section>
+        )}
 
         {/* 📺 Guide Interactive Theatre */}
         <section className="grid lg:grid-cols-12 gap-8 items-start">

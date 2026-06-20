@@ -153,3 +153,38 @@
 .welcome-enter {
   animation: welcomeIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
+
+/* ──────────────────────────────────── */
+/*  DOCS — prose-doc article styles     */
+/* ──────────────────────────────────── */
+.prose-doc h1 {
+  @apply text-3xl font-black text-slate-900 tracking-tight mb-3;
+}
+.prose-doc h2 {
+  @apply text-xl font-black text-slate-800 tracking-tight mt-12 mb-4 pb-3 border-b border-slate-100 scroll-mt-20;
+}
+.prose-doc h3 {
+  @apply text-base font-black text-slate-700 tracking-tight mt-8 mb-3 scroll-mt-20;
+}
+.prose-doc p {
+  @apply text-sm text-slate-600 font-medium leading-relaxed mb-4;
+}
+.prose-doc ul {
+  @apply space-y-2 mb-6 pl-1;
+}
+.prose-doc ul li {
+  @apply text-sm text-slate-600 font-medium leading-relaxed flex items-start gap-2;
+}
+.prose-doc ol {
+  @apply space-y-2 mb-6 pl-1 list-none;
+}
+.prose-doc code {
+  @apply text-xs font-mono bg-slate-100 text-indigo-700 px-1.5 py-0.5 rounded;
+}
+.prose-doc a {
+  @apply text-indigo-600 font-semibold underline decoration-indigo-200 underline-offset-2 hover:decoration-indigo-600 transition-colors;
+}
+.prose-doc strong {
+  @apply font-black text-slate-800;
+}
+
