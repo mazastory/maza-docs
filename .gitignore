@@ -53,3 +53,6 @@ tools/
 __MACOSX/
 *.tsbuildinfo
 node_modules
+
+# Local Netlify folder
+.netlify

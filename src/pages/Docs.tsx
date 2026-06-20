@@ -11,6 +11,25 @@ import { DOCS_TREE, findDocPage, getAdjacentPages } from '../data/docsTree';
 // ─── Lazy page components ────────────────────────────────────────────────────
 const PageIntro = lazy(() => import('../components/docs/pages/PageIntro'));
 const PageSEOIndex = lazy(() => import('../components/docs/pages/PageSEOIndex'));
+const PageExtension = lazy(() => import('../components/docs/pages/PageExtension'));
+const PageOnboarding = lazy(() => import('../components/docs/pages/PageOnboarding'));
+const PageTistory = lazy(() => import('../components/docs/pages/PageTistory'));
+const PageWordpress = lazy(() => import('../components/docs/pages/PageWordpress'));
+const PageBlogspot = lazy(() => import('../components/docs/pages/PageBlogspot'));
+const PageSubdomain = lazy(() => import('../components/docs/pages/PageSubdomain'));
+const PageAutopilot = lazy(() => import('../components/docs/pages/PageAutopilot'));
+const PageAIWriter = lazy(() => import('../components/docs/pages/PageAIWriter'));
+const PageVisionWriter = lazy(() => import('../components/docs/pages/PageVisionWriter'));
+const PageBridge = lazy(() => import('../components/docs/pages/PageBridge'));
+const PageChallengeFlow = lazy(() => import('../components/docs/pages/PageChallengeFlow'));
+const PageStrategy = lazy(() => import('../components/docs/pages/PageStrategy'));
+const PageAdsenseGuide = lazy(() => import('../components/docs/pages/PageAdsenseGuide'));
+const PageSitemapRSS = lazy(() => import('../components/docs/pages/PageSitemapRSS'));
+const PageW05 = lazy(() => import('../components/docs/pages/PageW05'));
+const PageAccountSafety = lazy(() => import('../components/docs/pages/PageAccountSafety'));
+const PageAdsenseFAQ = lazy(() => import('../components/docs/pages/PageAdsenseFAQ'));
+const PageTechnicalFAQ = lazy(() => import('../components/docs/pages/PageTechnicalFAQ'));
+const PagePolicyFAQ = lazy(() => import('../components/docs/pages/PagePolicyFAQ'));
 
 const Placeholder = ({ title }: { title: string }) => (
   <article className="prose-doc">
@@ -25,39 +44,39 @@ const Placeholder = ({ title }: { title: string }) => (
 const PAGE_REGISTRY: Record<string, Record<string, () => React.ReactElement>> = {
   'getting-started': {
     intro: () => <PageIntro />,
-    extension: () => <Placeholder title="익스텐션 설치" />,
-    onboarding: () => <Placeholder title="로그인 & 온보딩" />,
+    extension: () => <PageExtension />,
+    onboarding: () => <PageOnboarding />,
   },
   platform: {
-    tistory: () => <Placeholder title="티스토리 세팅" />,
-    wordpress: () => <Placeholder title="워드프레스 세팅" />,
-    blogspot: () => <Placeholder title="블로그스팟 세팅" />,
-    subdomain: () => <Placeholder title="서브도메인 개설" />,
+    tistory: () => <PageTistory />,
+    wordpress: () => <PageWordpress />,
+    blogspot: () => <PageBlogspot />,
+    subdomain: () => <PageSubdomain />,
   },
   features: {
-    autopilot: () => <Placeholder title="오토파일럿" />,
-    aiwriter: () => <Placeholder title="AI 라이터" />,
-    visionwriter: () => <Placeholder title="비전 라이터" />,
-    bridge: () => <Placeholder title="Maza Bridge 활용" />,
+    autopilot: () => <PageAutopilot />,
+    aiwriter: () => <PageAIWriter />,
+    visionwriter: () => <PageVisionWriter />,
+    bridge: () => <PageBridge />,
   },
   adsense: {
-    'challenge-flow': () => <Placeholder title="챌린지 성공 순서도" />,
-    strategy: () => <Placeholder title="수익화 전략 설계" />,
-    'adsense-guide': () => <Placeholder title="승인 신청 가이드" />,
+    'challenge-flow': () => <PageChallengeFlow />,
+    strategy: () => <PageStrategy />,
+    'adsense-guide': () => <PageAdsenseGuide />,
   },
   seo: {
-    'sitemap-rss': () => <Placeholder title="사이트맵 & RSS 제출" />,
+    'sitemap-rss': () => <PageSitemapRSS />,
     'index-request': () => <PageSEOIndex />,
   },
   safety: {
-    w05: () => <Placeholder title="W-05 안전 프로토콜" />,
-    'account-safety': () => <Placeholder title="계정 보호 가이드" />,
+    w05: () => <PageW05 />,
+    'account-safety': () => <PageAccountSafety />,
   },
   faq: {
-    'adsense-faq': () => <Placeholder title="애드센스 승인 FAQ" />,
-    'technical-faq': () => <Placeholder title="기술 & SEO FAQ" />,
-    'policy-faq': () => <Placeholder title="정책 & 보안 FAQ" />,
-    all: () => <Placeholder title="모든 질문" />,
+    'adsense-faq': () => <PageAdsenseFAQ />,
+    'technical-faq': () => <PageTechnicalFAQ />,
+    'policy-faq': () => <PagePolicyFAQ />,
+    all: () => <PageAdsenseFAQ />,
   },
 };
 
