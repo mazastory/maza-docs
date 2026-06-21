@@ -12,7 +12,7 @@ export default function PageW05() {
         </h1>
         <p className="text-lg text-slate-600 font-medium leading-relaxed">
           <strong className="text-slate-900">W-05</strong>는 마자의 핵심 안전 규칙입니다.
-          모든 자동 발행은 최소 3시간(10,800초) 간격을 유지해야 합니다.
+          현재 <strong className="text-rose-600">티스토리(Tistory)</strong> 플랫폼에만 적용되며, 티스토리 자동 발행 시 최소 간격을 강제합니다. (워드프레스 등 타 플랫폼은 일일 한도 내에서 즉시 발행)
         </p>
       </div>
 

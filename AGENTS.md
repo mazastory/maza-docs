@@ -1,7 +1,86 @@
-# MAZA STORY v2 (Maza Autopilot OS) - AGENTS.md v8.3
+# MAZA STORY v2 (Maza Autopilot OS) - AGENTS.md v9.0
 > **"모든 기능은 애드센스 승인과 수익화라는 결과에 기여해야 한다."**
 > 이 문서는 정책 선언이자 구현 계약서다. 선언과 코드는 반드시 일치해야 한다.
 > 프로젝트의 중심은 '도전'을 넘어 '완전 자동화(Autopilot)'로 진화한다.
+
+
+
+
+> **Note:** See the **Content‑Publish Separation (CPS)** section in `MASTER_CONSTITUTION.md` for detailed domain‑boundary rules.
+
+## PRE TASK CHECKLIST (MANDATORY)
+
+모든 AI Agent는 작업 시작 전 반드시 아래를 선언한다.
+
+### Step 1 – Domain Selection
+
+**Choose exactly one domain** for the current task. This selection governs which parts of the codebase you are allowed to modify.
+
+- **Challenge** – work on challenge‑related logic (e.g., challenge generation, scoring).
+- **Content** – modify content creation pipelines, validators, or keyword vaults.
+- **Publishing** – adjust publishing workers, scheduler, or platform integrations.
+
+The chosen domain must be recorded in any commit messages and reflected in the task checklist.
+
+* Challenge
+* Content
+* Publishing
+
+하나만 선택
+
+---
+
+### Step 2 – Domain‑Boundary Validation
+
+**Verify that the files you are about to edit belong to the domain selected in Step 1.**
+
+- If the file is within the chosen domain, proceed.
+- If not, abort and redesign.
+
+For a detailed matrix of allowed and prohibited modifications per domain, see the **Domain‑Boundary Matrix** in `docs/domain_boundary_matrix.md`.
+
+YES → proceed
+
+NO → abort and redesign
+
+---
+
+### Step 3
+
+Boundary Validation
+
+다른 Domain 코드 수정이 필요한가?
+
+YES → 설계 위반 가능성 검토
+
+NO → 진행
+
+---
+
+### Step 4 – Forbidden Action Check
+
+The following actions are **strictly prohibited** for each domain:
+
+| Domain      | Prohibited action |
+|-------------|-------------------|
+| **Challenge** | Invoke `publishWorker` |
+| **Content**   | Invoke `publishWorker` |
+| **Content**   | Directly call the Scheduler |
+| **Publishing**| Call the Writer component |
+| **Publishing**| Create or modify Keywords |
+| **Publishing**| Perform SEO modifications |
+
+Any code that attempts these actions must be avoided to stay compliant with the policy.
+
+
+
+---
+
+## 0. Constitutional Alignment
+1. **최상위 규약**: 이 문서의 모든 섹션은 `MASTER_CONSTITUTION.md`, `PRD.md`, `TRD.md`와 일치해야 한다.
+2. **우선순위**: `MASTER_CONSTITUTION.md` > `PRD.md` > `TRD.md` > `AGENTS.md` 순으로 해석하되, 실제 구현은 모든 문서의 교차 규약을 만족해야 한다.
+3. **검증 기준**: 코드 변경은 반드시 `AGENTS.md`에 정의된 에이전트 책임과 `TRD.md`의 아키텍처 원칙을 위반하지 않아야 한다.
+4. **문서 간 무결성**: 프론트엔드 변경은 `PRD.md`의 제품 원칙, `TRD.md`의 데이터 접근 규칙을 동시에 만족해야 한다.
 
 ---
 
@@ -19,7 +98,7 @@
 
 1.  **원 엔진(One Engine) 파이프라인**: [주제 발굴] - [집필] - [배차]를 하나의 유기적인 흐름으로 통합한다.
 2.  **키워드 금고(Keyword Vault) 우선**: 외부 API 호출 최소화를 위해 사전에 발췌된 고수익 키워드 금고를 우선 활용한다.
-3.  **안전 제일(W-05 Protocol)**: 계정 보호를 위해 모든 자동 발행은 최소 3시간의 간격을 강제한다. (W-05 규약)
+3.  **유저 자율 제어(User-Choice Protocol)**: 시스템이 획일적인 간격(예: 3시간)을 강제하지 않고, 직장인을 위한 '스피드 모드'와 파워 유저를 위한 '안전 모드'를 제공하여 플랫폼 제약을 유저가 직접 선택하고 책임진다.
 4.  **주제 권위(Topical Authority)**: 단발성 글이 아닌 '시리즈(Series)' 형태의 묶음 발행을 통해 검색 엔진의 신뢰를 확보한다.
 5.  **제로-점프(Zero-Jump) 관제**: 유저는 페이지를 이동할 필요 없이 `Autopilot Stage`에서 모든 자동화 현황을 모니터링한다.
 6.  **경험 우선(Experience-First)**: AI 생성 이미지를 넘어 유저의 실제 사진(iPhone/Android)을 활용한 독창적 콘텐츠 생성을 최우선한다.
@@ -34,7 +113,7 @@
 graph LR
     A[Niche Hunter] -->|Winning Blueprint 선택| B[AI Writer]
     B -->|Keyword Vault 셔플/집필| C[Post Mapper]
-    C -->|W-05 안전 배차/시리즈| D[Autopilot Stage]
+    C -->|유저 맞춤형 배차/시리즈| D[Autopilot Stage]
     D -->|실시간 관제/배포| E[Target Blog]
 ```
 
@@ -59,12 +138,14 @@ graph LR
 | Agent | 역할 | 규약 (Protocol) |
 |-------|------|----------------|
 | **SeriesSchedulerAgent** | 키워드 나열 기반 시리즈/배치 예약 | `Sequential Batch Scheduling` |
-| **SafetyGuardAgent** | 3시간 발행 간격 및 계정 상태 모니터링 | `W-05 Safety Protocol` |
+| **SafetyGuardAgent** | 유저 설정(publishMode) 기반 발행 간격 제어 및 새벽 시간(Quiet Hours) 보호 | `User-Choice Protocol` |
 
 ### Layer 4: Orchestration (Autopilot Stage)
 | Agent | 역할 | 모니터링 항목 |
 |-------|------|--------------|
 | **StageControlAgent** | 전역 하단 UI를 통한 전체 엔진 관제 | 진행률, 쿨타임, 시리즈 현황 |
+
+---
 
 ---
 
@@ -84,11 +165,11 @@ graph LR
 
 ---
 
-## 6. W-05 Safety & Series Rules
+## 6. User-Choice Publishing & Series Rules
 
-> **구현 위치**: `src/components/PostMapper.tsx`
+> **구현 위치**: `src/features/autopilot/components/PostMapper.tsx`
 
-1.  **발행 간격**: 모든 자동화 발행은 직전 발행 건으로부터 **10,800초(3시간)** 이내에 중복 발행될 수 없다.
+1.  **발행 간격**: 시스템 강제는 폐지되었으며, 유저가 설정한 '스피드 모드(즉시/10분)' 또는 '안전 모드(3시간 등)'에 따라 플랫폼에 맞게 자율적으로 배차된다.
 2.  **시리즈 우선**: 카테고리 전문성(Topic Authority) 확보를 위해 최소 3개 이상의 연관 키워드 시리즈 구성을 권장한다.
 3.  **랜덤 셔플**: 키워드 금고 사용 시, 동일 패턴 반복을 피하기 위해 반드시 랜덤 셔플 엔진을 거쳐야 한다.
 
@@ -99,12 +180,12 @@ graph LR
 ### Retry Strategy (구현 계약)
 ```
 요청 진입
-  └─ Primary 모델 시도 (gemini-3-flash-preview)
+  └─ Primary 모델 시도 (gemini-2.5-flash)
        ├─ 성공 → 결과 반환
        └─ 실패
             ├─ 429/503 → 지수 백오프 (1s→2s→4s→8s) + 다음 API Key 로테이션 (최대 10회)
             ├─ 404/403 → KI 기준 폴백 체인 순서대로 즉시 시도:
-            │             gemini-3-flash-preview → gemini-2.5-flash → gemini-2.0-flash → gemini-2.5-pro → throw
+            │             gemini-2.5-flash → gemini-2.5-flash → gemini-2.0-flash → gemini-2.5-pro → throw
             └─ 전체 실패 → 캐시 또는 에러 반환
 ```
 
@@ -142,7 +223,7 @@ graph LR
 | 충돌 상황 | 승리 | 패배 | 이유 |
 |-----------|------|------|------|
 | 품질 vs 비용 | 승인율 (Pro 모델) | 예산 절감 (Flash) | 승인율 하락은 존재 이유를 훼손 |
-| 안전 vs 편의 | W-05 강제 | 완전 자유 발행 | 계정 보호가 최우선 |
+| 시스템 제약 vs 유저 자율 | 유저 자율 통제 (스피드/안전 선택) | 시스템 강제 제약 | 제약은 시스템이 아닌 유저가 선택하고 통제한다 |
 | 보안 vs 속도 | Rate Limit 방어 | 응답 속도 | 과금 폭탄 방어가 먼저 |
 
 ---
@@ -163,7 +244,7 @@ graph LR
 
 ## 11. 데이터베이스 및 보안
 
-- **ms_events**: 모든 유저 행동(generate, publish, verify)은 정규화 로그로 남긴다.
+- **events**: 모든 유저 행동(generate, publish, verify)은 정규화 로그로 남긴다.
 - **API Key**: 서버 환경변수에서만 관리, 클라이언트 노출 절대 금지.
 - **Node Environment**: Production 모드에서 엄격한 Rate Limit 적용.
 
@@ -180,6 +261,8 @@ graph LR
 | **Phase 7** | 외부 수익 블록 자동 삽입 및 제휴 최적화 | ✅ 완료 |
 | **Phase 8** | AI 모델 레지스트리 전면 감사 — 폐기 모델 전수 제거, KI 기준 폴백 체인 재확정 | ✅ 완료 (2026-05-14) |
 | **Phase 9** | Tiered Referral Program — 2단계 티어드 리퍼럴 시스템 및 파트너 대시보드 구축 | ✅ 완료 (2026-05-26) |
+| **Phase 10** | **FSD(Feature-Sliced Design) 전면 도입** — `src/components/`를 경량 공통 UI로 완전 비움, 9개 Feature 도메인 격리 완료, TypeScript 빌드 에러 0개 달성 | ✅ 완료 (2026-06-13) |
+| **Phase 11** | **Native API Platform Integration** — Blogger(Blogspot) 전면 API 전환 완료, 무한 로딩 오류 차단 및 오토파일럿(Autopilot) 브랜딩 일원화 | ✅ 완료 (2026-06-18) |
 
 ---
 
@@ -207,6 +290,8 @@ graph LR
 | **v8.3** | **2026-05-19** | **오픈라우터 무료 비서단 연동 및 쉼표 구분 API 키 로테이션 확립** | **극단적 비용 절감 및 무중단 서브 에이전트 설계 기법 확보** |
 | **v8.4** | **2026-05-26** | **애드센스 승인 최적화 다변화 엔진 적용** | **5종 템플릿 스위칭 및 순수 이미지 우선 정책 (자동화 감지 회피)** |
 | **v8.5** | **2026-05-26** | **Tiered Referral Program 도입** | **2단계 파트너 네트워크를 통한 바이럴 성장 루프 구축** |
+| **v9.0** | **2026-06-13** | **FSD(Feature-Sliced Design) 전면 도입 완료** — 9개 Feature 도메인(`autopilot`, `auth`, `admin`, `challenge`, `scheduler`, `setup`, `site`, `tools`, `writer`) 격리, `components/`는 `layout/`·`ui/`만 잔존 | **'파일 위치로 인한 반복 에러'를 구조적으로 차단 — 진정한 코드베이스 안정화 달성** |
+| **v9.1** | **2026-06-18** | **Blogger 순수 API 통합 및 오토파일럿 브랜딩 완전 전환** — 블로거 파이프라인 에러/무한 로딩 전면 해소, OAuth 자동 디스커버리 로직 완비 | **'애드센스 챌린지'라는 레거시 명칭을 버리고 완전한 'Maza Autopilot OS'로 거듭남** |
 
 ---
 
@@ -216,7 +301,7 @@ graph LR
 
 1.  **API Key 사용 금지**: 서버 사이드 OAuth 및 Client ID 기반의 연동을 시도하거나 사용자에게 요구하지 않는다.
 2.  **익스텐션 기반 주입 (Extension-Injection)**: 모든 포스팅 발행은 **MazaStudio Chrome Extension**을 통한 브라우저 세션 기반 주입 방식으로 수행한다.
-3.  **RPA 워크플로우**: 서버는 콘텐츠를 생성하고 대기열(`ms_scheduled_posts`)에 적재하며, 익스텐션이 이를 감지하여 유저의 브라우저에서 티스토리 에디터에 직접 본문을 주입한다.
+3.  **RPA 워크플로우**: 서버는 콘텐츠를 생성하고 대기열(`scheduled_posts`)에 적재하며, 익스텐션이 이를 감지하여 유저의 브라우저에서 티스토리 에디터에 직접 본문을 주입한다.
 4.  **UI 가이드**: 설정 페이지에서 'API 연동' 대신 '익스텐션 연결 상태'를 우선적으로 표시한다.
 
 ---
@@ -258,7 +343,7 @@ graph LR
 2. **다층적 맥락 주입 (Contextual Depth)**: 단순한 시각 정보가 아닌 장소, 시간, 동행인, 개인적 취향, 당시의 감정을 사진과 결합하여 인간적 향취를 극대화한다.
 3. **감정적 스토리텔링 (Emotional Hook)**: '울컥함', '긴장감', '미소' 등 인간만이 느낄 수 있는 감정선을 본문의 시작과 끝에 배치하여 AI 탐지를 원천 우회한다.
 4. **고중량 신뢰도 (High-Weight Authority)**: 2,500자 이상의 풍부한 서사와 FAQ 실무 정보를 결합하여 검색 엔진과 독자 모두에게 압도적인 신뢰를 제공한다.
-5. **Experience Asset Vault (Asset-01)**: 업로드된 모든 원본 사진은 키워드 및 기기 정보와 매칭되어 `ms_image_assets`에 영구 등록되며, 마자스튜디오의 독점적 자산으로 관리된다.
+5. **Experience Asset Vault (Asset-01)**: 업로드된 모든 원본 사진은 키워드 및 기기 정보와 매칭되어 `image_assets`에 영구 등록되며, 마자스튜디오의 독점적 자산으로 관리된다.
 
 ### 19-3. 절대 금지 조항 (Hard Prohibitions)
 1. **AI 이미지 생성 금지**: Vision Writer 내에서 AI 이미지 생성 기능을 제공하거나 권장하지 않는다. 이는 사용자의 실제 경험을 증명한다는 본질을 훼손한다.
@@ -322,8 +407,8 @@ graph LR
 1. **이전 기억의 주입**: $N$번째 포스트 생성 시, 앞선 포스트들의 핵심 요약을 AI에게 전달하여 "지난 글에서 언급했듯이"와 같은 맥락적 연결을 강제한다.
 2. **재생성 무결성**: 에러로 인한 재생성 시에도 기존 브리프와 성공한 포스트들의 맥락을 유지하여 시리즈 전체의 논리적 모순을 방지한다.
 
-### 20-3. W-05 자율 관제 및 재스케줄링 (S-03)
-1. **3시간 안전 간격**: 동일 사이트에 대한 모든 자동 발행은 최소 10,800초(3시간)의 간격을 시스템이 자율적으로 계산하여 배차한다.
+### 20-3. 유저 맞춤형 관제 및 재스케줄링 (S-03)
+1. **자율 안전 간격**: 동일 사이트에 대한 자동 발행은 유저가 설정한 모드(스피드 또는 안전)의 간격을 시스템이 자율적으로 계산하여 배차한다.
 2. **실패 시 자율 복구**: 발행 실패 또는 쿨타임 위반 시, 시스템은 에러를 내지 않고 다음 발행 가능 시간으로 예약 시간을 자동으로 밀어내는 '자율 재스케줄링'을 수행한다.
 
 ### 20-4. 지능형 내부 링크 앵커링 (Link Anchoring, S-04)
@@ -358,34 +443,163 @@ graph LR
 ### 21-3. 기술 아키텍처
 | 레이어 | 파일 | 역할 |
 |--------|------|------|
-| **DB** | `supabase/migrations/20260526_add_referrals.sql` | `profiles.referral_code` (UNIQUE), `profiles.referred_by`, `ms_reward_logs` 테이블 |
+| **DB** | `supabase/migrations/20260526_add_referrals.sql` | `profiles.referral_code` (UNIQUE), `profiles.referred_by`, `reward_logs` 테이블 |
 | **Backend API** | `server/routes/affiliate.ts` | `GET /api/affiliate/stats` (실적 조회), `POST /api/affiliate/apply` (코드 적용 + 보상 지급) |
 | **Frontend 캡처** | `src/App.tsx` → `ReferralCatcher` 컴포넌트 | URL `?ref=XXX` 파라미터를 `localStorage`에 저장 |
 | **자동 적용** | `src/components/AuthProvider.tsx` | 로그인(세션 생성) 시 `localStorage`의 코드를 서버로 전송, 자동 1회 적용 |
 | **파트너 UI** | `src/pages/Affiliate.tsx` | 내 추천 링크 복사, Tier 1/2 현황, 적립 내역 대시보드 |
-| **진입점** | `src/components/Layout.tsx` → 프로필 드롭다운 | "파트너 대시보드" 메뉴 |
+| **진입점** | `src/features/autopilot/components/Layout.tsx` → 프로필 드롭다운 | "파트너 대시보드" 메뉴 |
 
 ### 21-4. 핵심 로직 규칙
 1. **1회 적용 보장**: `profiles.referred_by`가 이미 설정된 사용자에게는 중복 적용하지 않는다.
 2. **자기 코드 방지**: 자신의 추천 코드는 사용할 수 없다.
 3. **추천 코드 자동 발급**: `GET /api/affiliate/stats` 호출 시 `referral_code`가 없으면 8자리 랜덤 코드를 자동 발급한다.
-4. **보상 로그 투명성**: 모든 포인트 지급은 `ms_reward_logs` 테이블에 이유와 함께 기록된다.
+4. **보상 로그 투명성**: 모든 포인트 지급은 `reward_logs` 테이블에 이유와 함께 기록된다.
 5. **서버 사이드 처리**: 모든 보상 지급 로직은 `supabaseAdmin`을 통해 서버에서만 실행 (클라이언트 조작 불가).
+
+
+
+## REGRESSION PROTECTION
+
+애드센스 기능 수정 시
+
+Content Domain
+Publishing Domain
+
+코드를 수정하면 안 된다.
 
 ---
 
-## 22. Blog Independence & Anti-Abuse Protocol (I-01)
+콘텐츠 생성 기능 수정 시
 
-> **"사용자의 데이터 소유권은 완벽히 보장하되, Maza 시스템의 프리미엄 자산을 남용하려는 어뷰저(Abuser)는 구조적으로 차단한다."**
+Challenge Domain
+Publishing Domain
 
-### 22-1. 독립 보장 원칙 (Independence Guarantee)
-1. **완벽한 소유권 이전**: 사용자가 원할 경우 언제든 자신의 Maza Blog 데이터를 본인 소유의 데이터베이스(Supabase)로 이관(Migration)할 수 있도록 SQL 스키마와 JSON 내보내기 기능을 제공한다.
-2. **독립형 수동 에디터 내장**: Maza Studio 구독이 만료되거나 계정이 연동 해제되더라도, 사용자는 독립된 블로그의 자체 관리자 페이지(`/admin`)를 통해 평생 무료로 수동 포스팅 및 관리가 가능해야 한다.
+코드를 수정하면 안 된다.
 
-### 22-2. 어뷰징 방지 쿨다운 (90-Day Aging Lock)
-1. **무한 팩토리 방지**: 저가 요금제를 악용하여 사이트를 무한 생성 후 즉시 데이터를 빼가서 타인에게 되파는 대행사 어뷰징을 원천 차단한다.
-2. **쿨다운 제약**: `sites.created_at` (사이트 생성일) 기준으로 **최소 90일(3개월)**이 경과하지 않은 사이트는 데이터 내보내기(독립) 기능이 강제 비활성화(Lock)된다.
-3. **UI 피드백**: 쿨다운 기간 내에는 남은 기간(D-day)과 함께 "초기 SEO 데이터 안정화를 위해 90일이 경과한 유저에게만 지원됩니다"라는 명분 기반의 경고 메시지를 표시한다.
+---
 
-### 22-3. 추가 제약 (Tier-Based Limits) - 향후 과제
-- 필요 시 요금제(Tier)에 따라 1년 내 내보내기 횟수를 제한하여, 에이전시(대행업체)가 대규모로 독립 기능을 사용하려면 반드시 'Agency 요금제'를 결제하도록 B2B 수익화를 유도한다.
+예약 발행 기능 수정 시
+
+Challenge Domain
+Content Domain
+
+코드를 수정하면 안 된다.
+
+---
+
+다른 Domain 수정이 필요하다면
+설계 결함을 먼저 의심한다.
+
+---
+
+## LONG TERM ARCHITECTURE
+
+모든 신규 코드는 아래 구조를 목표로 이동한다.
+
+```
+apps/
+
+├── challenge-domain
+├── content-domain
+├── publishing-domain
+└── shared
+```
+
+기존 구조는 점진적으로 이전한다.
+
+대규모 이동은 금지한다.
+설계 결함을 먼저 의심한다.
+
+---
+
+## PLATFORM ISOLATION RULES (필수 — 블로그스팟/워드프레스 확장 전제 조건)
+
+> 이 규칙이 없으면 사이트 추가 시 발행 큐 교차 오염 발생.
+
+### Rule PI-1: 발행 간격은 플랫폼 단위로 격리한다
+
+```
+❌ 금지: 모든 사이트를 하나의 발행 윈도우로 묶기
+✅ 허용: 같은 platform (tistory / wordpress / blogger) 사이트끼리만 간격 계산 (스피드/안전 모드 독립 적용)
+```
+
+구현 위치:
+- `server/workers/publishWorker.ts` — `samePlatformSiteIds` 쿼리
+- `server/services/scheduledGenerateService.ts` — `platformSiteIds` 쿼리
+
+### Rule PI-2: publish_at 슬롯 계산은 platform 기준이다
+
+```
+❌ 금지: site_id 하나만 기준으로 lastFuture 계산
+✅ 허용: 같은 platform의 모든 사이트 ID를 IN 쿼리로 조회 후 마지막 publish_at 기준
+```
+
+---
+
+## PUBLISH INTERVAL SINGLE SOURCE OF TRUTH
+
+TIER_INTERVALS 인라인 상수 작성 절대 금지.
+
+```typescript
+// ❌ 절대 금지 — 코드 전체에서 이 패턴 사용 금지
+const TIER_INTERVALS = {
+  free: 6 * 60 * 60 * 1000,
+  ...
+};
+
+// ✅ 반드시 이렇게
+import { W05_POLICY } from '../lib/postStatus.js';
+const intervalMs = W05_POLICY.TIER_INTERVALS_MS[planId] ?? W05_POLICY.TIER_INTERVALS_MS.free;
+const intervalSec = W05_POLICY.TIER_INTERVALS_SECONDS[planId] ?? W05_POLICY.TIER_INTERVALS_SECONDS.free;
+```
+
+단일 공급원 위치: `server/lib/postStatus.ts` → `W05_POLICY`
+
+---
+
+## 22. MAZA 5-STEP STABILITY PROTOCOL (T-01)
+
+> **"어떤 코드를 작성하든, 이 5단계 안정화 프로토콜을 반드시 따른다. 속도보다 안정이 먼저다."**
+이 규약은 모든 신규 기능 개발 및 버그 수정 시 에이전트가 준수해야 할 필수 워크플로우다.
+
+1. **Phase 1: Security & Tech Debt Cleanup (보안 및 부채 청산)**
+   - 본격적인 로직 작성 전, 해당 도메인의 기존 코드에서 변수 섀도잉, 경쟁 상태(Race Condition), XSS 위험, 메모리 누수 등 잠재적 위험 요소를 가장 먼저 식별하고 제거한다.
+2. **Phase 2: Core Logic Unit Testing (단위 테스트 구축)**
+   - 비즈니스 핵심 로직(검증 엔진, 쿨타임 계산 등)을 작성/수정할 때는 **반드시** 단위 테스트(예: Vitest)를 작성하여 기능의 무결성을 독립적으로 증명한다. 테스트 코드 없는 핵심 로직은 병합을 거부한다.
+3. **Phase 3: Error Monitoring Integration (에러 모니터링 연동)**
+   - 로직 내 예외 상황이나 치명적 에러 발생 시, Sentry(또는 시스템에 지정된 모니터링 도구)로 에러 컨텍스트가 정확히 리포트되도록 안전장치(try/catch, Error Boundary)를 구축한다.
+4. **Phase 4: Architectural Refactoring (구조적 리팩토링 및 Headless 분리)**
+   - UI 렌더링 코드와 비즈니스 로직(데이터 페칭, 상태 관리)이 혼재되어 있다면, 이를 Headless 패턴(Custom Hook 등)으로 분리하여 코드 가독성과 확장성을 극대화한다.
+5. **Phase 5: E2E Smoke Testing (통합 테스트 최종 검증)**
+   - 모든 구현이 완료되면 Playwright 등의 E2E 툴을 이용해 실제 사용자 관점의 흐름(화면 렌더링, 핵심 버튼 노출 등)이 붕괴되지 않았음을 확인하는 Smoke Test를 작성하고 통과시킨다.
+
+**[Micro-Steps & Halt-on-Approval]**
+각 단계(Phase)를 진행할 때는 한 번에 여러 단계를 묶어서 코딩하지 않으며, 각 단계가 끝날 때마다 사용자에게 진행 상황을 보고하고 테스트 결과에 대한 피드백/승인을 받은 후 다음 단계로 넘어간다.
+
+---
+
+## 23. Egress Armor Protocol (EA-01)
+
+> **"네트워크 대역폭(Egress)은 무한하지 않다. 불필요한 데이터 전송은 서비스 파멸의 지름길이다."**
+
+### 23-1. 절대 금지: 전체 데이터 로드 후 메모리 카운팅
+- 대시보드 통계나 조건부 상태 확인을 위해 `select('status')`, `select('id')` 등 **데이터의 일부 필드라도 전체 범위를 조회하여 서버나 클라이언트로 전송하는 것을 엄격히 금지**한다.
+- ❌ 금지 패턴:
+  ```typescript
+  // Egress 폭탄 (전체 데이터 전송)
+  const { data: recentPosts } = await supabase.from('posts').select('status').gte('created_at', yesterday);
+  const successCount = recentPosts.filter(p => p.status === 'published').length;
+  ```
+
+### 23-2. 강제 규약: Exact Head Count 사용
+- 개수(Count)만 필요한 모든 통계 쿼리는 반드시 `{ count: 'exact', head: true }` 옵션을 사용하여 데이터베이스(PostgREST)가 데이터 내용(Body)을 전혀 전송하지 않고 오직 HTTP Header에 숫자만 담아 보내도록 강제한다.
+- ✅ 허용 패턴:
+  ```typescript
+  // Egress 0 Bytes (헤더로 숫자만 전송)
+  const { count: successCount } = await supabase.from('posts').select('*', { count: 'exact', head: true }).eq('status', 'published').gte('created_at', yesterday);
+  ```
+
+### 23-3. 폴링(Polling) 제한
+- 클라이언트 화면(대시보드 등)에서 서버 상태를 지속적으로 묻는 폴링(Polling) 로직을 짤 때는, 서버 측 쿼리가 위 23-2 규칙을 준수하여 작성되었는지 반드시 먼저 확인해야 한다.
+- 폴링 주기는 최소 30초 이상으로 설정하며 지수 백오프(Exponential Backoff)를 기본 장착해야 한다.
