@@ -28,10 +28,10 @@ export default function PageIntro() {
           </p>
         </div>
         <div className="p-7 bg-indigo-600 rounded-2xl text-white space-y-3 shadow-xl shadow-indigo-200">
-          <h4 className="text-base font-black uppercase tracking-tight flex items-center gap-2">
-            <span className="text-2xl">🚀</span> The Solution
+          <h4 className="text-base font-black text-white uppercase tracking-tight flex items-center gap-2 m-0">
+            <span className="text-2xl">🚀</span> THE SOLUTION
           </h4>
-          <p className="text-sm font-medium leading-relaxed opacity-90">
+          <p className="text-sm text-white font-medium leading-relaxed opacity-90 m-0">
             마자가 수익 키워드를 찾아주고, 구글이 좋아하는 E-E-A-T 구조로 글을 쓰며,
             자동으로 발행합니다.
           </p>
