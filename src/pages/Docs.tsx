@@ -1,5 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import {
   Search, Menu, X, ChevronLeft, ChevronRight, Loader2
 } from 'lucide-react';
@@ -31,14 +31,7 @@ const PageAdsenseFAQ = lazy(() => import('../components/docs/pages/PageAdsenseFA
 const PageTechnicalFAQ = lazy(() => import('../components/docs/pages/PageTechnicalFAQ'));
 const PagePolicyFAQ = lazy(() => import('../components/docs/pages/PagePolicyFAQ'));
 
-const Placeholder = ({ title }: { title: string }) => (
-  <article className="prose-doc">
-    <h1 className="text-4xl font-black tracking-tight text-slate-900 mb-6">{title}</h1>
-    <div className="p-8 bg-slate-50 border border-slate-200 rounded-2xl text-center">
-      <p className="text-slate-500 font-medium">이 문서는 현재 최신 마크다운 형식으로 작성(이전) 중입니다.</p>
-    </div>
-  </article>
-);
+
 
 // ─── Page registry ────────────────────────────────────────────────────────────
 const PAGE_REGISTRY: Record<string, Record<string, () => React.ReactElement>> = {
@@ -105,7 +98,7 @@ const PAGE_TOC: Record<string, Record<string, { id: string; title: string; level
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function Docs() {
   const { sectionId = 'getting-started', pageId = 'intro' } = useParams<{ sectionId: string; pageId: string }>();
-  const navigate = useNavigate();
+
   const [searchOpen, setSearchOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 

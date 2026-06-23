@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { 
   Zap, ArrowRight, Globe, Cpu, 
   CalendarClock, MousePointer2, 
-  Activity, Edit3, ShieldCheck,
-  ChevronRight, Sparkles, Target,
-  Monitor, Layout, DollarSign, Layers, LayoutGrid, HelpCircle,
-  Search, TrendingUp, Infinity, BarChart3
+  Activity, ShieldCheck, Target,
+  Monitor, Layout, DollarSign, Layers,
+  TrendingUp, Infinity, BarChart3
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../lib/utils";
@@ -25,23 +24,6 @@ export default function Landing() {
     return () => clearInterval(interval);
   }, []);
 
-  const getGlobalAdminLink = (path: string) => {
-    const url = blogUrl.toLowerCase();
-    const cleanUrl = url.replace('https://', '').replace('http://', '').split('/')[0] || "blog.com";
-    // 티스토리 특화 매핑 (기본값)
-    const mappings: Record<string, string> = {
-      "/config": `https://${cleanUrl}/manage/setting`,
-      "/design/skin/edit": `https://${cleanUrl}/manage/design/skin/edit`,
-      "/mobile": `https://${cleanUrl}/manage/setting/mobile`,
-      "/plugin": `https://${cleanUrl}/manage/revenue`,
-      "/category": `https://${cleanUrl}/manage/category`,
-      "/design/sidebar": `https://${cleanUrl}/manage/design/sidebar`,
-      "/comment": `https://${cleanUrl}/manage/comment`,
-      "/statistics": `https://${cleanUrl}/manage/statistics`
-    };
-
-    return mappings[path] || `https://${cleanUrl}/manage${path}`;
-  };
 
   return (
     <div className="min-h-screen bg-[#050608] text-white font-sans selection:bg-indigo-500/30 overflow-x-hidden">

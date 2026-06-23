@@ -22,10 +22,10 @@ router.get('/stats', requireAuth, async (req, res) => {
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
     const [
-      { data: sites, error: siteError },
-      { count: totalPosts, error: totalError },
-      { count: thisWeekPosts, error: weekError },
-      { data: seoData, error: seoError },
+      { data: sites, error: _siteError },
+      { count: totalPosts, error: _totalError },
+      { count: thisWeekPosts, error: _weekError },
+      { data: seoData, error: _seoError },
       { count: complianceCount },
       { count: gscEventCount },
       { data: recentPosts }
@@ -64,7 +64,7 @@ router.get('/stats', requireAuth, async (req, res) => {
 
   } catch(error: unknown) {
     console.error('[Dashboard Stats Error]', error);
-    res.status(500).json({ success: false, error: error.message });
+    res.status(500).json({ success: false, error: (error as Error).message });
   }
 });
 
@@ -89,7 +89,7 @@ router.get('/hall-of-fame', async (req, res) => {
     if (error) throw error;
     res.json({ success: true, data: approvedSites });
   } catch(error: unknown) {
-    res.status(500).json({ success: false, error: error.message });
+    res.status(500).json({ success: false, error: (error as Error).message });
   }
 });
 
@@ -197,7 +197,7 @@ router.get('/autopilot-status', requireAuth, async (req, res) => {
     });
 
   } catch(error: unknown) {
-    res.status(500).json({ success: false, error: error.message });
+    res.status(500).json({ success: false, error: (error as Error).message });
   }
 });
 
@@ -218,7 +218,7 @@ router.get('/clusters', requireAuth, async (req, res) => {
 
     if (error) throw error;
     res.json({ success: true, data });
-  } catch(error: unknown) {
+  } catch(_error: unknown) {
     res.status(500).json({ success: false, error: '클러스터 목록을 가져오지 못했습니다.' });
   }
 });
@@ -249,7 +249,7 @@ router.post('/clusters', requireAuth, async (req, res) => {
 
     if (error) throw error;
     res.json({ success: true, data });
-  } catch(error: unknown) {
+  } catch(_error: unknown) {
     res.status(500).json({ success: false, error: '클러스터 생성에 실패했습니다.' });
   }
 });
@@ -286,7 +286,7 @@ router.get('/clusters/:id', requireAuth, async (req, res) => {
         authority_score: realTimeScore 
       } 
     });
-  } catch(error: unknown) {
+  } catch(_error: unknown) {
     res.status(500).json({ success: false, error: '클러스터 정보를 가져오지 못했습니다.' });
   }
 });

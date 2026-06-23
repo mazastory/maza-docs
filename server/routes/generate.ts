@@ -1,13 +1,13 @@
 import express from 'express';
 import { callAI, streamAI } from '../lib/aiClient.js';
-import { validateContent, ValidatorV2 } from '../lib/validator.js'; // Unified validator engine
+import { ValidatorV2 } from '../lib/validator.js'; // Unified validator engine
 import { checkDailyLimit } from '../middleware/rateLimit.js';
 import { supabaseAdmin } from '../lib/supabaseServer.js';
 import { getOptimizedImage } from '../lib/imageService.js';
-import { RendererAgent, applyHTMLTemplate } from '../lib/rendererAgent.js';
+import { applyHTMLTemplate } from '../lib/rendererAgent.js';
 import { calculateSEOScore, isSafeTopic } from '../lib/seoEngine.js';
 import { parseJSON } from '../lib/parser.js';
-import { PostStatus, FAILURE_POLICY } from '../lib/postStatus.js';
+import { PostStatus } from '../lib/postStatus.js';
 
 import { generateQueue } from '../lib/queues.js';
 import { requireAuth } from '../middleware/auth.js';
@@ -29,14 +29,6 @@ const generateSchema = z.object({
   })
 });
 
-const streamSchema = z.object({
-  query: z.object({
-    keyword: z.string().min(1, '키워드는 필수입니다.'),
-    site_id: z.string().uuid('유효한 사이트 ID가 필요합니다.'),
-    blueprintId: z.string().optional(),
-    is_experience: z.string().optional(), // Query params are strings
-  })
-});
 
 // ─── 공통 AI 프롬프트 빌더 ───────────────────────────────────────
 export function buildGeneratePrompt(keyword: string, strategy?: any): string {
@@ -272,7 +264,7 @@ router.post('/stream', requireAuth, validate(generateSchema), async (req: any, r
     try {
       const match = fullText.match(/\{[\s\S]*\}/);
       if (match) parsed = parseJSON(match[0]);
-    } catch (e) {
+    } catch (_e) {
       console.warn("[Stream] JSON parse failed on stream result");
     }
 
@@ -574,7 +566,7 @@ router.post('/compliance', requireAuth, async (req: any, res) => {
       { type: 'disclaimer', title: '책임 한계 및 법적 고지' }
     ];
 
-    const results = [];
+
 
     // 루프를 돌며 AI에게 각 페이지 생성 요청 (병렬 처리)
     const generatePromises = pages.map(async (page) => {
@@ -617,7 +609,7 @@ ${specializedInstruction}
       let data: any;
       try {
         data = typeof aiResponse === 'string' ? parseJSON(aiResponse) : aiResponse;
-      } catch (e) {
+      } catch (_e) {
         data = { title: page.title, content: `내용 생성 실패. 수동 작성이 필요합니다.` };
       }
 
@@ -677,7 +669,7 @@ ${specializedInstruction}
 router.post('/consulting', requireAuth, async (req: any, res) => {
   try {
     const { reason } = req.body;
-    const user_id = req.userId;
+    const _user_id = req.userId;
 
     if (!reason) {
       return res.status(400).json({ success: false, error: '거절 사유(reason)가 필요합니다.' });
@@ -708,7 +700,7 @@ router.post('/consulting', requireAuth, async (req: any, res) => {
     let data: any;
     try {
       data = typeof aiResponse === 'string' ? parseJSON(aiResponse) : aiResponse;
-    } catch (e) {
+    } catch (_e) {
       throw new Error('AI 응답 파싱 실패');
     }
 
@@ -773,7 +765,7 @@ router.post('/recommend-titles', requireAuth, async (req: any, res) => {
     let data: any;
     try {
       data = typeof aiResponse === 'string' ? parseJSON(aiResponse) : aiResponse;
-    } catch (e) {
+    } catch (_e) {
       throw new Error('AI 응답 파싱 실패');
     }
 
