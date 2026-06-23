@@ -39,27 +39,38 @@ export default function PageAutopilot() {
         ))}
       </div>
 
-      <h2 id="niche-writer" className="text-2xl font-black tracking-tight text-slate-900 mb-4 pb-3 border-b border-slate-100">
-        니치 라이터 (Niche Writer)
+      <h2 id="control-policies" className="text-2xl font-black tracking-tight text-slate-900 mb-4 pb-3 border-b border-slate-100">
+        오토파일럿 제어 정책
       </h2>
       <p className="text-sm text-slate-600 font-medium mb-5">
-        오토파일럿의 첫 탭. 수익 키워드를 선택하고 글 생성을 시작합니다.
+        1.4.0 버전부터 마이 사이트 설정 패널에서 블로그별로 세밀한 발행 정책을 제어할 수 있습니다.
       </p>
-      <div className="space-y-3 mb-10">
-        {[
-          { title: '키워드 금고 선택', desc: '사전 검증된 고수익 키워드 목록에서 원하는 키워드를 선택합니다.' },
-          { title: '글 수량 & 발행 간격 설정', desc: '생성할 글의 수와 발행 간격(최소 3시간)을 설정합니다.' },
-          { title: '블루프린트 선택', desc: '글의 구성 방식(시리즈형, 단독형, 리뷰형 등)을 선택합니다.' },
-          { title: '생성 시작', desc: '[생성 시작] 버튼을 누르면 AI가 순차적으로 글을 집필하고 예약 발행 큐에 넣습니다.' },
-        ].map((item, i) => (
-          <div key={i} className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
-            <span className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 text-[10px] font-black flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
-            <div>
-              <p className="text-sm font-black text-slate-800 mb-0.5">{item.title}</p>
-              <p className="text-xs text-slate-500 font-medium">{item.desc}</p>
-            </div>
+      <div className="space-y-4 mb-10">
+        <div className="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100">
+          <div className="w-10 h-10 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center shrink-0">
+            <Cpu size={20} />
           </div>
-        ))}
+          <div>
+            <h3 className="text-sm font-black text-slate-800 mb-1">발행 간격 모드 (Speed vs Safe)</h3>
+            <p className="text-xs text-slate-500 font-medium leading-relaxed mb-2">블로그의 운영 성격과 애드센스 승인 상태에 따라 발행 간격을 조절합니다.</p>
+            <ul className="text-[11px] text-slate-500 space-y-1 list-disc list-inside">
+              <li><strong>스피드 모드 (1시간 이하):</strong> 즉시 트래픽 확보가 필요한 뉴스, 이슈 블로그에 적합합니다. 단기간 노출 극대화를 노릴 때 사용합니다.</li>
+              <li><strong>안전 모드 (W-05 / 3시간 이상):</strong> 구글의 스팸 어뷰징 필터를 피하기 위해 사람과 같은 주기로 천천히 글을 발행합니다. 신생 블로그나 애드센스 심사 중일 때 필수입니다.</li>
+            </ul>
+          </div>
+        </div>
+        <div className="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100">
+          <div className="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
+            <Clock size={20} />
+          </div>
+          <div>
+            <h3 className="text-sm font-black text-slate-800 mb-1">심야 휴식 시간 (Quiet Hours)</h3>
+            <p className="text-xs text-slate-500 font-medium leading-relaxed mb-2">실제 사람이 운영하는 블로그처럼 보이기 위해 특정 시간대(예: 새벽 1시~6시)에는 글 발행을 멈추는 기능입니다.</p>
+            <ul className="text-[11px] text-slate-500 space-y-1 list-disc list-inside">
+              <li>오토파일럿이 이 시간대에 배정된 글은 <strong>일시 대기(On Hold)</strong> 상태로 두고, 휴식 시간이 끝나면 자동으로 발행을 재개합니다.</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <h2 id="monitoring" className="text-2xl font-black tracking-tight text-slate-900 mb-4 pb-3 border-b border-slate-100">
@@ -80,9 +91,9 @@ export default function PageAutopilot() {
       </div>
 
       <div className="p-5 bg-indigo-50 border border-indigo-100 rounded-2xl">
-        <p className="text-sm font-black text-indigo-800 mb-1">💡 팁: 불도저 큐 정책</p>
+        <p className="text-sm font-black text-indigo-800 mb-1">💡 팁: Rule 7 실패 재배치 정책</p>
         <p className="text-xs text-indigo-700 font-medium leading-relaxed">
-          대량 생성 중 특정 글에서 오류가 발생해도 전체 큐가 멈추지 않습니다. 실패한 건만 <code className="bg-indigo-100 px-1 rounded">FAILED</code> 상태로 표시되고 다음 글 생성이 즉시 진행됩니다.
+          대량 발행 중 네트워크 오류나 API 제한으로 생성/발행에 실패하더라도 전체 파이프라인이 멈추지 않습니다. 실패한 작업은 즉시 큐(Queue)의 맨 뒤로 이동하여 후순위로 배치되며, 남은 작업들을 먼저 처리한 뒤 나중에 백그라운드 엔진이 자동으로 <strong>재시도(Retry)</strong>를 수행합니다. 이를 통해 무인(Unmanned) 관리가 가능해집니다.
         </p>
       </div>
     </article>

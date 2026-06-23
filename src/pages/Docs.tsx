@@ -15,10 +15,12 @@ const PageExtension = lazy(() => import('../components/docs/pages/PageExtension'
 const PageOnboarding = lazy(() => import('../components/docs/pages/PageOnboarding'));
 const PageTistory = lazy(() => import('../components/docs/pages/PageTistory'));
 const PageWordpress = lazy(() => import('../components/docs/pages/PageWordpress'));
-const PageBlogspot = lazy(() => import('../components/docs/pages/PageBlogspot'));
-const PageSubdomain = lazy(() => import('../components/docs/pages/PageSubdomain'));
+const PageMazaBlog = lazy(() => import('../components/docs/pages/PageMazaBlog'));
+const PagePremiumService = lazy(() => import('../components/docs/pages/PagePremiumService'));
+const PageMySite = lazy(() => import('../components/docs/pages/PageMySite'));
 const PageAutopilot = lazy(() => import('../components/docs/pages/PageAutopilot'));
-const PageAIWriter = lazy(() => import('../components/docs/pages/PageAIWriter'));
+const PageNicheWriter = lazy(() => import('../components/docs/pages/PageNicheWriter'));
+const PageBlueprintGallery = lazy(() => import('../components/docs/pages/PageBlueprintGallery'));
 const PageVisionWriter = lazy(() => import('../components/docs/pages/PageVisionWriter'));
 const PageBridge = lazy(() => import('../components/docs/pages/PageBridge'));
 const PageChallengeFlow = lazy(() => import('../components/docs/pages/PageChallengeFlow'));
@@ -41,14 +43,16 @@ const PAGE_REGISTRY: Record<string, Record<string, () => React.ReactElement>> = 
     onboarding: () => <PageOnboarding />,
   },
   platform: {
+    'my-site': () => <PageMySite />,
+    'maza-blog': () => <PageMazaBlog />,
     tistory: () => <PageTistory />,
     wordpress: () => <PageWordpress />,
-    blogspot: () => <PageBlogspot />,
-    subdomain: () => <PageSubdomain />,
+    'premium-service': () => <PagePremiumService />,
   },
   features: {
+    'niche-writer': () => <PageNicheWriter />,
+    'blueprint-gallery': () => <PageBlueprintGallery />,
     autopilot: () => <PageAutopilot />,
-    aiwriter: () => <PageAIWriter />,
     visionwriter: () => <PageVisionWriter />,
     bridge: () => <PageBridge />,
   },

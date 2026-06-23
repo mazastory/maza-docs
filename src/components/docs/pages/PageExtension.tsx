@@ -8,11 +8,11 @@ export default function PageExtension() {
           <Puzzle size={11} /> Setup
         </span>
         <h1 id="extension" className="text-4xl font-black italic tracking-tighter text-slate-900 leading-tight mb-4">
-          익스텐션 설치
+          익스텐션 설치 <span className="text-xl text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full not-italic">웹스토어 정식(1.4.0+)</span>
         </h1>
         <p className="text-lg text-slate-600 font-medium leading-relaxed">
           <strong className="text-slate-900">Maza Bridge</strong>는 크롬 브라우저에 설치하는 확장 프로그램입니다.
-          이것 하나로 티스토리·워드프레스·블로그스팟에 AI 글을 자동으로 발행할 수 있습니다.
+          크롬 웹스토어 심사를 통과한 정식 버전으로 클릭 한 번에 안전하게 설치할 수 있습니다.
         </p>
       </div>
 
@@ -37,20 +37,20 @@ export default function PageExtension() {
         {[
           {
             step: '01',
-            title: 'Maza Studio 접속 & 로그인',
-            desc: 'mazastudio.kr 에 접속하여 구글 계정으로 로그인합니다. 마자 스튜디오 계정이 없다면 가입 후 진행하세요.',
+            title: 'Chrome 웹스토어 접속',
+            desc: '크롬 브라우저에서 Chrome 웹스토어의 Maza Bridge 확장 프로그램 페이지로 이동합니다. (또는 대시보드의 설치 링크 클릭)',
             color: 'bg-indigo-100 text-indigo-700',
           },
           {
             step: '02',
-            title: '익스텐션 파일 다운로드',
-            desc: '대시보드 우측 상단 또는 설정 메뉴에서 [Maza Bridge 다운로드] 버튼을 클릭합니다. .zip 파일이 다운로드됩니다.',
+            title: 'Chrome에 추가',
+            desc: '우측 상단의 [Chrome에 추가] 버튼을 클릭하여 익스텐션을 브라우저에 설치합니다.',
             color: 'bg-emerald-100 text-emerald-700',
           },
           {
             step: '03',
-            title: 'Chrome에 수동 설치',
-            desc: 'chrome://extensions/ 주소창에 입력 → 우측 상단 [개발자 모드] 활성화 → [압축해제된 확장 프로그램 로드] 클릭 → 다운받은 폴더 선택.',
+            title: 'Maza Studio 계정 연결',
+            desc: '설치 후 익스텐션 아이콘을 클릭하고, mazastudio.kr 화면이 열리면 구글 계정으로 로그인하여 연결을 완료합니다.',
             color: 'bg-sky-100 text-sky-700',
           },
         ].map((item) => (

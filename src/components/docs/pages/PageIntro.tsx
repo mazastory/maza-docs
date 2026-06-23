@@ -8,16 +8,16 @@ export default function PageIntro() {
           <Sparkles size={11} /> Overview
         </span>
         <h1 id="intro" className="text-4xl font-black italic tracking-tighter text-slate-900 leading-tight mb-4">
-          마자 스튜디오란?
+          마자 스튜디오란? <span className="text-xl text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full not-italic">v1.4.0</span>
         </h1>
         <p className="text-lg text-slate-600 font-medium leading-relaxed">
           <strong className="text-slate-900">Maza Autopilot OS</strong>는 구글 애드센스 승인과 블로그 수익화를 자동화하는 <br className="hidden md:block" />
-          AI 기반 완전 자율주행 콘텐츠 플랫폼입니다.
+          AI 기반 완전 자율주행 콘텐츠 플랫폼입니다. 1.4.0 버전부터는 더욱 강력해진 니치 발굴과 템플릿 제어가 가능해졌습니다.
         </p>
       </div>
 
       {/* Problem vs Solution */}
-      <div className="grid md:grid-cols-2 gap-6 mb-12">
+      <div className="not-prose grid md:grid-cols-2 gap-6 mb-12">
         <div className="p-7 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
           <h4 className="text-base font-black text-slate-800 uppercase tracking-tight flex items-center gap-2">
             <span className="text-2xl">😩</span> The Problem
@@ -48,9 +48,9 @@ export default function PageIntro() {
 
       <div className="flex flex-col md:flex-row items-center gap-0 mb-12">
         {[
-          { icon: Target, label: 'Niche Hunter', desc: '수익 키워드 발굴', color: 'bg-emerald-100 text-emerald-700' },
-          { icon: Cpu, label: 'AI Writer', desc: 'E-E-A-T 글 자동 집필', color: 'bg-amber-100 text-amber-700' },
-          { icon: Globe, label: 'Post Mapper', desc: 'W-05 안전 배차', color: 'bg-sky-100 text-sky-700' },
+          { icon: Target, label: 'Niche Writer', desc: '황금 수익 키워드 발굴', color: 'bg-emerald-100 text-emerald-700' },
+          { icon: Cpu, label: 'Blueprint', desc: '전략 템플릿 기반 작성', color: 'bg-amber-100 text-amber-700' },
+          { icon: Globe, label: 'Autopilot', desc: '스피드/안전 모드 자동 발행', color: 'bg-sky-100 text-sky-700' },
         ].map((step, i) => (
           <div key={i} className="flex items-center">
             <div className="flex flex-col items-center text-center p-5 bg-white border border-slate-100 rounded-2xl w-36 shadow-sm">
