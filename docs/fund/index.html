@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>MAZA Wadiz Pitch Deck</title>
+    <style>
+        /* A4 가로 인쇄 규격 설정 */
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .slide {
+            width: 297mm;
+            height: 210mm;
+            page-break-after: always;
+            position: relative;
+            overflow: hidden;
+            /* 세련된 딥 네이비 슬레이트 그라데이션 배경 */
+            background: radial-gradient(circle at 80% 20%, #1e1b4b 0%, #0b0f19 60%);
+            padding: 25mm 20mm;
+        }
+        .slide-header {
+            margin-bottom: 12mm;
+        }
+        .slide-tag {
+            display: inline-block;
+            background-color: #1e293b;
+            color: #a3e635;
+            font-size: 11pt;
+            font-weight: bold;
+            padding: 4mm 8mm;
+            border-radius: 6px;
+            margin-bottom: 6mm;
+            border-left: 4px solid #a3e635;
+        }
+        .slide-title {
+            font-size: 32pt;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        .slide-title span {
+            color: #a3e635;
+        }
+        .content-area {
+            height: 120mm;
+            position: relative;
+        }
+        
+        /* 1페이지 표지 레이아웃 */
+        .cover-content {
+            text-align: center;
+            padding-top: 35mm;
+        }
+        .cover-title {
+            font-size: 64pt;
+            font-weight: bold;
+            letter-spacing: -1px;
+            margin-bottom: 8mm;
+            color: #ffffff;
+        }
+        .cover-title span {
+            color: #a3e635;
+        }
+        .cover-subtitle {
+            font-size: 22pt;
+            color: #cbd5e1;
+            margin-bottom: 6mm;
+            font-weight: 500;
+        }
+        .cover-desc {
+            font-size: 14pt;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        /* 2단 분할 테이블 레이아웃 */
+        .layout-table {
+            display: table;
+            width: 100%;
+            height: 100%;
+            table-layout: fixed;
+        }
+        .layout-cell {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .w-50 { width: 50%; }
+
+        .text-p {
+            font-size: 15pt;
+            line-height: 1.7;
+            color: #cbd5e1;
+            margin-bottom: 6mm;
+        }
+        .list-item {
+            font-size: 15pt;
+            line-height: 1.8;
+            color: #cbd5e1;
+            margin-bottom: 5mm;
+            position: relative;
+            padding-left: 8mm;
+        }
+        .list-item::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 16pt;
+        }
+        .list-item.check::before {
+            color: #a3e635;
+        }
+
+        /* 포인트 강조 박스 */
+        .callout-box {
+            background-color: rgba(30, 41, 59, 0.7);
+            border-left: 5px solid #a3e635;
+            padding: 6mm 8mm;
+            border-radius: 0 8px 8px 0;
+            margin-top: 6mm;
+        }
+        .callout-title {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 2mm;
+        }
+        .callout-desc {
+            font-size: 13pt;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        /* 3분할 카드 컴포넌트 */
+        .card-container {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-spacing: 6mm 0;
+        }
+        .card {
+            display: table-cell;
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            padding: 8mm 6mm;
+            vertical-align: top;
+            text-align: center;
+        }
+        .card-icon {
+            font-size: 28pt;
+            margin-bottom: 5mm;
+        }
+        .card-title {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 4mm;
+        }
+        .card-desc {
+            font-size: 12pt;
+            color: #94a3b8;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        /* 이미지/기본 시각화 박스 */
+        .mockup-placeholder {
+            width: 100%;
+            height: 100mm;
+            background-color: #111827;
+            border: 2px dashed #4b5563;
+            border-radius: 12px;
+            position: relative;
+        }
+        .mockup-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 13pt;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        .mockup-accent {
+            color: #a3e635;
+            font-weight: bold;
+            font-size: 16pt;
+            margin-bottom: 2mm;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 💡 수정 팁: 아래 텍스트 문구들을 원하시는 대로 수정하시면 됩니다. -->
+
+    <!-- Slide 1: 메인 표지 -->
+    <div class="slide">
+        <div class="cover-content">
+            <div class="cover-title"><span>MAZA</span></div>
+            <div class="cover-subtitle">시간과 체력의 한계를 넘어선 'ZERO-IT' 무인 수익 파이프라인</div>
+            <div class="cover-desc">본업이 바쁜 N잡러, 육체 노동이 버거운 분들을 위한 최적의 디지털 에셋 솔루션</div>
+        </div>
+    </div>
+
+    <!-- Slide 2: 시장의 문제 제기 -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-title">왜 부수익 창출의 <span>진입 장벽</span>은 이토록 높을까?</div>
+        </div>
+        <div class="content-area">
+            <div class="layout-table">
+                <div class="layout-cell w-50" style="padding-right: 10mm;">
+                    <p class="text-p" style="font-weight: bold; color: #ffffff;">기존 AI 부업 및 자동화 툴의 치명적인 한계점</p>
+                    <div class="list-item">어려운 IT 전문 용어, 도메인 연결, 복잡한 초기 연동 장벽</div>
+                    <div class="list-item">매일 컴퓨터 앞에 앉아 글쓰기를 지속해야 하는 높은 피로도</div>
+                    <div class="list-item">수익형 블로그의 통곡의 벽인 '구글 애드센스 승인 신청'의 까다로운 조건</div>
+                    <div class="callout-box" style="border-left-color: #ef4444;">
+                        <div class="callout-title" style="color: #fca5a5;">가장 수익이 간절한 분들의 좌절</div>
+                        <div class="callout-desc">본업에 치이는 N잡러, 체력적 한계나 건강 문제로 도전을 망설이는 분들에게 '매일 포스팅'은 가혹한 현실입니다.</div>
+                    </div>
+                </div>
+                <div class="layout-cell w-50">
+                    <div class="mockup-placeholder">
+                        <div class="mockup-text">
+                            <div class="mockup-accent" style="color: #ef4444;">기존 시장의 높은 진입장벽</div>
+                            수많은 기술 용어와 설정 단계에서<br>초보 서포터의 90% 이상이 중도 포기합니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: 솔루션 제시 (메인 화면 캡처 연계) -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-title">복잡함을 완벽히 지운 단 하나의 생태계, <span>MAZA STUDIO</span></div>
+        </div>
+        <div class="content-area">
+            <div class="layout-table">
+                <div class="layout-cell w-50" style="padding-right: 10mm;">
+                    <div class="slide-tag">Ultimate Solution</div>
+                    <p class="text-p" style="font-size: 18pt; font-weight: bold; color: #ffffff;">"배우지 마세요. MAZA가 당신의 24시간을 대체합니다."</p>
+                    <p class="text-p">개인 도메인 연결부터 다국어 블로그 세팅, 키워드 발굴, 그리고 자동 발행까지. 이미 완벽하게 설계된 무인(無人) 오토파일럿 대시보드가 당신만의 수익 파이프라인 제국을 건설합니다.</p>
+                    <div class="callout-box">
+                        <div class="callout-title">핵심 차별성: 구글 애드센스 승인 무인화</div>
+                        <div class="callout-desc">까다로운 승인 조건에 맞춘 백엔드 자동 빌드 시스템으로 통곡의 벽을 허물고, 즉각적인 달러 수익 창출의 길을 엽니다.</div>
+                    </div>
+                </div>
+                <div class="layout-cell w-50">
+                    <div class="mockup-placeholder" style="border-color: #a3e635;">
+                        <div class="mockup-text">
+                            <div class="mockup-accent">※ MAZA STUDIO 서비스 메인 화면 캡처 자리 ※</div>
+                            [ZERO IT] · [ZERO WORK] · [ZERO JUMP]<br>
+                            직관적이고 매력적인 UI가 완전히 준비되어 있음을 증명합니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: 글로벌 다국어 동시 발행 가치 -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-title">수익 파이의 한계를 깨다: <span>글로벌 다국어 동시 발행</span></div>
+        </div>
+        <div class="content-area">
+            <div class="layout-table">
+                <div class="layout-cell w-50" style="padding-right: 10mm;">
+                    <div class="slide-tag">Global Hyper-Scale</div>
+                    <p class="text-p" style="font-size: 16pt; font-weight: bold; color: #ffffff;">단순 번역기가 아닌 동시간 다국어 최적화 발행</p>
+                    <p class="text-p">MAZA 시스템을 통하는 순간 콘텐츠의 무대는 한국에 국한되지 않습니다. 각 국가의 검색엔진 로직과 언어 환경에 맞춘 글이 실시간 동시 발행됩니다.</p>
+                    <div class="callout-box">
+                        <div class="callout-title">글로벌 트래픽 기반 수익 극대화</div>
+                        <div class="callout-desc">달러(USD) 기반의 고단가 광고 수익 파이프라인을 전 세계 시장을 타겟으로 구축하여 국내 한계를 뛰어넘습니다.</div>
+                    </div>
+                </div>
+                <div class="layout-cell w-50">
+                    <div class="mockup-placeholder">
+                        <div class="mockup-text">
+                            <div class="mockup-accent">Global Market Penetration</div>
+                            클릭 3번으로 전 세계 구글 트래픽 장악<br>
+                            수익 단가와 도달 범위의 압도적 스케일업 업그레이드
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Maza Workspace 생태계 (Trinity) -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-title">압도적 수익을 완성하는 <span>MAZA 삼위일체 생태계</span></div>
+        </div>
+        <div class="content-area">
+            <div class="card-container" style="margin-top: 10mm;">
+                <div class="card">
+                    <div class="card-icon" style="color: #a855f7;">🏢</div>
+                    <div class="card-title">MAZA Studio</div>
+                    <div class="card-desc"><strong style="color: #e2e8f0;">통합 컨트롤 타워</strong><br>수많은 티스토리, 워드프레스, 구글 블로거 자산을 단 하나의 화면에서 완벽하게 지휘하는 전례 없는 오토파일럿 지휘 통제실.</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="color: #3b82f6;">🌐</div>
+                    <div class="card-title">MAZA Zero-IT Blog</div>
+                    <div class="card-desc"><strong style="color: #e2e8f0;">수익 최적화 최전선</strong><br>구글 SEO 무결점, 0.1초대 초고속 SPA 렌더링, 글로벌 자동 다국어 번역을 기본 탑재한 궁극의 독립형 프리미엄 블로그.</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="color: #fbbf24;">🎓</div>
+                    <div class="card-title">MAZA Academy</div>
+                    <div class="card-desc"><strong style="color: #e2e8f0;">성공을 위한 지식 허브</strong><br>기초 세팅부터 롱테일 키워드 비법, 애드센스 100% 활용 팁, 성공 사례까지. 실패를 허용하지 않는 검증된 마자만의 V.I.P 교육 인프라.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: 3대 핵심 경쟁력 -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-title">누구도 모방할 수 없는 <span>3대 절대 경쟁력</span></div>
+        </div>
+        <div class="content-area">
+            <div class="card-container" style="margin-top: 10mm;">
+                <div class="card">
+                    <div class="card-icon" style="color: #60a5fa;">💡</div>
+                    <div class="card-title">ZERO-IT</div>
+                    <div class="card-desc">코딩, 서버 유지보수, SEO 최적화 학습은 이제 과거의 유물입니다. 오직 '콘텐츠 방향'에만 집중하는 기술적 완벽 해방.</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="color: #f472b6;">⚡</div>
+                    <div class="card-title">ZERO-WORK</div>
+                    <div class="card-desc">블루프린트 AI가 수익성 높은 황금 니치를 찾고, 24시간 연중무휴로 다국어 포스팅을 자동 발행하는 진정한 불로소득의 실현.</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="color: #34d399;">🚪</div>
+                    <div class="card-title">EXIT STRATEGY</div>
+                    <div class="card-desc">종속 없는 투명한 비즈니스. 3개월 후 원할 때 언제든 '다국어 언어팩이 탑재된 프론트엔드 코드 + 글 DB + 개인용 어드민(정가 50만 원 상당)'을 통째로 무상 이관받아 완벽히 독립하는 졸업 시스템.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: 와디즈 연계 소셜 임팩트 -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-title">와디즈 펀딩 가치와 <span>라이프스타일 혁신</span>의 결합</div>
+        </div>
+        <div class="content-area">
+            <div class="layout-table">
+                <div class="layout-cell w-50" style="padding-right: 10mm;">
+                    <p class="text-p" style="font-weight: bold; color: #ffffff;">시간과 장소, 체력의 한계를 극복하는 가치 창출 프로젝트</p>
+                    <div class="list-item check"><strong>새로운 파이프라인 구축:</strong> 육체 노동이 버겁거나 투잡이 필수적인 현대인에게 안정적 대안 제시</div>
+                    <div class="list-item check"><strong>건강과 여유의 회복:</strong> 매일 글을 써야 한다는 압박감에서 벗어나 시스템이 일하게 하는 경험</div>
+                    <div class="list-item check"><strong>크라우드 펀딩 신뢰 자산:</strong> 일회성 파일 전송이 아닌, 지속 가능한 '나만의 반려 AI 에이전트' 지원</div>
+                </div>
+                <div class="layout-cell w-50">
+                    <div class="callout-box" style="margin-top: 0; padding: 10px 12px;">
+                        <div class="callout-title" style="color: #a3e635; font-size: 18pt;">[7월 와디즈 메인 킬러 타이틀 확신]</div>
+                        <div class="callout-desc" style="font-size: 14pt; line-height: 1.6; color: #ffffff; margin-top: 4mm;">
+                            "본 프로젝트는 뻔한 돈 벌기 툴이 아닙니다. 체력적, 시간적 한계에 부딪힌 수많은 분들에게 현실적인 대안을 제시하고, 압도적인 시스템 완성도로 폭발적인 펀딩 전환을 일으킬 핵심 아이템입니다."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
