@@ -155,16 +155,16 @@ export const DOCS_TREE: DocSection[] = [
   },
   {
     id: 'adsense',
-    title: 'AdSense 챌린지',
-    icon: Trophy,
+    title: 'Autopilot OS (오토파일럿)',
+    icon: Zap,
     color: 'amber',
     pages: [
       {
         id: 'challenge-flow',
         sectionId: 'adsense',
         pageId: 'challenge-flow',
-        title: '챌린지 성공 순서도',
-        description: '단계별 애드센스 승인 로드맵',
+        title: '오토파일럿 성공 순서도',
+        description: '단계별 오토파일럿 설정 및 가동 로드맵',
         icon: Trophy,
       },
       {

@@ -28,7 +28,7 @@ export default function TermsOfService() {
             <ul className="space-y-3">
               <li className="flex gap-3">
                 <span className="font-black text-indigo-600 shrink-0">•</span>
-                <span><strong>"서비스"</strong>란 회사가 제공하는 AI 글쓰기 보조, 애드센스 챌린지 코칭, 블로그 자동화 도구(웹사이트 및 익스텐션 포함)를 의미합니다.</span>
+                <span><strong>"서비스"</strong>란 회사가 제공하는 AI 글쓰기 보조, Maza Autopilot 자동화 코칭, 블로그 자동화 도구(웹사이트 및 익스텐션 포함)를 의미합니다.</span>
               </li>
               <li className="flex gap-3">
                 <span className="font-black text-indigo-600 shrink-0">•</span>

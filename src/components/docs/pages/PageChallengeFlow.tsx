@@ -1,14 +1,14 @@
-import { Trophy, Target, CheckCircle, Clock, ArrowRight, AlertTriangle } from 'lucide-react';
+import { Trophy, Target, CheckCircle, Clock, ArrowRight, AlertTriangle, Zap } from 'lucide-react';
 
 export default function PageChallengeFlow() {
   return (
     <article className="prose-doc">
       <div className="mb-10">
         <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-black uppercase tracking-widest mb-4">
-          <Trophy size={11} /> AdSense Challenge
+          <Zap size={11} /> Autopilot OS
         </span>
         <h1 id="challenge-flow" className="text-4xl font-black italic tracking-tighter text-slate-900 leading-tight mb-4">
-          챌린지 성공 순서도
+          오토파일럿 가동 및 성공 순서도
         </h1>
         <p className="text-lg text-slate-600 font-medium leading-relaxed">
           구글 애드센스 승인은 순서를 지키는 것이 전부입니다.

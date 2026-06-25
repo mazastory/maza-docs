@@ -10,7 +10,7 @@ export const CORE_PILLARS = [
   { path: "/knowledge?category=wordpress", label: "워드프레스 세팅", icon: Globe },
   { path: "/knowledge?category=blogspot", label: "블로그스팟 세팅", icon: Server },
   { path: "/knowledge?category=subdomain", label: "서브도메인 개설", icon: Box },
-  { path: "/knowledge?category=adsense_challenge", label: "AdSense 챌린지", icon: Trophy },
+  { path: "/knowledge?category=adsense_challenge", label: "오토파일럿 OS", icon: Trophy },
   { path: "/knowledge?category=maza_bridge", label: "MAZA Bridge 100% 활용", icon: Sparkles },
   { path: "/guide", label: "노하우", icon: BookOpen },
   { path: "/faq", label: "FAQ", icon: HelpCircle },

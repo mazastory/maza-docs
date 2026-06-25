@@ -68,7 +68,7 @@ export default function PageOnboarding() {
         {[
           { icon: UserCircle, title: '내 사이트', desc: '등록한 블로그 목록과 현황을 한눈에 확인합니다.' },
           { icon: Settings, title: '오토파일럿', desc: 'AI 글 생성 & 자동 발행을 실시간으로 모니터링합니다.' },
-          { icon: CheckCircle, title: '애드센스 챌린지', desc: '승인 진척도와 다음 액션 아이템을 확인합니다.' },
+          { icon: CheckCircle, title: '오토파일럿 OS', desc: '오토파일럿 가동 상태와 진척도를 확인합니다.' },
         ].map((card, i) => (
           <div key={i} className="p-5 bg-white border border-slate-100 rounded-2xl shadow-sm text-center">
             <card.icon size={22} className="text-indigo-500 mx-auto mb-3" />
