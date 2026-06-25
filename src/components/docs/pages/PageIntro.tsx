@@ -31,7 +31,7 @@ export default function PageIntro() {
           <h4 className="text-base font-black text-white uppercase tracking-tight flex items-center gap-2 m-0">
             <span className="text-2xl">🚀</span> THE SOLUTION
           </h4>
-          <p className="text-sm text-white font-medium leading-relaxed opacity-90 m-0">
+          <p className="text-sm !text-white font-medium leading-relaxed opacity-90 m-0">
             마자가 수익 키워드를 찾아주고, 구글이 좋아하는 E-E-A-T 구조로 글을 쓰며,
             자동으로 발행합니다.
           </p>
@@ -73,7 +73,7 @@ export default function PageIntro() {
         {[
           { n: '원 엔진 파이프라인', d: '주제 발굴 → 집필 → 배차를 하나의 유기적 흐름으로 통합' },
           { n: '키워드 금고 우선', d: '외부 API 호출 최소화, 사전 검증된 고수익 키워드 활용' },
-          { n: '안전 제일 (W-05)', d: '3시간 발행 간격 강제로 계정 보호 최우선' },
+          { n: '안전 지향 커스텀', d: '자유로운 발행 간격 설정 (3시간 이상 권장)' },
           { n: '주제 권위 (Topical Authority)', d: '시리즈 형태 묶음 발행으로 검색 엔진 신뢰 확보' },
           { n: '제로-점프 관제', d: 'Autopilot Stage 하나에서 모든 자동화 현황 모니터링' },
           { n: '경험 우선 (E-E-A-T)', d: 'AI 이미지보다 유저의 실제 사진으로 독창성 극대화' },
@@ -88,16 +88,17 @@ export default function PageIntro() {
         ))}
       </div>
 
-      {/* W-05 Safety */}
+      {/* Custom Schedule */}
       <h2 id="w05-brief" className="text-2xl font-black tracking-tight text-slate-900 mb-4 pb-3 border-b border-slate-100">
-        W-05 안전 프로토콜 요약
+        발행 간격 커스텀 설정
       </h2>
-      <div className="p-6 bg-rose-50 border border-rose-100 rounded-2xl flex items-start gap-4 mb-8">
-        <Shield size={24} className="text-rose-500 shrink-0 mt-0.5" />
+      <div className="p-6 bg-indigo-50 border border-indigo-100 rounded-2xl flex items-start gap-4 mb-8">
+        <Shield className="text-indigo-500 shrink-0 mt-0.5" size={24} />
         <div>
-          <p className="text-sm font-black text-rose-700 mb-1">모든 자동 발행은 최소 3시간(10,800초) 간격 강제</p>
-          <p className="text-xs text-rose-600 font-medium leading-relaxed">
-            단기간 대량 발행은 구글 어뷰징 필터의 지름길입니다. 마자는 이 간격을 절대 우회할 수 없도록 시스템 수준에서 잠금합니다.
+          <p className="text-sm font-black text-indigo-700 mb-1">원하는 대로 자유롭게 조절하는 발행 스케줄</p>
+          <p className="text-xs text-indigo-600 font-medium leading-relaxed">
+            이제 즉시 발행(0분)부터 하루 1번 발행까지 자유롭게 간격을 설정할 수 있습니다.<br/>
+            단, 단기간 대량 발행은 구글 어뷰징 필터에 걸릴 위험이 높으므로, <strong>안전한 수익화를 위해 최소 3시간 이상의 간격을 권장</strong>합니다.
           </p>
         </div>
       </div>

@@ -8,25 +8,25 @@ export default function PageW05() {
           <Shield size={11} /> Safety Protocol
         </span>
         <h1 id="w05" className="text-4xl font-black italic tracking-tighter text-slate-900 leading-tight mb-4">
-          W-05 안전 프로토콜
+          발행 스케줄링 (구 W-05 프로토콜)
         </h1>
         <p className="text-lg text-slate-600 font-medium leading-relaxed">
-          <strong className="text-slate-900">W-05</strong>는 마자의 핵심 안전 규칙입니다.
-          현재 <strong className="text-rose-600">티스토리(Tistory)</strong> 플랫폼에만 적용되며, 티스토리 자동 발행 시 최소 간격을 강제합니다. (워드프레스 등 타 플랫폼은 일일 한도 내에서 즉시 발행)
+          과거 강제되었던 <strong className="text-slate-900">W-05 (최소 3시간 간격 제한)</strong> 정책이 해제되었습니다.
+          이제 <strong className="text-indigo-600">사용자가 직접 발행 간격을 자유롭게 설정</strong>할 수 있으며, 즉시 발행부터 일 단위 예약까지 완벽하게 제어할 수 있습니다.
         </p>
       </div>
 
-      <div className="p-8 bg-rose-600 text-white rounded-3xl mb-10 relative overflow-hidden">
+      <div className="p-8 bg-indigo-600 text-white rounded-3xl mb-10 relative overflow-hidden">
         <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-white/5 rounded-full" />
-        <Shield size={32} className="mb-4" />
-        <p className="text-2xl font-black mb-2">최소 3시간 간격</p>
-        <p className="text-rose-100 text-sm font-medium leading-relaxed">
-          W-05는 Waiting 05 (5단계 대기 프로토콜)의 약자입니다. 구글의 어뷰징 감지 알고리즘을 우회하는 가장 안전한 발행 간격으로, 수백 개 블로그의 실전 데이터를 기반으로 설정되었습니다.
+        <Clock size={32} className="mb-4" />
+        <p className="text-2xl font-black mb-2">자유로운 커스텀 간격</p>
+        <p className="text-indigo-100 text-sm font-medium leading-relaxed">
+          10분, 30분, 1시간, 4시간 등 원하는 스케줄로 플랫폼 제약 없이 예약 발행을 구성하세요. 단, 구글 어뷰징 감지 알고리즘을 피하기 위해 여전히 최소 3시간 간격을 권장합니다.
         </p>
       </div>
 
       <h2 id="why-3hours" className="text-2xl font-black tracking-tight text-slate-900 mb-4 pb-3 border-b border-slate-100">
-        왜 3시간인가?
+        여전히 3시간 이상을 권장하는 이유
       </h2>
       <div className="space-y-4 mb-10">
         {[
@@ -50,15 +50,15 @@ export default function PageW05() {
       <div className="p-5 bg-slate-900 text-slate-300 rounded-2xl font-mono text-xs mb-10 space-y-1">
         <p className="text-slate-400"># 발행 예약 시각 계산 로직</p>
         <p>마지막 발행 시각 = <span className="text-emerald-400">lastPublishAt</span></p>
-        <p>다음 발행 시각 = <span className="text-emerald-400">lastPublishAt</span> + <span className="text-amber-400">3시간</span></p>
+        <p>다음 발행 시각 = <span className="text-emerald-400">lastPublishAt</span> + <span className="text-amber-400">사용자 설정 간격 (예: 4시간)</span></p>
         <p className="text-slate-400 mt-2"># 플랫폼별 독립 계산</p>
         <p>티스토리 A의 예약 ≠ 워드프레스 B의 예약에 영향 없음</p>
         <p className="text-slate-400 mt-2"># 일일 최대 제한</p>
-        <p>하루 최대 <span className="text-rose-400">5개</span> 발행. 초과 시 다음 날로 자동 분산</p>
+        <p>기본적으로 하루 최대 발행 제한이 완화되었으나, 안전을 위해 플랫폼별 권장량을 따릅니다.</p>
       </div>
 
       <h2 id="bypass-risk" className="text-2xl font-black tracking-tight text-slate-900 mb-4 pb-3 border-b border-slate-100">
-        W-05를 무시하면?
+        단기간 대량 발행 시 위험성
       </h2>
       <div className="space-y-3 mb-8">
         {[
