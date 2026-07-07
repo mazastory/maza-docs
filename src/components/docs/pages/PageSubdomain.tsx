@@ -5,7 +5,7 @@ export default function PageSubdomain() {
     <article className="prose-doc">
       <div className="mb-10">
         <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-black uppercase tracking-widest mb-4">
-          <Box size={11} /> Coming Soon
+          <Box size={11} /> 업데이트 예정
         </span>
         <h1 id="subdomain" className="text-4xl font-black italic tracking-tighter text-slate-900 leading-tight mb-4">
           서브도메인 개설 (Maza Zero)
