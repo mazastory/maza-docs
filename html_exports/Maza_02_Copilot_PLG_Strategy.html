@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maza Studio 2.0 - Copilot & PLG 성장 전략</title>
+  <style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  
+  :root {
+    --primary-color: #0f172a;
+    --secondary-color: #334155;
+    --accent-color: #3b82f6;
+    --border-color: #e2e8f0;
+    --bg-color: #f8fafc;
+  }
+
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    line-height: 1.75;
+    color: var(--primary-color);
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 20px 28px;
+    background-color: #fff;
+  }
+
+  @media print {
+    @page { size: A4; margin: 18mm 15mm; }
+    body { max-width: none; padding: 0; }
+    .no-print { display: none !important; }
+    h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
+    ul, ol, p, blockquote, table { page-break-inside: avoid; break-inside: avoid; }
+  }
+
+  h1 {
+    font-size: 26pt;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    border-bottom: 4px solid var(--accent-color);
+    padding-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: 17pt;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-top: 36px;
+    margin-bottom: 14px;
+    border-bottom: 1.5px solid var(--border-color);
+    padding-bottom: 6px;
+  }
+
+  h3 {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+
+  h4 {
+    font-size: 11.5pt;
+    font-weight: 700;
+    color: #475569;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 10.5pt;
+    margin-bottom: 14px;
+    color: #334155;
+    text-align: justify;
+  }
+
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 22px;
+  }
+
+  li {
+    font-size: 10.5pt;
+    margin-bottom: 7px;
+    color: #334155;
+  }
+
+  blockquote {
+    background-color: #f1f5f9;
+    border-left: 5px solid var(--accent-color);
+    margin: 20px 0;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  blockquote p {
+    margin-bottom: 4px;
+    font-size: 10pt;
+    font-weight: 500;
+    color: #1e293b;
+    text-align: left;
+  }
+
+  strong { font-weight: 800; color: #0f172a; }
+
+  hr {
+    border: 0;
+    border-top: 2px dashed var(--border-color);
+    margin: 32px 0;
+  }
+
+  .print-btn-container {
+    text-align: center;
+    margin: 40px 0 24px;
+  }
+
+  .print-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(59,130,246,0.3);
+    transition: background-color 0.2s;
+    font-family: inherit;
+  }
+
+  .print-btn:hover { background-color: #2563eb; }
+  
+  .print-tip {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #94a3b8;
+  }
+</style>
+</head>
+<body>
+  <div class="print-btn-container no-print">
+    <button class="print-btn" onclick="window.print()">🖨️ A4 인쇄 / PDF 저장</button>
+    <p class="print-tip">인쇄 설정에서 '배경 그래픽(Background graphics)' 옵션을 체크하시면 더 예쁘게 출력됩니다.</p>
+  </div>
+
+  <h1>🚀 마자 스튜디오 2.0 기획안: 3대 자율 AI 에이전트 &amp; PLG 성장 전략</h1>
+<p>마자 스튜디오를 단순한 &#39;블로그 자동화 툴&#39;에서 **&#39;3명의 자율 에이전트가 통제하는 완벽한 AI 생태계&#39;**로 진화시키기 위한 비즈니스 파이프라인(PLG) 기획입니다. (트렌드 헌터, SEO 주치의, 대화형 Copilot)</p>
+<hr>
+<h2>🎯 1단계: 완벽한 미끼 (The Ultimate Hook)</h2>
+<p><strong>&quot;무료 가입자에게 플랫폼의 핵심 가치를 가장 빠르고 강력하게 체험하게 하라&quot;</strong></p>
+<ul>
+<li><strong>대시보드 전면 BYOK (Bring Your Own Key) 배치:</strong><ul>
+<li>신규 유저가 대시보드에 진입하자마자 가장 눈에 띄는 곳에 <code>[내 API 키 연동하기]</code> 창을 배치합니다.</li>
+<li><strong>메시지:</strong> <em>&quot;당신의 API 키를 연결하고 평생 무료로 나만의 AI 비서(Copilot)를 고용하세요.&quot;</em></li>
+<li><strong>쿼터(Quota) 방어 &amp; 비용 최적화:</strong> AI 텍스트 생성 직전에 <strong>무료 위키백과 API</strong>를 먼저 호출해 프롬프트에 백그라운드 지식을 채워주는 기술(Pre-Fetch Injection)이 적용되어 있습니다. 유저가 BYOK 환경에서 가장 많이 겪는 &#39;무료 API 할당량 초과(429 Error)&#39;를 극적으로 지연시키고 제미나이 토큰을 아껴주어, 무료 유저의 만족도를 극대화합니다.</li>
+<li><strong>효과:</strong> 유저는 플랫폼이 마진을 남기지 않는 &#39;투명한 툴&#39;임을 인지하고 신뢰하게 되며, 허들 없이 즉시 자신의 키를 연동합니다 (강력한 락인 효과).</li>
+</ul>
+</li>
+</ul>
+<h2>💬 2단계: &#39;아하(Aha!)&#39; 모먼트 (Maza Copilot)</h2>
+<p><strong>&quot;복잡한 세팅 대신, 대화형 AI 비서에게 지시만 내리게 하라&quot;</strong></p>
+<ul>
+<li><strong>대화형 자율주행 모드 (투트랙 UI):</strong><ul>
+<li>파워 유저를 위한 <strong>클래식 모드</strong>(기존 블루프린트 폼)는 유지하되, 초보자를 위한 <strong>대화형 Copilot 페이지</strong>(또는 플로팅 챗봇)를 신설합니다.</li>
+<li><strong>시나리오 예시:</strong> <blockquote>
+<p>🙋‍♂️ <strong>유저:</strong> &quot;다이어트 주제로 한 달 치 글 세팅해 줘.&quot;
+🤖 <strong>Copilot:</strong> &quot;다이어트 블로그 개설 완료! BYOK 요금제이시니 API 비용 걱정 없이 50개 롱테일 키워드를 기획하여 하루 2개씩 캘린더에 예약했습니다.&quot;</p>
+</blockquote>
+</li>
+<li><strong>효과:</strong> 유저는 클릭 몇 번, 말 몇 마디로 블로그 공장장이 생기는 엄청난 충격(Aha! Moment)을 경험하게 됩니다. 우리 플랫폼은 API 호출 비용(서버비)을 1원도 쓰지 않습니다.</li>
+</ul>
+</li>
+</ul>
+<h2>💸 3단계: 자연스러운 업셀링 (Product-Led Growth)</h2>
+<p><strong>&quot;가치를 먼저 주고, 확장할 때 스스로 지갑을 열게 하라&quot;</strong></p>
+<ul>
+<li><strong>욕망을 자극하는 유료화 장벽 (Paywall):</strong><ul>
+<li>Copilot의 마법에 중독된 유저는 필연적으로 <strong>&quot;블로그를 5개, 10개로 늘리고 싶다&quot;</strong>, **&quot;내 기존 티스토리나 워드프레스에도 이 비서를 붙이고 싶다&quot;**는 욕망을 갖게 됩니다.</li>
+<li>바로 이 지점(다중 사이트 확장, 외부 플랫폼 연동)에 유료 요금제(Pro, Agency 등) 결제를 유도합니다. </li>
+<li>이미 플랫폼의 압도적 성능을 체험했기 때문에 전환율이 기하급수적으로 폭발합니다.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>🏆 핵심 무기: 왜 &#39;마자 블로그&#39; 인가? (14가지 절대 규칙)</h2>
+<p>이 강력한 파이프라인을 뒷받침하는, 타 플랫폼(티스토리/WP) 유저들을 흡수할 마자 블로그만의 14가지 혜택입니다. (대시보드 네온 배너 연동)</p>
+<blockquote>
+<p>[!TIP]
+<strong>💰 제약 없는 무한 수익 창출</strong></p>
+<ol>
+<li>쿠팡 파트너스 / 브랜드 커넥트 등 <strong>외부 제휴 링크 무한 허용</strong> (저품질 밴 위험 Zero)</li>
+<li>워드프레스를 압살하는 <strong>유지 비용 절감</strong> (무료 호스팅, 서버비 Zero)</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>📅 시공간을 초월하는 포스팅 컨트롤</strong>
+3. <strong>타임머신 캘린더</strong> (과거/미래 무한 조작으로 즉시 애드센스 승인 조건 달성)
+4. <strong>휴먼-라이크 지연 시스템 (Jitter)</strong> (기계적 발행이 아닌 인간적인 랜덤 시간 분산)</p>
+</blockquote>
+<blockquote>
+<p>[!NOTE]
+<strong>🛡️ 무적의 생존력 &amp; 퀄리티 보장</strong>
+5. <strong>원클릭 애드센스 자동 복구</strong> (버튼 하나로 AI가 글자 수/이미지 부족분을 즉시 채움)
+6. 밴(Ban) 걱정 없는 절대적 자유도 (내 소유의 독립 자산)
+7. 위험 키워드 회피 자동 쉴드 (정책 위반 키워드 사전 차단 및 우회)</p>
+</blockquote>
+<blockquote>
+<p>[!TIP]
+<strong>⚡ 미친 생산성 &amp; 초고속 인프라</strong>
+8. 크롬 확장앱이 필요 없는 <strong>100% 백그라운드 오토파일럿</strong>
+9. 블루프린트 대량 복제 (주제 하나로 100개 롱테일 키워드 자동 세팅)
+10. 구글이 환장하는 코어 웹 바이탈 (<strong>Astro SSR의 0.1초 렌더링</strong> &amp; SEO 가산점)
+11. 플러그인 없이 완성된 하이엔드 프리미엄 디자인 (다크모드, 글래스모피즘)</p>
+</blockquote>
+<blockquote>
+<p>[!NOTE]
+<strong>🌍 확장성 &amp; 데이터 주권</strong>
+12. 무한 서브도메인 &amp; 다국어(영어 등)를 통한 글로벌 달러 수익화
+13. 개발자 없는 원터치 인프라 (GA4, 서치콘솔, 애드센스 태그 자동 이식)
+14. 100% 데이터 주권 보장 (마크다운 기반 DB 저장으로 언제든 이전 가능)</p>
+</blockquote>
+<hr>
+<h2>🛠️ Action Items (Next Steps)</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 대시보드 튜토리얼 영역 옆에 <strong>[BYOK API 키 쾌속 연동 카드]</strong> UI 컴포넌트 추가</li>
+<li><input disabled="" type="checkbox"> <strong>Maza Copilot (대화형 에이전트)</strong> 별도 페이지 신설 기획 구체화</li>
+<li><input disabled="" type="checkbox"> 사이트 개설 시 &quot;클래식 모드&quot; vs &quot;코파일럿 모드&quot; 진입 선택 Flow 디자인</li>
+</ul>
+
+
+  <div class="print-btn-container no-print">
+    <button class="print-btn" onclick="window.print()">🖨️ A4 인쇄 / PDF 저장</button>
+  </div>
+</body>
+</html>
