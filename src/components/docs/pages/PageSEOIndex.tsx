@@ -1,4 +1,4 @@
-import { Search, Rocket, Globe, AlertCircle, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Search, Link, ShieldCheck, Globe, Rocket, Sparkles, AlertCircle, CheckCircle2 } from "lucide-react";
 
 export default function PageSEOIndex() {
   return (

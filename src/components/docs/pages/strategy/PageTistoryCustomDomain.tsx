@@ -1,4 +1,4 @@
-import React from 'react';
+import { Globe, AlertCircle, Zap } from "lucide-react";
 import { Link2, AlertOctagon, Search, SearchCode, Settings, FileCode2, ArrowRight } from 'lucide-react';
 
 export default function PageTistoryCustomDomain() {
