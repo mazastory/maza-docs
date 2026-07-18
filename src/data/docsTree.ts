@@ -55,6 +55,17 @@ export const DOCS_TREE: DocSection[] = [
     ]
   },
   {
+    id: 'demos',
+    title: '라이브 데모 (Live Demos)',
+    icon: MonitorPlay,
+    color: 'teal',
+    pages: [
+      { id: 'crowdfunding', sectionId: 'demos', pageId: 'crowdfunding', title: '크라우드 펀딩 프리미엄 데모', description: '투자자용 다크 테마 데모', icon: Presentation },
+      { id: 'qc-demo', sectionId: 'demos', pageId: 'qc-demo', title: 'QC Clinic 라이브 데모', description: '품질 검사 및 자동 보강 시뮬레이션', icon: SearchCheck },
+      { id: 'trend-demo', sectionId: 'demos', pageId: 'trend-demo', title: '트렌드 헌터 라이브 데모', description: '실시간 검색어 기반 타겟팅', icon: Target }
+    ]
+  },
+  {
     id: 'site-setup',
     title: '내 사이트 및 블로그 세팅',
     icon: LayoutTemplate,
@@ -127,17 +138,6 @@ export const DOCS_TREE: DocSection[] = [
       { id: 'w05', sectionId: 'safety', pageId: 'w05', title: 'W-05 안전 프로토콜', description: '물리적 지연 및 동시성 제어', icon: Lock },
       { id: 'account-safety', sectionId: 'safety', pageId: 'account-safety', title: '계정 보호 및 보안', description: '밴(Ban) 방지 가이드', icon: ShieldCheck },
       { id: 'google-policies', sectionId: 'safety', pageId: 'google-policies', title: '구글 정책 방어 가이드', description: '3-Zero 시스템의 합법성', icon: CheckCircle2 }
-    ]
-  },
-  {
-    id: 'demos',
-    title: '라이브 데모 (Live Demos)',
-    icon: MonitorPlay,
-    color: 'teal',
-    pages: [
-      { id: 'crowdfunding', sectionId: 'demos', pageId: 'crowdfunding', title: '크라우드 펀딩 프리미엄 데모', description: '투자자용 다크 테마 데모', icon: Presentation },
-      { id: 'qc-demo', sectionId: 'demos', pageId: 'qc-demo', title: 'QC Clinic 라이브 데모', description: '품질 검사 및 자동 보강 시뮬레이션', icon: SearchCheck },
-      { id: 'trend-demo', sectionId: 'demos', pageId: 'trend-demo', title: '트렌드 헌터 라이브 데모', description: '실시간 검색어 기반 타겟팅', icon: Target }
     ]
   },
   {
