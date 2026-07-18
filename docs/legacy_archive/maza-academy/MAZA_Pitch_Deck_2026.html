@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>MAZA Studio — 비즈니스 피치덱 2026</title>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root{
+  /* ── palette: paper white / graphite ink / one considered accent ── */
+  --bg:#FDFDFC;
+  --paper:#F6F5F1;          /* warm paper surface, not cold gray */
+  --ink:#15181C;
+  --ink-soft:#3C4048;
+  --muted:#767C87;
+  --muted-dim:#A6ABB3;
+  --line:#E2DFD7;
+  --line-strong:#CBC7BA;
+  --accent:#1F5C43;         /* deep ledger green — money / growth, restrained */
+  --accent-soft:#EEF3ED;
+  --accent-line:#C3D6C9;
+  --accent-ink:#14402E;
+  --navy:#232B45;           /* informational / product */
+  --navy-soft:#EFF0F4;
+  --navy-line:#CBCFDC;
+  --warn:#9B3A2E;           /* brick red — risk, used sparingly */
+  --warn-soft:#F7EEEC;
+  --warn-line:#E3C6BE;
+  --gold:#8C6A22;           /* premium tier / highlight number */
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+@page { size:A4 landscape; margin:0; }
+
+body{
+  background:#DAD8D1;
+  color:var(--ink);
+  font-family:'Noto Sans KR','Pretendard',sans-serif;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  word-break:keep-all;
+  display:flex; flex-direction:column; align-items:center; gap:8mm;
+  padding:8mm 0;
+}
+.num, .mono{ font-family:'Space Grotesk','Noto Sans KR',sans-serif; }
+.serif{ font-family:'Noto Serif KR', serif; }
+
+.slide{
+  width:297mm; height:210mm; box-sizing:border-box;
+  page-break-after:always; page-break-inside:avoid;
+  position:relative; overflow:hidden;
+  padding:14mm 16mm 12mm;
+  background:var(--bg);
+  box-shadow:0 8px 24px rgba(0,0,0,0.14);
+}
+@media print{
+  body{ background:none; display:block; gap:0; padding:0; }
+  .slide{ box-shadow:none; margin:0; }
+}
+
+/* faint ledger-rule texture, identical across slides */
+.slide::before{
+  content:'';
+  position:absolute; inset:0;
+  background-image:linear-gradient(var(--line) 1px, transparent 1px);
+  background-size:100% 7.2mm;
+  background-position:0 38mm;
+  opacity:0.35;
+  pointer-events:none;
+}
+
+/* ── running head : masthead, identical on every slide ── */
+.masthead{
+  display:flex; align-items:baseline; justify-content:space-between;
+  padding-bottom:3.4mm; margin-bottom:6mm;
+  border-bottom:1px solid var(--ink);
+  position:relative; z-index:2; flex:0 0 auto;
+}
+.masthead-left{ display:flex; align-items:baseline; gap:3mm; }
+.masthead-logo{ font-family:'Noto Serif KR',serif; font-weight:900; font-size:12.5pt; letter-spacing:0.5px; color:var(--ink); }
+.masthead-sub{ font-size:7.6pt; color:var(--muted); letter-spacing:1.5px; text-transform:uppercase; font-weight:600; }
+.masthead-right{ display:flex; align-items:baseline; gap:4mm; }
+.masthead-tag{
+  font-size:7.6pt; font-weight:700; letter-spacing:1.8px; text-transform:uppercase;
+  color:var(--accent-ink); border:1px solid var(--accent-line); background:var(--accent-soft);
+  padding:1.6mm 3mm; border-radius:2px;
+}
+.masthead-tag.warn{ color:var(--warn); border-color:var(--warn-line); background:var(--warn-soft); }
+.masthead-tag.navy{ color:var(--navy); border-color:var(--navy-line); background:var(--navy-soft); }
+.masthead-folio{ font-family:'Space Grotesk',sans-serif; font-size:9pt; color:var(--muted-dim); font-weight:600; }
+
+.slide-title{ font-family:'Noto Serif KR',serif; font-size:23pt; font-weight:700; line-height:1.28; color:var(--ink); margin-bottom:6mm; position:relative; z-index:2; flex:0 0 auto; }
+.slide-title em{ color:var(--accent); font-style:normal; }
+.slide-title .rule{ display:inline-block; width:9mm; height:2px; background:var(--accent); margin:0 2mm 1.5mm; vertical-align:middle; }
+
+.row{ display:flex; gap:6mm; height:100%; position:relative; z-index:2; }
+.col{ flex:1; display:flex; flex-direction:column; gap:4mm; height:100%; }
+.col-40{ flex:0 0 40%; } .col-55{ flex:0 0 55%; } .col-45{ flex:0 0 45%; } .col-48{ flex:0 0 48%; }
+
+.card{
+  background:var(--paper); border:1px solid var(--line); border-radius:3px;
+  padding:5mm 6mm; position:relative;
+}
+.card.accent{ border-color:var(--accent-line); background:var(--accent-soft); }
+.card.navy{ border-color:var(--navy-line); background:var(--navy-soft); }
+.card.warn{ border-color:var(--warn-line); background:var(--warn-soft); }
+.card.plain{ background:#fff; border-color:var(--line); }
+
+.card-title{ font-size:12.5pt; font-weight:700; color:var(--ink); margin-bottom:2mm; }
+.card-body{ font-size:9.6pt; color:var(--ink-soft); line-height:1.68; }
+.card-body strong{ color:var(--ink); font-weight:700; }
+
+.tbl{ width:100%; border-collapse:collapse; position:relative; z-index:2; }
+.tbl th{
+  background:transparent; color:var(--ink); font-size:8.4pt; font-weight:700;
+  padding:2.6mm 4mm; text-align:left; letter-spacing:0.4px; border-bottom:1.5px solid var(--ink);
+  text-transform:uppercase;
+}
+.tbl td{ font-size:9.3pt; padding:2.6mm 4mm; color:var(--ink-soft); border-bottom:1px solid var(--line); vertical-align:middle; }
+.tbl tr:last-child td{ border-bottom:none; }
+.tbl td.hi{ color:var(--accent-ink); font-weight:700; font-family:'Space Grotesk',sans-serif; }
+.tbl td.ok{ color:var(--accent-ink); font-weight:600; }
+.tbl td.no{ color:var(--warn); }
+.tbl .row-hi{ background:var(--accent-soft) !important; }
+.tbl .num{ font-family:'Space Grotesk',sans-serif; }
+
+/* ── footnote / source block — the deck's citation system ── */
+.sources{
+  position:absolute; left:16mm; right:16mm; bottom:9mm;
+  border-top:1px solid var(--line-strong); padding-top:2.4mm;
+  display:flex; flex-direction:column; gap:1mm; z-index:2;
+}
+.sources .src-title{ font-size:7.2pt; font-weight:700; letter-spacing:1.2px; color:var(--muted-dim); text-transform:uppercase; margin-bottom:0.6mm; }
+.sources ol{ list-style:none; display:flex; flex-direction:column; gap:0.9mm; }
+.sources li{ font-size:7.3pt; color:var(--muted); line-height:1.5; display:flex; gap:1.6mm; }
+.sources li .n{ font-family:'Space Grotesk',sans-serif; font-weight:700; color:var(--muted-dim); flex-shrink:0; }
+.cite{ font-family:'Space Grotesk',sans-serif; font-size:0.68em; font-weight:700; color:var(--accent-ink); vertical-align:super; margin-left:0.5px; }
+.cite.n{ color:var(--warn); }
+
+.slide-num{
+  position:absolute; bottom:9mm; right:16mm;
+  font-family:'Space Grotesk',sans-serif; font-size:8pt; color:var(--muted-dim);
+  font-weight:600; letter-spacing:1px; z-index:2;
+}
+
+.stat-num{ font-family:'Space Grotesk',sans-serif; font-size:25pt; font-weight:700; line-height:1; color:var(--accent-ink); }
+.stat-label{ font-size:8.6pt; color:var(--muted-dim); margin-top:2mm; font-weight:500; }
+
+.badge{ display:inline-block; padding:1.4px 6.5px; border-radius:2px; font-size:7.6pt; font-weight:700; letter-spacing:0.2px; }
+.badge.g{ background:var(--accent-soft); color:var(--accent-ink); border:1px solid var(--accent-line); }
+.badge.b{ background:var(--navy-soft); color:var(--navy); border:1px solid var(--navy-line); }
+.badge.n{ background:#F0EFEA; color:var(--muted); border:1px solid var(--line-strong); }
+
+.check-list{ list-style:none; display:flex; flex-direction:column; gap:2.6mm; position:relative; z-index:2; }
+.check-list li{ display:flex; align-items:flex-start; gap:3mm; font-size:9.6pt; color:var(--ink-soft); line-height:1.58; }
+.check-list li::before{ content:'—'; color:var(--warn); font-weight:900; font-size:10pt; flex-shrink:0; }
+.check-list li.pos::before{ content:'—'; color:var(--accent); }
+.check-list li strong{ color:var(--ink); font-weight:700; white-space:nowrap; }
+
+.persona-grid{ display:flex; flex-wrap:wrap; position:relative; z-index:2; border-top:1px solid var(--line-strong); border-left:1px solid var(--line-strong); }
+.persona-item{ box-sizing:border-box; flex:0 0 25%; border-right:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); padding:4mm 4mm; }
+.persona-name{ font-size:9pt; font-weight:700; color:var(--ink); margin-bottom:1.6mm; }
+.persona-desc{ font-size:7.6pt; color:var(--muted); line-height:1.55; margin-bottom:1.8mm; }
+.persona-tag{ font-size:7.2pt; color:var(--accent-ink); font-weight:700; }
+
+.quote{
+  border-left:2px solid var(--ink); padding:3.5mm 5mm; background:var(--paper);
+  font-size:9.8pt; color:var(--ink-soft); line-height:1.62; position:relative; z-index:2;
+}
+.quote.accent{ border-color:var(--accent); background:var(--accent-soft); color:var(--accent-ink); }
+.quote.warn{ border-color:var(--warn); background:var(--warn-soft); color:var(--warn); }
+
+.content{ position:absolute; left:16mm; right:16mm; top:43mm; bottom:23mm; z-index:2; }
+.content.tall-title{ top:52mm; }
+
+/* ── CSS-built product mockup, monochrome/paper toned ── */
+.mock-browser{
+  background:#fff; border:1px solid var(--line-strong); border-radius:5px; overflow:hidden;
+  height:100%; display:flex; flex-direction:column; box-shadow:0 6px 20px rgba(21,24,28,0.08);
+}
+.mock-chrome{ display:flex; align-items:center; gap:2mm; padding:2.6mm 4mm; background:var(--paper); border-bottom:1px solid var(--line); }
+.mock-dot{ width:2mm; height:2mm; border-radius:50%; border:1px solid var(--line-strong); background:#fff; }
+.mock-chrome .u{ margin-left:3mm; font-size:6.8pt; color:var(--muted-dim); font-family:'Space Grotesk',sans-serif; }
+.mock-body{ flex:1; padding:5mm; display:flex; flex-direction:column; gap:3mm; }
+.mock-stat-row{ display:flex; gap:3mm; }
+.mock-stat-row .mock-stat{ flex:1; }
+.mock-stat{ background:var(--paper); border:1px solid var(--line); border-radius:3px; padding:3mm; }
+.mock-stat .n{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:12.5pt; color:var(--accent-ink); }
+.mock-stat .l{ font-size:6.8pt; color:var(--muted-dim); margin-top:1mm; }
+.mock-bars{ height:34mm; background:var(--paper); border:1px solid var(--line); border-radius:3px; padding:4mm; display:flex; align-items:flex-end; gap:2mm; }
+.mock-bars .b{ flex:1; background:var(--accent); border-radius:1px 1px 0 0; opacity:0.82; }
+.mock-list{ background:var(--paper); border:1px solid var(--line); border-radius:3px; padding:2.6mm 3.6mm; display:flex; flex-direction:column; gap:1.8mm; }
+.mock-list .r{ display:flex; align-items:center; gap:2.5mm; font-size:7.4pt; color:var(--ink-soft); }
+.mock-list .r .flag{ font-size:8.5pt; }
+.mock-list .r .pill{ margin-left:auto; font-family:'Space Grotesk',sans-serif; font-size:6.6pt; font-weight:700; color:var(--accent-ink); background:var(--accent-soft); padding:0.5mm 2mm; border-radius:8px; border:1px solid var(--accent-line); }
+
+.lang-grid{ display:flex; flex-wrap:wrap; position:relative; z-index:2; border-top:1px solid var(--line-strong); border-left:1px solid var(--line-strong); align-content:center; }
+.lang-chip{ box-sizing:border-box; flex:0 0 20%; border-right:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); padding:3.4mm 2mm; text-align:center; }
+.lang-chip .n{ font-size:7.6pt; color:var(--ink-soft); font-weight:600; }
+
+/* ── COVER ── */
+.cover-wrap{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; z-index:2; }
+.cover-frame{ position:absolute; inset:9mm; border:1px solid var(--line-strong); pointer-events:none; }
+.cover-eyebrow{ font-size:8.5pt; letter-spacing:3px; color:var(--muted); text-transform:uppercase; font-weight:700; margin-bottom:8mm; }
+.cover-logo{
+  font-family:'Noto Serif KR',serif; font-size:64pt; font-weight:900; letter-spacing:-1px; color:var(--ink);
+  margin-bottom:6mm;
+}
+.cover-logo span{ color:var(--accent); }
+.cover-rule{ width:22mm; height:2px; background:var(--ink); margin:0 auto 6mm; }
+.cover-sub{ font-family:'Noto Serif KR',serif; font-size:15.5pt; color:var(--ink-soft); font-weight:600; margin-bottom:5mm; max-width:190mm; line-height:1.55; }
+.cover-desc{ font-size:10.5pt; color:var(--muted); line-height:1.75; max-width:150mm; }
+.cover-badges{ display:flex; gap:0; justify-content:center; margin-top:9mm; border-top:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); }
+.cover-badge{ padding:3mm 7mm; font-size:8.6pt; font-weight:700; color:var(--ink-soft); border-right:1px solid var(--line-strong); }
+.cover-badge:last-child{ border-right:none; }
+.cover-foot{ position:absolute; bottom:14mm; left:0; right:0; display:flex; justify-content:space-between; padding:0 18mm; font-size:8pt; color:var(--muted-dim); z-index:2; letter-spacing:0.5px; }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ SLIDE 1 — 표지 ════════════════ -->
+<div class="slide">
+  <div class="cover-frame"></div>
+  <div class="cover-wrap">
+    <div class="cover-eyebrow">Business Pitch Deck · 2026</div>
+    <div class="cover-logo">MA<span>ZA</span></div>
+    <div class="cover-rule"></div>
+    <div class="cover-sub">시간과 체력의 한계를 넘어선<br>ZERO-IT 무인 수익 파이프라인</div>
+    <div class="cover-desc">
+      코딩 0, 글쓰기 0, 서버 0 — AI가 10개 언어로 블로그 콘텐츠를<br>
+      자동 발행하는 올인원 블로그 수익화 자동화 플랫폼
+    </div>
+    <div class="cover-badges">
+      <div class="cover-badge">AI 콘텐츠 자동 발행</div>
+      <div class="cover-badge">10개 언어 동시 운영</div>
+      <div class="cover-badge">3분 초기 세팅</div>
+      <div class="cover-badge">애드센스 연동 수익화</div>
+    </div>
+  </div>
+  <div class="cover-foot">
+    <span>MAZA Studio</span>
+    <span>mazastudio.kr · mazastory7@gmail.com</span>
+  </div>
+</div>
+
+
+<!-- ════════════════ SLIDE 2 — 문제 제기 ════════════════ -->
+<div class="slide">
+  <div class="masthead">
+    <div class="masthead-left"><span class="masthead-logo">MAZA</span><span class="masthead-sub">Studio Pitch 2026</span></div>
+    <div class="masthead-right"><span class="masthead-tag warn">The Problem</span><span class="masthead-folio">02 / 09</span></div>
+  </div>
+  <div class="slide-title">부업 수익화, <em>왜 대부분이 포기</em>하는가?</div>
+  <div class="content">
+  <div class="row">
+    <div class="col col-48">
+      <ul class="check-list">
+        <li><strong>기술 장벽:</strong> 도메인·서버·CMS 세팅에 수일~수주 소요. IT 용어에 막혀 시작조차 못함</li>
+        <li><strong>콘텐츠 장벽:</strong> 매일 고품질 글 1~2개 작성이 지속되지 않아 번아웃, 포기</li>
+        <li><strong>수익 장벽:</strong> 한국어 광고 클릭 단가가 낮아, 글을 많이 써도 수익이 체감되기까지 오래 걸림<span class="cite n">1</span></li>
+        <li><strong>진입 심리 장벽:</strong> "결국 내가 복잡하게 설정해야 하는 거 아냐?"라는 두려움으로 시작 전 포기</li>
+      </ul>
+      <div style="margin-top:5mm;">
+        <div class="quote warn">
+          가장 수익이 간절한 분들의 좌절 — 본업에 치이는 N잡러, 체력적 한계가 있는 환자·시니어에게 '매일 포스팅'은 현실적으로 지속하기 어려운 조건입니다.
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card plain" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4mm;">
+        <div style="font-size:9.6pt;color:var(--muted);font-weight:600;text-align:center;margin-bottom:1mm;">기존 방식으로 블로그 부업을 시도할 때 흔한 이탈 지점</div>
+        <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line-strong);">
+          <div style="padding:4mm 1mm;border-bottom:1px solid var(--line-strong);display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:9.8pt;font-weight:700;color:var(--ink);">초기 IT 설정 단계</div>
+              <div style="font-size:8.4pt;color:var(--muted);margin-top:1mm;">연동만 며칠 걸려 이미 지침</div>
+            </div>
+            <div class="badge n">이탈</div>
+          </div>
+          <div style="padding:4mm 1mm;border-bottom:1px solid var(--line-strong);display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:9.8pt;font-weight:700;color:var(--ink);">매일 글쓰기 의무</div>
+              <div style="font-size:8.4pt;color:var(--muted);margin-top:1mm;">몇 주 안에 번아웃, 블로그 방치</div>
+            </div>
+            <div class="badge n">이탈</div>
+          </div>
+          <div style="padding:4mm 1mm;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:9.8pt;font-weight:700;color:var(--ink);">애드센스 승인 단계</div>
+              <div style="font-size:8.4pt;color:var(--muted);margin-top:1mm;">까다로운 조건에 반복 탈락, 포기</div>
+            </div>
+            <div class="badge n">이탈</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="sources">
+    <div class="src-title">출처 Sources</div>
+    <ol>
+      <li><span class="n">1</span> 한국어 콘텐츠의 상대적 CPC 수준은 슬라이드 06 각주의 애드테크 업계 벤치마크 자료 종합에 근거한 일반적 경향이며, Google 공식 통계가 아닙니다.</li>
+    </ol>
+  </div>
+</div>
+
+
+<!-- ════════════════ SLIDE 3 — 솔루션 ════════════════ -->
+<div class="slide">
+  <div class="masthead">
+    <div class="masthead-left"><span class="masthead-logo">MAZA</span><span class="masthead-sub">Studio Pitch 2026</span></div>
+    <div class="masthead-right"><span class="masthead-tag">The Solution</span><span class="masthead-folio">03 / 09</span></div>
+  </div>
+  <div class="slide-title">복잡함을 지운 하나의 생태계, <em>MAZA STUDIO</em></div>
+  <div class="content">
+  <div class="row">
+    <div class="col col-55" style="display:flex; flex-direction:column; justify-content:space-between;">
+      <div style="display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line-strong);">
+        <div style="display:flex;align-items:center;gap:4mm;padding:4mm 1mm;border-bottom:1px solid var(--line-strong);">
+          <div class="mono" style="font-size:10pt;font-weight:700;color:var(--navy);flex-shrink:0;width:14mm;">01</div>
+          <div>
+            <div style="font-size:12.5pt;font-weight:700;color:var(--ink);margin-bottom:1mm;">ZERO-IT</div>
+            <div style="font-size:9pt;color:var(--muted);line-height:1.5;">코딩·서버·SEO 학습 없이, 콘텐츠 방향에만 집중하도록 설계된 <strong style="color:var(--ink-soft);">기술적 진입장벽 제거</strong></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:4mm;padding:4mm 1mm;border-bottom:1px solid var(--line-strong);">
+          <div class="mono" style="font-size:10pt;font-weight:700;color:var(--navy);flex-shrink:0;width:14mm;">02</div>
+          <div>
+            <div style="font-size:12.5pt;font-weight:700;color:var(--ink);margin-bottom:1mm;">ZERO-WORK</div>
+            <div style="font-size:9pt;color:var(--muted);line-height:1.5;">AI가 키워드·주제를 탐색하고 다국어 콘텐츠를 <strong style="color:var(--ink-soft);">예약된 스케줄에 맞춰 자동 발행</strong></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:4mm;padding:4mm 1mm;">
+          <div class="mono" style="font-size:10pt;font-weight:700;color:var(--accent-ink);flex-shrink:0;width:14mm;">03</div>
+          <div>
+            <div style="font-size:12.5pt;font-weight:700;color:var(--accent-ink);margin-bottom:1mm;">ZERO-LIMIT</div>
+            <div style="font-size:9pt;color:var(--muted);line-height:1.5;">10개 언어 동시 발행 구조로 <strong style="color:var(--ink-soft);">단일 언어 대비 넓은 트래픽 풀 확보</strong></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="quote accent" style="margin-top:5mm;">
+          <strong>핵심 기술 — </strong>Core Web Vitals 및 구조화 데이터 기반 기술적 SEO 최적화 자동 적용<span class="cite">1</span>
+        </div>
+      </div>
+    </div>
+    <div class="col" style="justify-content:center;">
+      <div class="mock-browser">
+        <div class="mock-chrome">
+          <div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div>
+          <div class="u">app.mazastudio.kr/dashboard</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-stat-row">
+            <div class="mock-stat"><div class="n num">128</div><div class="l">이번 달 발행</div></div>
+            <div class="mock-stat"><div class="n num">10</div><div class="l">운영 언어</div></div>
+            <div class="mock-stat"><div class="n num">99.2<span style="font-size:8pt;">%</span></div><div class="l">발행 성공률<span class="cite">2</span></div></div>
+          </div>
+          <div class="mock-bars">
+            <div class="b" style="height:35%;"></div><div class="b" style="height:55%;"></div>
+            <div class="b" style="height:40%;"></div><div class="b" style="height:70%;"></div>
+            <div class="b" style="height:50%;"></div><div class="b" style="height:85%;"></div>
+            <div class="b" style="height:60%;"></div><div class="b" style="height:95%;"></div>
+          </div>
+          <div class="mock-list">
+            <div class="r"><span class="flag">🇰🇷</span> 오늘의 건강 루틴 가이드 <span class="pill">발행됨</span></div>
+            <div class="r"><span class="flag">🇺🇸</span> Morning Routine Tips <span class="pill">예약됨</span></div>
+            <div class="r"><span class="flag">🇯🇵</span> 健康ルーティン <span class="pill">예약됨</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="sources">
+    <div class="src-title">출처 Sources</div>
+    <ol>
+      <li><span class="n">1</span> Core Web Vitals은 Google이 정의한 공식 페이지 경험 지표이며, 적용 여부와 실제 검색 순위 상관관계는 사이트·니치별로 다릅니다.</li>
+      <li><span class="n">2</span> 대시보드 수치는 제품 화면 예시를 위한 시연용 샘플 데이터입니다. AI 자동 생성 콘텐츠에 대한 검색엔진·애드센스 정책은 계속 변화하고 있으며, 품질 가이드라인 준수 여부를 지속 모니터링합니다.</li>
+    </ol>
+  </div>
+</div>
+
+
+<!-- ════════════════ SLIDE 4 — 타겟 페르소나 ════════════════ -->
+<div class="slide">
+  <div class="masthead">
+    <div class="masthead-left"><span class="masthead-logo">MAZA</span><span class="masthead-sub">Studio Pitch 2026</span></div>
+    <div class="masthead-right"><span class="masthead-tag navy">Target Persona</span><span class="masthead-folio">04 / 09</span></div>
+  </div>
+  <div class="slide-title">가장 수익이 <em>간절한</em> 분들이 우리의 고객입니다</div>
+  <div class="content">
+    <div class="persona-grid">
+      <div class="persona-item"><div class="persona-name">바쁜 N잡러·직장인</div><div class="persona-desc">퇴근 후 시간 없어 투잡 시도조차 못함</div><div class="persona-tag">→ 잠든 사이 AI가 자동 발행</div></div>
+      <div class="persona-item"><div class="persona-name">건강문제·장기 환자</div><div class="persona-desc">체력적 한계로 지속적 작업이 어려움</div><div class="persona-tag">→ 최소한의 클릭으로 파이프 구축</div></div>
+      <div class="persona-item"><div class="persona-name">시니어·은퇴자</div><div class="persona-desc">IT 용어·설정 장벽, 연금 외 수입 필요</div><div class="persona-tag">→ 코딩 0, 설정 0 — ZERO-IT</div></div>
+      <div class="persona-item"><div class="persona-name">육아 중 전업주부</div><div class="persona-desc">24시간 육아, 자기 시간 없음</div><div class="persona-tag">→ 아이 재우고 클릭 한 번</div></div>
+      <div class="persona-item"><div class="persona-name">부업 초보</div><div class="persona-desc">강의를 들어도 용어가 어려워 포기 반복</div><div class="persona-tag">→ 배울 것 없음, MAZA가 대신</div></div>
+      <div class="persona-item"><div class="persona-name">대학생·취준생</div><div class="persona-desc">용돈 필요, 시간은 있으나 초기 자금 없음</div><div class="persona-tag">→ 저렴한 구독료로 시작</div></div>
+      <div class="persona-item"><div class="persona-name">소상공인·자영업자</div><div class="persona-desc">가게 운영에 치여 온라인 부업 불가</div><div class="persona-tag">→ 귀가 후 짧은 세팅으로 자동화</div></div>
+      <div class="persona-item"><div class="persona-name">해외 교포·워홀러</div><div class="persona-desc">현지어 콘텐츠 수요 대응 희망</div><div class="persona-tag">→ 현지어+한국어 동시 발행</div></div>
+    </div>
+    <div style="margin-top:5mm;">
+      <div class="quote" style="text-align:center;font-size:10.5pt;font-weight:600;">
+        이 타겟층의 공통점: <strong>"매일 컴퓨터 앞에 앉아 글을 쓰는 것"이 물리적으로 어려운 상황</strong> — MAZA는 이 분들에게 현실적인 대안을 제시합니다
+      </div>
+    </div>
+  </div>
+  <div class="sources">
+    <div class="src-title">출처 Sources</div>
+    <ol>
+      <li><span class="n">1</span> 페르소나 구성은 자사 예비 사용자 설문 및 인터뷰(2026년 상반기, 자체 조사)를 기반으로 한 가설적 세그먼트이며, 표본 규모 및 대표성에 한계가 있을 수 있습니다.</li>
+    </ol>
+  </div>
+</div>
+
+
+<!-- ════════════════ SLIDE 5 — 삼위일체 생태계 ════════════════ -->
+<div class="slide">
+  <div class="masthead">
+    <div class="masthead-left"><span class="masthead-logo">MAZA</span><span class="masthead-sub">Studio Pitch 2026</span></div>
+    <div class="masthead-right"><span class="masthead-tag navy">Ecosystem</span><span class="masthead-folio">05 / 09</span></div>
+  </div>
+  <div class="slide-title">하나로 연결된 <em>MAZA 생태계</em></div>
+  <div class="content">
+    <div style="display:flex;margin-bottom:5mm;border-top:1px solid var(--ink);border-left:1px solid var(--line-strong);">
+      <div style="flex:1;box-sizing:border-box;padding:5mm 6mm;border-right:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);">
+        <div class="mono" style="font-size:8pt;color:var(--muted-dim);font-weight:700;margin-bottom:2mm;">01 — CONTROL TOWER</div>
+        <div style="font-size:12.5pt;font-weight:700;color:var(--ink);margin-bottom:1mm;">MAZA Studio</div>
+        <div style="font-size:9pt;font-weight:600;color:var(--muted);margin-bottom:2.5mm;">통합 컨트롤 타워</div>
+        <div style="font-size:8.8pt;color:var(--muted);line-height:1.62;">티스토리·워드프레스·구글 블로거 등 여러 플랫폼의 블로그 자산을 하나의 화면에서 관리하는 오토파일럿 대시보드</div>
+      </div>
+      <div style="flex:1;box-sizing:border-box;padding:5mm 6mm;border-right:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);">
+        <div class="mono" style="font-size:8pt;color:var(--muted-dim);font-weight:700;margin-bottom:2mm;">02 — MONETIZATION</div>
+        <div style="font-size:12.5pt;font-weight:700;color:var(--ink);margin-bottom:1mm;">MAZA Zero-IT Blog</div>
+        <div style="font-size:9pt;font-weight:600;color:var(--muted);margin-bottom:2.5mm;">수익 최적화 최전선</div>
+        <div style="font-size:8.8pt;color:var(--muted);line-height:1.62;">기술적 SEO 최적화 + 빠른 로딩 속도 + 다국어 자동화가 기본 탑재된 독립형 블로그</div>
+      </div>
+      <div style="flex:1;box-sizing:border-box;padding:5mm 6mm;border-bottom:1px solid var(--line-strong);background:var(--accent-soft);">
+        <div class="mono" style="font-size:8pt;color:var(--accent-ink);font-weight:700;margin-bottom:2mm;">03 — KNOWLEDGE</div>
+        <div style="font-size:12.5pt;font-weight:700;color:var(--accent-ink);margin-bottom:1mm;">MAZA Academy</div>
+        <div style="font-size:9pt;font-weight:600;color:var(--accent-ink);margin-bottom:2.5mm;">성공을 위한 지식 허브</div>
+        <div style="font-size:8.8pt;color:var(--ink-soft);line-height:1.62;">초기 세팅부터 롱테일 키워드, 애드센스 활용 팁, 실제 운영 사례까지 안내하는 교육 콘텐츠</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:4mm;">
+      <div class="quote accent" style="flex:1;">
+        <strong>차별점 — 애드센스 승인 준비 과정 자동화</strong><br>
+        승인에 필요한 필수 페이지(소개·연락처·개인정보처리방침 등) 생성과 초기 세팅을 자동화해, 사용자가 반복적인 설정 작업 없이 시작할 수 있도록 돕습니다.
+      </div>
+      <div class="quote" style="flex:1;">
+        <strong>EXIT STRATEGY — 종속 없는 투명한 구조</strong><br>
+        원할 때 소스코드 + 콘텐츠 데이터 + 개인용 어드민을 이관받아 독립 운영으로 전환할 수 있는 구조를 제공합니다. (상세 09p)
+      </div>
+    </div>
+  </div>
+  <div class="sources">
+    <div class="src-title">출처 Sources</div>
+    <ol>
+      <li><span class="n">1</span> 애드센스 최종 승인 여부는 Google의 심사 정책에 따라 결정되며, MAZA의 사전 설정은 승인 확률을 보장하지 않습니다.</li>
+    </ol>
+  </div>
+</div>
+
+
+<!-- ════════════════ SLIDE 6 — 다국어 전략 ════════════════ -->
+<div class="slide">
+  <div class="masthead">
+    <div class="masthead-left"><span class="masthead-logo">MAZA</span><span class="masthead-sub">Studio Pitch 2026</span></div>
+    <div class="masthead-right"><span class="masthead-tag navy">Global Strategy</span><span class="masthead-folio">06 / 09</span></div>
+  </div>
+  <div class="slide-title">수익 파이의 한계를 넓히다: <em>10개 언어 동시 발행</em></div>
+  <div class="content">
+    <div class="row">
+      <div class="col col-55">
+        <table class="tbl">
+          <thead><tr><th>#</th><th>언어</th><th>타겟 시장</th><th>CPC 벤치마크 경향<span class="cite">1</span></th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td>🇰🇷 한국어</td><td>대한민국</td><td><span class="badge n">기준</span></td></tr>
+            <tr class="row-hi"><td class="num">2</td><td>🇺🇸 영어</td><td>미국·영국·호주</td><td><span class="badge g">기준 대비 높음</span></td></tr>
+            <tr><td class="num">3</td><td>🇯🇵 일본어</td><td>일본</td><td><span class="badge b">기준 대비 다소 높음</span></td></tr>
+            <tr><td class="num">4</td><td>🇪🇸 스페인어</td><td>스페인·남미 전역</td><td><span class="badge n">기준과 유사</span></td></tr>
+            <tr class="row-hi"><td class="num">5</td><td>🇩🇪 독일어</td><td>독일·오스트리아</td><td><span class="badge g">기준 대비 높음</span></td></tr>
+            <tr><td class="num">6</td><td>🇫🇷 프랑스어</td><td>프랑스·캐나다</td><td><span class="badge b">기준 대비 다소 높음</span></td></tr>
+            <tr><td class="num">7</td><td>🇧🇷 포르투갈어</td><td>브라질·포르투갈</td><td><span class="badge n">기준과 유사</span></td></tr>
+            <tr><td class="num">8</td><td>🇮🇩 인도네시아어</td><td>인도네시아</td><td><span class="badge n">기준과 유사</span></td></tr>
+            <tr><td class="num">9</td><td>🇻🇳 베트남어</td><td>베트남</td><td><span class="badge n">기준과 유사</span></td></tr>
+            <tr><td class="num">10</td><td>🇸🇦 아랍어</td><td>중동·북아프리카</td><td><span class="badge b">국가별 편차 큼</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col" style="display:flex; flex-direction:column;">
+        <div class="lang-grid" style="flex:1;align-content:center;">
+          <div class="lang-chip"><div class="n">🇰🇷 한국어</div></div>
+          <div class="lang-chip"><div class="n">🇺🇸 영어</div></div>
+          <div class="lang-chip"><div class="n">🇯🇵 일본어</div></div>
+          <div class="lang-chip"><div class="n">🇪🇸 스페인어</div></div>
+          <div class="lang-chip"><div class="n">🇩🇪 독일어</div></div>
+          <div class="lang-chip"><div class="n">🇫🇷 프랑스어</div></div>
+          <div class="lang-chip"><div class="n">🇧🇷 포르투갈어</div></div>
+          <div class="lang-chip"><div class="n">🇮🇩 인도네시아어</div></div>
+          <div class="lang-chip"><div class="n">🇻🇳 베트남어</div></div>
+          <div class="lang-chip"><div class="n">🇸🇦 아랍어</div></div>
+        </div>
+        <div class="card accent" style="text-align:center;padding:3mm;margin-top:4mm;">
+          <div style="font-size:8.6pt;color:var(--accent-ink);font-weight:700;">사용자 예상 수익은 니치·트래픽 품질·구글 정책에 따라 달라지며, 특정 금액을 보장하지 않습니다<span class="cite">2</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sources">
+    <div class="src-title">출처 Sources</div>
+    <ol>
+      <li><span class="n">1</span> CPC 경향은 애드테크 업계에서 공개적으로 발행하는 국가별 AdSense CPC/CPM 벤치마크 자료(퍼블리셔 대상 리서치, 2025–2026년 기준 다수 자료 종합)를 참고한 방향성 지표이며, Google의 공식 발표 수치가 아닙니다. 실제 단가는 Google의 실시간 광고 경매로 결정됩니다.</li>
+      <li><span class="n">2</span> 광고 수익은 콘텐츠 니치, 트래픽 출처, 계절성, Google 정책 변경 등에 따라 크게 변동하며 미래 수익을 보장하지 않습니다.</li>
+    </ol>
+  </div>
+</div>
+
+
+<!-- ════════════════ SLIDE 7 — WP vs MAZA 비교 ════════════════ -->
+<div class="slide">
+  <div class="masthead">
+    <div class="masthead-left"><span class="masthead-logo">MAZA</span><span class="masthead-sub">Studio Pitch 2026</span></div>
+    <div class="masthead-right"><span class="masthead-tag">Competitive Analysis</span><span class="masthead-folio">07 / 09</span></div>
+  </div>
+  <div class="slide-title">워드프레스의 한계 vs <em>MAZA의 해법</em></div>
+  <div class="content">
+    <table class="tbl">
+      <thead><tr><th style="width:22%;">비교 항목</th><th style="width:38%;">워드프레스(자가 운영 기준)</th><th style="width:40%;">MAZA Studio</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--ink);">초기 세팅</strong></td><td class="no">수일~수주 (도메인·호스팅·플러그인 설정)</td><td class="ok">클릭 몇 번으로 수분 내 완성</td></tr>
+        <tr><td><strong style="color:var(--ink);">월 운영 비용</strong></td><td class="no">호스팅 + 플러그인 비용 별도 누적</td><td class="ok">구독료 포함 올인원, 별도 서버비 없음</td></tr>
+        <tr><td><strong style="color:var(--ink);">다국어 비용</strong></td><td class="no">번역 플러그인·크레딧 이중 과금</td><td class="ok">다국어 엔진 내장, 추가 비용 없음</td></tr>
+        <tr><td><strong style="color:var(--ink);">로딩 속도</strong></td><td class="no">플러그인 누적 시 저하 경향<span class="cite">1</span></td><td class="ok">경량 구조로 빠른 로딩 최적화<span class="cite">1</span></td></tr>
+        <tr><td><strong style="color:var(--ink);">SEO 자동화</strong></td><td class="no">별도 플러그인 설치·설정 필요</td><td class="ok">기술적 SEO 요소 자동 적용</td></tr>
+        <tr><td><strong style="color:var(--ink);">기술 요구도</strong></td><td class="no">중~고급 (기본 지식 필요)</td><td class="ok">코딩 지식 없이 사용 가능</td></tr>
+        <tr><td><strong style="color:var(--ink);">자동 발행</strong></td><td class="no">별도 플러그인 + 복잡한 설정</td><td class="ok">스케줄 기반 자동 발행</td></tr>
+        <tr><td><strong style="color:var(--ink);">A/S 지원</strong></td><td class="no">자체 해결 또는 유료 개발자 고용</td><td class="ok">전담 지원 채널 운영</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:5mm;">
+      <div class="quote accent" style="font-size:9.3pt;">
+        <strong>결론 — </strong>워드프레스로 다국어 블로그를 직접 운영하려면 반복되는 운영비와 기술 학습 시간이 필요합니다. MAZA는 이 진입장벽을 낮추는 데 집중합니다.
+      </div>
+    </div>
+  </div>
+  <div class="sources">
+    <div class="src-title">출처 Sources</div>
+    <ol>
+      <li><span class="n">1</span> 로딩 속도는 설치된 플러그인 수, 호스팅 사양, 콘텐츠 구성 등 실제 운영 환경에 따라 달라질 수 있는 일반적 경향이며, 두 항목 모두 표준화된 벤치마크 테스트 결과가 아닙니다.</li>
+      <li><span class="n">2</span> 비교표는 자가 호스팅 워드프레스를 별도 유료 플러그인 없이 기본 설치한 상태를 기준으로 한 자체 정성 평가이며, 특정 호스팅사·테마·플러그인 조합에 따라 결과가 달라질 수 있습니다.</li>
+    </ol>
+  </div>
+</div>
+
+
+<!-- ════════════════ SLIDE 8 — MAZA 자체 매출 모델 ════════════════ -->
+<div class="slide">
+  <div class="masthead">
+    <div class="masthead-left"><span class="masthead-logo">MAZA</span><span class="masthead-sub">Studio Pitch 2026</span></div>
+    <div class="masthead-right"><span class="masthead-tag">Revenue Model</span><span class="masthead-folio">08 / 09</span></div>
+  </div>
+  <div class="slide-title"><em>MAZA Studio가 버는 돈</em> — 구독 + 에이전시 복합 구조</div>
+  <div class="content">
+    <div class="row">
+      <div class="col col-55">
+        <table class="tbl" style="margin-bottom:4mm;">
+          <thead><tr><th>구독 플랜</th><th>월 요금</th><th>블로그</th><th>AI 글</th><th>언어</th></tr></thead>
+          <tbody>
+            <tr><td><strong style="color:var(--ink);">Basic</strong></td><td class="num">₩29,000</td><td>1개</td><td>30개/월</td><td>한국어</td></tr>
+            <tr><td><strong style="color:var(--navy);">Pro</strong></td><td class="num">₩69,000</td><td>3개</td><td>200개/월</td><td>3개 언어</td></tr>
+            <tr class="row-hi"><td><strong style="color:var(--accent-ink);">Premium</strong></td><td class="hi num">₩149,000</td><td>10개</td><td class="hi">무제한</td><td class="hi">10개 언어</td></tr>
+          </tbody>
+        </table>
+        <table class="tbl">
+          <thead><tr><th>구독자 수(가정)<span class="cite n">1</span></th><th>월 구독 매출</th><th>에이전시 매출</th><th>합계</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1,000명</td><td class="num">₩6,900만</td><td class="num">₩500만</td><td class="hi num">₩7,400만</td></tr>
+            <tr><td class="num">3,000명</td><td class="num">₩2억 700만</td><td class="num">₩1,500만</td><td class="hi num">₩2억 2,200만</td></tr>
+            <tr class="row-hi"><td class="num" style="color:var(--accent-ink);font-weight:700;">10,000명</td><td class="hi num">₩6억 9,000만</td><td class="hi num">₩1억</td><td class="hi num">₩7억 9,000만</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col">
+        <div class="card navy" style="text-align:center;flex:0 0 auto;padding:5mm 4mm;">
+          <div style="font-size:8.6pt;color:var(--navy);font-weight:700;margin-bottom:3mm;">성장 목표 시나리오(계획, 실적 아님)<span class="cite n">2</span></div>
+          <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid var(--navy-line);">
+            <div style="padding:3mm 1mm;border-bottom:1px solid var(--navy-line);display:flex;justify-content:space-between;align-items:baseline;">
+              <div style="font-size:8pt;color:var(--muted);">2026 하반기 목표</div>
+              <div class="num" style="font-size:13pt;font-weight:700;color:var(--navy);">₩8.9억 <span style="font-size:7.5pt;color:var(--muted-dim);">ARR</span></div>
+            </div>
+            <div style="padding:3mm 1mm;border-bottom:1px solid var(--navy-line);display:flex;justify-content:space-between;align-items:baseline;">
+              <div style="font-size:8pt;color:var(--muted);">2027 목표</div>
+              <div class="num" style="font-size:13pt;font-weight:700;color:var(--navy);">₩45억 <span style="font-size:7.5pt;color:var(--muted-dim);">ARR</span></div>
+            </div>
+            <div style="padding:3mm 1mm;display:flex;justify-content:space-between;align-items:baseline;">
+              <div style="font-size:8pt;color:var(--ink);font-weight:600;">2028 목표</div>
+              <div class="num" style="font-size:16pt;font-weight:700;color:var(--accent-ink);">₩136억 <span style="font-size:7.5pt;color:var(--muted-dim);">ARR</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;padding:2mm 0;">
+          <div style="font-size:7.8pt;color:var(--muted-dim);">평균 구독료 ₩69,000/월 기준 가정</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sources">
+    <div class="src-title">출처 Sources</div>
+    <ol>
+      <li><span class="n">1</span> 구독자 수·매출표는 목표 시나리오를 설명하기 위한 자체 가정 기반 시뮬레이션이며, 실제 구독자 확보 속도·전환율·이탈률에 따라 결과가 달라질 수 있습니다. 미래 수익을 보장하지 않습니다. (6번 슬라이드의 사용자 애드센스 수익 시뮬레이션과는 별개의 MAZA 자체 매출입니다.)</li>
+      <li><span class="n">2</span> ARR 성장 목표는 내부 사업계획상의 목표치이며 투자·펀딩 확정을 전제로 하지 않은 계획 수치입니다.</li>
+    </ol>
+  </div>
+</div>
+
+
+<!-- ════════════════ SLIDE 9 — EXIT & CTA ════════════════ -->
+<div class="slide">
+  <div class="masthead">
+    <div class="masthead-left"><span class="masthead-logo">MAZA</span><span class="masthead-sub">Studio Pitch 2026</span></div>
+    <div class="masthead-right"><span class="masthead-tag">Exit Strategy + CTA</span><span class="masthead-folio">09 / 09</span></div>
+  </div>
+  <div class="slide-title">종속 없는 <em>투명한 구조</em> — MAZA와 지금 함께하세요</div>
+  <div class="content">
+    <div class="row">
+      <div class="col col-48">
+        <div style="font-size:10pt;font-weight:700;color:var(--ink);margin-bottom:3mm;">독립 이관 패키지</div>
+        <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid var(--accent-line);margin-bottom:4mm;">
+          <div style="padding:3.2mm 1mm;border-bottom:1px solid var(--accent-line);display:flex;gap:3mm;">
+            <div class="mono" style="font-size:9pt;font-weight:700;color:var(--accent-ink);flex-shrink:0;width:8mm;">01</div>
+            <div>
+              <div style="font-size:9.4pt;font-weight:700;color:var(--accent-ink);">프론트엔드 소스코드</div>
+              <div style="font-size:8.2pt;color:var(--muted);margin-top:1mm;">다국어 언어팩이 포함된 블로그 원본 코드</div>
+            </div>
+          </div>
+          <div style="padding:3.2mm 1mm;border-bottom:1px solid var(--accent-line);display:flex;gap:3mm;">
+            <div class="mono" style="font-size:9pt;font-weight:700;color:var(--accent-ink);flex-shrink:0;width:8mm;">02</div>
+            <div>
+              <div style="font-size:9.4pt;font-weight:700;color:var(--accent-ink);">콘텐츠 데이터(DB)</div>
+              <div style="font-size:8.2pt;color:var(--muted);margin-top:1mm;">발행된 포스팅 데이터를 CSV로 완전 추출 — 내 콘텐츠는 내 것</div>
+            </div>
+          </div>
+          <div style="padding:3.2mm 1mm;display:flex;gap:3mm;">
+            <div class="mono" style="font-size:9pt;font-weight:700;color:var(--accent-ink);flex-shrink:0;width:8mm;">03</div>
+            <div>
+              <div style="font-size:9.4pt;font-weight:700;color:var(--accent-ink);">개인용 어드민(CMS) 패널</div>
+              <div style="font-size:8.2pt;color:var(--muted);margin-top:1mm;">MAZA 없이 혼자 관리할 수 있는 독립형 어드민</div>
+            </div>
+          </div>
+        </div>
+        <div class="quote accent" style="font-size:9pt;">
+          MAZA는 초기 3개월의 부스터 역할을 합니다. 운영이 안정되면 원할 때 독립할 수 있는 이관 구조를 제공합니다.<span class="cite">1</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card plain" style="flex:1;border:1px solid var(--ink);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:4mm;padding:8mm;">
+          <div style="font-size:9pt;color:var(--muted);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">공식 론칭 프로젝트</div>
+          <div class="serif" style="font-size:25pt;font-weight:900;color:var(--ink);line-height:1.1;">MAZA Studio</div>
+          <div class="cover-rule" style="margin:2mm auto;"></div>
+          <div style="font-size:10pt;color:var(--muted);line-height:1.72;max-width:90mm;">체력적·시간적 한계에 부딪힌 분들에게 현실적인 대안을 제시하는 <strong style="color:var(--accent-ink);">AI 블로그 자동화 파트너</strong>입니다.</div>
+          <div style="display:flex;gap:0;flex-wrap:wrap;justify-content:center;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);margin-top:2mm;">
+            <div style="font-size:8.4pt;padding:2.2mm 5mm;border-right:1px solid var(--line-strong);color:var(--ink-soft);font-weight:600;">얼리버드 할인</div>
+            <div style="font-size:8.4pt;padding:2.2mm 5mm;border-right:1px solid var(--line-strong);color:var(--ink-soft);font-weight:600;">독립 라이선스 이관</div>
+            <div style="font-size:8.4pt;padding:2.2mm 5mm;color:var(--ink-soft);font-weight:600;">전담 지원</div>
+          </div>
+          <div style="margin-top:2mm;font-size:9.4pt;color:var(--muted-dim);">mazastudio.kr | mazastory7@gmail.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sources">
+    <div class="src-title">출처 Sources</div>
+    <ol>
+      <li><span class="n">1</span> 이관 시점·범위·조건은 구독 플랜 및 서비스 약관에 따라 달라질 수 있으며, 세부 조건은 계약서 및 이용약관에서 최종 확정됩니다.</li>
+    </ol>
+  </div>
+</div>
+
+</body>
+</html>

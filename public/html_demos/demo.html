@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAZA Studio - Seo Clinic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background-color: #0e0e14; color: #f1f5f9; overflow-x: hidden; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .pulse-circle {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            animation: radar 2s infinite linear;
+        }
+        @keyframes radar {
+            0% { width: 0; height: 0; opacity: 1; }
+            100% { width: 200px; height: 200px; opacity: 0; }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header / Nav (Fake) -->
+    <header class="w-full h-16 bg-[#0e0e14]/80 border-b border-white/5 flex items-center justify-between px-6 fixed top-0 z-50 backdrop-blur-md">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-black text-lg">M</div>
+            <span class="font-black text-white text-lg tracking-tight">MAZASTUDIO</span>
+        </div>
+        <div class="hidden md:flex items-center gap-6 text-sm font-bold text-slate-400">
+            <span class="text-white">대시보드</span>
+            <span>플랫폼</span>
+            <span>마자 에이전트</span>
+            <span class="text-indigo-400">품질검사</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30 flex items-center gap-1">
+                <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div> BYOK On
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="w-full pt-16 flex flex-col">
+        
+        <!-- HERO SECTION (Dynamic) -->
+        <div id="hero-section" class="relative flex flex-col items-center justify-center text-center transition-all duration-700 ease-in-out overflow-hidden min-h-[calc(100vh-64px)] px-8 pb-16">
+            
+            <!-- Hero Decorations -->
+            <div id="hero-decor" class="absolute inset-0 pointer-events-none transition-opacity duration-700">
+                <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-indigo-600/10 rounded-full blur-[120px]"></div>
+                <div class="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-purple-600/8 rounded-full blur-[100px]"></div>
+                <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#818cf8 1px, transparent 1px), linear-gradient(90deg, #818cf8 1px, transparent 1px); background-size: 40px 40px;"></div>
+            </div>
+
+            <div id="badge-top" class="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full text-xs font-semibold border border-indigo-500/20 transition-all duration-500 mb-6">
+                <i class="fa-solid fa-sparkles text-[13px]"></i> MAZA PRO EXCLUSIVE
+            </div>
+
+            <h1 id="hero-title" class="font-black tracking-tight transition-all duration-700 text-5xl md:text-6xl mb-5 leading-tight">
+                당신의 블로그, <br class="md:hidden" />
+                <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">구글이 보기에 어떤가요?</span>
+            </h1>
+
+            <p id="hero-desc" class="text-slate-400 text-lg mb-10 max-w-xl leading-relaxed transition-all duration-500">
+                애드센스 승인을 가로막는 인프라 누락과 저품질 콘텐츠를 AI가<br class="hidden md:block" />
+                단 10초 만에 스캔하고 점수화합니다.
+            </p>
+
+            <div id="input-container" class="flex gap-3 w-full transition-all duration-500 max-w-xl">
+                <input type="text" value="autosite.kr" readonly class="flex-1 bg-[#1C1C24] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none" />
+                <button onclick="startAudit()" id="scan-btn" class="px-7 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold transition-all flex items-center gap-2 whitespace-nowrap shadow-[0_0_20px_rgba(99,102,241,0.3)]">
+                    <i id="scan-icon" class="fa-regular fa-circle-play text-lg"></i> <span id="scan-text">진단 시작</span>
+                </button>
+            </div>
+
+            <p id="hero-footer" class="mt-6 text-[13px] text-slate-400 max-w-2xl text-center leading-relaxed transition-opacity duration-500">
+                ※ 본 진단 도구는 구글 애드센스 공식 기준과 웹표준 가이드라인을 바탕으로 한 참고용 AI 분석 자료입니다. <br class="hidden sm:block" />
+                실제 애드센스 심사는 전적으로 구글(Google)의 권한이며, 당사는 심사 통과 여부를 법적으로 보장하거나 책임지지 않습니다.
+            </p>
+        </div>
+
+        <!-- RESULT CARDS -->
+        <div id="results-container" class="max-w-4xl mx-auto px-6 pb-16 space-y-6 pt-6 w-full hidden">
+            
+            <!-- Card 1: Infra -->
+            <div id="card-1" class="transition-all duration-700 ease-out opacity-0 translate-y-8 pointer-events-none h-0 overflow-hidden">
+                <div class="bg-[#1C1C24] border border-white/5 rounded-2xl p-6 shadow-2xl">
+                    <h3 class="text-lg font-semibold mb-5 flex items-center gap-2 text-white">
+                        <i class="fa-solid fa-shield-halved text-indigo-400"></i> 인프라 및 연결 점검
+                        <span id="infra-status-text" class="ml-2 text-xs text-indigo-400 font-normal animate-pulse">스캔 중...</span>
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <!-- Infra Boxes -->
+                        <div class="infra-box flex flex-col items-center justify-center text-center p-4 rounded-xl border transition-all duration-500 bg-[#1C1C24] border-white/5 opacity-40" id="infra-1">
+                            <i class="fa-solid fa-lock text-slate-600 mb-2 text-xl icon-placeholder"></i>
+                            <span class="text-xs font-semibold text-slate-600">Search Console</span>
+                        </div>
+                        <div class="infra-box flex flex-col items-center justify-center text-center p-4 rounded-xl border transition-all duration-500 bg-[#1C1C24] border-white/5 opacity-40" id="infra-2">
+                            <i class="fa-solid fa-lock text-slate-600 mb-2 text-xl icon-placeholder"></i>
+                            <span class="text-xs font-semibold text-slate-600">GA4</span>
+                        </div>
+                        <div class="infra-box flex flex-col items-center justify-center text-center p-4 rounded-xl border transition-all duration-500 bg-[#1C1C24] border-white/5 opacity-40" id="infra-3">
+                            <i class="fa-solid fa-lock text-slate-600 mb-2 text-xl icon-placeholder"></i>
+                            <span class="text-xs font-semibold text-slate-600">AdSense Script</span>
+                        </div>
+                        <div class="infra-box flex flex-col items-center justify-center text-center p-4 rounded-xl border transition-all duration-500 bg-[#1C1C24] border-white/5 opacity-40" id="infra-4">
+                            <i class="fa-solid fa-lock text-slate-600 mb-2 text-xl icon-placeholder"></i>
+                            <span class="text-xs font-semibold text-slate-600">ads.txt</span>
+                        </div>
+                        <div class="infra-box flex flex-col items-center justify-center text-center p-4 rounded-xl border transition-all duration-500 bg-[#1C1C24] border-white/5 opacity-40" id="infra-5">
+                            <i class="fa-solid fa-lock text-slate-600 mb-2 text-xl icon-placeholder"></i>
+                            <span class="text-xs font-semibold text-slate-600">robots.txt</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 & 3: Score & Post Quality -->
+            <div id="card-2" class="grid grid-cols-1 md:grid-cols-3 gap-6 transition-all duration-700 ease-out opacity-0 translate-y-8 pointer-events-none h-0 overflow-hidden">
+                <!-- Score Box -->
+                <div class="bg-[#1C1C24] border border-white/5 rounded-2xl p-6 shadow-2xl flex flex-col items-center justify-center relative md:col-span-1 min-h-[220px]">
+                    <div id="score-radar" class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-1000">
+                        <div class="w-32 h-32 rounded-full border border-slate-700 absolute"></div>
+                        <div class="w-48 h-48 rounded-full border border-slate-700 absolute"></div>
+                        <div class="w-full h-[1px] bg-slate-700 absolute"></div>
+                        <div class="h-full w-[1px] bg-slate-700 absolute"></div>
+                    </div>
+                    
+                    <div class="text-xs font-bold text-slate-400 mb-4 relative z-10">애드센스 합격 예측 점수</div>
+                    <div class="text-5xl font-black text-white relative z-10 flex items-baseline">
+                        <span id="score-val" class="text-slate-500">0</span>
+                        <span class="text-lg text-slate-500 font-bold ml-1">/100</span>
+                    </div>
+                    <div id="score-msg" class="mt-4 text-xs font-bold text-slate-500 bg-slate-800 px-3 py-1 rounded-full relative z-10">
+                        진단 대기 중
+                    </div>
+                </div>
+
+                <!-- Analysis Box -->
+                <div class="bg-[#1C1C24] border border-white/5 rounded-2xl p-6 shadow-2xl md:col-span-2">
+                    <h3 class="text-sm font-semibold mb-6 flex items-center gap-2 text-white">
+                        <i class="fa-solid fa-chart-column text-indigo-400"></i> 포스트 품질 분석
+                    </h3>
+                    
+                    <div class="grid grid-cols-3 gap-4">
+                        <!-- Stat 1 -->
+                        <div class="bg-[#252530] p-4 rounded-xl border border-white/5 flex flex-col justify-between h-[100px]">
+                            <div class="flex items-center gap-2 text-slate-400 text-xs"><i class="fa-regular fa-file-lines"></i> 발행된 글</div>
+                            <div class="flex items-end justify-between">
+                                <div class="text-2xl font-bold text-white"><span id="stat1-val">0</span><span class="text-sm font-normal text-slate-500 ml-1">개</span></div>
+                                <div id="stat1-badge" class="text-xs font-bold text-slate-400">대기중</div>
+                            </div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1">
+                                <div id="stat1-bar" class="h-full bg-slate-700 transition-all duration-1000 w-0"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Stat 2 -->
+                        <div class="bg-[#252530] p-4 rounded-xl border border-white/5 flex flex-col justify-between h-[100px]">
+                            <div class="flex items-center gap-2 text-slate-400 text-xs"><i class="fa-solid fa-align-left"></i> 평균 글자수</div>
+                            <div class="flex items-end justify-between">
+                                <div class="text-2xl font-bold text-white"><span id="stat2-val">0</span><span class="text-sm font-normal text-slate-500 ml-1">자</span></div>
+                                <div id="stat2-badge" class="text-xs font-bold text-slate-400">대기중</div>
+                            </div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1">
+                                <div id="stat2-bar" class="h-full bg-slate-700 transition-all duration-1000 w-0"></div>
+                            </div>
+                        </div>
+
+                        <!-- Stat 3 -->
+                        <div class="bg-[#252530] p-4 rounded-xl border border-white/5 flex flex-col justify-between h-[100px]">
+                            <div class="flex items-center gap-2 text-slate-400 text-xs"><i class="fa-regular fa-image"></i> 사진 첨부율</div>
+                            <div class="flex items-end justify-between">
+                                <div class="text-2xl font-bold text-white"><span id="stat3-val">0</span><span class="text-sm font-normal text-slate-500 ml-1">%</span></div>
+                                <div id="stat3-badge" class="text-xs font-bold text-slate-400">대기중</div>
+                            </div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden mt-1">
+                                <div id="stat3-bar" class="h-full bg-slate-700 transition-all duration-1000 w-0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Verdict & AutoFix CTA -->
+            <div id="card-3" class="transition-all duration-700 ease-out opacity-0 translate-y-8 pointer-events-none h-0 overflow-hidden">
+                <div id="verdict-box" class="bg-[#252530] border border-white/5 rounded-2xl p-5 flex items-center justify-between shadow-2xl transition-all duration-500">
+                    <div class="flex items-center gap-4">
+                        <div id="verdict-icon-box" class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center shrink-0 transition-colors duration-500">
+                            <i id="verdict-icon" class="fa-solid fa-ellipsis text-slate-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 id="verdict-title" class="text-lg font-bold text-white">결과 분석 중</h3>
+                            <p id="verdict-desc" class="text-sm text-slate-400 mt-0.5">상단 데이터를 종합하여 애드센스 승인 여부를 예측합니다.</p>
+                        </div>
+                    </div>
+                    
+                    <button onclick="runAutoFix()" id="autofix-btn" class="hidden px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)] items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> AI 자동 복구
+                    </button>
+                </div>
+
+                <!-- Auto Fix Logs -->
+                <div id="autofix-logs" class="bg-[#1C1C24] border border-indigo-500/30 rounded-2xl p-5 w-full opacity-0 h-0 overflow-hidden transition-all duration-700 mt-0">
+                    <div class="text-[13px] font-bold text-indigo-400 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-robot animate-bounce"></i> 자가 치유 파이프라인 실시간 로그
+                    </div>
+                    <div class="bg-black/50 rounded-xl p-4 font-mono text-[11px] text-slate-400 space-y-2 h-32 overflow-y-auto" id="log-container">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const wait = (ms) => new Promise(res => setTimeout(res, ms));
+
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        async function startAudit() {
+            // UI Transition (Hero to Header)
+            const hero = document.getElementById('hero-section');
+            hero.className = 'relative flex flex-col items-center justify-center text-center transition-all duration-700 ease-in-out py-8 px-8 border-b border-white/5 bg-[#111116] shrink-0';
+            
+            document.getElementById('hero-decor').style.opacity = '0';
+            document.getElementById('badge-top').className = 'inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full text-xs font-semibold border border-indigo-500/20 transition-all duration-500 mb-3';
+            
+            document.getElementById('hero-title').innerHTML = '품질 진단 <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Clinic</span>';
+            document.getElementById('hero-title').className = 'font-black tracking-tight transition-all duration-700 text-2xl md:text-3xl mb-4';
+            
+            document.getElementById('hero-desc').style.display = 'none';
+            document.getElementById('hero-footer').style.display = 'none';
+            
+            document.getElementById('input-container').className = 'flex gap-3 w-full transition-all duration-500 max-w-2xl justify-center';
+            
+            const btn = document.getElementById('scan-btn');
+            document.getElementById('scan-icon').className = 'fa-solid fa-spinner fa-spin text-lg';
+            btn.classList.add('opacity-80', 'pointer-events-none');
+
+            // Show results container
+            const results = document.getElementById('results-container');
+            results.classList.remove('hidden');
+            await wait(100);
+
+            // Phase 1: Reveal Card 1 (Infra)
+            const card1 = document.getElementById('card-1');
+            card1.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none', 'h-0', 'overflow-hidden');
+            
+            // Check Infra sequentially
+            for(let i=1; i<=5; i++) {
+                const box = document.getElementById('infra-' + i);
+                
+                // Set to checking
+                box.className = 'infra-box flex flex-col items-center justify-center text-center p-4 rounded-xl border transition-all duration-500 bg-indigo-500/10 border-indigo-500/40 shadow-[0_0_16px_rgba(99,102,241,0.2)]';
+                box.querySelector('.icon-placeholder').className = 'fa-solid fa-spinner fa-spin text-indigo-400 mb-2 text-xl icon-placeholder';
+                box.querySelector('span').className = 'text-xs font-semibold text-indigo-300';
+                
+                await wait(450); // 450ms per item as in real code
+                
+                // Set to done (green)
+                box.className = 'infra-box flex flex-col items-center justify-center text-center p-4 rounded-xl border transition-all duration-500 bg-emerald-500/10 border-emerald-500/30';
+                box.querySelector('.icon-placeholder').className = 'fa-regular fa-circle-check text-emerald-400 mb-2 text-xl icon-placeholder';
+                box.querySelector('span').className = 'text-xs font-semibold text-emerald-300';
+            }
+            
+            document.getElementById('infra-status-text').innerText = '완료';
+            document.getElementById('infra-status-text').className = 'ml-2 text-xs text-emerald-400 font-normal';
+
+            await wait(300);
+
+            // Phase 2: Reveal Card 2 (Score & Analysis)
+            const card2 = document.getElementById('card-2');
+            card2.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none', 'h-0', 'overflow-hidden');
+            
+            document.getElementById('score-radar').classList.remove('opacity-0');
+            document.getElementById('score-val').className = 'text-red-400';
+            animateValue('score-val', 0, 42, 1000);
+            
+            // Bad metrics animation
+            animateValue('stat1-val', 0, 12, 1000);
+            document.getElementById('stat1-bar').className = 'h-full bg-rose-500 transition-all duration-700 w-[48%]';
+            
+            animateValue('stat2-val', 0, 850, 1000);
+            document.getElementById('stat2-bar').className = 'h-full bg-rose-500 transition-all duration-700 w-[30%]';
+            
+            animateValue('stat3-val', 0, 41, 1000);
+            document.getElementById('stat3-bar').className = 'h-full bg-amber-500 transition-all duration-700 w-[41%]';
+            
+            await wait(1000);
+            
+            document.getElementById('stat1-badge').innerText = '목표: 25개';
+            document.getElementById('stat1-badge').className = 'text-xs font-bold text-rose-400';
+            document.getElementById('stat2-badge').innerText = '부족';
+            document.getElementById('stat2-badge').className = 'text-xs font-bold text-rose-400';
+            document.getElementById('stat3-badge').innerText = '5/12 포스트';
+            document.getElementById('stat3-badge').className = 'text-xs font-bold text-amber-400';
+            
+            document.getElementById('score-msg').innerText = '승인 가능성 낮음 (저품질 위험)';
+            document.getElementById('score-msg').className = 'mt-4 text-xs font-bold text-rose-400 bg-rose-500/10 border border-rose-500/20 px-3 py-1 rounded-full relative z-10';
+
+            await wait(600);
+
+            // Phase 3: Reveal Card 3 (Verdict & Fix Button)
+            const card3 = document.getElementById('card-3');
+            card3.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none', 'h-0', 'overflow-hidden');
+            
+            // Set Bad Verdict
+            const vBox = document.getElementById('verdict-box');
+            vBox.className = 'bg-rose-950/20 border border-rose-500/30 rounded-2xl p-5 flex items-center justify-between shadow-2xl transition-all duration-500';
+            document.getElementById('verdict-icon-box').className = 'w-12 h-12 rounded-full bg-rose-500/20 flex items-center justify-center shrink-0';
+            document.getElementById('verdict-icon').className = 'fa-solid fa-triangle-exclamation text-rose-400 text-xl';
+            document.getElementById('verdict-title').className = 'text-lg font-bold text-rose-400';
+            document.getElementById('verdict-title').innerText = '애드센스 승인 불가 (포스트 수 및 품질 미달)';
+            document.getElementById('verdict-desc').className = 'text-sm text-slate-400 mt-0.5';
+            document.getElementById('verdict-desc').innerText = '콘텐츠가 부족하여 심사에서 거절당할 확률이 98%입니다.';
+            
+            // Restore button
+            document.getElementById('scan-icon').className = 'fa-regular fa-circle-play text-lg';
+            btn.classList.remove('opacity-80', 'pointer-events-none');
+            
+            // Show Autofix CTA
+            document.getElementById('autofix-btn').classList.remove('hidden');
+            document.getElementById('autofix-btn').classList.add('flex');
+        }
+
+        async function runAutoFix() {
+            const fixBtn = document.getElementById('autofix-btn');
+            fixBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 복구 중...';
+            fixBtn.classList.add('opacity-75', 'pointer-events-none');
+            
+            // Expand logs section
+            const logsBox = document.getElementById('autofix-logs');
+            logsBox.classList.remove('opacity-0', 'h-0', 'mt-0');
+            logsBox.classList.add('h-48', 'mt-4');
+            
+            await wait(500);
+            
+            const container = document.getElementById('log-container');
+            
+            const fixSteps = [
+                { text: '[SYSTEM] MAZA AI 에이전트 초기화 완료. 자동 복구 시스템을 가동합니다.', time: 800 },
+                { text: '[AUTO-FIX] 목표 달성을 위해 부족한 13개 포스트 자동 생성 중...', time: 1000 },
+                { text: '[SUCCESS] 25개 포스트 달성 완료', time: 600, action: () => {
+                    animateValue('stat1-val', 12, 25, 800);
+                    document.getElementById('stat1-bar').className = 'h-full bg-emerald-500 transition-all duration-700 w-full';
+                    document.getElementById('stat1-badge').className = 'text-xs font-bold text-emerald-400';
+                    document.getElementById('stat1-badge').innerText = '목표 달성';
+                }},
+                { text: '[EEAT] Wikipedia API 연동하여 전문 지식(EEAT) 본문 확장 중...', time: 1200 },
+                { text: '[SUCCESS] 평균 글자수 4,882자로 대폭 상향 완료', time: 800, action: () => {
+                    animateValue('stat2-val', 850, 4882, 800);
+                    document.getElementById('stat2-bar').className = 'h-full bg-emerald-500 transition-all duration-700 w-[90%]';
+                    document.getElementById('stat2-badge').className = 'text-xs font-bold text-emerald-400';
+                    document.getElementById('stat2-badge').innerText = '우수';
+                }},
+                { text: '[MEDIA] 구글 봇 친화적 고화질 스톡 이미지 및 alt 태그 일괄 삽입 중...', time: 1500 },
+                { text: '[SUCCESS] 사진 첨부율 100% 최적화 완료', time: 800, action: () => {
+                    animateValue('stat3-val', 41, 100, 800);
+                    document.getElementById('stat3-bar').className = 'h-full bg-emerald-500 transition-all duration-700 w-full';
+                    document.getElementById('stat3-badge').className = 'text-xs font-bold text-emerald-400';
+                    document.getElementById('stat3-badge').innerText = '25/25 포스트';
+                }},
+                { text: '[SYSTEM] 최종 SEO 스코어링 재계산 중...', time: 1000 }
+            ];
+            
+            for(let step of fixSteps) {
+                const el = document.createElement('div');
+                el.innerHTML = `<span class="text-indigo-400 mr-2">></span><span class="text-slate-300">${step.text}</span>`;
+                container.appendChild(el);
+                container.scrollTop = container.scrollHeight;
+                if(step.action) step.action();
+                await wait(step.time);
+            }
+            
+            // Final Good State
+            document.getElementById('score-val').className = 'text-emerald-400';
+            animateValue('score-val', 42, 96, 1000);
+            
+            document.getElementById('score-msg').innerText = '승인 가능성 매우 높음';
+            document.getElementById('score-msg').className = 'mt-4 text-xs font-bold text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full relative z-10';
+            
+            // Verdict (Good)
+            const vBox = document.getElementById('verdict-box');
+            vBox.className = 'bg-emerald-900/20 border border-emerald-500/30 rounded-2xl p-5 flex items-center justify-between shadow-2xl transition-all duration-500';
+            document.getElementById('verdict-icon-box').className = 'w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0 border border-emerald-500/30';
+            document.getElementById('verdict-icon').className = 'fa-solid fa-check text-emerald-400 text-xl';
+            document.getElementById('verdict-title').className = 'text-lg font-black text-emerald-400';
+            document.getElementById('verdict-title').innerText = '완벽합니다! (ALL CLEAR)';
+            document.getElementById('verdict-desc').className = 'text-sm text-slate-300 mt-0.5';
+            document.getElementById('verdict-desc').innerText = '모든 포스트가 애드센스 심사 권장 기준을 충족하고 있습니다.';
+            
+            // Stop radar & hide button
+            document.getElementById('score-radar').classList.add('opacity-0');
+            fixBtn.classList.add('hidden');
+            fixBtn.classList.remove('flex');
+            
+            // Hide logs after 3 seconds
+            await wait(3000);
+            logsBox.classList.add('opacity-0', 'h-0', 'mt-0');
+            logsBox.classList.remove('h-48', 'mt-4');
+        }
+    </script>
+</body>
+</html>

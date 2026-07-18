@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAZA Studio - 당신만의 AI 에이전시</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; }
+        
+        /* Custom Animations */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+        }
+        
+        @keyframes pulse-ring-emerald {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        @keyframes type-text {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #f97316;
+            width: 0;
+        }
+
+        .glass-panel {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Step active states for Pipeline */
+        .step-active .icon-box {
+            background-color: #ecfdf5;
+            border-color: #10b981;
+            color: #10b981;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        }
+        .step-active .pulse-bg {
+            animation: pulse-ring-emerald 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-[#0a0a0f] text-slate-200 min-h-screen p-4 sm:p-8 py-16 flex flex-col items-center overflow-x-hidden relative">
+    
+    <!-- Background glow effects -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-orange-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="fixed bottom-0 right-0 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="relative z-10 w-full max-w-2xl flex flex-col items-center mb-16 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-bold uppercase tracking-widest mb-6">
+            <i class="fa-solid fa-sparkles"></i> The New Standard of Digital Real Estate
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-black tracking-tight text-white mb-4 leading-tight">
+            당신의 AI 직원들이 짓는<br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">자동화된 디지털 부동산</span>
+        </h1>
+        <p class="text-slate-400 text-sm sm:text-base max-w-lg font-medium leading-relaxed">
+            도메인 하나로 글로벌 가맹점을 무한 복제하고, 24시간 일하는 5명의 AI 에이전트에게 콘텐츠 생산을 맡기세요.
+        </p>
+    </div>
+
+    <!-- REAL UI HERO SECTION -->
+    <div class="relative z-10 w-full max-w-[1200px] mb-16 px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+            <!-- Left: Chat Interface -->
+            <div class="flex flex-col h-[500px] sm:h-[550px] border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl rounded-3xl p-4 sm:p-6 shadow-2xl relative overflow-hidden group">
+                <div class="absolute -top-32 -left-32 w-64 h-64 bg-orange-500/10 rounded-full blur-[100px] pointer-events-none group-hover:bg-orange-500/20 transition-all duration-1000 z-0"></div>
+                <div class="flex-1 overflow-y-auto hide-scrollbar flex flex-col gap-4 pb-4 relative z-10 scroll-smooth" id="chat-container">
+                    
+                    <div class="flex gap-4 max-w-[85%]">
+                        <div class="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-md bg-gradient-to-br from-orange-500/20 to-amber-500/20 text-orange-400 border border-orange-500/30">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <div class="p-4 border shadow-sm flex flex-col gap-2 w-full min-w-0 bg-orange-950/30 border-orange-800/30 text-slate-200 rounded-2xl rounded-tl-none">
+                            <p class="leading-relaxed whitespace-pre-wrap text-sm">안녕하세요! <strong>MAZA 커맨드 센터</strong>입니다.<br/>어떤 목적의 자동화 블로그를 만드실 건가요? 트렌드 헌터, 에디터 등 5명의 AI 직원들에게 업무 지시를 내려주세요.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="flex-none pt-2 w-full relative z-10">
+                    <div class="flex gap-2 mb-3 hide-scrollbar overflow-x-auto pb-1" id="quick-actions">
+                        <button onclick="triggerCopilotAnim('미국 시장 타겟 IT 기기 리뷰 블로그 제작 회의 합시다')" class="flex-none px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/40 hover:bg-slate-700/60 text-xs font-medium text-slate-300 transition-colors flex items-center gap-1.5 cursor-pointer">
+                            <div class="p-1 rounded-full bg-blue-500/20 text-blue-400"><i class="fa-solid fa-globe"></i></div>
+                            미국 시장 타겟 IT 기기 리뷰 블로그 제작 회의 합시다
+                        </button>
+                        <button onclick="triggerCopilotAnim('일본어 수익화 잡블로그')" class="flex-none px-3 py-1.5 rounded-full border border-slate-700/50 bg-slate-800/40 hover:bg-slate-700/60 text-xs font-medium text-slate-300 transition-colors flex items-center gap-1.5 cursor-pointer">
+                            <div class="p-1 rounded-full bg-pink-500/20 text-pink-400"><i class="fa-solid fa-yen-sign"></i></div>
+                            일본어 수익화 블로그
+                        </button>
+                    </div>
+                    
+                    <div class="relative group">
+                        <div class="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-amber-500 rounded-[1.5rem] blur opacity-20 transition duration-500"></div>
+                        <div class="relative flex items-center bg-slate-900 border border-slate-700 rounded-[1.5rem] p-2 shadow-2xl">
+                            <button class="p-3 text-slate-400"><i class="fa-solid fa-microphone"></i></button>
+                            <input type="text" id="copilot-input" placeholder="요구사항이나 수정하고 싶은 점을 말씀해주세요" class="flex-1 bg-transparent border-none outline-none text-white px-2 py-2 text-sm placeholder-slate-500 pointer-events-none" readonly>
+                            <button class="p-3 rounded-xl flex items-center justify-center transition-all bg-slate-800 text-slate-500">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Floor Plan -->
+            <div class="flex flex-col h-[500px] sm:h-[550px] border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl relative rounded-3xl overflow-hidden shadow-2xl group transition-all duration-700 hover:border-orange-500/30 hover:shadow-[0_0_40px_rgba(249,115,22,0.15)]">
+                <div class="flex flex-col items-center h-full p-4 sm:p-6 relative overflow-hidden hide-scrollbar">
+                    <div class="absolute inset-0 bg-slate-900/60 z-0"></div>
+                    <div id="agency-floorplan" class="relative z-10 w-full flex-1 flex flex-col justify-between transition-all duration-700 py-2">
+                        <div class="text-center shrink-0 mb-4">
+                            <h2 class="text-xl font-black text-white mb-1 tracking-tight">MAZA AI Agency</h2>
+                            <p class="text-[10px] text-slate-400">명령을 내리면 AI 직원들이 사무실에서 업무를 시작합니다</p>
+                        </div>
+                        
+                        <div class="relative w-full flex-1 min-h-0 bg-slate-900 border-2 border-slate-700/80 rounded-2xl p-3 overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+                            <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 20px 20px;"></div>
+                            
+                            <div class="grid grid-cols-4 grid-rows-3 gap-2 h-full relative z-10">
+                                <!-- Meeting Room -->
+                                <div id="room-meeting" class="col-span-2 row-span-2 rounded-xl p-2 flex flex-col justify-between border bg-slate-800/40 border-slate-700 transition-all duration-500 relative">
+                                    <div class="text-[9px] font-black text-blue-400/80 uppercase tracking-wider z-10"><i class="fa-solid fa-users"></i> 기획/마케팅 회의실</div>
+                                    <div class="flex flex-wrap justify-around items-end h-full pb-1 z-10 w-full" id="meeting-agents"></div>
+                                    <div class="w-10 h-6 bg-slate-800/80 rounded-full border border-slate-700 mx-1 self-center shrink-0" id="meeting-table"></div>
+                                </div>
+                                
+                                <!-- Data Lab -->
+                                <div id="room-server" class="col-span-2 row-span-1 rounded-xl p-2 flex flex-row items-center justify-between border bg-slate-800/40 border-slate-700 transition-all duration-500 relative">
+                                    <div class="text-[9px] font-black text-emerald-400/80 uppercase tracking-wider shrink-0"><i class="fa-solid fa-server"></i> 데이터 연구실</div>
+                                    <div class="flex justify-end w-full" id="server-agents">
+                                        <div class="flex flex-col items-center z-20 m-1">
+                                            <div class="p-1.5 rounded-full bg-slate-800 text-slate-500 transition-all duration-300"><i class="fa-solid fa-gamepad"></i></div>
+                                            <span class="text-[8px] font-bold text-slate-300 mt-1">개발팀</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Publishing -->
+                                <div id="room-publish" class="col-span-1 row-span-2 rounded-xl p-2 flex flex-col justify-between border bg-slate-800/40 border-slate-700 transition-all duration-500 relative text-center">
+                                    <div class="text-[8px] font-black text-orange-400/80 uppercase tracking-wider">🖨️ 배포실</div>
+                                    <div class="flex flex-col items-center justify-center h-full gap-1">
+                                        <div class="p-1.5 rounded-full bg-slate-800 text-slate-500"><i class="fa-solid fa-moon"></i></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Lounge -->
+                                <div class="col-span-1 row-span-2 rounded-xl p-2 flex flex-col border bg-slate-800/40 border-slate-700 transition-all duration-500 relative">
+                                    <div class="text-[8px] font-black text-purple-400/80 uppercase tracking-wider text-center mb-1">☕️ 휴게실</div>
+                                    <div class="flex flex-wrap items-center justify-center h-full gap-1 w-full" id="lounge-agents">
+                                        <div class="flex flex-col items-center z-20 m-0.5">
+                                            <div class="p-1.5 rounded-full bg-slate-800 text-slate-500 transition-all duration-300"><i class="fa-solid fa-coffee"></i></div>
+                                        </div>
+                                        <div class="flex flex-col items-center z-20 m-0.5">
+                                            <div class="p-1.5 rounded-full bg-slate-800 text-slate-500 transition-all duration-300"><i class="fa-solid fa-comments"></i></div>
+                                        </div>
+                                        <div class="flex flex-col items-center z-20 m-0.5">
+                                            <div class="p-1.5 rounded-full bg-slate-800 text-slate-500 transition-all duration-300"><i class="fa-solid fa-moon"></i></div>
+                                        </div>
+                                        <div class="flex flex-col items-center z-20 m-0.5">
+                                            <div class="p-1.5 rounded-full bg-slate-800 text-slate-500 transition-all duration-300"><i class="fa-solid fa-music"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Master Room -->
+                                <div id="room-master" class="col-span-2 row-span-1 rounded-xl p-2 flex flex-row items-center justify-center gap-3 border bg-slate-800/40 border-slate-700 transition-all duration-500 relative">
+                                    <div class="absolute left-2 top-2 text-[9px] font-black text-red-400/80 uppercase tracking-wider">👑 마스터룸</div>
+                                    <div class="flex items-center gap-2 mt-2 z-10">
+                                        <div class="flex flex-col items-end">
+                                            <span class="text-[10px] font-black text-white">마스터(결재)</span>
+                                        </div>
+                                        <div class="p-1.5 rounded-full bg-slate-800 text-slate-400">
+                                            <i class="fa-solid fa-user text-xs"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-center shrink-0 mt-4">
+                            <div id="status-badge" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-bold transition-all duration-300 bg-slate-800/50 border-slate-700 text-slate-400">
+                                <div class="w-2 h-2 rounded-full bg-slate-500" id="status-dot"></div>
+                                <span id="status-text">명령 대기 중</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- View 2: Implementation Plan (Hidden by default) -->
+                    <div id="agency-docview" class="flex-1 flex flex-col transition-all duration-700 w-full h-full absolute inset-0 bg-[#1e222a] pt-20 px-6 pb-6 transform translate-x-full opacity-0 pointer-events-none overflow-y-auto custom-scrollbar z-10">
+                        <div class="w-full flex items-center justify-between mb-4 border-b border-slate-700 pb-3">
+                            <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-file-signature text-emerald-400 mr-2"></i>자동화 블로그 구축 기획안</h3>
+                            <span class="px-2 py-1 bg-amber-500/20 text-amber-400 text-[10px] font-bold rounded animate-pulse">승인 대기중</span>
+                        </div>
+                        <div class="space-y-3 flex-1">
+                            <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50 hover:border-slate-600 transition-colors">
+                                <div class="text-[10px] text-slate-400 mb-1"><i class="fa-solid fa-bullseye mr-1"></i>운영 컨셉</div>
+                                <div class="text-sm text-slate-200 font-medium" id="doc-concept">High-CPC 미국 IT 트렌드 공략</div>
+                            </div>
+                            <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50 hover:border-slate-600 transition-colors">
+                                <div class="text-[10px] text-slate-400 mb-1"><i class="fa-solid fa-globe mr-1"></i>배정된 서브도메인</div>
+                                <div class="text-sm text-blue-400 font-medium">en.mazastory.com</div>
+                            </div>
+                            <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50 hover:border-slate-600 transition-colors">
+                                <div class="text-[10px] text-slate-400 mb-1"><i class="fa-solid fa-calendar-check mr-1"></i>발행 스케줄링 전략</div>
+                                <div class="text-sm text-amber-400 font-medium">하루 3포스팅 (휴먼 라이크 Jittering 적용)</div>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex justify-end gap-2 shrink-0">
+                            <button class="px-4 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-xs font-bold transition-colors">수정요청</button>
+                            <button onclick="approvePlanAndStart()" class="px-4 py-3 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white rounded-lg text-xs font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] transform hover:-translate-y-0.5 flex items-center gap-2">
+                                <i class="fa-solid fa-check"></i> 기획 승인 및 자동화 시작
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container for the remaining cards -->
+    <div class="relative z-10 w-full max-w-2xl space-y-8 sm:space-y-12">
+
+
+        <!-- CARD 2: Digital Real Estate (Subdomains) -->
+        <div id="card-subdomain" class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden group scroll-mt-24">
+            <div class="absolute -right-10 -bottom-10 text-9xl text-white/5 pointer-events-none">
+                <i class="fa-solid fa-city"></i>
+            </div>
+            
+            <div>
+                <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">도메인 하나로 무한 확장</h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-1 mb-8">메인 도메인은 구글의 신뢰를 받는 '본사'로 두고, 서브 도메인을 무한 생성하여 공격적인 가맹점(수익 채널)을 늘리세요.</p>
+            </div>
+            
+            <div class="relative flex flex-col items-center mb-8">
+                <!-- Main Hub -->
+                <div class="bg-emerald-500/10 border-2 border-emerald-500/50 px-6 py-3 rounded-2xl flex flex-col items-center relative z-10 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+                    <span class="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-1">안전 자산 (AdSense 승인용)</span>
+                    <span class="text-lg font-black text-white tracking-tight">mazastory.com</span>
+                </div>
+                
+                <!-- Spoke Lines -->
+                <div class="w-full max-w-[400px] flex justify-between relative mt-4 h-12">
+                    <div class="absolute top-0 left-1/2 w-0.5 h-6 bg-slate-700 -translate-x-1/2"></div>
+                    <div class="absolute top-6 left-10 right-10 h-0.5 bg-slate-700"></div>
+                    
+                    <div class="absolute top-6 left-10 w-0.5 h-6 bg-slate-700"></div>
+                    <div class="absolute top-6 left-1/2 w-0.5 h-6 bg-slate-700 -translate-x-1/2"></div>
+                    <div class="absolute top-6 right-10 w-0.5 h-6 bg-slate-700"></div>
+                </div>
+
+                <!-- Subdomains -->
+                <div class="w-full flex justify-between gap-2 z-10" id="subdomain-grid">
+                    <div class="flex-1 bg-blue-500/10 border border-blue-500/30 rounded-xl p-3 flex flex-col items-center text-center opacity-30 transition-all duration-700 transform translate-y-4" id="sub-en">
+                        <i class="fa-solid fa-earth-americas text-blue-400 mb-2 text-lg"></i>
+                        <span class="text-[10px] font-bold text-slate-300">en.mazastory.com</span>
+                        <span class="text-[8px] text-blue-400 mt-1 bg-blue-500/20 px-2 py-0.5 rounded-full">High-CPC 미국타겟</span>
+                    </div>
+                    <div class="flex-1 bg-pink-500/10 border border-pink-500/30 rounded-xl p-3 flex flex-col items-center text-center opacity-30 transition-all duration-700 transform translate-y-4" id="sub-jp">
+                        <i class="fa-solid fa-torii-gate text-pink-400 mb-2 text-lg"></i>
+                        <span class="text-[10px] font-bold text-slate-300">jp.mazastory.com</span>
+                        <span class="text-[8px] text-pink-400 mt-1 bg-pink-500/20 px-2 py-0.5 rounded-full">고단가 일본타겟</span>
+                    </div>
+                    <div class="flex-1 bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 flex flex-col items-center text-center opacity-30 transition-all duration-700 transform translate-y-4" id="sub-shop">
+                        <i class="fa-solid fa-cart-shopping text-amber-400 mb-2 text-lg"></i>
+                        <span class="text-[10px] font-bold text-slate-300">shop.mazastory.com</span>
+                        <span class="text-[8px] text-amber-400 mt-1 bg-amber-500/20 px-2 py-0.5 rounded-full">제휴/쿠팡 수익화</span>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="runSubdomainAnim()" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-2">
+                <i class="fa-solid fa-network-wired text-blue-400"></i> 부동산 확장 애니메이션 재생
+            </button>
+        </div>
+
+
+        <!-- CARD 3: Pipeline (Based on demo.html) -->
+        <div id="card-pipeline" class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden group scroll-mt-24">
+            <div>
+                <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">제로터치(Zero-Touch) 파이프라인</h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-1">인프라 구축부터 구글 검색엔진 등록, 첫 글 발행까지 전부 기계가 알아서 합니다.</p>
+            </div>
+            
+            <div class="relative mt-10 mb-8 overflow-x-auto hide-scrollbar pb-4 -mx-6 px-6 sm:mx-0 sm:px-0">
+                <div class="min-w-[500px] relative">
+                    <!-- Background Line -->
+                    <div class="absolute top-1/2 left-0 w-full h-1 bg-slate-800 -translate-y-1/2 rounded-full z-0"></div>
+                    <!-- Active Progress Line -->
+                    <div id="progressLine" class="absolute top-1/2 left-0 w-0 h-1 bg-gradient-to-r from-emerald-400 to-emerald-500 -translate-y-1/2 rounded-full z-0 progress-line shadow-[0_0_15px_rgba(16,185,129,0.5)] transition-all duration-500"></div>
+                    
+                    <div class="relative z-10 flex justify-between">
+                        <!-- Steps -->
+                        <div class="step-container text-center flex flex-col items-center gap-2 flex-1" id="step1">
+                            <div class="relative">
+                                <div class="pulse-bg absolute inset-0 rounded-full z-0"></div>
+                                <div class="icon-box relative z-10 w-8 h-8 rounded-full bg-slate-800 border border-slate-700 text-slate-500 flex items-center justify-center text-xs transition-all duration-300">
+                                    <i class="fa-solid fa-server"></i>
+                                </div>
+                            </div>
+                            <div class="text-[9px] font-bold text-slate-400">서버 배포</div>
+                        </div>
+                        <div class="step-container text-center flex flex-col items-center gap-2 flex-1" id="step2">
+                            <div class="relative">
+                                <div class="pulse-bg absolute inset-0 rounded-full z-0"></div>
+                                <div class="icon-box relative z-10 w-8 h-8 rounded-full bg-slate-800 border border-slate-700 text-slate-500 flex items-center justify-center text-xs transition-all duration-300">
+                                    <i class="fa-solid fa-globe"></i>
+                                </div>
+                            </div>
+                            <div class="text-[9px] font-bold text-slate-400">도메인 연결</div>
+                        </div>
+                        <div class="step-container text-center flex flex-col items-center gap-2 flex-1" id="step3">
+                            <div class="relative">
+                                <div class="pulse-bg absolute inset-0 rounded-full z-0"></div>
+                                <div class="icon-box relative z-10 w-8 h-8 rounded-full bg-slate-800 border border-slate-700 text-slate-500 flex items-center justify-center text-xs transition-all duration-300">
+                                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                                </div>
+                            </div>
+                            <div class="text-[9px] font-bold text-slate-400">서치콘솔 연동</div>
+                        </div>
+                        <div class="step-container text-center flex flex-col items-center gap-2 flex-1" id="step4">
+                            <div class="relative">
+                                <div class="pulse-bg absolute inset-0 rounded-full z-0"></div>
+                                <div class="icon-box relative z-10 w-8 h-8 rounded-full bg-slate-800 border border-slate-700 text-slate-500 flex items-center justify-center text-xs transition-all duration-300">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                            </div>
+                            <div class="text-[9px] font-bold text-slate-400">SEO 세팅</div>
+                        </div>
+                        <div class="step-container text-center flex flex-col items-center gap-2 flex-1" id="step5">
+                            <div class="relative">
+                                <div class="pulse-bg absolute inset-0 rounded-full z-0"></div>
+                                <div class="icon-box relative z-10 w-8 h-8 rounded-full bg-slate-800 border border-slate-700 text-slate-500 flex items-center justify-center text-xs transition-all duration-300">
+                                    <i class="fa-solid fa-satellite-dish"></i>
+                                </div>
+                            </div>
+                            <div class="text-[9px] font-bold text-slate-400">사이트맵 제출</div>
+                        </div>
+                        <div class="step-container text-center flex flex-col items-center gap-2 flex-1" id="step6">
+                            <div class="relative">
+                                <div class="pulse-bg absolute inset-0 rounded-full z-0"></div>
+                                <div class="icon-box relative z-10 w-8 h-8 rounded-full bg-slate-800 border border-slate-700 text-slate-500 flex items-center justify-center text-xs transition-all duration-300">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                </div>
+                            </div>
+                            <div class="text-[9px] font-bold text-slate-400">글 자동 생성</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="runPipelineAnim()" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-2">
+                <i class="fa-solid fa-play text-emerald-400"></i> 자동 구축 과정 보기
+            </button>
+        </div>
+
+
+        <!-- CARD 4: Scheduler & Trend Hunter -->
+        <div id="card-scheduler" class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden group scroll-mt-24">
+            <!-- Agent working message (Hidden initially) -->
+            <div id="agent-working-msg" class="absolute top-4 left-1/2 transform -translate-x-1/2 px-4 py-1.5 bg-indigo-500/20 border border-indigo-500/50 rounded-full text-indigo-300 text-[10px] sm:text-xs font-bold opacity-0 transition-opacity duration-500 flex items-center gap-2 z-20">
+                <i class="fa-solid fa-robot animate-bounce"></i> 백그라운드에서 에이전트들이 24시간 일하고 있습니다...
+            </div>
+            
+            <div class="flex items-center justify-between mb-8 mt-2">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">트렌드 헌터 & 어뷰징 방어</h2>
+                    <p class="text-slate-400 text-xs sm:text-sm mt-1">글감 고민은 끝. 트렌드 헌터가 키워드를 발굴하고 사람처럼 불규칙하게(Jitter) 발행합니다.</p>
+                </div>
+                <div class="hidden sm:flex w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-500/30 items-center justify-center text-indigo-400 shrink-0">
+                    <i class="fa-solid fa-crosshairs text-xl"></i>
+                </div>
+            </div>
+
+            <!-- Terminal-like Logs -->
+            <div class="bg-black/60 rounded-xl border border-white/10 p-4 font-mono text-[10px] sm:text-xs text-slate-400 mb-6 h-48 overflow-hidden relative">
+                <div class="absolute inset-x-0 top-0 h-4 bg-gradient-to-b from-black/60 to-transparent z-10"></div>
+                <div class="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                
+                <div id="log-container" class="space-y-2 transform transition-transform duration-500">
+                    <div class="flex gap-3"><span class="text-slate-600">[08:23]</span><span class="text-emerald-400">✔ 발행성공</span><span class="text-white">"2024년 최신 노트북 가이드"</span> <span class="text-slate-500">(en.mazastory.com)</span></div>
+                    <div class="flex gap-3"><span class="text-slate-600">[11:47]</span><span class="text-emerald-400">✔ 발행성공</span><span class="text-white">"도쿄 가성비 호텔 Top 5"</span> <span class="text-slate-500">(jp.mazastory.com)</span></div>
+                    <div class="flex gap-3"><span class="text-slate-600">[14:12]</span><span class="text-amber-400">⚠ Jitter 적용</span><span class="text-slate-300">구글 봇 회피를 위해 발행 시간 +42분 지연 스케줄링됨</span></div>
+                </div>
+            </div>
+
+            <button onclick="runSchedulerAnim()" class="w-full py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-2">
+                <i class="fa-solid fa-terminal text-slate-300"></i> 실시간 로그 모니터링 시작
+            </button>
+        </div>
+
+
+        <!-- CARD 5: Monetization (The Climax) -->
+        <div id="card-monetization" class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden group border-orange-500/30 scroll-mt-24">
+            <div class="absolute -inset-1 bg-gradient-to-br from-orange-500/10 via-transparent to-indigo-500/10 rounded-3xl pointer-events-none blur-xl"></div>
+            
+            <div class="relative z-10 text-center mb-8">
+                <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">모든 트래픽은 돈이 됩니다</h2>
+                <p class="text-slate-400 text-xs sm:text-sm">애드센스는 기본, 쿠팡 파트너스와 제휴 마케팅까지 한 번에 쓸어 담으세요.</p>
+                <div class="inline-block px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-400 mt-4">
+                    ※ 1개 도메인(3개 서브도메인) 활성화 기준 시뮬레이션
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 relative z-10 mb-8">
+                <!-- AdSense -->
+                <div class="bg-slate-900/80 border border-slate-700 p-4 rounded-2xl text-center shadow-lg">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Google_AdSense_logo.svg" alt="AdSense" class="h-4 mx-auto mb-3 opacity-80 mix-blend-screen" onerror="this.src=''; this.alt='Google AdSense'; this.className='text-slate-400 text-sm font-bold mb-3 h-4 flex items-center justify-center';">
+                    <div class="text-[10px] font-bold text-slate-400 mb-1">안전자산 (메인 도메인)</div>
+                    <div class="text-2xl font-black text-white">$<span id="counter-adsense">0</span></div>
+                </div>
+                
+                <!-- Affiliate -->
+                <div class="bg-slate-900/80 border border-slate-700 p-4 rounded-2xl text-center shadow-lg">
+                    <div class="text-pink-400 font-black text-xs mb-3 flex items-center justify-center gap-1"><i class="fa-solid fa-link"></i> 쿠팡 / 제휴</div>
+                    <div class="text-[10px] font-bold text-slate-400 mb-1">공격형 자산 (서브 도메인)</div>
+                    <div class="text-2xl font-black text-white">₩<span id="counter-affiliate">0</span><span class="text-sm">만</span></div>
+                </div>
+                
+                <!-- Sponsorship -->
+                <div class="bg-slate-900/80 border border-slate-700 p-4 rounded-2xl text-center shadow-lg">
+                    <div class="text-emerald-400 font-black text-xs mb-3 flex items-center justify-center gap-1"><i class="fa-solid fa-handshake"></i> 브랜드 커넥트</div>
+                    <div class="text-[10px] font-bold text-slate-400 mb-1">협찬 제안 (트래픽 기반)</div>
+                    <div class="text-2xl font-black text-white"><span id="counter-sponsor">0</span><span class="text-sm">건</span></div>
+                </div>
+            </div>
+
+            <button onclick="runMonetizationAnim()" class="w-full py-4 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white rounded-xl font-black text-sm transition-all shadow-[0_0_20px_rgba(249,115,22,0.4)] hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] transform hover:-translate-y-0.5 flex items-center justify-center gap-2 relative overflow-hidden group/btn">
+                <div class="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform"></div>
+                <i class="fa-solid fa-coins relative z-10"></i> <span class="relative z-10">수익 시뮬레이션 돌려보기</span>
+            </button>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="pt-12 pb-8 flex flex-col sm:flex-row gap-4 justify-center items-center w-full">
+            <button class="w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-full font-black text-sm transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transform hover:-translate-y-1">
+                <i class="fa-solid fa-rocket mr-2"></i> mazastudio.kr 입장하기
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Animation Scripts -->
+    <script>
+        const wait = (ms) => new Promise(res => setTimeout(res, ms));
+
+        // Copilot UI Animation
+        async function triggerCopilotAnim(promptText) {
+            document.getElementById('quick-actions').classList.add('opacity-50', 'pointer-events-none');
+            const inputEl = document.getElementById('copilot-input');
+            inputEl.value = '';
+            for (let i = 0; i < promptText.length; i++) {
+                inputEl.value += promptText[i];
+                await wait(50);
+            }
+            await wait(200);
+            
+            const chat = document.getElementById('chat-container');
+            const userMsg = document.createElement('div');
+            userMsg.className = 'flex gap-4 max-w-[85%] ml-auto flex-row-reverse opacity-0 transition-opacity duration-300 shrink-0';
+            userMsg.innerHTML = `
+                <div class="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-md bg-slate-800 text-slate-300">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="p-4 border shadow-sm flex flex-col gap-2 w-full min-w-0 bg-slate-800/80 border-slate-700/50 text-white rounded-2xl rounded-tr-none">
+                    <p class="leading-relaxed whitespace-pre-wrap text-sm">${promptText}</p>
+                </div>
+            `;
+            chat.appendChild(userMsg);
+            inputEl.value = '';
+            
+            setTimeout(() => userMsg.classList.remove('opacity-0'), 50);
+            chat.scrollTop = chat.scrollHeight;
+            
+            await wait(500);
+            
+            // Highlight rooms
+            document.getElementById('room-meeting').className = 'col-span-2 row-span-2 rounded-xl p-2 flex flex-col justify-between border transition-all duration-500 relative bg-blue-500/10 border-blue-500/50 shadow-[inset_0_0_20px_rgba(59,130,246,0.1)]';
+            document.getElementById('room-server').className = 'col-span-2 row-span-1 rounded-xl p-2 flex flex-row items-center justify-between border transition-all duration-500 relative bg-emerald-500/10 border-emerald-500/50 shadow-[inset_0_0_20px_rgba(16,185,129,0.1)]';
+            document.getElementById('room-master').className = 'col-span-2 row-span-1 rounded-xl p-2 flex flex-row items-center justify-center gap-3 border transition-all duration-500 relative bg-red-500/10 border-red-500/50 shadow-[inset_0_0_20px_rgba(239,68,68,0.1)]';
+            
+            // Move agents
+            document.getElementById('meeting-agents').innerHTML = `
+                <div class="flex flex-col items-center z-20 m-1"><div class="p-1.5 rounded-full bg-blue-500/20 text-blue-400 animate-bounce"><i class="fa-solid fa-clipboard-list"></i></div><span class="text-[8px] font-bold text-slate-300 mt-1">기획팀</span></div>
+                <div class="flex flex-col items-center z-20 m-1"><div class="p-1.5 rounded-full bg-pink-500/20 text-pink-400 animate-bounce" style="animation-delay:0.1s"><i class="fa-solid fa-bullhorn"></i></div><span class="text-[8px] font-bold text-slate-300 mt-1">마케팅팀</span></div>
+                <div class="flex flex-col items-center z-20 m-1"><div class="p-1.5 rounded-full bg-emerald-500/20 text-emerald-400 animate-bounce" style="animation-delay:0.2s"><i class="fa-solid fa-code"></i></div><span class="text-[8px] font-bold text-slate-300 mt-1">개발팀</span></div>
+                <div class="flex flex-col items-center z-20 m-1"><div class="p-1.5 rounded-full bg-purple-500/20 text-purple-400 animate-bounce" style="animation-delay:0.3s"><i class="fa-solid fa-palette"></i></div><span class="text-[8px] font-bold text-slate-300 mt-1">디자인팀</span></div>
+            `;
+            document.getElementById('meeting-table').innerHTML = '<div class="w-full h-full bg-blue-500/20 rounded-full animate-pulse"></div>';
+            document.getElementById('lounge-agents').innerHTML = '';
+            document.getElementById('server-agents').innerHTML = '';
+            
+            const badge = document.getElementById('status-badge');
+            badge.className = 'inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-bold transition-all duration-300 bg-amber-500/10 border-amber-500/30 text-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.2)]';
+            document.getElementById('status-dot').className = 'w-2 h-2 rounded-full bg-amber-400 animate-ping';
+            document.getElementById('status-text').innerText = '부서간 회의 중';
+
+            await wait(1000);
+            
+            const assistMsg = document.createElement('div');
+            assistMsg.className = 'flex gap-4 max-w-[85%] opacity-0 transition-opacity duration-300 shrink-0';
+            assistMsg.innerHTML = `
+                <div class="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-md bg-gradient-to-br from-orange-500/20 to-amber-500/20 text-orange-400 border border-orange-500/30">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="p-4 border shadow-sm flex flex-col gap-2 w-full min-w-0 bg-orange-950/30 border-orange-800/30 text-slate-200 rounded-2xl rounded-tl-none">
+                    <div class="mb-2 rounded-xl border border-slate-700/50 bg-slate-800/30 overflow-hidden w-full max-w-sm">
+                        <div class="w-full flex items-center justify-between p-2.5 text-xs font-medium text-slate-300 border-b border-slate-700/50">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-robot text-orange-400"></i>
+                                <span class="font-bold text-orange-50">🤖 AI 에이전트 실시간 브레인스토밍 (4)</span>
+                            </div>
+                        </div>
+                        <div class="p-3 flex flex-col gap-2.5">
+                            <div class="flex flex-col gap-1 p-2 rounded-lg bg-slate-900/50 border border-slate-700/50">
+                                <div class="flex items-center gap-1.5 text-[10px] font-black text-blue-400"><i class="fa-solid fa-clipboard-list"></i> 기획팀 에이전트</div>
+                                <span class="text-[11px] text-slate-300 pl-4">타겟을 미국으로 설정하여 High-CPC 전략으로 가겠습니다.</span>
+                            </div>
+                            <div class="flex flex-col gap-1 p-2 rounded-lg bg-slate-900/50 border border-slate-700/50 opacity-0 transition-opacity duration-500" id="anim-msg-2">
+                                <div class="flex items-center gap-1.5 text-[10px] font-black text-emerald-400"><i class="fa-solid fa-code"></i> 개발팀 에이전트</div>
+                                <span class="text-[11px] text-slate-300 pl-4">en.mazastory.com 서브도메인을 할당하고 다국어 SEO 구조를 적용합니다.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            chat.appendChild(assistMsg);
+            setTimeout(() => assistMsg.classList.remove('opacity-0'), 50);
+            chat.scrollTop = chat.scrollHeight;
+            
+            await wait(1200);
+            document.getElementById('anim-msg-2').classList.remove('opacity-0');
+            chat.scrollTop = chat.scrollHeight;
+
+            await wait(1500);
+            
+            const assistDoneMsg = document.createElement('div');
+            assistDoneMsg.className = 'flex gap-4 max-w-[85%] opacity-0 transition-opacity duration-300 shrink-0 mt-4';
+            assistDoneMsg.innerHTML = `
+                <div class="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-md bg-gradient-to-br from-orange-500/20 to-amber-500/20 text-orange-400 border border-orange-500/30">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="p-4 border shadow-sm flex flex-col gap-2 w-full min-w-0 bg-orange-950/30 border-orange-800/30 text-slate-200 rounded-2xl rounded-tl-none">
+                    <p class="leading-relaxed whitespace-pre-wrap text-sm">🎉 기획서 초안 작성이 완료되었습니다!<br/>우측 패널에서 기획서를 검토하신 후 승인해 주세요.</p>
+                </div>
+            `;
+            chat.appendChild(assistDoneMsg);
+            setTimeout(() => assistDoneMsg.classList.remove('opacity-0'), 50);
+            chat.scrollTop = chat.scrollHeight;
+
+            await wait(800);
+
+            // Show Implementation Plan view
+            const floorplan = document.getElementById('agency-floorplan');
+            const docview = document.getElementById('agency-docview');
+            
+            floorplan.classList.add('-translate-x-full', 'opacity-0', 'pointer-events-none');
+            docview.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+            
+            // reset badge (will be hidden by transition, but just in case)
+            badge.className = 'inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-bold transition-all duration-300 bg-slate-800/50 border-slate-700 text-slate-400';
+            document.getElementById('status-dot').className = 'w-2 h-2 rounded-full bg-slate-500';
+            document.getElementById('status-text').innerText = '명령 대기 중';
+            document.getElementById('quick-actions').classList.remove('opacity-50', 'pointer-events-none');
+        }
+
+        async function approvePlanAndStart() {
+            // Document view to building state
+            const docview = document.getElementById('agency-docview');
+            docview.style.opacity = '0.5';
+            docview.style.pointerEvents = 'none';
+            
+            // Add chat message for start
+            const chat = document.getElementById('chat-container');
+            const userMsg = document.createElement('div');
+            userMsg.className = 'flex gap-4 max-w-[85%] ml-auto flex-row-reverse opacity-0 transition-opacity duration-300 shrink-0 mt-4';
+            userMsg.innerHTML = `
+                <div class="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-md bg-slate-800 text-slate-300">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="p-4 border shadow-sm flex flex-col gap-2 w-full min-w-0 bg-emerald-950/30 border-emerald-800/50 text-white rounded-2xl rounded-tr-none">
+                    <p class="leading-relaxed whitespace-pre-wrap text-sm font-bold text-emerald-400">✓ 기획 승인</p>
+                </div>
+            `;
+            chat.appendChild(userMsg);
+            setTimeout(() => userMsg.classList.remove('opacity-0'), 50);
+            chat.scrollTop = chat.scrollHeight;
+
+            await wait(800);
+
+            const assistMsg = document.createElement('div');
+            assistMsg.className = 'flex gap-4 max-w-[85%] opacity-0 transition-opacity duration-300 shrink-0 mt-2';
+            assistMsg.innerHTML = `
+                <div class="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-md bg-gradient-to-br from-orange-500/20 to-amber-500/20 text-orange-400 border border-orange-500/30">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="p-4 border shadow-sm flex flex-col gap-2 w-full min-w-0 bg-orange-950/30 border-orange-800/30 text-slate-200 rounded-2xl rounded-tl-none">
+                    <p class="leading-relaxed whitespace-pre-wrap text-sm">로봇들이 즉시 인프라 구축 파이프라인을 가동합니다. 아래 과정은 완전 자동으로 진행됩니다.</p>
+                </div>
+            `;
+            chat.appendChild(assistMsg);
+            setTimeout(() => assistMsg.classList.remove('opacity-0'), 50);
+            chat.scrollTop = chat.scrollHeight;
+
+            await wait(1000);
+
+            // Scroll to Subdomain card
+            document.getElementById('card-subdomain').scrollIntoView({ behavior: 'smooth' });
+            
+            await wait(800);
+            await runSubdomainAnim();
+
+            await wait(1500);
+
+            // Scroll to Pipeline card
+            document.getElementById('card-pipeline').scrollIntoView({ behavior: 'smooth' });
+            
+            await wait(800);
+            await runPipelineAnim();
+
+            await wait(1500);
+            
+            // Scroll to Scheduler card
+            document.getElementById('card-scheduler').scrollIntoView({ behavior: 'smooth' });
+            await wait(800);
+            await runSchedulerAnim();
+
+            await wait(2000);
+
+            // Scroll to Monetization card
+            document.getElementById('card-monetization').scrollIntoView({ behavior: 'smooth' });
+            await wait(800);
+            await runMonetizationAnim();
+        }
+
+        // CARD 2
+        async function runSubdomainAnim() {
+            const subs = ['en', 'jp', 'shop'];
+            for(let s of subs) {
+                const el = document.getElementById(`sub-${s}`);
+                el.classList.remove('opacity-30', 'translate-y-4');
+                el.classList.add('opacity-100', 'translate-y-0');
+                
+                // glow effect
+                const match = el.className.match(/bg-\w+-500\/10/);
+                if (match) {
+                    const originalBg = match[0];
+                    el.classList.remove(originalBg);
+                    const newBg = originalBg.replace('/10', '/30');
+                    el.classList.add(newBg);
+                }
+                
+                await wait(400);
+            }
+        }
+
+        // CARD 3
+        async function runPipelineAnim() {
+            const progressLine = document.getElementById('progressLine');
+            progressLine.style.width = '0%';
+            for(let i=1; i<=6; i++) {
+                document.getElementById(`step${i}`).classList.remove('step-active');
+            }
+
+            for(let i=1; i<=6; i++) {
+                document.getElementById(`step${i}`).classList.add('step-active');
+                const percentage = (i - 1) * (100 / 5); 
+                progressLine.style.width = `${percentage}%`;
+                await wait(600);
+            }
+        }
+
+        // CARD 4
+        async function runSchedulerAnim() {
+            const container = document.getElementById('log-container');
+            const workingMsg = document.getElementById('agent-working-msg');
+            
+            // Show working message
+            workingMsg.classList.remove('opacity-0');
+            
+            const newLogs = [
+                { time: '18:04', status: '🔄 헌터탐지', text: '급상승 키워드 "Apple Vision Pro 2" 발굴 완료', color: 'text-blue-400' },
+                { time: '18:05', status: '✍️ AI작성', text: '영문 2,500자 SEO 본문 생성 완료', color: 'text-purple-400' },
+                { time: '18:10', status: '⚠ Jitter', text: '발행 지연 적용 (+112분 후 발행 예정)', color: 'text-amber-400' },
+                { time: '20:02', status: '✔ 발행완료', text: 'Apple Vision Pro 2 Rumors', color: 'text-emerald-400' }
+            ];
+
+            for(let log of newLogs) {
+                const logEl = document.createElement('div');
+                logEl.className = 'flex gap-3 transition-opacity duration-300';
+                logEl.style.opacity = '0';
+                logEl.innerHTML = `<span class="text-slate-600">[${log.time}]</span><span class="${log.color}">${log.status}</span><span class="text-white">"${log.text}"</span>`;
+                container.appendChild(logEl);
+                
+                setTimeout(() => {
+                    logEl.style.opacity = '1';
+                }, 50);
+                
+                // Scroll down smoothly
+                container.style.transform = `translateY(-${(container.children.length - 3) * 24}px)`;
+                
+                await wait(1000 + Math.random() * 500);
+            }
+            
+            // Hide working message after finishing
+            await wait(1000);
+            workingMsg.classList.add('opacity-0');
+        }
+
+        // CARD 5
+        function animateValue(id, start, end, duration, prefix = '', suffix = '') {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                // ease out quad
+                const easeOut = progress * (2 - progress);
+                obj.innerHTML = prefix + Math.floor(easeOut * (end - start) + start) + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        async function runMonetizationAnim() {
+            animateValue('counter-adsense', 0, 324, 2500);
+            await wait(300);
+            animateValue('counter-affiliate', 0, 142, 3000);
+            await wait(300);
+            animateValue('counter-sponsor', 0, 5, 2000);
+        }
+    </script>
+</body>
+</html>

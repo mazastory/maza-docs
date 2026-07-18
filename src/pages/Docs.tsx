@@ -9,74 +9,144 @@ import DocsSearch from '../components/docs/DocsSearch';
 import { DOCS_TREE, findDocPage, getAdjacentPages } from '../data/docsTree';
 
 // ─── Lazy page components ────────────────────────────────────────────────────
+// Getting Started
 const PageIntro = lazy(() => import('../components/docs/pages/PageIntro'));
-const PageSEOIndex = lazy(() => import('../components/docs/pages/PageSEOIndex'));
-const PageExtension = lazy(() => import('../components/docs/pages/PageExtension'));
+const PageExtensionGuide = lazy(() => import('../components/docs/pages/guides/PageExtensionGuide'));
+const PagePWAInstallGuide = lazy(() => import('../components/docs/pages/guides/PagePWAInstallGuide'));
 const PageOnboarding = lazy(() => import('../components/docs/pages/PageOnboarding'));
+
+// Golden Path
+const Step01Login = lazy(() => import('../components/docs/pages/golden_path/Step01Login'));
+const Step02Dashboard = lazy(() => import('../components/docs/pages/golden_path/Step02Dashboard'));
+const Step03Domain = lazy(() => import('../components/docs/pages/golden_path/Step03Domain'));
+const Step04BlogSetup = lazy(() => import('../components/docs/pages/golden_path/Step04BlogSetup'));
+const Step05Agent = lazy(() => import('../components/docs/pages/golden_path/Step05Agent'));
+const Step06Blueprints = lazy(() => import('../components/docs/pages/golden_path/Step06Blueprints'));
+const Step07GoogleConnect = lazy(() => import('../components/docs/pages/golden_path/Step07GoogleConnect'));
+const Step08QC = lazy(() => import('../components/docs/pages/golden_path/Step08QC'));
+const Step09Adsense = lazy(() => import('../components/docs/pages/golden_path/Step09Adsense'));
+const Step10MazaIssue = lazy(() => import('../components/docs/pages/golden_path/Step10MazaIssue'));
+const Step11BlogManage = lazy(() => import('../components/docs/pages/golden_path/Step11BlogManage'));
+
+// Site Setup
+const PageMySite = lazy(() => import('../components/docs/pages/PageMySite'));
+const PageMazaBlog = lazy(() => import('../components/docs/pages/PageMazaBlog'));
+const PageDomainGuide = lazy(() => import('../components/docs/pages/guides/PageDomainGuide'));
 const PageTistory = lazy(() => import('../components/docs/pages/PageTistory'));
 const PageWordpress = lazy(() => import('../components/docs/pages/PageWordpress'));
-const PageMazaBlog = lazy(() => import('../components/docs/pages/PageMazaBlog'));
 const PagePremiumService = lazy(() => import('../components/docs/pages/PagePremiumService'));
-const PageMySite = lazy(() => import('../components/docs/pages/PageMySite'));
-const PageAutopilot = lazy(() => import('../components/docs/pages/PageAutopilot'));
+
+// Pipeline
 const PageNicheWriter = lazy(() => import('../components/docs/pages/PageNicheWriter'));
+const PageDemoTrendHunter = lazy(() => import('../components/docs/pages/demos/PageDemoTrendHunter'));
 const PageBlueprintGallery = lazy(() => import('../components/docs/pages/PageBlueprintGallery'));
+const PageAutopilot = lazy(() => import('../components/docs/pages/PageAutopilot'));
 const PageVisionWriter = lazy(() => import('../components/docs/pages/PageVisionWriter'));
-const PageBridge = lazy(() => import('../components/docs/pages/PageBridge'));
-const PageChallengeFlow = lazy(() => import('../components/docs/pages/PageChallengeFlow'));
-const PageStrategy = lazy(() => import('../components/docs/pages/PageStrategy'));
+
+// Demos
+const PageDemoCrowdFunding = lazy(() => import('../components/docs/pages/demos/PageDemoCrowdFunding'));
+const PageDemoQCClinic = lazy(() => import('../components/docs/pages/demos/PageDemoQCClinic'));
+const PageDemoAdsense = lazy(() => import('../components/docs/pages/demos/PageDemoAdsense'));
+
+
+// Quality & Monetization
+const PageAdsenseStrategy = lazy(() => import('../components/docs/pages/strategy/PageAdsenseStrategy'));
 const PageAdsenseGuide = lazy(() => import('../components/docs/pages/PageAdsenseGuide'));
+
+// SEO & Indexing
+const PageSEOStrategy = lazy(() => import('../components/docs/pages/strategy/PageSEOStrategy'));
 const PageSitemapRSS = lazy(() => import('../components/docs/pages/PageSitemapRSS'));
+const PageSEOIndex = lazy(() => import('../components/docs/pages/PageSEOIndex'));
+const PageTistoryCustomDomain = lazy(() => import('../components/docs/pages/strategy/PageTistoryCustomDomain'));
+
+// Academy
+const PageZeroITWorkflow = lazy(() => import('../components/docs/pages/concept/PageZeroITWorkflow'));
+const PageWhyMazaBlog = lazy(() => import('../components/docs/pages/concept/PageWhyMazaBlog'));
+const PageAcademyGettingStarted = lazy(() => import('../components/docs/pages/academy/PageAcademyGettingStarted'));
+const PageAcademyProTips = lazy(() => import('../components/docs/pages/academy/PageAcademyProTips'));
+const PageAcademyUseCases = lazy(() => import('../components/docs/pages/academy/PageAcademyUseCases'));
+
+// Safety
 const PageW05 = lazy(() => import('../components/docs/pages/PageW05'));
 const PageAccountSafety = lazy(() => import('../components/docs/pages/PageAccountSafety'));
+const PageGooglePoliciesDefense = lazy(() => import('../components/docs/pages/academy/PageGooglePoliciesDefense'));
+
+// FAQ
 const PageAdsenseFAQ = lazy(() => import('../components/docs/pages/PageAdsenseFAQ'));
 const PageTechnicalFAQ = lazy(() => import('../components/docs/pages/PageTechnicalFAQ'));
 const PagePolicyFAQ = lazy(() => import('../components/docs/pages/PagePolicyFAQ'));
 
 
-
 // ─── Page registry ────────────────────────────────────────────────────────────
 const PAGE_REGISTRY: Record<string, Record<string, () => React.ReactElement>> = {
   'getting-started': {
-    intro: () => <PageIntro />,
-    extension: () => <PageExtension />,
-    onboarding: () => <PageOnboarding />,
+    'intro': () => <PageIntro />,
+    'extension': () => <PageExtensionGuide />,
+    'onboarding': () => <PageOnboarding />,
   },
-  platform: {
+  'golden-path': {
+    'step01': () => <Step01Login />,
+    'step02': () => <Step02Dashboard />,
+    'step03': () => <Step03Domain />,
+    'step04': () => <Step04BlogSetup />,
+    'step05': () => <Step05Agent />,
+    'step06': () => <Step06Blueprints />,
+    'step07': () => <Step07GoogleConnect />,
+    'step08': () => <Step08QC />,
+    'step09': () => <Step09Adsense />,
+    'step10': () => <Step10MazaIssue />,
+    'step11': () => <Step11BlogManage />,
+  },
+  'site-setup': {
     'my-site': () => <PageMySite />,
+    'blog-setup': () => <Step04BlogSetup />,
     'maza-blog': () => <PageMazaBlog />,
-    tistory: () => <PageTistory />,
-    wordpress: () => <PageWordpress />,
-    'premium-service': () => <PagePremiumService />,
+    'domain-guide': () => <PageDomainGuide />,
+    'tistory': () => <PageTistory />,
+    'wordpress': () => <PageWordpress />,
+    'premium': () => <PagePremiumService />,
   },
-  features: {
-    'niche-writer': () => <PageNicheWriter />,
-    'blueprint-gallery': () => <PageBlueprintGallery />,
-    autopilot: () => <PageAutopilot />,
-    visionwriter: () => <PageVisionWriter />,
-    bridge: () => <PageBridge />,
+  'pipeline': {
+    'trend-hunter': () => <PageDemoTrendHunter />,
+    'blueprint': () => <PageBlueprintGallery />,
+    'autopilot': () => <PageAutopilot />,
+    'vision-writer': () => <PageVisionWriter />,
   },
-  adsense: {
-    'challenge-flow': () => <PageChallengeFlow />,
-    strategy: () => <PageStrategy />,
+  'demos': {
+    'crowdfunding': () => <PageDemoCrowdFunding />,
+    'qc-demo': () => <PageDemoQCClinic />,
+    'trend-demo': () => <PageDemoTrendHunter />,
+  },
+  'quality-monetization': {
+    'qc-clinic': () => <PageDemoQCClinic />,
+    'adsense-demo': () => <PageDemoAdsense />,
+    'adsense-strategy': () => <PageAdsenseStrategy />,
     'adsense-guide': () => <PageAdsenseGuide />,
   },
-  seo: {
+  'seo-index': {
+    'seo-strategy': () => <PageSEOStrategy />,
     'sitemap-rss': () => <PageSitemapRSS />,
-    'index-request': () => <PageSEOIndex />,
+    'seo-index-guide': () => <PageSEOIndex />,
+    'tistory-domain': () => <PageTistoryCustomDomain />,
   },
-  safety: {
-    w05: () => <PageW05 />,
+  'academy': {
+    'zero-it': () => <PageZeroITWorkflow />,
+    'why-maza-blog': () => <PageWhyMazaBlog />,
+    'getting-started': () => <PageAcademyGettingStarted />,
+    'pro-tips': () => <PageAcademyProTips />,
+    'use-cases': () => <PageAcademyUseCases />,
+  },
+  'safety': {
+    'w05': () => <PageW05 />,
     'account-safety': () => <PageAccountSafety />,
+    'google-policies': () => <PageGooglePoliciesDefense />,
   },
-  faq: {
+  'faq': {
     'adsense-faq': () => <PageAdsenseFAQ />,
     'technical-faq': () => <PageTechnicalFAQ />,
     'policy-faq': () => <PagePolicyFAQ />,
-    all: () => <PageAdsenseFAQ />,
   },
 };
-
 
 // ─── TOC definitions ──────────────────────────────────────────────────────────
 const PAGE_TOC: Record<string, Record<string, { id: string; title: string; level: 2 | 3 }[]>> = {
@@ -86,15 +156,6 @@ const PAGE_TOC: Record<string, Record<string, { id: string; title: string; level
       { id: 'one-engine', title: '원 엔진 파이프라인', level: 2 },
       { id: 'core-philosophy', title: '핵심 설계 철학', level: 2 },
       { id: 'w05-brief', title: 'W-05 안전 프로토콜', level: 2 },
-    ],
-  },
-  seo: {
-    'index-request': [
-      { id: 'why-zero', title: '실적 0 = 정상', level: 2 },
-      { id: 'manual-request', title: '수동 색인 요청', level: 2 },
-      { id: 'main-vs-individual', title: '메인 vs 개별 주소', level: 2 },
-      { id: 'korean-url', title: '한글 URL 인코딩', level: 2 },
-      { id: 'other-methods', title: '추가 색인 방법', level: 2 },
     ],
   },
 };
@@ -181,7 +242,7 @@ export default function Docs() {
       </header>
 
       {/* ── Body ── */}
-      <div className="flex flex-1 max-w-[1400px] mx-auto w-full">
+      <div className={`flex flex-1 mx-auto w-full ${sectionId === 'demos' ? 'max-w-none' : 'max-w-[1400px]'}`}>
 
         {/* ── Left Sidebar ── */}
         {/* Mobile overlay */}
@@ -200,7 +261,7 @@ export default function Docs() {
         </aside>
 
         {/* ── Main Content ── */}
-        <main className="flex-1 min-w-0 px-6 lg:px-12 py-10 max-w-3xl">
+        <main className={`flex-1 min-w-0 py-10 ${sectionId === 'demos' ? 'max-w-none px-0' : 'px-6 lg:px-12 max-w-3xl'}`}>
           {/* Breadcrumb */}
           <nav className="flex items-center gap-1.5 text-[11px] font-black text-slate-400 uppercase tracking-widest mb-8">
             <Link to="/docs/getting-started/intro" className="hover:text-indigo-600 transition-colors">Docs</Link>

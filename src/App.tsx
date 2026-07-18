@@ -5,7 +5,7 @@ import { Loader2 } from "lucide-react";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 // Lazy loading — Docs pages only
-const Landing = lazy(() => import("./pages/Landing"));
+// Lazy loading — Docs pages only
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const Docs = lazy(() => import("./pages/Docs"));
@@ -33,7 +33,7 @@ export default function App() {
       <BrowserRouter>
         <Suspense fallback={<PageLoader />}>
           <Routes>
-            <Route path="/" element={<AnimatedOutlet><Landing /></AnimatedOutlet>} />
+            <Route path="/" element={<Navigate to="/docs" replace />} />
             <Route path="/privacy" element={<AnimatedOutlet><PrivacyPolicy /></AnimatedOutlet>} />
             <Route path="/terms" element={<AnimatedOutlet><TermsOfService /></AnimatedOutlet>} />
 

@@ -55,16 +55,20 @@ export default function DocsSidebar({ onNavigate }: DocsSidebarProps) {
             <button
               onClick={() => toggleSection(section.id)}
               className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-left transition-all group ${
-                isSectionActive
-                  ? 'bg-slate-100 text-slate-800'
-                  : 'text-slate-600 hover:bg-slate-50 hover:text-slate-800'
+                section.id === 'golden-path'
+                  ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md shadow-amber-500/20 hover:from-amber-600 hover:to-orange-600'
+                  : section.id === 'demos'
+                  ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-md shadow-teal-500/20 hover:from-teal-600 hover:to-emerald-600'
+                  : isSectionActive
+                    ? 'bg-slate-100 text-slate-800'
+                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-800'
               }`}
             >
-              <SectionIcon size={15} className={colors.icon} />
+              <SectionIcon size={15} className={section.id === 'golden-path' ? 'text-amber-100' : section.id === 'demos' ? 'text-teal-100' : colors.icon} />
               <span className="flex-1 text-xs font-black uppercase tracking-tight">{section.title}</span>
               {isOpen
-                ? <ChevronDown size={13} className="text-slate-400 transition-transform" />
-                : <ChevronRight size={13} className="text-slate-400 transition-transform" />
+                ? <ChevronDown size={13} className={`transition-transform ${section.id === 'golden-path' ? 'text-amber-200' : section.id === 'demos' ? 'text-teal-200' : 'text-slate-400'}`} />
+                : <ChevronRight size={13} className={`transition-transform ${section.id === 'golden-path' ? 'text-amber-200' : section.id === 'demos' ? 'text-teal-200' : 'text-slate-400'}`} />
               }
             </button>
 
