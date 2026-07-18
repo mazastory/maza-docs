@@ -30,6 +30,43 @@ export default function PageSEOIndex() {
         </div>
       </div>
 
+      {/* 방법 0: 자동 색인 봇 (마자 스튜디오) */}
+      <h2 id="auto-indexing" className="text-2xl font-black tracking-tight text-slate-900 mb-4 pb-3 border-b border-slate-100 flex items-center gap-2">
+        <Sparkles className="text-indigo-600" />
+        방법 0. 마자 스튜디오 자동 색인 봇 설정 (강력 추천)
+      </h2>
+      <p className="text-sm text-slate-600 font-medium mb-5 leading-relaxed">
+        매번 새 글을 발행할 때마다 구글 서치 콘솔에 들어가서 색인 요청을 누르는 것은 너무 번거롭습니다. 마자 스튜디오의 전용 봇을 소유자로 추가하면 <strong>글이 발행될 때마다 자동으로 구글에 핑(Ping)을 쏴서 즉시 색인을 요청</strong>합니다.
+      </p>
+
+      <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl mb-12">
+        <div className="space-y-4">
+          <div className="flex items-start gap-3">
+            <div className="w-7 h-7 rounded-lg bg-emerald-500 text-white flex items-center justify-center text-xs font-black shrink-0">1</div>
+            <p className="text-sm font-semibold text-slate-700 leading-relaxed mt-1">구글 서치 콘솔 좌측 하단의 <strong>[설정]</strong> 메뉴로 이동합니다.</p>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="w-7 h-7 rounded-lg bg-emerald-500 text-white flex items-center justify-center text-xs font-black shrink-0">2</div>
+            <p className="text-sm font-semibold text-slate-700 leading-relaxed mt-1"><strong>[사용자 및 권한]</strong>을 클릭하고 우측 상단의 <strong>[사용자 추가]</strong> 버튼을 누릅니다.</p>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="w-7 h-7 rounded-lg bg-emerald-500 text-white flex items-center justify-center text-xs font-black shrink-0">3</div>
+            <div className="flex-1 mt-1">
+              <p className="text-sm font-semibold text-slate-700 leading-relaxed mb-2">
+                이메일 주소에 아래의 <strong>마자 스튜디오 봇 이메일</strong>을 복사해서 붙여넣습니다.
+              </p>
+              <div className="p-3 bg-white border border-slate-200 rounded-lg">
+                <code className="text-[11px] font-mono text-indigo-600 break-all select-all">maza-indexing-bot@project-9122c26c-0268-4aad-b51.iam.gserviceaccount.com</code>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="w-7 h-7 rounded-lg bg-emerald-500 text-white flex items-center justify-center text-xs font-black shrink-0">4</div>
+            <p className="text-sm font-semibold text-slate-700 leading-relaxed mt-1">권한을 반드시 <strong>[소유자 (Owner)]</strong>로 선택하고 추가합니다. 끝입니다!</p>
+          </div>
+        </div>
+      </div>
+
       {/* 방법 1: 수동 색인 요청 */}
       <h2 id="manual-request" className="text-2xl font-black tracking-tight text-slate-900 mb-4 pb-3 border-b border-slate-100">
         방법 1. 수동 색인 요청 (가장 빠름)
