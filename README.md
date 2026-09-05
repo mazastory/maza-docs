@@ -7,7 +7,7 @@ Maza Studio 및 관련 생태계의 내부 정책, 제품 전략, 문제 해결 
   - `mazastory/maza-studio`
   - `mazastory/maza-docs`
   - `mazastory/maza-blog`
-- **배포 인프라 (Netlify)**: 과거 사용되었던 Cloud Run, Vercel 등은 모두 폐기되었으며, 현재 프론트엔드/백엔드 모두 **Netlify**를 통해 통합 배포 및 관리됩니다.
+- **배포 인프라**: 프론트엔드(`maza-docs` · `maza-blog`)는 **Vercel**, 백엔드 API/워커(`maza-studio`)는 **Google Cloud Run**(`mazastudio-server`, asia-northeast1)에서 돕니다. **Netlify 는 2026-09-06 에 폐기**했습니다 — 계정·`netlify.toml`·`.netlify/` 모두 제거했고 호스팅은 Vercel 로 일원화했습니다. (이 줄은 그 전까지 "Cloud Run·Vercel 은 폐기, Netlify 로 통합"이라고 **반대로** 적혀 있었습니다.)
 - **주요 연동 방식**: 티스토리 등 외부 블로그와의 통신은 서버사이드 API 직접 통신 대신, 유저의 브라우저 컨텍스트를 활용하는 **Maza Extension(Chrome 확장프로그램)**을 통해 이루어집니다.
 
 ## 문서 디렉토리 구조

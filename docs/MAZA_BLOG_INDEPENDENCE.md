@@ -32,8 +32,8 @@ SaaS(Software as a Service) 환경에서 사용자가 가장 우려하는 것은
 2. 생성하신 Supabase의 'SQL Editor' 메뉴에 코드를 붙여넣고 실행하여 `sites`, `posts` 테이블을 생성합니다.
 3. 마자 스튜디오 팝업에서 **[전체 게시글 백업 (JSON)]** 버튼을 눌러 지금까지 작성한 모든 글을 다운로드한 후, 본인의 Supabase에 Import 합니다.
 
-### 3단계: 블로그(Netlify) 연결 정보 변경
-1. [Netlify](https://app.netlify.com) 대시보드에 로그인하여 내 블로그 프로젝트에 접속합니다.
+### 3단계: 블로그(Vercel) 연결 정보 변경
+1. [Vercel](https://vercel.com/dashboard) 대시보드에 로그인하여 내 블로그 프로젝트에 접속합니다.
 2. `Site Configuration > Environment variables` 메뉴로 이동합니다.
 3. 다음 두 가지 환경변수를 본인이 생성한 Supabase의 정보로 교체합니다:
    - `PUBLIC_SUPABASE_URL` = 나의 Supabase Project URL

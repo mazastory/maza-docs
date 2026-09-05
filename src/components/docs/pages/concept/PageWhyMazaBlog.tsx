@@ -45,7 +45,7 @@ export default function PageWhyMazaBlog() {
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed">
                 매달 나가는 비싼 호스팅비와 유료 플러그인 구독료가 없습니다. 
-                최신 서버리스(Vercel, Netlify) 기술을 사용해 고정 서버비가 사실상 0원에 가까워 비용 대비 수익률(ROI)이 극대화됩니다.
+                최신 서버리스(Vercel) 기술을 사용해 고정 서버비가 사실상 0원에 가까워 비용 대비 수익률(ROI)이 극대화됩니다.
               </p>
             </div>
           </div>

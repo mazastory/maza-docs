@@ -12,7 +12,7 @@ export default function PageAcademyGettingStarted() {
           IT 초보도 가능한 완벽 자동화 워크플로우
         </h1>
         <p className="text-lg text-slate-600 font-medium leading-relaxed">
-          복잡한 코딩, 깃허브 설정, 넷리파이 인프라 지식... 블로그를 시작하려다 이 모든 장벽 앞에서 좌절하셨나요? 
+          복잡한 코딩, 깃허브 설정, 호스팅 인프라 지식... 블로그를 시작하려다 이 모든 장벽 앞에서 좌절하셨나요? 
           Maza Studio는 여러분이 오직 콘텐츠에만 집중할 수 있도록 <strong>블로그 세팅의 모든 것을 전면 자동화(Zero-IT)</strong>했습니다.
         </p>
       </div>
@@ -84,7 +84,7 @@ export default function PageAcademyGettingStarted() {
                 <Code2 size={18} /> 진정한 Zero-IT: 인프라 구축
               </h3>
               <p className="text-sm text-indigo-800 leading-relaxed">
-                <strong>팝업을 띄우거나 가입할 필요가 전혀 없습니다.</strong> 시스템이 무료 호스팅 서버인 Netlify와 다이렉트로 연동하여 빈 껍데기 서버를 알아서 구축합니다.
+                <strong>팝업을 띄우거나 가입할 필요가 전혀 없습니다.</strong> 시스템이 호스팅 서버인 Vercel과 다이렉트로 연동하여 빈 껍데기 서버를 알아서 구축합니다.
               </p>
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function PageAcademyGettingStarted() {
               <div className="w-8 h-8 bg-violet-100 text-violet-600 rounded-full flex items-center justify-center font-black mb-3">7</div>
               <h3 className="font-bold text-slate-800 mb-2 text-sm">최종 배포 (Inject)</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                추적 코드(메타데이터)와 완성된 15개 다국어 글을 넷리파이 서버에 즉시 주입하여 전 세계로 배포합니다.
+                추적 코드(메타데이터)와 완성된 15개 다국어 글을 호스팅 서버에 즉시 주입하여 전 세계로 배포합니다.
               </p>
             </div>
             <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm relative hover:border-violet-300 transition-colors">
@@ -131,7 +131,7 @@ export default function PageAcademyGettingStarted() {
             </p>
             <ol className="list-decimal list-inside text-sm text-rose-900 space-y-2 bg-white/60 p-4 rounded-lg">
               <li>도메인 구입처(가비아, 호스팅케이알 등)에 접속 ➡️ DNS 레코드 설정 메뉴</li>
-              <li><strong>A 레코드 추가:</strong> Netlify 고정 주소(IP <code>75.2.60.5</code>)를 향하도록 입력</li>
+              <li><strong>A 레코드 추가:</strong> Vercel 주소(IP <code>216.198.79.1</code>)를 향하도록 입력 <span className="text-xs">— 도메인마다 다를 수 있으니, 안 열리면 도메인 설정 화면의 IP를 쓰세요</span></li>
             </ol>
           </div>
         </div>

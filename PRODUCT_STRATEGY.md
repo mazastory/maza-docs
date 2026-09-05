@@ -136,14 +136,14 @@
 | 레이어 | 기술 | 비고 |
 |--------|------|------|
 | 블로그 엔진 | Astro (SSG) | 구글 Core Web Vitals 최적화 |
-| 호스팅 | Netlify | ZeroIT 자동 배포 파이프라인 |
+| 호스팅 | Vercel | ZeroIT 자동 배포 파이프라인 |
 | DNS | Cloudflare | CDN + 보안 |
 | 코드 저장소 | GitHub | 유저별 자동 생성 |
-| 백엔드 | Node.js + Express | Netlify 배포 |
+| 백엔드 | Node.js + Express | Vercel 배포 |
 | DB | Supabase (PostgreSQL) | 인증 + 데이터 |
 | AI | Gemini / GPT | 콘텐츠 자동생성 |
-| 마케팅 랜딩 | maza-site (Astro) | Netlify 배포 |
-| 관리 앱 | maza-studio (React) | Netlify 배포 |
+| 마케팅 랜딩 | maza-site (Astro) | Vercel 배포 |
+| 관리 앱 | maza-studio (React) | Vercel 배포 |
 | 확장 프로그램 | Maza Extension (Chrome) | 티스토리 등 외부 블로그 DOM 자동화 인젝션 |
 
 ---

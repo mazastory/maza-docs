@@ -22,7 +22,7 @@ export default function PageZeroITWorkflow() {
           <Zap className="text-amber-500" /> 1초 만에 끝나는 ZeroIT 세팅
         </h2>
         <p className="text-slate-600 mb-6">
-          기존의 수동 세팅 과정(소스코드 다운로드 ➡️ 깃허브 업로드 ➡️ 넷리파이 연결)을 모두 생략하고, Maza Studio 내에서 3번의 클릭만으로 나만의 블로그가 완성됩니다.
+          기존의 수동 세팅 과정(소스코드 다운로드 ➡️ 깃허브 업로드 ➡️ 호스팅 연결)을 모두 생략하고, Maza Studio 내에서 3번의 클릭만으로 나만의 블로그가 완성됩니다.
         </p>
         
         <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -39,9 +39,9 @@ export default function PageZeroITWorkflow() {
             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-slate-100 mx-auto mb-4 text-emerald-600">
               <Server size={24} />
             </div>
-            <h3 className="font-bold text-slate-800 mb-2">2. Netlify 연동</h3>
+            <h3 className="font-bold text-slate-800 mb-2">2. Vercel 연동</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
-              넷리파이 권한 승인 시, 깃허브 코드와 자동 연결되어 배포 파이프라인이 구축됩니다.
+              버셀 권한 승인 시, 깃허브 코드와 자동 연결되어 배포 파이프라인이 구축됩니다.
             </p>
           </div>
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center">
@@ -60,7 +60,7 @@ export default function PageZeroITWorkflow() {
             <ShieldCheck size={18} /> 마지막으로 딱 하나만 직접 해주세요!
           </h4>
           <p className="text-sm text-blue-800">
-            도메인 구입처(가비아, 호스팅케이알 등)에서 DNS 레코드(A, CNAME)를 Netlify 서버를 향하도록 추가해 주시면 모든 준비가 끝납니다.
+            도메인 구입처(가비아, 호스팅케이알 등)에서 DNS 레코드(A, CNAME)를 Vercel 서버를 향하도록 추가해 주시면 모든 준비가 끝납니다.
           </p>
         </div>
       </section>
@@ -105,7 +105,7 @@ export default function PageZeroITWorkflow() {
           <ol className="space-y-4 list-decimal list-inside text-sm text-slate-300">
             <li><strong className="text-white">무료 DB 생성:</strong> Supabase에 가입하고 무료 프로젝트를 하나 생성합니다.</li>
             <li><strong className="text-white">데이터 백업:</strong> 마자 스튜디오에서 <code>SQL 스키마</code>와 <code>JSON 게시글 데이터</code>를 받아 본인의 DB에 이관합니다.</li>
-            <li><strong className="text-white">연결 정보 교체:</strong> Netlify 대시보드 환경변수(Env) 메뉴에서 새 DB 주소와 키값으로 교체하면 완전히 분리됩니다.</li>
+            <li><strong className="text-white">연결 정보 교체:</strong> Vercel 대시보드 환경변수(Env) 메뉴에서 새 DB 주소와 키값으로 교체하면 완전히 분리됩니다.</li>
           </ol>
         </div>
       </section>

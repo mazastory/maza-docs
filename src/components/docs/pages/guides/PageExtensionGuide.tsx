@@ -116,7 +116,7 @@ export default function PageExtensionGuide() {
             <h3 className="font-bold text-amber-900 mb-2">브라우저 환경 유지 필수!</h3>
             <p className="text-sm text-amber-800 leading-relaxed">
               티스토리(Tistory) 플랫폼 등으로 외부 발행을 수행할 때는 <strong>Maza Chrome Extension이 설치된 브라우저가 반드시 켜져 있어야</strong> 합니다. (화면보호기 상태 무방, 단 브라우저 완전 종료 시 발행 중단) <br/>
-              ※ Maza Blog (Netlify) 플랫폼을 사용할 경우 익스텐션이나 브라우저 켜짐 없이 100% 서버사이드에서 발행이 이루어집니다.
+              ※ Maza Blog (Vercel) 플랫폼을 사용할 경우 익스텐션이나 브라우저 켜짐 없이 100% 서버사이드에서 발행이 이루어집니다.
             </p>
           </div>
         </div>
