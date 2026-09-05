@@ -420,6 +420,20 @@
             logsBox.classList.add('opacity-0', 'h-0', 'mt-0');
             logsBox.classList.remove('h-48', 'mt-4');
         }
+        // Auto-play for the live demo container
+        window.addEventListener('DOMContentLoaded', async () => {
+            // Wait 2 seconds, then start audit
+            await wait(2000);
+            await startAudit();
+            
+            // Give user 3 seconds to read the bad score, then auto fix
+            await wait(3000);
+            await runAutoFix();
+            
+            // Wait 4 seconds to show the final clear state, then loop
+            await wait(4000);
+            location.reload();
+        });
     </script>
 </body>
 </html>
