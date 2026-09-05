@@ -131,7 +131,7 @@ export default function PageAcademyGettingStarted() {
             </p>
             <ol className="list-decimal list-inside text-sm text-rose-900 space-y-2 bg-white/60 p-4 rounded-lg">
               <li>도메인 구입처(가비아, 호스팅케이알 등)에 접속 ➡️ DNS 레코드 설정 메뉴</li>
-              <li><strong>A 레코드 추가:</strong> Vercel 주소(IP <code>216.198.79.1</code>)를 향하도록 입력 <span className="text-xs">— 도메인마다 다를 수 있으니, 안 열리면 도메인 설정 화면의 IP를 쓰세요</span></li>
+              <li><strong>A 레코드 추가:</strong> Vercel 주소(IP <code>76.76.21.21</code>)를 향하도록 입력</li>
             </ol>
           </div>
         </div>

@@ -4,15 +4,15 @@ import { Suspense, lazy } from "react";
 import { Loader2 } from "lucide-react";
 import ErrorBoundary from "./components/ErrorBoundary";
 
-// Lazy loading — Docs pages only
-// Lazy loading — Docs pages only
+// Lazy loading
+const Landing = lazy(() => import("./pages/Landing"));
+const Whitepaper = lazy(() => import("./pages/Whitepaper"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
-const Docs = lazy(() => import("./pages/Docs"));
 
 const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />
+  <div className="min-h-screen flex items-center justify-center bg-slate-950">
+    <Loader2 className="w-8 h-8 text-indigo-500 animate-spin" />
   </div>
 );
 
@@ -33,17 +33,13 @@ export default function App() {
       <BrowserRouter>
         <Suspense fallback={<PageLoader />}>
           <Routes>
-            <Route path="/" element={<Navigate to="/docs" replace />} />
+            <Route path="/" element={<AnimatedOutlet><Landing /></AnimatedOutlet>} />
+            <Route path="/whitepaper" element={<AnimatedOutlet><Whitepaper /></AnimatedOutlet>} />
             <Route path="/privacy" element={<AnimatedOutlet><PrivacyPolicy /></AnimatedOutlet>} />
             <Route path="/terms" element={<AnimatedOutlet><TermsOfService /></AnimatedOutlet>} />
 
-            {/* ─── New Docs Hub ─── */}
-            <Route path="/docs" element={<Navigate to="/docs/getting-started/intro" replace />} />
-            <Route path="/docs/:sectionId" element={<Navigate to="/docs/getting-started/intro" replace />} />
-            <Route path="/docs/:sectionId/:pageId" element={<AnimatedOutlet><Docs /></AnimatedOutlet>} />
-            
             {/* Catch-all */}
-            <Route path="*" element={<Navigate to="/docs" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

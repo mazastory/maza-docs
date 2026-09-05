@@ -36,12 +36,12 @@ export default function PageDomainGuide() {
                   <div className="font-mono">@</div>
                   <div className="text-slate-500">값(IP주소)</div>
                   <div className="font-mono text-emerald-600 bg-emerald-50 px-1 rounded flex items-center justify-between">
-                    216.198.79.1 <Copy size={14} className="cursor-pointer text-slate-400 hover:text-emerald-600"/>
+                    76.76.21.21 <Copy size={14} className="cursor-pointer text-slate-400 hover:text-emerald-600"/>
                   </div>
                 </div>
                 <p className="text-xs text-slate-500 mt-2 leading-relaxed">
-                  ※ A 레코드 IP는 도메인마다 다르게 배정될 수 있습니다. 연결 후 사이트가 열리지 않으면
-                  Maza Studio의 도메인 설정 화면에 표시되는 IP를 그대로 사용해 주세요.
+                  ※ 이 값은 Maza Studio가 도메인 연결 화면에서 안내하는 값과 같습니다.
+                  화면에 다른 값이 보이면 화면 쪽을 따라 주세요.
                 </p>
               </div>
               <div className="bg-slate-50 p-3 rounded border border-slate-100">
@@ -50,7 +50,7 @@ export default function PageDomainGuide() {
                   <div className="text-slate-500">호스트(이름)</div>
                   <div className="font-mono">www</div>
                   <div className="text-slate-500">값(목적지)</div>
-                  <div className="font-mono break-all">b2b60e0107b2c9f6.vercel-dns-017.com</div>
+                  <div className="font-mono break-all">cname.vercel-dns.com</div>
                 </div>
               </div>
             </div>
@@ -68,7 +68,7 @@ export default function PageDomainGuide() {
                   <div className="text-slate-500">호스트(이름)</div>
                   <div className="font-mono">blog <span className="text-xs text-slate-400 font-sans">(원하는 이름)</span></div>
                   <div className="text-slate-500">값(목적지)</div>
-                  <div className="font-mono break-all">b2b60e0107b2c9f6.vercel-dns-017.com</div>
+                  <div className="font-mono break-all">cname.vercel-dns.com</div>
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@ export default function PageDomainGuide() {
               </ol>
               <div className="bg-amber-50 text-amber-800 p-3 rounded-lg flex gap-2 border border-amber-200">
                 <AlertTriangle size={16} className="mt-0.5 shrink-0" />
-                <p><strong>주의:</strong> 가비아에서 CNAME 값을 입력할 때는 맨 끝에 점(.)을 꼭 찍어야 합니다! (예: <code>...vercel-dns-017.com.</code>)</p>
+                <p><strong>주의:</strong> 가비아에서 CNAME 값을 입력할 때는 맨 끝에 점(.)을 꼭 찍어야 합니다! (예: <code>...vercel-dns.com.</code>)</p>
               </div>
             </div>
           </details>
