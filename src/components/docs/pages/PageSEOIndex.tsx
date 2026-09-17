@@ -56,13 +56,13 @@ export default function PageSEOIndex() {
                 이메일 주소에 아래의 <strong>마자 스튜디오 봇 이메일</strong>을 복사해서 붙여넣습니다.
               </p>
               <div className="p-3 bg-white border border-slate-200 rounded-lg">
-                <code className="text-[11px] font-mono text-indigo-600 break-all select-all">maza-indexing-bot@project-9122c26c-0268-4aad-b51.iam.gserviceaccount.com</code>
+                <code className="text-[11px] font-mono text-indigo-600 break-all select-all">maza-indexing-bot@mazastudio-prod.iam.gserviceaccount.com</code>
               </div>
             </div>
           </div>
           <div className="flex items-start gap-3">
             <div className="w-7 h-7 rounded-lg bg-emerald-500 text-white flex items-center justify-center text-xs font-black shrink-0">4</div>
-            <p className="text-sm font-semibold text-slate-700 leading-relaxed mt-1">권한을 반드시 <strong>[소유자 (Owner)]</strong>로 선택하고 추가합니다. 끝입니다!</p>
+            <p className="text-sm font-semibold text-slate-700 leading-relaxed mt-1">권한을 <strong>[전체]</strong>로 선택하고 추가합니다. 끝입니다!</p>
           </div>
         </div>
       </div>
