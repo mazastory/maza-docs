@@ -1,0 +1,66 @@
+{
+  "search-spam-policies": {
+    "url": "https://developers.google.com/search/docs/essentials/spam-policies",
+    "mode": "full",
+    "retrieved": "2026-10-08",
+    "http": 200,
+    "fingerprint": "86fb533dbf11737778ecb2de899ab5b49176574709187cbcd280330aa2a7ce5f",
+    "chars": 35693
+  },
+  "search-using-gen-ai-content": {
+    "url": "https://developers.google.com/search/docs/fundamentals/using-gen-ai-content",
+    "mode": "full",
+    "retrieved": "2026-10-08",
+    "http": 200,
+    "fingerprint": "b54c977bb0b3fb58772f804ab2f45192531c060c432370af737ed7c6745fbbd6",
+    "chars": 4205
+  },
+  "search-creating-helpful-content": {
+    "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+    "mode": "full",
+    "retrieved": "2026-10-08",
+    "http": 200,
+    "fingerprint": "385bbe6a0f8f64760830fd143d3f53cc032be526bf10ce212b2e9ac9bfaebb92",
+    "chars": 16484
+  },
+  "search-blog-2023-ai-content": {
+    "url": "https://developers.google.com/search/blog/2023/02/google-search-and-ai-content",
+    "mode": "full",
+    "retrieved": "2026-10-08",
+    "http": 200,
+    "fingerprint": "a809cdd89f0e479986b6d4ad04dfef3ea70c5ab16dcbec275f1390979ee31125",
+    "chars": 8473
+  },
+  "adsense-eligibility": {
+    "url": "https://support.google.com/adsense/answer/9724",
+    "mode": "fingerprint",
+    "retrieved": "2026-10-08",
+    "http": 200,
+    "fingerprint": "55d95089dcf431fb9b7bb5412d3beb1fd87256d20b599ec65e23074559a50fa0",
+    "chars": 3582
+  },
+  "adsense-program-policies": {
+    "url": "https://support.google.com/adsense/answer/48182",
+    "mode": "fingerprint",
+    "retrieved": "2026-10-08",
+    "http": 200,
+    "fingerprint": "7302503ce149556ed1a4a45552fc9cd8e808881a241c66203162f64eda864907",
+    "chars": 9999
+  },
+  "publisher-replicated-content": {
+    "url": "https://support.google.com/publisherpolicies/answer/11190248",
+    "mode": "fingerprint",
+    "retrieved": "2026-10-08",
+    "http": 200,
+    "fingerprint": "8ef8f6fd3e9680d6c146ce227925a4768e38b7ed853255fbabb725252c503666",
+    "chars": 2744
+  },
+  "publisher-low-value-content": {
+    "url": "https://support.google.com/publisherpolicies/answer/11112688",
+    "mode": "fingerprint",
+    "retrieved": "2026-10-08",
+    "http": 200,
+    "fingerprint": "f09756355ca6b592b3e73f602b9ba8c3375e0f7df76503bfee1e56cf03f2072b",
+    "chars": 1847
+  }
+}

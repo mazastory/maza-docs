@@ -1,115 +1,66 @@
 import React from 'react';
-import { ShieldCheck, FileText, CheckCircle2, ShieldAlert, ArrowRightCircle, ExternalLink, GraduationCap, AlertOctagon } from 'lucide-react';
+import { AlertOctagon, ExternalLink } from 'lucide-react';
+
+/**
+ * 구글 정책 안내 — 2026-10-08 정정판.
+ *
+ * 이 페이지는 원래 「구글 공식 정책 방어 가이드」였고, 마자 스튜디오가 구글 정책을 "100% 합법적(White-Hat)으로 준수"한다고
+ * 적었다("완벽한 방어 논리로 활용하세요"). 철회했다:
+ *   · 합법·승인을 보장하는 표현은 우리가 증명할 수 없다. 승인은 구글이 결정한다(우리 기록에는 승인된 사이트가 없다).
+ *   · "구글 공식"이라고 적은 문장 중 구글 원문에서 찾지 못한 것이 있었다.
+ * 옛 본문은 git 이력에 있다. 원문 스냅샷: maza-docs/docs/04_legal_and_policies/google_originals/
+ */
+const LINKS: [string, string][] = [
+  ['스팸 정책 (검색 센터)', 'https://developers.google.com/search/docs/essentials/spam-policies'],
+  ['생성형 AI 콘텐츠 안내', 'https://developers.google.com/search/docs/fundamentals/using-gen-ai-content'],
+  ['유용하고 신뢰할 수 있는 사람 중심 콘텐츠', 'https://developers.google.com/search/docs/fundamentals/creating-helpful-content'],
+  ['구글 검색의 AI 생성 콘텐츠 안내 (2023)', 'https://developers.google.com/search/blog/2023/02/google-search-and-ai-content'],
+  ['애드센스 자격 요건', 'https://support.google.com/adsense/answer/9724'],
+  ['게시자 정책 — 복제 콘텐츠', 'https://support.google.com/publisherpolicies/answer/11190248'],
+  ['게시자 정책 — 콘텐츠 없는/가치 낮은 화면', 'https://support.google.com/publisherpolicies/answer/11112688'],
+];
 
 export default function PageGooglePoliciesDefense() {
   return (
     <article className="prose-doc pb-24">
-      <div className="mb-10">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-violet-100 text-violet-700 rounded-full text-xs font-black uppercase tracking-widest mb-4">
-          <GraduationCap size={11} /> Maza Academy
-        </span>
-        <h1 className="text-4xl font-black tracking-tight text-slate-900 leading-tight mb-4">
-          구글 공식 정책 방어 가이드
-        </h1>
-        <p className="text-lg text-slate-600 font-medium leading-relaxed">
-          마자 스튜디오의 핵심 비즈니스 모델(3-Zero 시스템)이 구글의 엄격한 정책을 어떻게 <strong>100% 합법적(White-Hat)으로 준수</strong>하고 있는지 
-          증명하는 공식 방어 가이드입니다. 외부에서 의문을 제기할 때 완벽한 방어 논리로 활용하세요.
-        </p>
+      <div className="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-5 flex gap-3">
+        <AlertOctagon className="text-amber-600 shrink-0 mt-0.5" size={20} />
+        <div className="text-sm text-amber-900 leading-relaxed">
+          <strong>2026-10-08 정정.</strong> 이 페이지는 이전에 「구글 공식 정책 방어 가이드」라는 이름으로 마자 스튜디오가 구글 정책을
+          "100% 합법적으로 준수"한다고 적었습니다. 그 보장 표현과 구글 원문에서 확인되지 않는 문장을 <strong>철회</strong>했습니다.
+          승인은 구글이 결정하며, 우리는 승인을 보장하지 않습니다.
+        </div>
       </div>
 
-      {/* Section 1 */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2 border-b border-slate-200 pb-3">
-          <ShieldCheck className="text-emerald-500" /> 1. 무한 서브도메인 광고 게재 (ZERO-LIMIT)
-        </h2>
-        
-        <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm mb-6">
-          <div className="flex items-start gap-4 mb-4">
-            <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-black shrink-0">Q</div>
-            <p className="font-bold text-slate-800 text-lg mt-1">"서브도메인마다 애드센스 승인을 따로 안 받아도 진짜 괜찮아?"</p>
-          </div>
-          
-          <div className="bg-emerald-50 border border-emerald-100 rounded-lg p-5">
-            <h4 className="font-bold text-emerald-900 flex items-center gap-2 mb-3">
-              <CheckCircle2 size={18} /> 공식 방어 논리
-            </h4>
-            <p className="text-sm text-emerald-800 leading-relaxed">
-              2023년 애드센스 '사이트(Sites)' 탭 개편 공지에 따라, <strong>"루트 도메인이 승인 상태라면 하위 도메인은 별도 승인 과정 없이 즉시 광고를 송출할 수 있다"</strong>고 명시되어 있습니다. 
-              이는 주 도메인의 승인 권한을 하위 도메인이 합법적으로 계승한다는 구글의 공식 정책입니다.
-            </p>
-          </div>
-        </div>
-      </section>
+      <h1 className="text-3xl font-black tracking-tight text-slate-900 mb-4">구글 정책 안내</h1>
+      <p className="text-slate-600 leading-relaxed mb-8">아래는 구글 공식 문서에서 직접 확인한 내용의 요지입니다. 정확한 문장은 원문 링크에서 읽으세요.</p>
 
-      {/* Section 2 */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2 border-b border-slate-200 pb-3">
-          <ShieldAlert className="text-amber-500" /> 2. 서브도메인 블로그 대량 운영 (ZERO-LIMIT 안전성)
-        </h2>
-        
-        <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm mb-6">
-          <div className="flex items-start gap-4 mb-4">
-            <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-black shrink-0">Q</div>
-            <p className="font-bold text-slate-800 text-lg mt-1">"최근 구글이 서브도메인 빌려주는 거 다 스팸 처리한다던데?"</p>
-          </div>
-          
-          <div className="bg-amber-50 border border-amber-100 rounded-lg p-5">
-            <h4 className="font-bold text-amber-900 flex items-center gap-2 mb-3">
-              <CheckCircle2 size={18} /> 공식 방어 논리
-            </h4>
-            <p className="text-sm text-amber-800 leading-relaxed">
-              2024년 발효된 '사이트 평판 악용' 처벌 대상은 <strong>"소유자의 감독 없이 제3자에게 서브도메인을 임대해 주는 행위"</strong>입니다. 
-              마자 스튜디오처럼 <strong>'본인이 소유한 루트 도메인 아래에서 본인이 직접 통제하는 서브도메인을 운영'</strong>하는 것은 100% 합법적이며 임대업자가 아님을 명확히 방어할 수 있습니다.
-            </p>
-          </div>
-        </div>
-      </section>
+      <h2 className="text-xl font-bold text-slate-900 mb-3">구글이 말한 것</h2>
+      <ul className="list-disc pl-6 space-y-2 text-slate-700 mb-8">
+        <li>AI 나 자동화의 <strong>적절한 사용은 지침 위반이 아닙니다.</strong> 기준은 만든 방식이 아니라 콘텐츠의 품질입니다.</li>
+        <li>스팸인 <strong>대규모 콘텐츠 악용</strong>은 순위 조작이 주된 목적이고 사용자에게 가치가 거의 없는 콘텐츠를 대량으로 만드는 것이며, <strong>어떻게 만들었든 상관없이</strong> 해당됩니다. 가치 없이 생성형 AI 로 많은 페이지를 만드는 것, 규모를 숨기려고 여러 사이트를 만드는 것이 예로 적혀 있습니다.</li>
+        <li>AI 로 만든 콘텐츠는 <strong>게시 전에 정확성과 신뢰성을 직접 확인하고 검토하는 것이 중요</strong>하다고 합니다(정확성 항목의 권고).</li>
+        <li>평가자 기준의 <strong>"노력"</strong>은 콘텐츠 <em>또는 그것을 돌리는 시스템</em>에 사람의 작업이 얼마나 들어갔는지를 봅니다. 수동 감독·큐레이션 없이 AI 로 대량의 글을 만드는 것은 노력이 거의 없는 예로 듭니다.</li>
+        <li>애드센스 자격 요건에는 <strong>최소 트래픽·사이트 나이·글 수 요건이 없다</strong>고 명시돼 있습니다. 콘텐츠는 고품질·독창적이어야 합니다.</li>
+        <li>게시자 정책은 <strong>"수동 검토나 큐레이션이 없는 자동 생성 콘텐츠"</strong>에 광고를 허용하지 않는다고 적습니다. 그 기준은 구글이 정의하지 않았습니다.</li>
+      </ul>
 
-      {/* Section 3 */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2 border-b border-slate-200 pb-3">
-          <FileText className="text-blue-500" /> 3. AI 대량 발행 관련 근거 (ZERO-WORK)
-        </h2>
-        
-        <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm mb-6">
-          <div className="flex items-start gap-4 mb-4">
-            <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-black shrink-0">Q</div>
-            <p className="font-bold text-slate-800 text-lg mt-1">"AI로 글 대량 발행하면 저품질(스팸) 먹는 거 아니야?"</p>
-          </div>
-          
-          <div className="bg-blue-50 border border-blue-100 rounded-lg p-5">
-            <h4 className="font-bold text-blue-900 flex items-center gap-2 mb-3">
-              <CheckCircle2 size={18} /> 공식 방어 논리
-            </h4>
-            <p className="text-sm text-blue-800 leading-relaxed">
-              구글은 공식 블로그를 통해 <strong>"콘텐츠가 어떻게(AI로) 만들어졌는지가 아니라, 얼마나 유용한지(E-E-A-T)가 중요하다"</strong>고 선언했습니다. 
-              마자 스튜디오처럼 점진적인 발행 스케줄링(초기 1~2개 발행)을 지키고 SEO 구조화 데이터를 갖추는 것은 고품질 콘텐츠로 인정받는 구글 공식 권장 가이드에 부합합니다.
-            </p>
-          </div>
-        </div>
-      </section>
+      <h2 className="text-xl font-bold text-slate-900 mb-3">우리가 증명하지 못하는 것</h2>
+      <ul className="list-disc pl-6 space-y-2 text-slate-700 mb-8">
+        <li>"합법"·"완벽"·"안전" 같은 보장. 승인 여부는 구글이 결정합니다.</li>
+        <li>서브도메인 승인 방식, 발행 속도와 패널티의 관계 등 이전 판이 "구글 공식"이라고 적었던 세부 내용은 원문에서 확인하지 못했습니다.</li>
+      </ul>
 
-      {/* Summary */}
-      <section>
-        <div className="bg-slate-900 rounded-xl p-8 text-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-          
-          <h2 className="text-2xl font-black text-indigo-400 mb-6 flex items-center gap-2">
-            💡 요약 결론 (Elevator Pitch)
-          </h2>
-          
-          <div className="bg-white/10 rounded-xl p-6 border border-white/10">
-            <p className="text-lg text-slate-100 leading-relaxed font-medium italic">
-              "구글이 서브도메인은 승인 없이 광고 달라고 시스템을 열어줬고, 본인 소유의 도메인이면 스팸도 아니며, 
-              AI 자체도 유용하게 쓰면 적극 허용한다고 구글 공식 문서에 똑똑히 적혀있습니다. 
-              <br/><br/>
-              <span className="text-emerald-400 not-italic font-black">
-                마자 스튜디오는 이 규정들을 100% 철저하게 준수하는 완벽한 화이트햇(White-Hat) 시스템입니다.
-              </span>"
-            </p>
-          </div>
-        </div>
-      </section>
+      <h2 className="text-xl font-bold text-slate-900 mb-3">원문</h2>
+      <ul className="space-y-2 mb-8">
+        {LINKS.map(([t, u]) => (
+          <li key={u}>
+            <a href={u} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-indigo-600 hover:underline">
+              {t} <ExternalLink size={13} />
+            </a>
+          </li>
+        ))}
+      </ul>
     </article>
   );
 }

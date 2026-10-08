@@ -137,7 +137,7 @@ export const DOCS_TREE: DocSection[] = [
     pages: [
       { id: 'w05', sectionId: 'safety', pageId: 'w05', title: 'W-05 안전 프로토콜', description: '물리적 지연 및 동시성 제어', icon: Lock },
       { id: 'account-safety', sectionId: 'safety', pageId: 'account-safety', title: '계정 보호 및 보안', description: '밴(Ban) 방지 가이드', icon: ShieldCheck },
-      { id: 'google-policies', sectionId: 'safety', pageId: 'google-policies', title: '구글 정책 방어 가이드', description: '3-Zero 시스템의 합법성', icon: CheckCircle2 }
+      { id: 'google-policies', sectionId: 'safety', pageId: 'google-policies', title: '구글 정책 안내 (정정)', description: '구글 공식 문서에서 직접 확인한 내용의 요지와 원문 링크', icon: CheckCircle2 }
     ]
   },
   {
